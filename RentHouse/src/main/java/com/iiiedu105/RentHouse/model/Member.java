@@ -34,8 +34,8 @@ public class Member {
 	private Set<Furniture> furnitureBeans = new LinkedHashSet<Furniture>();
 	private Set<FurnitureFavorite> furnitureFavoriteseans = new LinkedHashSet<FurnitureFavorite>();
 	private Set<Message> messageBeans = new LinkedHashSet<Message>(); 
-	private Set<Chat> chatBeanSA = new LinkedHashSet<Chat>();
-	private Set<Chat> chatBeanSB = new LinkedHashSet<Chat>();
+	private Set<Chat> chatBeansSend = new LinkedHashSet<Chat>();
+	private Set<Chat> chatBeansRead = new LinkedHashSet<Chat>();
 	private Set<EmployeeReport> employeeReportBeans = new LinkedHashSet<EmployeeReport>();
 	private Set<Forum> forumBeans = new LinkedHashSet<Forum>();
 	
@@ -218,24 +218,20 @@ public class Member {
 		this.messageBeans = messageBeans;
 	}
 	
-	@OneToMany(mappedBy="memberBeanA",cascade=CascadeType.ALL)
-	public Set<Chat> getChatBeanSA() {
-		return chatBeanSA;
+	@OneToMany(mappedBy="memberBeanSend",cascade=CascadeType.ALL)
+	public Set<Chat> getChatBeansSend() {
+		return chatBeansSend;
 	}
-	
-	public void setChatBeanSA(Set<Chat> chatBeanSA) {
-		this.chatBeanSA = chatBeanSA;
+	public void setChatBeansSend(Set<Chat> chatBeansSend) {
+		this.chatBeansSend = chatBeansSend;
 	}
-	
-	@OneToMany(mappedBy="memberBeanB",cascade=CascadeType.ALL)
-	public Set<Chat> getChatBeanSB() {
-		return chatBeanSB;
+	@OneToMany(mappedBy="memberBeanRead",cascade=CascadeType.ALL)
+	public Set<Chat> getChatBeansRead() {
+		return chatBeansRead;
 	}
-	
-	public void setChatBeanSB(Set<Chat> chatBeanSB) {
-		this.chatBeanSB = chatBeanSB;
+	public void setChatBeansRead(Set<Chat> chatBeansRead) {
+		this.chatBeansRead = chatBeansRead;
 	}
-	
 	@OneToMany(mappedBy="memberBean",cascade=CascadeType.ALL)
 	public Set<EmployeeReport> getEmployeeReportBeans() {
 		return employeeReportBeans;

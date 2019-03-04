@@ -14,9 +14,10 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan("com.iiiedu105.RentHouse.model")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
-	public static void main(String[] args) {
+
+	public WebAppConfig() {
 	}
-	
+
 	@Bean
 	public ViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();

@@ -20,7 +20,7 @@ public class Message {
 	private String status;
 	private String sort;
 	
-	private Member member;
+	private Member memberBean;
 	
 	public Message() {
 	}
@@ -79,12 +79,12 @@ public class Message {
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="Member_Id")
-	public Member getMember() {
-		return member;
+	public Member getMemberBean() {
+		return memberBean;
 	}
 
-	public void setMember(Member member) {
-		this.member = member;
+	public void setMemberBean(Member memberBean) {
+		this.memberBean = memberBean;
 	}
 
 }

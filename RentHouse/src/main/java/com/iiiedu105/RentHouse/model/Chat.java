@@ -17,25 +17,26 @@ import javax.persistence.Transient;
 public class Chat {
 	
 	private Integer id;
-	private String memberIdA;
-	private String memberIdB;
+	private String memberIdSend;
+	private String memberIdRead;
 	private String msg;
 	private Timestamp datetime;
 
-	private Member memberBeanA;
-	private Member memberBeanB;
+	private Member memberBeanSend;
+	private Member memberBeanRead;
 	
 	public Chat() {
 	}
 
-	public Chat(Integer id, String memberIdA, String memberIdB, String msg, Timestamp datetime) {
+	public Chat(Integer id, String memberIdSend, String memberIdRead, String msg, Timestamp datetime) {
 		super();
 		this.id = id;
-		this.memberIdA = memberIdA;
-		this.memberIdB = memberIdB;
+		this.memberIdSend = memberIdSend;
+		this.memberIdRead = memberIdRead;
 		this.msg = msg;
 		this.datetime = datetime;
 	}
+
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -48,21 +49,21 @@ public class Chat {
 	}
 
 	@Transient
-	public String getMemberIdA() {
-		return memberIdA;
+	public String getMemberIdSend() {
+		return memberIdSend;
 	}
 
-	public void setMemberIdA(String memberIdA) {
-		this.memberIdA = memberIdA;
+	public void setMemberIdSend(String memberIdSend) {
+		this.memberIdSend = memberIdSend;
 	}
 
 	@Transient
-	public String getMemberIdB() {
-		return memberIdB;
+	public String getMemberIdRead() {
+		return memberIdRead;
 	}
 
-	public void setMemberIdB(String memberIdB) {
-		this.memberIdB = memberIdB;
+	public void setMemberIdRead(String memberIdRead) {
+		this.memberIdRead = memberIdRead;
 	}
 
 	public String getMsg() {
@@ -82,23 +83,23 @@ public class Chat {
 	}
 
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="Member_Id_A")
-	public Member getMemberBeanA() {
-		return memberBeanA;
+	@JoinColumn(name="Member_Id_Send")
+	public Member getMemberBeanSend() {
+		return memberBeanSend;
 	}
 
-	public void setMemberBeanA(Member memberBeanA) {
-		this.memberBeanA = memberBeanA;
+	public void setMemberBeanSend(Member memberBeanSend) {
+		this.memberBeanSend = memberBeanSend;
 	}
-
+	
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="Member_Id_B")
-	public Member getMemberBeanB() {
-		return memberBeanB;
+	@JoinColumn(name="Member_Id_Read")
+	public Member getMemberBeanRead() {
+		return memberBeanRead;
 	}
 
-	public void setMemberBeanB(Member memberBeanB) {
-		this.memberBeanB = memberBeanB;
+	public void setMemberBeanRead(Member memberBeanRead) {
+		this.memberBeanRead = memberBeanRead;
 	}
 
 }

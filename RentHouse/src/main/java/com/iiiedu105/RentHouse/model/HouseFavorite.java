@@ -20,7 +20,7 @@ public class HouseFavorite {
 	private Integer houseId;
 	
 	private Member memberBean;
-	private House housebean;
+	private House houseBean;
 	public HouseFavorite() {
 	}
 	public HouseFavorite(Integer id, String memberId, Integer houseId) {
@@ -61,12 +61,13 @@ public class HouseFavorite {
 	public void setMemberBean(Member memberBean) {
 		this.memberBean = memberBean;
 	}
-	@OneToOne
+	
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="House_Id")
-	public House getHousebean() {
-		return housebean;
+	public House getHouseBean() {
+		return houseBean;
 	}
-	public void setHousebean(House housebean) {
-		this.housebean = housebean;
+	public void setHouseBean(House houseBean) {
+		this.houseBean = houseBean;
 	}
 }

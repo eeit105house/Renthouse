@@ -19,8 +19,9 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @EnableTransactionManagement
 public class RootAppConfig {
 
-	public static void main(String[] args) {
+	public RootAppConfig() {
 	}
+
 	@Bean
 	public DataSource dataSource() {
 		ComboPooledDataSource ds = new ComboPooledDataSource();

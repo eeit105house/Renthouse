@@ -21,16 +21,17 @@ public class Reservation {
 	private String memberId; //[Res_lodger(房客帳號)]
 	private Integer houseId;
 	private Integer score;
-	private String read;
+	private String readStatus;
 	
 	private Member memberBean;
 	private House houseBean;
 	
 	public Reservation() {
 	}
-
+	
+	
 	public Reservation(Integer id, Timestamp datetime, String status, String memberId, Integer houseId, Integer score,
-			String read) {
+			String readStatus, Member memberBean, House houseBean) {
 		super();
 		this.id = id;
 		this.datetime = datetime;
@@ -38,9 +39,12 @@ public class Reservation {
 		this.memberId = memberId;
 		this.houseId = houseId;
 		this.score = score;
-		this.read = read;
+		this.readStatus = readStatus;
+		this.memberBean = memberBean;
+		this.houseBean = houseBean;
 	}
-	
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
@@ -93,12 +97,12 @@ public class Reservation {
 		this.score = score;
 	}
 
-	public String getRead() {
-		return read;
+	public String getReadStatus() {
+		return readStatus;
 	}
 
-	public void setRead(String read) {
-		this.read = read;
+	public void setReadStatus(String readStatus) {
+		this.readStatus = readStatus;
 	}
 	
 	@ManyToOne(cascade=CascadeType.ALL)

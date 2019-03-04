@@ -46,6 +46,8 @@ public class Forum {
 		this.frId = frId;
 	}
 
+	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
