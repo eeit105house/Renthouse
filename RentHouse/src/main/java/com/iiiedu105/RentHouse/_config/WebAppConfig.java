@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.iiiedu105.RentHouse.model")
+@ComponentScan("com.iiiedu105.RentHouse")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 
