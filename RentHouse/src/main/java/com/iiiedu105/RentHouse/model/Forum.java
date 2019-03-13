@@ -5,6 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,7 @@ public class Forum {
 	private Integer id;
 	private String title;
 	private String content;
+	private String sort;	
 	private Timestamp datetime;
 	private String status;
 	private String memberId;
@@ -65,13 +67,21 @@ public class Forum {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
+	@Column(columnDefinition="varchar(max)")
 	public String getContent() {
 		return content;
 	}
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
 	}
 
 	public Timestamp getDatetime() {

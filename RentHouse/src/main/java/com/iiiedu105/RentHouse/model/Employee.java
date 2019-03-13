@@ -1,5 +1,6 @@
 package com.iiiedu105.RentHouse.model;
 
+import java.sql.Blob;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -16,18 +17,21 @@ public class Employee {
 	private String pwd;
 	private String name;
 	private String level;
+	private Blob pic;
+	
 	
 	private Set<EmployeeReport> employeeReportBeans = new LinkedHashSet<EmployeeReport>();
 	
 	public Employee() {
 	}
 
-	public Employee(String id, String pwd, String name, String level) {
+	public Employee(String id, String pwd, String name, String level,Blob pic) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
 		this.name = name;
 		this.level = level;
+		this.pic = pic;
 	}
 
 
@@ -64,6 +68,14 @@ public class Employee {
 		this.level = level;
 	}
 	
+	public Blob getPic() {
+		return pic;
+	}
+
+	public void setPic(Blob pic) {
+		this.pic = pic;
+	}
+
 	@OneToMany(mappedBy="employeeBean",cascade=CascadeType.ALL)
 	public Set<EmployeeReport> getEmployeeReportBeans() {
 		return employeeReportBeans;

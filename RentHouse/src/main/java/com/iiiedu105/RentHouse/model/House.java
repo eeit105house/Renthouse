@@ -29,7 +29,7 @@ public class House {
 	private String type;
 	private String layout;
 	private String memberId;
-	private String status;
+	private String status; //審核，上架、下架
 	private String city;
 	private String boroughs;
 	private Float lat;
@@ -37,7 +37,7 @@ public class House {
 	private Timestamp launched;
 	private String category;
 	private Timestamp limiteDay;
-	private String pay;
+	private Integer pay; //0：普通 1：VIP 2：高級VIP
 	
 	private Member memberBean;
 	private HouseDetail detailBean;
@@ -50,9 +50,15 @@ public class House {
 	
 	public House() {
 	}
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	public Integer getId() {
+		return id;
+	}
 	public House(Integer id, String addr, Integer sqft, String build, Integer floor, Integer topFloor, String type,
 			String layout, String memberId, String status, String city, String boroughs, Float lat, Float lon,
-			Timestamp launched, String category, Timestamp limiteDay, String pay) {
+			Timestamp launched, String category, Timestamp limiteDay, Integer pay) {
 		super();
 		this.id = id;
 		this.addr = addr;
@@ -73,11 +79,7 @@ public class House {
 		this.limiteDay = limiteDay;
 		this.pay = pay;
 	}
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Integer getId() {
-		return id;
-	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -178,13 +180,15 @@ public class House {
 	public void setLimiteDay(Timestamp limiteDay) {
 		this.limiteDay = limiteDay;
 	}
-	public String getPay() {
+
+	public Integer getPay() {
 		return pay;
 	}
-	public void setPay(String pay) {
+
+	public void setPay(Integer pay) {
 		this.pay = pay;
 	}
-	
+
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="Member_Id")
 	public Member getMemberBean() {

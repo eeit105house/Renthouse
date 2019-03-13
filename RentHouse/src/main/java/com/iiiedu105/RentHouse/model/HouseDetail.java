@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,20 +21,22 @@ public class HouseDetail {
 	private Integer hoaFee;
 	private Date movingIn;
 	private String shortest;
-	private Integer appliance;
-	private Integer furniture;
-	private Integer include;
-	private Integer le;
+	private String appliance;
+	private String furniture;
+	private String include;
+	private String le;
 	private Integer indetity;
 	private Integer price;
+	
 	
 	private House houseBean;
 	
 	public HouseDetail() {
 	}
+	
 
 	public HouseDetail(Integer id, String title, String info, Integer deposit, Integer hoaFee, Date movingIn,
-			String shortest, Integer appliance, Integer furniture, Integer include, Integer le, Integer indetity,
+			String shortest, String appliance, String furniture, String include, String le, Integer indetity,
 			Integer price) {
 		super();
 		this.id = id;
@@ -52,8 +53,6 @@ public class HouseDetail {
 		this.indetity = indetity;
 		this.price = price;
 	}
-	
-	
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -113,35 +112,35 @@ public class HouseDetail {
 		this.shortest = shortest;
 	}
 
-	public Integer getAppliance() {
+	public String getAppliance() {
 		return appliance;
 	}
 
-	public void setAppliance(Integer appliance) {
+	public void setAppliance(String appliance) {
 		this.appliance = appliance;
 	}
 
-	public Integer getFurniture() {
+	public String getFurniture() {
 		return furniture;
 	}
 
-	public void setFurniture(Integer furniture) {
+	public void setFurniture(String furniture) {
 		this.furniture = furniture;
 	}
 
-	public Integer getInclude() {
+	public String getInclude() {
 		return include;
 	}
 
-	public void setInclude(Integer include) {
+	public void setInclude(String include) {
 		this.include = include;
 	}
 
-	public Integer getLe() {
+	public String getLe() {
 		return le;
 	}
 
-	public void setLe(Integer le) {
+	public void setLe(String le) {
 		this.le = le;
 	}
 
