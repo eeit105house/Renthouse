@@ -9,5 +9,7 @@ public interface RWritingsService {
 
 	void passWritings(int id);
 
+
+	
 	void failWritings(int id);
 }
