@@ -26,7 +26,6 @@ public class HouseDetail {
 	private String furniture;
 	private String include;
 	private String le;
-
 	private String indetity;
 	private Integer price;
 	
