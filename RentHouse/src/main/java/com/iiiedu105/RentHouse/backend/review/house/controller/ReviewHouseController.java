@@ -21,17 +21,17 @@ public class ReviewHouseController {
 	public String products(Model model) {
 		List<Object[]> list = service.getAllHouse();
 		model.addAttribute("hlist", list);
-		return "houseReview";		
+		return "backstage/houseReview";		
 	}
 	@RequestMapping(value="/update/{id}")
 	public String updateHouse(@PathVariable("id") Integer id) {
 		service.updateHouseStatus(id);;
-		return "redirect:/houseReview";		
+		return "redirect:/backstage/houseReview";		
 		}
 	@RequestMapping(value="/delete/{id}")
 	public String deleteHouse(@PathVariable("id") Integer id) {
 		service.deleteHouse(id);
-		return "redirect:/houseReview";		
+		return "redirect:/backstage/houseReview";		
 		}
 	}
 

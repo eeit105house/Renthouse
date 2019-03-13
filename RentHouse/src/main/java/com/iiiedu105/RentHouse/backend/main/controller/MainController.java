@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	@RequestMapping(value="/")
 	public String bsindex() {
-		return "bsindex";		
+		return "backstage/bsindex";		
 	}
 	@RequestMapping(value="/bslogout")
 	public String login() {
-		return "bslogout";		
+		return "backstage/bslogout";		
 	}
 
 	@RequestMapping(value="/chart")
 	public String chart() {
-		return "chart";		
+		return "backstage/chart";		
 	}
 	@RequestMapping(value="/customerservice")
 	public String customerservice() {
-		return "customerservice";		
+		return "backstage/customerservice";		
 	}
 }

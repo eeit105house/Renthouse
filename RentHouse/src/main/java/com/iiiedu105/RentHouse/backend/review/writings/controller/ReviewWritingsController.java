@@ -12,13 +12,13 @@ import com.iiiedu105.RentHouse.backend.review.writings.Service.RWritingsService;
 
 @Controller
 public class ReviewWritingsController {
-//	@Autowired
-//	RWritingsService service;
-//	@RequestMapping(value="/writingsReview")
-//	public String products(Model model) {
-//
-//		return "writingsReview";		
-//	}
+	@Autowired
+	RWritingsService service;
+	@RequestMapping(value="/writingsReview")
+	public String products(Model model) {
+
+		return "backstage/writingsReview";		
+	}
 //	@RequestMapping(value="/update/{id}")
 //	public String updateHouse(@PathVariable("id") Integer id) {
 //		service.updateHouseStatus(id);;
