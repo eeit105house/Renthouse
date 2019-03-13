@@ -180,13 +180,15 @@ public class House {
 	public void setLimiteDay(Timestamp limiteDay) {
 		this.limiteDay = limiteDay;
 	}
-	public String getPay() {
+
+	public Integer getPay() {
 		return pay;
 	}
-	public void setPay(String pay) {
+
+	public void setPay(Integer pay) {
 		this.pay = pay;
 	}
-	
+
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="Member_Id")
 	public Member getMemberBean() {
