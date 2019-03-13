@@ -47,6 +47,7 @@ public class CreateTable {
 		Forum forumR2 = null;
 		Forum forumR3 = null;
 		try {
+
 			member0 = new Member("abc123", "!@Qa1234", "王小明", "0987123123", new Date(sDF.parse("1990-01-23").getTime()), "男", "A123456789", "abc123@gmail.com", "開通", blob, 0.0, "");
 			member1 = new Member("bcd234", "!@Qa1234", "李大明", "0987234234", new Date(sDF.parse("1990-02-04").getTime()), "女", "A223456789", "bcd234@gmail.com", "開通", blob, 0.0, "");
 			member2 = new Member("cde345", "!@Qa1234", "王小豬", "0987345345", new Date(sDF.parse("1990-02-15").getTime()), "女", "A223456789", "cde345@gmail.com", "開通", blob, 0.0, "");
