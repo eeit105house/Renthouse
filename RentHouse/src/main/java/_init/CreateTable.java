@@ -29,11 +29,11 @@ public class CreateTable {
 		Forum forumR1 = null;
 		Forum forumR2 = null;
 		try {
-			member = new Member("abc123", "!@Qa1234", "王小明", "0987666555", new Date(sDF.parse("1990-01-05").getTime()), "男", "A123456789", "abc123@gmail.com", "一般", blob, 0, "");
-			member2 = new Member("bcd456", "!@Qa1234", "李大明", "0987444333", new Date(sDF.parse("1990-01-05").getTime()), "男", "A123456789", "abc123@gmail.com", "一般", blob, 0, "");
-			house = new House(null, "XX路XX號X樓", 5, "公寓", 3, 5, "套房", "一房", "abc123", "上架", "台北市", "中山區", 0.0f, 0.0f, new Timestamp(sDF.parse("2019-03-01").getTime()), "住家", new Timestamp(sDF.parse("2019-03-01").getTime()), "一般");
+			member = new Member("abc123", "!@Qa1234", "王小明", "0987666555", new Date(sDF.parse("1990-01-05").getTime()), "男", "A123456789", "abc123@gmail.com", "一般", blob, 0.15, "");
+			member2 = new Member("bcd456", "!@Qa1234", "李大明", "0987444333", new Date(sDF.parse("1990-01-05").getTime()), "男", "A123456789", "abc123@gmail.com", "一般", blob, 1.0, "");
+			house = new House(null, "XX路XX號X樓", 5, "公寓", 3, 5, "套房", "一房", "abc123", "上架", "台北市", "中山區", 0.0f, 0.0f, new Timestamp(sDF.parse("2019-03-01").getTime()), "住家", new Timestamp(sDF.parse("2019-03-01").getTime()), 0);
 			houseDetail = new HouseDetail(null, "測試房", "TestTestTestTest", 1000, 0, new Date(sDF.parse("2019-03-15").getTime()), "", null, null, null, null, null, 100);
-			employee = new Employee("master01", "!@Qa1234", "林忠明", "manager");
+			employee = new Employee("master01", "!@Qa1234", "林忠明", "manager" ,null);
 			forum = new Forum(null, "Test01", "tttttttt", new Timestamp(sDF.parse("2019-03-04").getTime()), "", null, null);
 			forumR1 = new Forum(null, null, "R1，TTTTTTTTT", new Timestamp(sDF.parse("2019-03-05").getTime()), "", null, null);
 			forumR2 = new Forum(null, null, "R2，TTTTTTTTT", new Timestamp(sDF.parse("2019-03-06").getTime()), "", null, null);
