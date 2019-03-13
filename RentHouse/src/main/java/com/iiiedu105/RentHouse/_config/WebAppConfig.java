@@ -19,7 +19,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	public WebAppConfig() {
 	}
-
+ 
+	
 	@Bean
 	public ViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
