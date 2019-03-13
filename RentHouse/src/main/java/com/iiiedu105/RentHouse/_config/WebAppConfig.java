@@ -32,14 +32,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	public void addResourceHandlers(ResourceHandlerRegistry rhr) {
 			rhr.addResourceHandler("/RHstaticresource/**")
 			.addResourceLocations("/WEB-INF/views/backstage/RHstaticresource/");
-//			rhr.addResourceHandler("/font/**")
-//			.addResourceLocations("/WEB-INF/views/backstage/font/");
-//			rhr.addResourceHandler("/ico/**")
-//			.addResourceLocations("/WEB-INF/views/backstage/ico/");
-//			rhr.addResourceHandler("/img/**")
-//			.addResourceLocations("/WEB-INF/views/backstage/img/");
-//			rhr.addResourceHandler("/js/**")
-//			.addResourceLocations("/WEB-INF/views/backstage/js/");				
+			
 	}
 	
 	
