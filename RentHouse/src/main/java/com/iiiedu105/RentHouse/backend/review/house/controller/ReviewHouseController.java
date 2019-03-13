@@ -26,13 +26,13 @@ public class ReviewHouseController {
 	}
 	@RequestMapping(value="/update/{id}")
 	public String updateHouse(@PathVariable("id") Integer id) {
-		service.updateHouseStatus(id);;
-		return "redirect:/backstage/houseReview";		
+		service.updateHouseStatus(id);
+		return "redirect:/houseReview";		
 		}
 	@RequestMapping(value="/delete/{id}")
 	public String deleteHouse(@PathVariable("id") Integer id) {
 		service.deleteHouse(id);
-		return "redirect:/backstage/houseReview";		
+		return "redirect:/houseReview";		
 		}
 	}
 

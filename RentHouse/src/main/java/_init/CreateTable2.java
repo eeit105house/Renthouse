@@ -6,7 +6,6 @@ import org.hibernate.Transaction;
 
 import com.iiiedu105.RentHouse.model.Employee;
 import com.iiiedu105.RentHouse.model.Forum;
-import com.iiiedu105.RentHouse.model.ForumReport;
 import com.iiiedu105.RentHouse.model.House;
 import com.iiiedu105.RentHouse.model.HouseDetail;
 import com.iiiedu105.RentHouse.model.HousePic;

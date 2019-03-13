@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 
 import com.iiiedu105.RentHouse.model.Employee;
 import com.iiiedu105.RentHouse.model.Forum;
+
+import com.iiiedu105.RentHouse.model.ForumReport;
 import com.iiiedu105.RentHouse.model.House;
 import com.iiiedu105.RentHouse.model.HouseDetail;
 import com.iiiedu105.RentHouse.model.HousePic;
@@ -24,9 +26,7 @@ public class CreateTable {
 		SimpleDateFormat sDF = new SimpleDateFormat("yyyy-MM-dd");
 		sDF.setLenient(false);
 		Long date = new java.util.Date().getTime();
-		
-		
-		
+
 		Member member0 = null;
 		Member member1 = null;
 		Member member2 = null;
@@ -74,7 +74,6 @@ public class CreateTable {
 //			forumR2 = new Forum(null, null, "R2，TTTTTTTTT", new Timestamp(sDF.parse("2019-03-06").getTime()), "", null, null);
 //=======
 		Forum forumR3 = null;
-		
 //		ForumReport forumReport1 = null;
 //		ForumReport forumReport2 = null;
 //		
@@ -123,8 +122,6 @@ public class CreateTable {
 //			forumReport2 = new ForumReport(null, 2, "騷擾", "騷擾字眼", new Timestamp(date+1000000), "abc123");
 //			forumReport3 = new ForumReport(null, 3, "主題", "不符合主題", new Timestamp(date), "abc123");
 //			forumReport4 = new ForumReport(null, 4, "騷擾", "騷擾字眼", new Timestamp(date+1000000), "abc123");
-
-//>>>>>>> branch 'master' of https://github.com/eeit105house/Renthouse.git
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		} catch (IOException e) {
