@@ -36,8 +36,6 @@ public class HouseDetail {
 	}
 	
 
-
-
 	public HouseDetail(Integer id, String title, String info, Integer deposit, Integer hoaFee, Date movingIn,
 			String shortest, String appliance, String furniture, String include, String le, String indetity,
 			Integer price) {
@@ -56,9 +54,6 @@ public class HouseDetail {
 		this.indetity = indetity;
 		this.price = price;
 	}
-
-
-
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

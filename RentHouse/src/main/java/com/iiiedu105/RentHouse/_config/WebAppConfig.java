@@ -28,8 +28,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		resolver.setPrefix("/WEB-INF/views/");//EX: /WEB-INF/views/ + ??????
 		resolver.setSuffix(".jsp");//EX: ???? + .jsp
 		return resolver;
-	}
-
+	}	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/HouseResorce/**").addResourceLocations("/WEB-INF/views/House/");

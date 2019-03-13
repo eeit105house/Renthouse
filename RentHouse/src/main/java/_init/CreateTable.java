@@ -25,9 +25,7 @@ public class CreateTable {
 		SimpleDateFormat sDF = new SimpleDateFormat("yyyy-MM-dd");
 		sDF.setLenient(false);
 		Long date = new java.util.Date().getTime();
-		
-		
-		
+
 		Member member0 = null;
 		Member member1 = null;
 		Member member2 = null;
@@ -65,7 +63,6 @@ public class CreateTable {
 		Forum forumR1 = null;
 		Forum forumR2 = null;
 		Forum forumR3 = null;
-		
 //		ForumReport forumReport1 = null;
 //		ForumReport forumReport2 = null;
 //		
@@ -114,7 +111,6 @@ public class CreateTable {
 //			forumReport2 = new ForumReport(null, 2, "騷擾", "騷擾字眼", new Timestamp(date+1000000), "abc123");
 //			forumReport3 = new ForumReport(null, 3, "主題", "不符合主題", new Timestamp(date), "abc123");
 //			forumReport4 = new ForumReport(null, 4, "騷擾", "騷擾字眼", new Timestamp(date+1000000), "abc123");
-
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		} catch (IOException e) {
