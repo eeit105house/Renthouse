@@ -3,6 +3,7 @@ package com.iiiedu105.RentHouse.model;
 import java.sql.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,7 @@ public class HouseDetail {
 	private String furniture;
 	private String include;
 	private String le;
-	private Integer indetity;
+	private String indetity;
 	private Integer price;
 	
 	
@@ -36,7 +37,7 @@ public class HouseDetail {
 	
 
 	public HouseDetail(Integer id, String title, String info, Integer deposit, Integer hoaFee, Date movingIn,
-			String shortest, String appliance, String furniture, String include, String le, Integer indetity,
+			String shortest, String appliance, String furniture, String include, String le, String indetity,
 			Integer price) {
 		super();
 		this.id = id;
@@ -72,6 +73,7 @@ public class HouseDetail {
 		this.title = title;
 	}
 
+	@Column(columnDefinition="varchar(max)")
 	public String getInfo() {
 		return info;
 	}
@@ -144,11 +146,11 @@ public class HouseDetail {
 		this.le = le;
 	}
 
-	public Integer getIndetity() {
+	public String getIndetity() {
 		return indetity;
 	}
 
-	public void setIndetity(Integer indetity) {
+	public void setIndetity(String indetity) {
 		this.indetity = indetity;
 	}
 

@@ -35,7 +35,15 @@ public class CreateTable2 {
 			System.err.println("新增錯誤："+e.getMessage());
 		}
 	}
-	
+	public void createForumReportTable() {
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			
+		}catch(Exception e) {
+			
+		}
+	}
 	public void CreateTableOther(Member member,House house,HouseDetail houseDetail,HousePic housePic,Forum forum) {	
 		Transaction tx = null;
 		try {
@@ -65,6 +73,14 @@ public class CreateTable2 {
 //			forum.setMemberBean(session.get(Member.class,member.getId()));
 			session.save(forum);
 			session.flush();
+			
+//			forumReport.setForumBean(session.get(Forum.class, forumReport.getId()));
+//			session.save(forumReport);
+//			session.flush();
+//			
+//			forumReport.setMemberBean(session.get(Member.class,member.getId()));
+//			session.save(forumReport);
+//			session.flush();
 			
 			tx.commit();
 		}catch (Exception e) {
@@ -125,6 +141,14 @@ public class CreateTable2 {
 			session.save(forum);
 			session.flush();
 			
+//			forumReport.setForumBean(session.get(Forum.class, forumReport.getId()));
+//			session.save(forumReport);
+//			session.flush();
+//			
+//			forumReport.setMemberBean(session.get(Member.class,member.getId()));
+//			session.save(forumReport);
+//			session.flush();
+//			
 			tx.commit();
 		}catch (Exception e) {
 			if(tx != null)
@@ -133,4 +157,5 @@ public class CreateTable2 {
 		}	
 		
 	}
+
 }
