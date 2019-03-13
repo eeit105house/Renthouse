@@ -21,20 +21,24 @@ public class ForumReport {
 	private String type;
 	private String content;
 	private Timestamp datetime;
+	private String memberId;
+	private String status;
 	
 	private Forum forumBean;
+	private Member memberBean;
 	
 	public ForumReport() {
 	}
 
 
-	public ForumReport(Integer id, Integer forumId, String type, String content, Timestamp datetime) {
+	public ForumReport(Integer id, Integer forumId, String type, String content, Timestamp datetime,String memberId) {
 		super();
 		this.id = id;
 		this.forumId = forumId;
 		this.type = type;
 		this.content = content;
 		this.datetime = datetime;
+		this.memberId = memberId;
 	}
 
 
@@ -89,6 +93,30 @@ public class ForumReport {
 	public void setDatetime(Timestamp datetime) {
 		this.datetime = datetime;
 	}
+	
+	
+	@Transient
+	public String getMemberId() {
+		return memberId;
+	}
+
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	
+	
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="Forum_Id")
@@ -101,5 +129,17 @@ public class ForumReport {
 		this.forumBean = forumBean;
 	}
 
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="Member_Id")
+	public Member getMemberBean() {
+		return memberBean;
+	}
+
+
+	public void setMemberBean(Member memberBean) {
+		this.memberBean = memberBean;
+	}
+
+	
 	
 }
