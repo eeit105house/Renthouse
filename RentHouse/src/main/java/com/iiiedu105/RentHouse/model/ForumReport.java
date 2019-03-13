@@ -96,7 +96,6 @@ public class ForumReport {
 		return forumBean;
 	}
 
-
 	public void setForumBean(Forum forumBean) {
 		this.forumBean = forumBean;
 	}

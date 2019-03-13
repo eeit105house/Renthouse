@@ -63,7 +63,7 @@ public class CreateTable {
 			houseDetail2= new HouseDetail(null, "微風商圈中山女中北科大學生上班族皆適合", "其他條件EX: 獨立電表一度5塊", 2, 3000, new Date(sDF.parse("2019-03-15").getTime()), "一年", "電視，冰箱，熱水器，洗衣機", "床，衣櫃，椅子，桌子", "管理費", "近便利商店，近傳統市場", null, 23000);
 			houseDetail3= new HouseDetail(null, "城市中歐洲城堡的日常!4米2魔幻空間!", "其他條件EX: 獨立電表一度5塊", 2, 4000, new Date(sDF.parse("2019-03-15").getTime()), "一年", "電視，冰箱，熱水器，洗衣機", "床，衣櫃，椅子，桌子", "管理費", "近便利商店，近傳統市場", null, 30000);
 			
-			employee = new Employee("master01", "!@Qa1234", "林忠明", "manager");
+			employee = new Employee("master01", "!@Qa1234", "林忠明", "manager",null);
 			
 			forumR0 = new Forum(null, "Test00", "R0，TTTTTTTTT", new Timestamp(sDF.parse("2019-03-04").getTime()), "", null, null);
 			forumR1 = new Forum(null,"Test01", "R1，TTTTTTTTT", new Timestamp(sDF.parse("2019-03-05").getTime()), "", null, null);
