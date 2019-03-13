@@ -24,7 +24,7 @@ public class Member {
 	private String email;
 	private String active;
 	private Blob pic;
-	private Integer score;
+	private Double score;
 	private String report;
 	
 	private Set<House> houseBeans = new LinkedHashSet<House>();
@@ -42,22 +42,24 @@ public class Member {
 	
 	public Member() {
 	}
+
 	public Member(String id, String pwd, String name, String phone, Date birthday, String sex, String personID,
-			String email, String active, Blob pic, Integer score, String report) {
-		super();
-		this.id = id;
-		this.pwd = pwd;
-		this.name = name;
-		this.phone = phone;
-		this.birthday = birthday;
-		this.sex = sex;
-		this.personID = personID;
-		this.email = email;
-		this.active = active;
-		this.pic = pic;
-		this.score = score;
-		this.report = report;
-	}
+		String email, String active, Blob pic, Double score, String report) {
+	super();
+	this.id = id;
+	this.pwd = pwd;
+	this.name = name;
+	this.phone = phone;
+	this.birthday = birthday;
+	this.sex = sex;
+	this.personID = personID;
+	this.email = email;
+	this.active = active;
+	this.pic = pic;
+	this.score = score;
+	this.report = report;
+}
+
 	@Id
 	public String getId() {
 		return id;
@@ -139,14 +141,15 @@ public class Member {
 		this.pic = pic;
 	}
 	
-	public Integer getScore() {
+	
+	public Double getScore() {
 		return score;
 	}
-	
-	public void setScore(Integer score) {
+
+	public void setScore(Double score) {
 		this.score = score;
 	}
-	
+
 	public String getReport() {
 		return report;
 	}
