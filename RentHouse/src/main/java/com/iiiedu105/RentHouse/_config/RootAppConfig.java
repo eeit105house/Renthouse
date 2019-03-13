@@ -27,15 +27,12 @@ public class RootAppConfig {
 		ComboPooledDataSource ds = new ComboPooledDataSource();
 		ds.setUser("sa");
 		ds.setPassword("passw0rd");
-//		ds.setUser("memberuser@dbservereeit10519");
-//		ds.setPassword("Do!ng123");
 		try {
 			ds.setDriverClass("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		} catch (PropertyVetoException e) {
 			e.printStackTrace();
 		}
 		ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=RentHouseDB");
-//		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit10519.database.windows.net:1433;database=RentHouseDB");
 		ds.setInitialPoolSize(4);
 		ds.setMaxPoolSize(8);
 		return ds;

@@ -19,7 +19,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	public WebAppConfig() {
 	}
-
+ 
+	
 	@Bean
 	public ViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -32,17 +33,9 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/HouseResorce/**").addResourceLocations("/WEB-INF/views/House/");
-//		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/css/");
 		registry.addResourceHandler("/RHstaticresource/**")
 		.addResourceLocations("/WEB-INF/views/backstage/RHstaticresource/");
-//		rhr.addResourceHandler("/font/**")
-//		.addResourceLocations("/WEB-INF/views/backstage/font/");
-//		rhr.addResourceHandler("/ico/**")
-//		.addResourceLocations("/WEB-INF/views/backstage/ico/");
-//		rhr.addResourceHandler("/img/**")
-//		.addResourceLocations("/WEB-INF/views/backstage/img/");
-//		rhr.addResourceHandler("/js/**")
-//		.addResourceLocations("/WEB-INF/views/backstage/js/");		
+
 	}
 	
 	@Bean
