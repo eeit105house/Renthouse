@@ -16,13 +16,23 @@
 	href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
 </head>
-
 <body>
 	<form method="get">
 		<div class="searchDiv">
@@ -46,18 +56,8 @@
 
 		<hr>
 		<div id="selectList" class="screenBox screenBackground">
-			<div class="city" id="zipcode2"></div>
-
-			<script>
-				$("#zipcode2").twzipcode({
-					countySel : "臺北市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
-					districtSel : "大安區", // 地區預設值
-					zipcodeIntoDistrict : true, // 郵遞區號自動顯示在地區
-					css : [ "city form-control", "town form-control" ], // 自訂 "城市"、"地區" class 名稱 
-					countyName : "city", // 自訂城市 select 標籤的 name 值
-					districtName : "town" // 自訂地區 select 標籤的 name 值
-				});
-			</script>
+			<div id="twzipcode"></div>
+			
 
 			<p class="listIndex" id="selectTypeId">
 				類型：&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectType" id="allType">不限</span>
@@ -151,78 +151,98 @@
 
 	<hr>
 
-	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
-	<script>
-	var pNum  =$("#selectList").find("p");
-    for (i = 0; i < pNum.length; i++) {
-        $(".hasBeenSelected .clearList").append("<div class=\"selectedInfor selectedShow\" style=\"display:none\"><span></span><label></label><em></em></div>");
-    }
-
-    var refresh = "true";
-
-    $(".listIndex span ").click(function(){
-        var text =$(this).text();
-        var selectedShow = $(".selectedShow");
-        var textTypeIndex =$(this).parents("p").index();
-        var textType =$(this).parent("dd").siblings("dt").text();
-        index = textTypeIndex -(2);
-        $(".clearDd").show();
-        $(".selectedShow").eq(index).show();
-        $(this).addClass("selected").siblings().removeClass("selected");
-        selectedShow.eq(index).find("span").text(textType);
-        selectedShow.eq(index).find("label").text(text);
-        var show = $(".selectedShow").length - $(".selectedShow:hidden").length;
-        if (show > 1) {
-            $(".eliminateCriteria").show();
-        }
-
-    });
-    $(".selectedShow em").click(function(){
-        $(this).parents(".selectedShow").hide();
-        var textTypeIndex =$(this).parents(".selectedShow").index();
-        index = textTypeIndex;
-        $(".listIndex").eq(index).find("span").removeClass("selected");
-
-        if($(".listIndex .selected").length < 2){
-            $(".eliminateCriteria").hide();
-        }
-    });
-
-    $(".eliminateCriteria").click(function(){
-        $(".selectedShow").hide();
-        $(this).hide();
-        $(".listIndex span ").removeClass("selected");
-    }); 
 	
+
+<script>
+	var pNum = $("#selectList").find("p");
+	for (i = 0; i < pNum.length; i++) {
+		$(".hasBeenSelected .clearList")
+				.append(
+						"<div class=\"selectedInfor selectedShow\" style=\"display:none\"><span></span><label></label><em></em></div>");
+	}
+
+	var refresh = "true";
+
+	$(".listIndex span ")
+			.click(
+					function() {
+						var text = $(this).text();
+						var selectedShow = $(".selectedShow");
+						var textTypeIndex = $(this).parents("p").index();
+						var textType = $(this).parent("dd").siblings("dt")
+								.text();
+						index = textTypeIndex - (2);
+						$(".clearDd").show();
+						$(".selectedShow").eq(index).show();
+						$(this).addClass("selected").siblings().removeClass(
+								"selected");
+						selectedShow.eq(index).find("span").text(textType);
+						selectedShow.eq(index).find("label").text(text);
+						var show = $(".selectedShow").length
+								- $(".selectedShow:hidden").length;
+						if (show > 1) {
+							$(".eliminateCriteria").show();
+						}
+
+					});
+
+	$(".listIndex input ")
+			.click(
+					function() {
+						var text = $(this).text();
+						var selectedShow = $(".selectedShow");
+						var textTypeIndex = $(this).parents("p").index();
+						var textType = $(this).parent("dd").siblings("dt")
+								.text();
+						index = textTypeIndex - (2);
+						$(".clearDd").show();
+						$(".selectedShow").eq(index).show();
+						$(this).addClass("selected").siblings().removeClass(
+								"selected");
+						selectedShow.eq(index).find("input").text(textType);
+						selectedShow.eq(index).find("label").text(text);
+						var show = $(".selectedShow").length
+								- $(".selectedShow:hidden").length;
+						if (show > 1) {
+							$(".eliminateCriteria").show();
+						}
+
+					});
+
+	$(".selectedShow em").click(function() {
+		$(this).parents(".selectedShow").hide();
+		var textTypeIndex = $(this).parents(".selectedShow").index();
+		index = textTypeIndex;
+		$(".listIndex").eq(index).find("span").removeClass("selected");
+
+		if ($(".listIndex .selected").length < 2) {
+			$(".eliminateCriteria").hide();
+		}
+	});
+
+	$(".eliminateCriteria").click(function() {
+		$(".selectedShow").hide();
+		$(this).hide();
+		$(".listIndex span ").removeClass("selected");
+	});
+
+	$("#twzipcode").twzipcode();
 	
-	
-	
-	
-		$("#oo span").click(function() {
-			$("#selectResult").append($(this).text());
-			alert($("#selectResult").text());
-		});
-		// 		$(".selectType").click(function() {
-		// 			$.ajax({
-		// 				url : "/queryByType",
-		// 				data:{type:$(this).text()}
-		// 				type : "GET",
-		// 				cache : "false",
-		// 				success : function(data) {
-		// 					alert(data);
-		// 				}
-		// 			});
-		// 		});
-	</script>
+	$("#oo span").click(function() {
+		$("#selectResult").append($(this).text());
+		alert($("#selectResult").text());
+	});
+	// 		$(".selectType").click(function() {
+	// 			$.ajax({
+	// 				url : "/queryByType",
+	// 				data:{type:$(this).text()}
+	// 				type : "GET",
+	// 				cache : "false",
+	// 				success : function(data) {
+	// 					alert(data);
+	// 				}
+	// 			});
+	// 		});
+</script>
 </body>
 </html>
