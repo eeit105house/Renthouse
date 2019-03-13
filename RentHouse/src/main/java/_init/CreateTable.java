@@ -152,7 +152,7 @@ public class CreateTable {
 			e.printStackTrace();
 		}
 	
-
+s
 		new CreateTable2().CreateTableEmp(employee);
 		new CreateTable2().CreateTableOther(member0, house0, houseDetail0, housePic0, forumR0);
 		new CreateTable2().CreateTableOther(member1, house1, houseDetail1, housePic1, forumR1);
