@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.iiiedu105.RentHouse")
+@ComponentScan("com.iiiedu105")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 
@@ -33,6 +33,16 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/HouseResorce/**").addResourceLocations("/WEB-INF/views/House/");
 //		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/css/");
+		registry.addResourceHandler("/RHstaticresource/**")
+		.addResourceLocations("/WEB-INF/views/backstage/RHstaticresource/");
+//		rhr.addResourceHandler("/font/**")
+//		.addResourceLocations("/WEB-INF/views/backstage/font/");
+//		rhr.addResourceHandler("/ico/**")
+//		.addResourceLocations("/WEB-INF/views/backstage/ico/");
+//		rhr.addResourceHandler("/img/**")
+//		.addResourceLocations("/WEB-INF/views/backstage/img/");
+//		rhr.addResourceHandler("/js/**")
+//		.addResourceLocations("/WEB-INF/views/backstage/js/");		
 	}
 	
 	@Bean
@@ -40,6 +50,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		CommonsMultipartResolver resolver =new CommonsMultipartResolver();
 		resolver.setDefaultEncoding("UTF-8");
 		resolver.setMaxUploadSize(81920000);
-		return resolver;
+		return resolver;		
 	}
 }
