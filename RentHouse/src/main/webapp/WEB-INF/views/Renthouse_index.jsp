@@ -39,7 +39,7 @@
         <div class="col-xl-9 mx-auto">
           <h1 class="mb-5">Slogan</h1>
         </div>
-        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+        <div class="col-md-10 col-lg-12 col-xl-12 mx-auto">
           <form>
             <div class="form-row">
               <div class="col-md-9">
