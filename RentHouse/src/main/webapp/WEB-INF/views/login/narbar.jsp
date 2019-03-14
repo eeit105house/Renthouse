@@ -9,16 +9,12 @@
 <link href="login/css/bootstrap.css" rel="stylesheet">
 <!-- icon -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
-
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+<!-- google fonts -->
+<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 <!-- 日期用 -->
 <script src="login/js/date.js"></script>
 <!-- 登入彈跳視窗 -->
   <script src="login/js/bootstrap.bundle.min.js"></script>
-<!-- jquery -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
 <title>Insert title here</title>
 </head>
 <body>

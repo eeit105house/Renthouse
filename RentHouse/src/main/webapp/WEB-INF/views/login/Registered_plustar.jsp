@@ -101,8 +101,9 @@
     	
     </div>             
     <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block"> 建立新會員  </button>
-    </div> <!-- form-group// -->      
+        <button type="submit" class="btn btn-primary btn-block" id="create" > 建立新會員  </button>
+        <button type="submit" class="btn btn-primary btn-block" id="notyet" disabled="disabled" > 尚有資料未填寫  </button>
+    </div> <!-- form-group// -->     
 
             </form>
           </div>
