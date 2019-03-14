@@ -1,4 +1,4 @@
-package com.iiiedu105.RentHouse.controller;
+package com.iiiedu105.RentHouse.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +9,6 @@ public class HomePageController {
 	@RequestMapping("/")
 	public String index(Model model) {
 //		return "index";
-		return "index";
+		return "Renthouse_index";
 	}
 }
