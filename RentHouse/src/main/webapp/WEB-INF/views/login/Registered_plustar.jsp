@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="login/Registered_check.js" type="text/javascript"></script>
+<script src="login/js/Registered_check.js" type="text/javascript"></script>
 </head>
 <body>
 <!-- Modal -->
