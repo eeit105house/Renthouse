@@ -1,5 +1,7 @@
 package com.iiiedu105.RentHouse.house.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,6 +46,37 @@ public class HouseServiceImpl implements HouseService {
 	public Member getMemberById(String id) {
 		return dao.getMemberById(id);
 	}
+	@Override
+	public HousePic getPicById(Integer picId) {
+		return dao.getPicById(picId);
+	}
+	@Override
+	public List<Integer> getPicIdsByHouse(House houseBean) {
+		return dao.getPicIdsByHouse(houseBean);
+	}
+	@Override
+	public List<House> getHousesByMemberId(String id) {
+		return dao.getHousesByMemberId(id);
+	}
+	@Override
+	public void updateHouseDetail(HouseDetail detailBean,Integer houseId) {
+		dao.updateHouseDetail(detailBean, houseId);
+	}
+//	@Override
+//	public void updateHouseDetailByHouseId(Integer houseId, HouseDetail detailBean) {
+//		dao.findById(houseId);
+//	}
+	@Override
+	public void updatePictureByHouseIdAndPicNo( HousePic housePicBean) {
+		House houseBean = dao.findById(housePicBean.getHouseId());
+		HousePic housePicBeanQ = dao.getPictureIdByHouseAndPicNo(houseBean, housePicBean.getPicNo());
+		if(housePicBeanQ == null) {
+			housePicBean.setHouseBean(houseBean);
+			dao.insertPicture(housePicBean);
+		} else {
+			housePicBeanQ.setPic(housePicBean.getPic());
+			dao.updatePicture(housePicBeanQ);
+		}
+	}
 	
-
 }
