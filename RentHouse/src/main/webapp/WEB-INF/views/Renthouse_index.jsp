@@ -27,10 +27,6 @@
 <body>
 <!-- header -->
 <%@include file="login/narbar.jsp" %> 
-<!--   登入 -->
-<%@include file="login/Login_plustar.jsp" %>
- <!-- 註冊 --> 
-<%@include file="login/Registered_plustar.jsp" %>
   <!-- Masthead -->
   <header class="masthead text-white text-center" style="background: url(login/img/index.jpg) no-repeat center center;" >
     <div class="overlay"></div>
