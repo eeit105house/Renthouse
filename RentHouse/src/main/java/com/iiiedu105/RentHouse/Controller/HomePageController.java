@@ -9,6 +9,6 @@ public class HomePageController {
 	@RequestMapping("/")
 	public String index(Model model) {
 //		return "index";
-		return "index";
+		return "Renthouse_index";
 	}
 }
