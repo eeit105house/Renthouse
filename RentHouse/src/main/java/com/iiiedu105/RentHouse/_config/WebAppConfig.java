@@ -24,7 +24,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	public ViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setViewClass(JstlView.class);
-		resolver.setPrefix("/WEB-INF/views/backstage/");//EX: /WEB-INF/views/ + ??????
+		resolver.setPrefix("/WEB-INF/views/");//EX: /WEB-INF/views/ + ??????
 		resolver.setSuffix(".jsp");//EX: ???? + .jsp
 		return resolver;
 	}
@@ -43,6 +43,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 //		rhr.addResourceHandler("/js/**")
 //		.addResourceLocations("/WEB-INF/views/backstage/js/");		
 		registry.addResourceHandler("/login/**").addResourceLocations("/WEB-INF/views/login/");
+		registry.addResourceHandler("/Forum/**").addResourceLocations("/WEB-INF/views/Forum/");
 	}
 	
 	@Bean
