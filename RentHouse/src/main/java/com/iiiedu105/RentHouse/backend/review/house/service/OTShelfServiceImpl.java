@@ -17,19 +17,19 @@ public class OTShelfServiceImpl implements OTShelfService {
 	
 	@Transactional
 	@Override
-	public List<Object[]> getAllHouse() {
+	public List<House> getAllHouse() {
 		return dao.getAllHouse();
 	}
 
 	@Transactional
 	@Override
-	public void updateHouseStatus(int id) {
+	public void updateHouseStatus(Integer id) {
 		dao.updateHouseStatus(id);
 	}
 
 	@Transactional
 	@Override
-	public void deleteHouse(int id) {
+	public void deleteHouse(Integer id) {
 		dao.deleteHouse(id);
 	}
 	

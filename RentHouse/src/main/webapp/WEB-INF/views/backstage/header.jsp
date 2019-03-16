@@ -19,7 +19,7 @@
 				</a>
 				<a id="main-menu-toggle" class="hidden-phone open"><i class="icon-reorder"></i></a>		
 				<div class="row-fluid">
-				<a class="brand span2" href='<spring:url value="/" />'><span>RentHouse</span></a>
+				<a class="brand span2" href='<spring:url value="/backstage" />'><span>RentHouse</span></a>
 				</div>		
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
@@ -121,7 +121,7 @@
 								</li>	
                             	<li>
                                     <a href="#">
-										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar" /></span>
+										<span class="avatar"><img src="${pageContext.request.contextPath}/RHstaticresource/img/avatar.jpg" alt="Avatar" /></span>
 										<span class="header">
 											<span class="from">
 										    	Łukasz Holeczek
@@ -137,7 +137,7 @@
                                 </li>
                                 <li>
                                     <a href="#">
-										<span class="avatar"><img src="img/avatar2.jpg" alt="Avatar" /></span>
+										<span class="avatar"><img src="${pageContext.request.contextPath}/RHstaticresource/img/avatar2.jpg" alt="Avatar" /></span>
 										<span class="header">
 											<span class="from">
 										    	Megan Abott
@@ -153,7 +153,7 @@
                                 </li>
                                 <li>
                                     <a href="#">
-										<span class="avatar"><img src="img/avatar3.jpg" alt="Avatar" /></span>
+										<span class="avatar"><img src="${pageContext.request.contextPath}/RHstaticresource/img/avatar3.jpg" alt="Avatar" /></span>
 										<span class="header">
 											<span class="from">
 										    	Kate Ross
@@ -169,7 +169,7 @@
                                 </li>
 								<li>
                                     <a href="#">
-										<span class="avatar"><img src="img/avatar4.jpg" alt="Avatar" /></span>
+										<span class="avatar"><img src="${pageContext.request.contextPath}/RHstaticresource/img/avatar4.jpg" alt="Avatar" /></span>
 										<span class="header">
 											<span class="from">
 										    	Julie Blank
@@ -185,7 +185,7 @@
                                 </li>
                                 <li>
                                     <a href="#">
-										<span class="avatar"><img src="img/avatar5.jpg" alt="Avatar" /></span>
+										<span class="avatar"><img src="${pageContext.request.contextPath}/RHstaticresource/img/avatar5.jpg" alt="Avatar" /></span>
 										<span class="header">
 											<span class="from">
 										    	Jane Sanders
@@ -213,7 +213,7 @@
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn account dropdown-toggle" data-toggle="dropdown" href="#">
-								<div class="avatar"><img src="img/avatar.jpg" alt="Avatar" /></div>
+								<div class="avatar"><img src="${pageContext.request.contextPath}/RHstaticresource/img/avatar.jpg" alt="Avatar" /></div>
 								<div class="user">
 									<span class="hello">Welcome!</span>
 									<span class="name">Łukasz Holeczek</span>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,21 +20,31 @@
 <!-- end: Mobile Specific -->
 
 <!-- start: CSS -->
-<link href="RHstaticresource/css/bootstrap.min.css" rel="stylesheet" />
-<link href="RHstaticresource/css/bootstrap-responsive.min.css" rel="stylesheet" />
-<link href="RHstaticresource/css/style.min.css" rel="stylesheet" />
-<link href="RHstaticresource/css/style-responsive.min.css" rel="stylesheet" />
-<link href="RHstaticresource/css/retina.css" rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/RHstaticresource/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/RHstaticresource/css/bootstrap-responsive.min.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/RHstaticresource/css/style.min.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/RHstaticresource/css/style-responsive.min.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/RHstaticresource/css/retina.css"
+	rel="stylesheet" />
 <!-- end: CSS -->
 <!-- start: Favicon and Touch Icons -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="RHstaticresource/ico/apple-touch-icon-144-precomposed.png" />
+	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-144-precomposed.png" />
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="RHstaticresource/ico/apple-touch-icon-114-precomposed.png" />
+	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-114-precomposed.png" />
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="RHstaticresource/ico/apple-touch-icon-72-precomposed.png" />
+	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-72-precomposed.png" />
 <link rel="apple-touch-icon-precomposed"
-	href="RHstaticresource/ico/apple-touch-icon-57-precomposed.png" />
+	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-57-precomposed.png" />
 <link rel="shortcut icon" href="img/hicon.svg" />
 <!-- end: Favicon and Touch Icons -->
 
@@ -42,108 +52,184 @@
 
 </head>
 <body>
-<%@ include file="header.jsp" %>
-		<div class="container-fluid-full">
+
+	<%@ include file="header.jsp"%>
+	<div class="container-fluid-full">
 		<div class="row-fluid">
-	<%@ include file="menu.jsp" %>	
-	<!-- start: Content -->
+			<%@ include file="menu.jsp"%>
+			<!-- start: Content -->
 			<div id="content" class="span10">
-<div class="box span12">
+				<div class="box span12">
 					<div class="box-header" data-original-title="">
-						<h2><i class="icon-user"></i><span class="break"></span>待審中</h2>
+						<h2>
+							<i class="icon-user"></i><span class="break">待審房屋</span>
+						</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-minimize"><i class="icon-chevron-up"></i></a>
 						</div>
 					</div>
 					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable">
-						  <thead>
-							  <tr>
-								  <th>帳號</th>
-								  <th>地址</th>
-								  <th>地區</th>
-								  <th>狀態</th>
-								  <th>操作</th>
-							  </tr>
-						  </thead>   
-						  <tbody>
-						  <c:forEach var="house" items="${hlist }">
-							<tr>
-								<td>${house[0] }</td>
-								<td class="center">${house[1] }</td>
-								<td class="center">${house[2] }</td>
-								<td class="center">
-									<span class="label label-success">${house[3] }</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-info" href="#"> <i
-											class=" icon-eye-open"></i>
-									</a> <a class="btn btn-success" onclick="update()" href="update/${house[4] }"> <i
-											class="icon-ok"></i>
-									</a> <a class="btn btn-danger" onclick="deletehouse()" href="delete/${house[4] }"> <i
-											class=" icon-remove"></i>
-									</a></td>
-							</c:forEach>
-						  </tbody>
-					  </table>            
+						<table class="table table-striped bootstrap-datatable datatable">
+							<thead>
+								<tr>
+									<th>房屋ID</th>
+									<th>申請人</th>
+									<th>地址</th>
+									<th>地區</th>
+									<th>申請時間</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="house" items="${hlist }">
+									<tr>
+									<td>${house.id }</td>
+										<td>${house.memberBean.id }</td>
+										<td class="center">${house.addr }</td>
+										<td class="center">${house.city }</td>
+										<td class="center">${house.launched }</td>
+										<td class="center"><a class="btn btn-info" href="#">
+												<i class=" icon-eye-open"></i>
+										</a>   
+										<!-- Button trigger modal -->
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#checkpass${house.id }">
+  <i class=" icon-ok"></i>
+</button>
+<!-- 動態視窗 -->
+<div class="modal fade" id="checkpass${house.id }" tabindex="-1" role="dialog" aria-labelledby="ok" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="ok">是否要通過審核?</h5>     
+      </div>
+      <div class="modal-footer">
+        <a href="<spring:url value='/update/${house.id }' />" class="btn btn-primary">確認</a>
+        <button type="button" class="btn" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /動態視窗 -->
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#checkfail${house.id }">
+  <i class=" icon-remove"></i>
+</button>
+<!-- 動態視窗 -->
+<div class="modal fade" id="checkfail${house.id }" tabindex="-1" role="dialog" aria-labelledby="remove" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="remove">是否要下架商品?</h5>     
+      </div>
+      <div class="modal-footer">
+        <a href="<spring:url value='/delete/${house.id }' />" class="btn btn-primary">確認</a>
+        <button type="button" class="btn" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /動態視窗 -->
+									</td>
+								</c:forEach>
+							</tbody>
+						</table>
 					</div>
-				</div><!--/span-->
-			
-			</div><!--/row-->			
-			</div>
-<!-- 			end: Content -->
-				
-			</div><!--/fluid-row-->
+				</div>
+				<!--/span-->
 
-<%@ include file="footer.jsp" %>
+			</div>
+			<!--/row-->
+		</div>
+		<!-- 			end: Content -->
+		<%@ include file="footer.jsp"%>
+	</div>
+	<!--/fluid-row-->
+
+
 	<!-- start: JavaScript-->
-		<script src="RHstaticresource/js/jquery-1.10.2.min.js"></script>
-	<script src="RHstaticresource/js/jquery-migrate-1.2.1.min.js"></script>	
-		<script src="RHstaticresource/js/jquery-ui-1.10.3.custom.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.ui.touch-punch.js"></script>	
-		<script src="RHstaticresource/js/modernizr.js"></script>	
-		<script src="RHstaticresource/js/bootstrap.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.cookie.js"></script>	
-		<script src='RHstaticresource/js/fullcalendar.min.js'></script>	
-		<script src='RHstaticresource/js/jquery.dataTables.min.js'></script>
-		<script src="RHstaticresource/js/excanvas.js"></script>
-	<script src="RHstaticresource/js/jquery.flot.js"></script>
-	<script src="RHstaticresource/js/jquery.flot.pie.js"></script>
-	<script src="RHstaticresource/js/jquery.flot.stack.js"></script>
-	<script src="RHstaticresource/js/jquery.flot.resize.min.js"></script>
-	<script src="RHstaticresource/js/jquery.flot.time.js"></script>
-		
-		<script src="RHstaticresource/js/jquery.chosen.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.uniform.min.js"></script>		
-		<script src="RHstaticresource/js/jquery.cleditor.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.noty.js"></script>	
-		<script src="RHstaticresource/js/jquery.elfinder.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.raty.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.iphone.toggle.js"></script>	
-		<script src="RHstaticresource/js/jquery.uploadify-3.1.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.gritter.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.imagesloaded.js"></script>	
-		<script src="RHstaticresource/js/jquery.masonry.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.knob.modified.js"></script>	
-		<script src="RHstaticresource/js/jquery.sparkline.min.js"></script>	
-		<script src="RHstaticresource/js/counter.min.js"></script>	
-		<script src="RHstaticresource/js/raphael.2.1.0.min.js"></script>
-	<script src="RHstaticresource/js/justgage.1.0.1.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.autosize.min.js"></script>	
-		<script src="RHstaticresource/js/retina.js"></script>
-		<script src="RHstaticresource/js/jquery.placeholder.min.js"></script>
-		<script src="RHstaticresource/js/wizard.min.js"></script>
-		<script src="RHstaticresource/js/core.min.js"></script>	
-		<script src="RHstaticresource/js/charts.min.js"></script>	
-		<script src="RHstaticresource/js/custom.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-1.10.2.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-migrate-1.2.1.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.ui.touch-punch.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/modernizr.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.cookie.js"></script>
+	<script
+		src='${pageContext.request.contextPath}/RHstaticresource/js/fullcalendar.min.js'></script>
+	<script
+		src='${pageContext.request.contextPath}/RHstaticresource/js/jquery.dataTables.min.js'></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/excanvas.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.flot.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.flot.pie.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.flot.stack.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.flot.resize.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.flot.time.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.chosen.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.uniform.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.cleditor.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.noty.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.elfinder.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.raty.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.iphone.toggle.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.uploadify-3.1.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.gritter.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.imagesloaded.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.masonry.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.knob.modified.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.sparkline.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/counter.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/raphael.2.1.0.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/justgage.1.0.1.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.autosize.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/retina.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.placeholder.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/wizard.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/core.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/charts.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/custom.min.js"></script>
 	<!-- end: JavaScript-->
-	<script type="text/javascript">
-	function update(){
-		alert("商品已上架");
-	};
-	function deletehouse(){
-		alert("審核未通過，商品下架");
-	};
-	</script>
+
 </body>
 </html>
