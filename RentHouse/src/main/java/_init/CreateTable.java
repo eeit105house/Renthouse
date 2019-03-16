@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 
 import com.iiiedu105.RentHouse.model.Employee;
 import com.iiiedu105.RentHouse.model.Forum;
+import com.iiiedu105.RentHouse.model.ForumReply;
 import com.iiiedu105.RentHouse.model.ForumReport;
 import com.iiiedu105.RentHouse.model.House;
 import com.iiiedu105.RentHouse.model.HouseDetail;
@@ -24,7 +25,8 @@ public class CreateTable {
 		Blob blob=null;
 		SimpleDateFormat sDF = new SimpleDateFormat("yyyy-MM-dd");
 		sDF.setLenient(false);
-		Long date = new java.util.Date().getTime();
+		 Long date = new java.util.Date().getTime();
+		 Timestamp time = new Timestamp(date);
 
 		Member member0 = null;
 		Member member1 = null;
@@ -63,11 +65,11 @@ public class CreateTable {
 		Forum forumR1 = null;
 		Forum forumR2 = null;
 		Forum forumR3 = null;
-//		ForumReport forumReport1 = null;
-//		ForumReport forumReport2 = null;
-//		
-//		ForumReport forumReport3 = null;
-//		ForumReport forumReport4 = null;
+		ForumReply forumReply1 = null;
+		ForumReply forumReply2 = null;
+		ForumReport forumReport1 = null;
+		ForumReport forumReport2 = null;
+
 		
 		try {
 			
@@ -103,14 +105,38 @@ public class CreateTable {
 			
 			employee = new Employee("master01", "!@Qa1234", "林忠明", "staff",SystemUtils.fileToBlob("data/images/employee/avatar1.jpg"));
 			
-			forumR0 = new Forum(null, "Test00", "R0，TTTTTTTTT", new Timestamp(sDF.parse("2019-03-04").getTime()), "", null, null);
-			forumR1 = new Forum(null,"Test01", "R1，TTTTTTTTT", new Timestamp(sDF.parse("2019-03-05").getTime()), "", null, null);
-			forumR2 = new Forum(null,"Test02", "R2，TTTTTTTTT", new Timestamp(sDF.parse("2019-03-06").getTime()), "", null, null);
-			forumR3 = new Forum(null,"Test03", "R3，TTTTTTTTT", new Timestamp(sDF.parse("2019-03-06").getTime()), "", null, null);
-//			forumReport1 = new ForumReport(null, 1, "主題", "不符合主題", new Timestamp(date), "abc123");
-//			forumReport2 = new ForumReport(null, 2, "騷擾", "騷擾字眼", new Timestamp(date+1000000), "abc123");
-//			forumReport3 = new ForumReport(null, 3, "主題", "不符合主題", new Timestamp(date), "abc123");
-//			forumReport4 = new ForumReport(null, 4, "騷擾", "騷擾字眼", new Timestamp(date+1000000), "abc123");
+			forumR0 = new Forum(null, "Test00", "（中央社華盛頓13日綜合外電報導）美國總統川普今天宣布，計畫下令停飛所有波音737 MAX機型飛機。這型飛機在不到5個月內兩度失事，多數國家已下令停飛，使得川普承受沈重國際與政治壓力，終於決定跟進。\r\n" + 
+					"\r\n" + 
+					"川普在白宮告訴記者：「我們將會發布緊急命令，禁止所有737 MAX 8和737 MAX 9型飛機飛行。」\r\n" + 
+					"\r\n" + 
+					"他又說，美國聯邦航空總署（FAA）準備很快就此作出宣布。\r\n" + 
+					"\r\n" + 
+					"衣索比亞航空公司（Ethiopian Airlines）一架波音737 MAX 8型客機10日墜毀，造成機上157人全部罹難。其後中國、印度、澳洲和所有歐洲國家已相繼禁止這型飛機在空域飛行。（譯者：林治平）1080314\r\n" + 
+					"\r\n" + 
+					"波音737機瘟", new Timestamp(sDF.parse("2019-03-04").getTime()),"租屋交流", "審核", null);
+			forumR1 = new Forum(null,"Test01", "R1，TTTTTTTTT", new Timestamp(sDF.parse("2019-03-05").getTime()),"心情抒發", "審核",  null);
+			forumR2 = new Forum(null,"Test02", "（中央社華盛頓13日綜合外電報導）美國總統川普今天宣布，計畫下令停飛所有波音737 MAX機型飛機。這型飛機在不到5個月內兩度失事，多數國家已下令停飛，使得川普承受沈重國際與政治壓力，終於決定跟進。\\r\\n\" + \r\n" + 
+					"					\"\\r\\n\" + \r\n" + 
+					"					\"川普在白宮告訴記者：「我們將會發布緊急命令，禁止所有737 MAX 8和737 MAX 9型飛機飛行。」\\r\\n\" + \r\n" + 
+					"					\"\\r\\n\" + \r\n" + 
+					"					\"他又說，美國聯邦航空總署（FAA）準備很快就此作出宣布。\\r\\n\" + \r\n" + 
+					"					\"\\r\\n\" + \r\n" + 
+					"					\"衣索比亞航空公司（Ethiopian Airlines）一架波音737 MAX 8型客機10日墜毀，造成機上157人全部罹難。其後中國、印度、澳洲和所有歐洲國家已相繼禁止這型飛機在空域飛行。（譯者：林治平）1080314\\r\\n\" + \r\n" + 
+					"					\"\\r\\n\" + \r\n" + 
+					"					\"波音737機瘟", new Timestamp(sDF.parse("2019-03-06").getTime()),"知識問答", "審核",  null);
+			forumR3 = new Forum(null,"Test03", "（中央社華盛頓13日綜合外電報導）美國總統川普今天宣布，計畫下令停飛所有波音737 MAX機型飛機。這型飛機在不到5個月內兩度失事，多數國家已下令停飛，使得川普承受沈重國際與政治壓力，終於決定跟進。\\r\\n\" + \r\n" + 
+					"					\"\\r\\n\" + \r\n" + 
+					"					\"川普在白宮告訴記者：「我們將會發布緊急命令，禁止所有737 MAX 8和737 MAX 9型飛機飛行。」\\r\\n\" + \r\n" + 
+					"					\"\\r\\n\" + \r\n" + 
+					"					\"他又說，美國聯邦航空總署（FAA）準備很快就此作出宣布。\\r\\n\" + \r\n" + 
+					"					\"\\r\\n\" + \r\n" + 
+					"					\"衣索比亞航空公司（Ethiopian Airlines）一架波音737 MAX 8型客機10日墜毀，造成機上157人全部罹難。其後中國、印度、澳洲和所有歐洲國家已相繼禁止這型飛機在空域飛行。（譯者：林治平）1080314\\r\\n\" + \r\n" + 
+					"					\"\\r\\n\" + \r\n" + 
+					"					\"波音737機瘟", new Timestamp(sDF.parse("2019-03-06").getTime()),"房價討論", "審核",  null);
+			forumReply1 = new ForumReply(null, "test1", "asdqwrcwqefefqwe", time, "待審", null, null);
+			forumReply2 = new ForumReply(null, "test2", "好棒棒", time, "待審", null, null);
+			forumReport1 = new ForumReport(null, null, "Xxxxx", "hello world", time,"待審");
+			forumReport2 = new ForumReport(null, null, "污辱字眼污辱字眼污辱字眼污辱字眼污辱字眼污辱字眼污辱字眼", "此文章有不雅字眼", time,"待審");
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		} catch (IOException e) {
@@ -122,13 +148,11 @@ public class CreateTable {
 		}
 	
 		new CreateTable2().CreateTableEmp(employee);	
-		new CreateTable2().CreateTableAllPic(member0, house0, houseDetail0, housePic0,housePic00,housePic01,housePic02,housePic03, forumR0);
-		new CreateTable2().CreateTableAllPic(member1, house1, houseDetail1, housePic1,housePic10,housePic11,housePic12,housePic13, forumR1);
-//		new CreateTable2().CreateTableOther(member0, house0, houseDetail0, housePic0, forumR0);
-//		new CreateTable2().CreateTableOther(member1, house1, houseDetail1, housePic1, forumR1);
-		new CreateTable2().CreateTableOther(member2, house2, houseDetail2, housePic2, forumR2);
-		new CreateTable2().CreateTableOther(member3, house3, houseDetail3, housePic3, forumR3);
-		
+		new CreateTable2().CreateTableAllPic(member3, house0, houseDetail0, housePic0,housePic00,housePic01,housePic02,housePic03, forumR0);
+		new CreateTable2().CreateTableAllPic(member2, house1, houseDetail1, housePic1,housePic10,housePic11,housePic12,housePic13, forumR1);
+		new CreateTable2().CreateTableOther(member0, house2, houseDetail2, housePic2, forumR2,forumReport1,forumReply1);
+		new CreateTable2().CreateTableOther(member1, house3, houseDetail3, housePic3, forumR3,forumReport2,forumReply2);
+
 		new CreateTable2().CloseFactory();
 	}
 	
