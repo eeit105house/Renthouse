@@ -26,7 +26,8 @@
     <div class="container">
 <!--     href #1 留著給主頁 -->
       <a class="navbar-brand" href="#1"><img style="height: 70px" alt="租你幸福" src="login/img/logo.png"></a>
-      <a class="btn btn-primary" href="#">想要租屋</a>
+<%--       <a class="btn btn-primary" href="${pageContext.request.contextPath}/search/searchPage_sessionStorage">想要租屋</a> --%>
+       <a class="btn btn-primary" href="${pageContext.request.contextPath}/search/searchByMap">想要租屋</a>
       <a class="btn btn-primary"  data-toggle="modal" data-target="#exampleModalCenter" href="#">登入</a>
       <a class="btn btn-primary"  data-toggle="modal" data-target="#registered" href="#">註冊</a>
     </div>
