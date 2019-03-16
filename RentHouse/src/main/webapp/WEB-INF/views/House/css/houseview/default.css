@@ -34,6 +34,7 @@ h3 {
 p, blockquote, ul, ol {
 	line-height: 18px;
 	text-align: justify;
+	font-size: 14px;
 }
 
 blockquote {

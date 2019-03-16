@@ -10,6 +10,6 @@ public interface RWritingsService {
 	void updatePassWritings(Integer id);
 
 	void updateFailWritings(Integer id);
-	
+
 	Object[] getAllDetailWritingsById(Integer id);
 }

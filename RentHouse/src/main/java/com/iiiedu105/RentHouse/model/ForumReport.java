@@ -31,14 +31,11 @@ public class ForumReport {
 	}
 
 
+
 	public ForumReport(Integer id, Integer forumId, String type, String content, Timestamp datetime,String status) {
-		super();
-		this.id = id;
-		this.forumId = forumId;
-		this.type = type;
-		this.content = content;
-		this.datetime = datetime;
+
 		this.status = status;
+
 	}
 
 
@@ -127,5 +124,4 @@ public class ForumReport {
 		this.memberBean = memberBean;
 	}
 
-	
 }

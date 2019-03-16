@@ -10,7 +10,9 @@ import java.text.SimpleDateFormat;
 
 import com.iiiedu105.RentHouse.model.Employee;
 import com.iiiedu105.RentHouse.model.Forum;
+
 import com.iiiedu105.RentHouse.model.ForumReply;
+
 import com.iiiedu105.RentHouse.model.ForumReport;
 import com.iiiedu105.RentHouse.model.House;
 import com.iiiedu105.RentHouse.model.HouseDetail;
@@ -64,6 +66,16 @@ public class CreateTable {
 		Forum forumR0= null;
 		Forum forumR1 = null;
 		Forum forumR2 = null;
+//		try {
+//			member = new Member("abc123", "!@Qa1234", "王小明", "0987666555", new Date(sDF.parse("1990-01-05").getTime()), "男", "A123456789", "abc123@gmail.com", "一般", blob, 0.15, "");
+//			member2 = new Member("bcd456", "!@Qa1234", "李大明", "0987444333", new Date(sDF.parse("1990-01-05").getTime()), "男", "A123456789", "abc123@gmail.com", "一般", blob, 1.0, "");
+//			house = new House(null, "XX路XX號X樓", 5, "公寓", 3, 5, "套房", "一房", "abc123", "上架", "台北市", "中山區", 0.0f, 0.0f, new Timestamp(sDF.parse("2019-03-01").getTime()), "住家", new Timestamp(sDF.parse("2019-03-01").getTime()), 0);
+//			houseDetail = new HouseDetail(null, "測試房", "TestTestTestTest", 1000, 0, new Date(sDF.parse("2019-03-15").getTime()), "", null, null, null, null, null, 100);
+//			employee = new Employee("master01", "!@Qa1234", "林忠明", "manager" ,null);
+//			forum = new Forum(null, "Test01", "tttttttt", new Timestamp(sDF.parse("2019-03-04").getTime()), "", null, null);
+//			forumR1 = new Forum(null, null, "R1，TTTTTTTTT", new Timestamp(sDF.parse("2019-03-05").getTime()), "", null, null);
+//			forumR2 = new Forum(null, null, "R2，TTTTTTTTT", new Timestamp(sDF.parse("2019-03-06").getTime()), "", null, null);
+//=======
 		Forum forumR3 = null;
 		ForumReply forumReply1 = null;
 		ForumReply forumReply2 = null;
@@ -105,6 +117,7 @@ public class CreateTable {
 			
 			employee = new Employee("master01", "!@Qa1234", "林忠明", "staff",SystemUtils.fileToBlob("data/images/employee/avatar1.jpg"));
 			
+
 			forumR0 = new Forum(null, "Test00", "（中央社華盛頓13日綜合外電報導）美國總統川普今天宣布，計畫下令停飛所有波音737 MAX機型飛機。這型飛機在不到5個月內兩度失事，多數國家已下令停飛，使得川普承受沈重國際與政治壓力，終於決定跟進。\r\n" + 
 					"\r\n" + 
 					"川普在白宮告訴記者：「我們將會發布緊急命令，禁止所有737 MAX 8和737 MAX 9型飛機飛行。」\r\n" + 
@@ -137,6 +150,7 @@ public class CreateTable {
 			forumReply2 = new ForumReply(null, "test2", "好棒棒", time, "待審", null, null);
 			forumReport1 = new ForumReport(null, null, "Xxxxx", "hello world", time,"待審");
 			forumReport2 = new ForumReport(null, null, "污辱字眼污辱字眼污辱字眼污辱字眼污辱字眼污辱字眼污辱字眼", "此文章有不雅字眼", time,"待審");
+
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		} catch (IOException e) {
@@ -154,6 +168,6 @@ public class CreateTable {
 		new CreateTable2().CreateTableOther(member1, house3, houseDetail3, housePic3, forumR3,forumReport2,forumReply2);
 
 		new CreateTable2().CloseFactory();
-	}
 	
+	}
 }
