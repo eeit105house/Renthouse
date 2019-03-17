@@ -115,7 +115,7 @@ public class CreateTable {
 			houseDetail2= new HouseDetail(null, "微風商圈中山女中北科大學生上班族皆適合", "其他條件EX: 獨立電表一度5塊", 2, 3000, new Date(sDF.parse("2019-03-15").getTime()), "一年", "電視，冰箱，熱水器，洗衣機", "床，衣櫃，椅子，桌子", "管理費", "近便利商店，近傳統市場", null, 23000);
 			houseDetail3= new HouseDetail(null, "城市中歐洲城堡的日常!4米2魔幻空間!", "其他條件EX: 獨立電表一度5塊", 2, 4000, new Date(sDF.parse("2019-03-15").getTime()), "一年", "電視，冰箱，熱水器，洗衣機", "床，衣櫃，椅子，桌子", "管理費", "近便利商店，近傳統市場", null, 30000);
 			
-			employee = new Employee("master01", "!@Qa1234", "林忠明", "staff",SystemUtils.fileToBlob("data/images/employee/avatar1.jpg"));
+			employee = new Employee("master01", "!@Qa1234", "林忠明", "staff",null);
 			
 
 			forumR0 = new Forum(null, "Test00", "（中央社華盛頓13日綜合外電報導）美國總統川普今天宣布，計畫下令停飛所有波音737 MAX機型飛機。這型飛機在不到5個月內兩度失事，多數國家已下令停飛，使得川普承受沈重國際與政治壓力，終於決定跟進。\r\n" + 
