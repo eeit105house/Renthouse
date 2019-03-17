@@ -85,20 +85,20 @@ public class CreateTable {
 		
 		try {
 			
-			housePic0 = new HousePic(null, 1, SystemUtils.fileToBlob("data/images/HousePic0.jpg"), 1);	
-			housePic00 = new HousePic(null, 1, SystemUtils.fileToBlob("data/images/HousePic0_0.jpg"), 2);
-			housePic01 = new HousePic(null, 1, SystemUtils.fileToBlob("data/images/HousePic0_1.jpg"), 3);
-			housePic02 = new HousePic(null, 1, SystemUtils.fileToBlob("data/images/HousePic0_2.jpg"), 4);
-			housePic03 = new HousePic(null, 1, SystemUtils.fileToBlob("data/images/HousePic0_3.jpg"), 5);
+			housePic0 = new HousePic(null, 1, null, 1);	
+			housePic00 = new HousePic(null, 1, null, 2);
+			housePic01 = new HousePic(null, 1,null, 3);
+			housePic02 = new HousePic(null, 1, null, 4);
+			housePic03 = new HousePic(null, 1, null, 5);
 			
-			housePic1 = new HousePic(null, 2, SystemUtils.fileToBlob("data/images/HousePic1.jpg"), 1);
-			housePic10 = new HousePic(null, 2, SystemUtils.fileToBlob("data/images/HousePic1_0.jpg"), 2);
-			housePic11 = new HousePic(null, 2, SystemUtils.fileToBlob("data/images/HousePic1_1.jpg"), 3);
-			housePic12 = new HousePic(null, 2, SystemUtils.fileToBlob("data/images/HousePic1_2.jpg"), 4);
-			housePic13 = new HousePic(null, 2, SystemUtils.fileToBlob("data/images/HousePic1_3.jpg"), 5);
+			housePic1 = new HousePic(null, 2, null, 1);
+			housePic10 = new HousePic(null, 2,null, 2);
+			housePic11 = new HousePic(null, 2, null, 3);
+			housePic12 = new HousePic(null, 2, null, 4);
+			housePic13 = new HousePic(null, 2,null, 5);
 			
-			housePic2 = new HousePic(null, 3, SystemUtils.fileToBlob("data/images/HousePic2.jpg"), 1);
-			housePic3 = new HousePic(null, 4, SystemUtils.fileToBlob("data/images/HousePic3.jpg"), 1);
+			housePic2 = new HousePic(null, 3, null, 1);
+			housePic3 = new HousePic(null, 4, null, 1);
 						
 			member0 = new Member("abc123", "!@Qa1234", "王小明", "0987123123", new Date(sDF.parse("1990-01-23").getTime()), "男", "A123456789", "abc123@gmail.com", "開通", blob, 0.0, "");
 			member1 = new Member("bcd234", "!@Qa1234", "李大明", "0987234234", new Date(sDF.parse("1990-02-04").getTime()), "女", "A223456789", "bcd234@gmail.com", "開通", blob, 0.0, "");
@@ -131,9 +131,9 @@ public class CreateTable {
 			forumR2 = new Forum(null,"Test02", "（中央社華盛頓13日綜合外電報導）美國總統川普今天宣布，計畫下令停飛所有波音737 MAX機型飛機。這型飛機在不到5個月內兩度失事，多數國家已下令停飛，使得川普承受沈重國際與政治壓力，終於決定跟進。\\r\\n\" + \r\n" + 
 					"					\"\\r\\n\" + \r\n" + 
 					"					\"川普在白宮告訴記者：「我們將會發布緊急命令，禁止所有737 MAX 8和737 MAX 9型飛機飛行。」\\r\\n\" + \r\n" + 
-					"					\"\\r\\n\" + \r\n" + 
+					"					\"\\r\\n\" + \r\n" +  
 					"					\"他又說，美國聯邦航空總署（FAA）準備很快就此作出宣布。\\r\\n\" + \r\n" + 
-					"					\"\\r\\n\" + \r\n" + 
+					"					\"\\r\\n\" + \r\n" +  
 					"					\"衣索比亞航空公司（Ethiopian Airlines）一架波音737 MAX 8型客機10日墜毀，造成機上157人全部罹難。其後中國、印度、澳洲和所有歐洲國家已相繼禁止這型飛機在空域飛行。（譯者：林治平）1080314\\r\\n\" + \r\n" + 
 					"					\"\\r\\n\" + \r\n" + 
 					"					\"波音737機瘟", new Timestamp(sDF.parse("2019-03-06").getTime()),"知識問答", "審核",  null);
@@ -153,10 +153,7 @@ public class CreateTable {
 
 		} catch (ParseException e1) {
 			e1.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
