@@ -3,5 +3,5 @@
 /.project
 /build/
 /target/
-/CreateTable.java/
-/CreateTable2.java/
+/CreateTable.java
+/CreateTable2.java
