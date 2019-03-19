@@ -1,6 +1,8 @@
 package com.iiiedu105.RentHouse.login.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iiiedu105.RentHouse.login.dao.MemberDao;
+
 import com.iiiedu105.RentHouse.model.Member;
+
 @Repository
 public class MemberDaoImpl implements MemberDao  {
 	@Autowired
@@ -41,17 +45,18 @@ public class MemberDaoImpl implements MemberDao  {
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public Boolean checkMemberById(String id) {
-		Boolean check = false;
+	public List<Member> checkMemberById(String id) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM Member WHERE id=:id";
-
+		String hql = "id.pwd FROM Member WHERE id=:id";
+		
 		List<Member> list = session.createQuery(hql)
 								.setParameter("id", id)
 								.getResultList();
-		if (list.isEmpty()) 
-			check = true;
-		return check;
+		
+		if (list.isEmpty()) {
+		return null;
+		}
+		return list;
 	}
 
 	/* (non-Javadoc)
@@ -62,7 +67,6 @@ public class MemberDaoImpl implements MemberDao  {
 		Session session = factory.getCurrentSession();
 		session.save(member);
 	}
-
 	/* (non-Javadoc)
 	 * @see com.iiiedu105.RentHouse.login.dao.MemberDao#updateMember(com.iiiedu105.RentHouse.model.Member)
 	 */
@@ -106,5 +110,26 @@ public class MemberDaoImpl implements MemberDao  {
 		String hql = "DELETE FROM Member";
 		session.createQuery(hql).executeUpdate();	
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void insertMemberPicture(Member member) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Member WHERE pic = :pic AND id=:id";
+		List<Member> checkPic = session.createQuery(hql)
+				.setParameter("pic", member.getPic())
+				.setParameter("id", member.getId())
+				.getResultList();
 
+		if (checkPic.isEmpty())
+			session.save(member);
+		else {
+			String hqlUp = "UPDATE Member pic SET pic = :pic WHERE Member = :M_id";
+			session.createQuery(hqlUp)
+			.setParameter("pic", member.getPic())
+			.setParameter("M_id", member.getId())
+			.executeUpdate();
+		}
+			
+	}
 }

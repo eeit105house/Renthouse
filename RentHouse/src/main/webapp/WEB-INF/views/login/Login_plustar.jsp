@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+    pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!--Google登入-->
+<!-- Google登入 -->
 <meta name="google-signin-scope" content="profile email">
 <meta name="google-signin-client_id" content="825814170132-9r69bbro6bbtg1ahvhsp5jeu07f52sd0.apps.googleusercontent.com">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -32,17 +32,17 @@
         <div class="card card-signin my-6">
           <div class="card-body">
             <h5 class="card-title text-center">登入</h5>
-            <form class="form-signin" action="">
+            <form class="form-signin" action="loginMember" method="POST">
               <div class="form-label-group">
-                <input type="text" id="inputAccount" class="form-control" placeholder="輸入帳號" required autofocus>
+                <input  type="text" name="inputAccount" id="inputAccount" class="form-control" placeholder="輸入帳號" required="required"/>
                 <label for="inputAccount"><i class="fa fa-user"></i>　帳號</label>
               </div>
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="輸入密碼" required>
+                <input  type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="輸入密碼" required="required"/>
                 <label for="inputPassword"><i class="fa fa-lock"></i>　密碼</label>
               </div>
               <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <input type="checkbox" class="custom-control-input" id="customCheck1" />
                 <label class="custom-control-label" for="customCheck1">記住我的密碼</label>
                 <span class="text-center badge badge-danger" id="error_js"></span>
               </div>
@@ -108,6 +108,6 @@
             }
         );
 	}
-</script>
-</body>
-</html>
+ </script> 
+ </body> 
+ </html> 

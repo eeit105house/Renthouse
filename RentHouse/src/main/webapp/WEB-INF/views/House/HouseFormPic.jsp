@@ -32,16 +32,21 @@
             <fieldset>
             <legend>上傳圖片</legend>
                 <div>
+                	<p>請使用JPEG檔</p>
+                    <p>${errorMsg.typeE}</p>
+                
+                </div>
+           		
+                <div>
                     <label for="0">第1張圖片：</label>
-                    <input type="file" class="file" name="pic0" id="0">${errorMsg.pic0None}*將作為封面<br>
+                    <input type="file" class="file" accept="image/jpeg" name="pic0" id="0">${errorMsg.pic0None}*將作為封面<br>
 
                     <c:forEach var="i" begin="2" end="10">
                         <label for="${i}">第${i}張圖片：</label>
-                        <input type="file" name="pics" class="file" id="${i}">
+                        <input type="file" name="pics" class="file" accept="image/jpeg" id="${i}">
                         <br>
                     </c:forEach>
                 </div>
-                ${errorMsg.typeE}
                 <input type="submit" class="medium green" value="送出">
             </fieldset>
         </form:form>

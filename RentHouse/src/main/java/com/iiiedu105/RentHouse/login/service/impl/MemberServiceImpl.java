@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.iiiedu105.RentHouse.login.dao.MemberDao;
 import com.iiiedu105.RentHouse.login.service.MemberService;
 import com.iiiedu105.RentHouse.model.Member;
+//import com.iiiedu105.RentHouse.model.TestTest;
 
 @Service
 @Transactional
@@ -30,10 +31,23 @@ public class MemberServiceImpl implements MemberService {
 	 * @see com.iiiedu105.RentHouse.login.service.impl.MemberService#findByName(java.lang.String)
 	 */
 	@Override
-	public Boolean findByName(String id) {
+	public List<Member> findByName(String id) {
 		return memberDao.checkMemberById(id);
 	}
-
+	@Override
+	public Member login(String id,String pwd) {
+		Member bean = memberDao.findMemberById(id);
+		if(bean!=null) {
+			if(pwd!=null && pwd.length()!=0) {
+				String inPWD = pwd;
+				String dbPWD = bean.getPwd();
+				if(inPWD.equals(dbPWD)) {
+					return bean;
+				}
+			}
+		}
+		return null;
+	}
 	/* (non-Javadoc)
 	 * @see com.iiiedu105.RentHouse.login.service.impl.MemberService#saveMember(com.iiiedu105.RentHouse.model.Member)
 	 */
@@ -41,7 +55,6 @@ public class MemberServiceImpl implements MemberService {
 	public void saveMember(Member member) {
 		memberDao.saveMember(member);
 	}
-
 	/* (non-Javadoc)
 	 * @see com.iiiedu105.RentHouse.login.service.impl.MemberService#updateMember(com.iiiedu105.RentHouse.model.Member)
 	 */
@@ -73,6 +86,8 @@ public class MemberServiceImpl implements MemberService {
 	public void deleteAllMembers() {
 		memberDao.deleteAllMembers();
 	}
-	
-
+	@Override
+	public void insertMemberPicture(Member member) {
+		memberDao.insertMemberPicture(member);
+	}
 }
