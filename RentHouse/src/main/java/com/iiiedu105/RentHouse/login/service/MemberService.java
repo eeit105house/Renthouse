@@ -3,12 +3,13 @@ package com.iiiedu105.RentHouse.login.service;
 import java.util.List;
 
 import com.iiiedu105.RentHouse.model.Member;
+import com.iiiedu105.RentHouse.model.TestTest;
 
 public interface MemberService {
 
 	Member findMemberById(String id);
 
-	Boolean findByName(String id);
+	List<Member> findByName(String id);
 
 	void saveMember(Member member);
 
@@ -19,5 +20,9 @@ public interface MemberService {
 	List<Member> findAllMembers();
 
 	void deleteAllMembers();
+
+	Member login(String id, String pwd);
+
+	void insertMemberPicture(Member member);
 
 }
