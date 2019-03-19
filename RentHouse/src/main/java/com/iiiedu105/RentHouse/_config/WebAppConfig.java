@@ -35,6 +35,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/RHstaticresource/**")
 		.addResourceLocations("/WEB-INF/views/backstage/RHstaticresource/");
 		registry.addResourceHandler("/login/**").addResourceLocations("/WEB-INF/views/login/");
+		registry.addResourceHandler("/search/**").addResourceLocations("/WEB-INF/views/search/");
 	}
 	
 	@Bean

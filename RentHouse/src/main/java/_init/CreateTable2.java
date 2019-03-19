@@ -6,6 +6,8 @@ import org.hibernate.Transaction;
 
 import com.iiiedu105.RentHouse.model.Employee;
 import com.iiiedu105.RentHouse.model.Forum;
+import com.iiiedu105.RentHouse.model.ForumReply;
+import com.iiiedu105.RentHouse.model.ForumReport;
 import com.iiiedu105.RentHouse.model.House;
 import com.iiiedu105.RentHouse.model.HouseDetail;
 import com.iiiedu105.RentHouse.model.HousePic;
@@ -35,6 +37,18 @@ public class CreateTable2 {
 			System.err.println("新增錯誤："+e.getMessage());
 		}
 	}
+	public void CreateTableFRoply(ForumReply forumReply) {
+		Transaction tx = null;
+		try {
+			tx=session.beginTransaction();
+			session.saveOrUpdate(forumReply);
+			tx.commit();
+		}catch (Exception e) {
+			if(tx != null)
+			tx.rollback();
+			System.err.println("新增錯誤："+e.getMessage());
+		}
+	}
 	public void createForumReportTable() {
 		Transaction tx = null;
 		try {
@@ -44,7 +58,7 @@ public class CreateTable2 {
 			
 		}
 	}
-	public void CreateTableOther(Member member,House house,HouseDetail houseDetail,HousePic housePic,Forum forum) {	
+	public void CreateTableOther(Member member,House house,HouseDetail houseDetail,HousePic housePic,Forum forum,ForumReport forumReport,ForumReply forumReply) {	
 		Transaction tx = null;
 		try {
 			tx=session.beginTransaction();
@@ -69,19 +83,15 @@ public class CreateTable2 {
 			session.save(housePic);
 			session.flush();
 			
-			forum.setForumBean(session.get(Forum.class, forum.getId()));
-//			forum.setMemberBean(session.get(Member.class,member.getId()));
-			session.save(forum);
+			forumReply.setMemberBean(session.get(Member.class,member.getId()));
+			forumReply.setForumBean(session.get(Forum.class, forum.getId()));
+			session.save(forumReply);
 			session.flush();
 			
-//			forumReport.setForumBean(session.get(Forum.class, forumReport.getId()));
-//			session.save(forumReport);
-//			session.flush();
-//			
-//			forumReport.setMemberBean(session.get(Member.class,member.getId()));
-//			session.save(forumReport);
-//			session.flush();
-			
+			forumReport.setForumBean(session.get(Forum.class, forum.getId()));	
+			forumReport.setMemberBean(session.get(Member.class,member.getId()));
+			session.save(forumReport);
+			session.flush();
 			tx.commit();
 		}catch (Exception e) {
 			if(tx != null)
@@ -136,10 +146,10 @@ public class CreateTable2 {
 			session.save(housePic3);
 			session.flush();
 			
-			forum.setForumBean(session.get(Forum.class, forum.getId()));
-//			forum.setMemberBean(session.get(Member.class,member.getId()));
-			session.save(forum);
-			session.flush();
+//			forum.setForumBean(session.get(Forum.class, forum.getId()));
+////			forum.setMemberBean(session.get(Member.class,member.getId()));
+//			session.save(forum);
+//			session.flush();
 			
 //			forumReport.setForumBean(session.get(Forum.class, forumReport.getId()));
 //			session.save(forumReport);

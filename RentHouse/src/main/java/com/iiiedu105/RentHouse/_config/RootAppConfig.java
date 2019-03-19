@@ -42,7 +42,7 @@ public class RootAppConfig {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		factory.setDataSource(dataSource());
-		factory.setPackagesToScan(new String[] {"com.iiiedu105.RentHouse.model"});
+		factory.setPackagesToScan(new String[] {"com.iiiedu105.RentHouse"});
 		factory.setHibernateProperties(additionalProperties());
 		return factory;
 	}
@@ -57,7 +57,7 @@ public class RootAppConfig {
 	private Properties additionalProperties()  {
 		Properties properties=new Properties();
 		properties.put("hibernate.dialect", org.hibernate.dialect.SQLServer2012Dialect.class);
-		properties.put("hibernate.show_sql", Boolean.TRUE);
+		properties.put("hibernate.show_sql", Boolean.FALSE);
 		properties.put("hibernate.format_sql", Boolean.TRUE);
 		properties.put("default_batch_fetch_size", 10);
 		properties.put("hibernate.hbm2ddl.auto", "update");

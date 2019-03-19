@@ -1,4 +1,4 @@
-package com.iiiedu105.RentHouse.Controller;
+package com.iiiedu105.RentHouse.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
