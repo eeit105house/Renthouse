@@ -196,7 +196,7 @@
 
 				<div>
 					<label for="layout" class="label.col_1">格局：</label>
-					<form:input path="layout" class="col_1" />
+					<form:input path="layout" class="col_6" />
 				</div>
 				<p>${errorMsg.layoutE}</p>
 

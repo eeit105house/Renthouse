@@ -128,7 +128,8 @@
 				</div>
 				<div>
 					簡介
-					<form:textarea path="info" value="${detailBean.info}" />
+					<textarea name="infoN" id="infoN" cols="30" rows="10">${houseInfo}</textarea>
+					<!-- <form:textarea path="info" value="${detailBean.info}" /> -->
 				</div>
 				<div>
 					每月租金

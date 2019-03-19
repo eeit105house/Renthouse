@@ -109,7 +109,8 @@
 				</div>
 				<div>
 					簡介
-					<form:textarea path="info" />
+					<textarea name="infoN" id="infoN" cols="30" rows="10"></textarea>
+					<!-- <form:textarea path="info" /> -->
 				</div>
 				<div>
 					每月租金
