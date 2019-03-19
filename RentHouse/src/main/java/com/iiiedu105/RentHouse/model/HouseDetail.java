@@ -1,5 +1,6 @@
 package com.iiiedu105.RentHouse.model;
 
+import java.sql.Clob;
 import java.sql.Date;
 
 import javax.persistence.CascadeType;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 public class HouseDetail {
 	private Integer id;
 	private String title;
-	private String info;
+	private Clob info;
 	private Integer deposit;
 	private Integer hoaFee;
 	private Date movingIn;
@@ -36,7 +37,7 @@ public class HouseDetail {
 	}
 	
 
-	public HouseDetail(Integer id, String title, String info, Integer deposit, Integer hoaFee, Date movingIn,
+	public HouseDetail(Integer id, String title,  Clob info, Integer deposit, Integer hoaFee, Date movingIn,
 			String shortest, String appliance, String furniture, String include, String le, String indetity,
 			Integer price) {
 		super();
@@ -73,14 +74,15 @@ public class HouseDetail {
 		this.title = title;
 	}
 
-	@Column(columnDefinition="varchar(max)")
-	public String getInfo() {
+	public Clob getInfo() {
 		return info;
 	}
 
-	public void setInfo(String info) {
+
+	public void setInfo(Clob info) {
 		this.info = info;
 	}
+
 
 	public Integer getDeposit() {
 		return deposit;

@@ -35,6 +35,7 @@
 <link
 	href="${pageContext.request.contextPath}/RHstaticresource/css/retina.css"
 	rel="stylesheet" />
+	
 <!-- end: CSS -->
 <!-- start: Favicon and Touch Icons -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
@@ -49,7 +50,8 @@
 <!-- end: Favicon and Touch Icons -->
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+<style type="text/css">
+</style>
 </head>
 <body>
 
@@ -88,7 +90,7 @@
 										<td class="center">${house.addr }</td>
 										<td class="center">${house.city }</td>
 										<td class="center">${house.launched }</td>
-										<td class="center"><a class="btn btn-info" href="#">
+										<td class="center"><a class="btn btn-info" href="<spring:url value='/houseView/${house.id }' />">
 												<i class=" icon-eye-open"></i>
 										</a>   
 										<!-- Button trigger modal -->

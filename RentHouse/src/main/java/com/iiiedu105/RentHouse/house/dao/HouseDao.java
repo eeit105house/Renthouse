@@ -19,4 +19,5 @@ public interface HouseDao {
 	public void updateHouseDetail(HouseDetail forUpdateDetailBean,Integer houseId);
 	public void updatePicture(HousePic housePicBean);
 	public HousePic getPictureIdByHouseAndPicNo(House houseBean,Integer picNo);
+	public void updateHouse(House houseBean);
 }

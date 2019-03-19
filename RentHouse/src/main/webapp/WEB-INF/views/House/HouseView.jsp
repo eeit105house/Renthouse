@@ -70,7 +70,7 @@ Released for free under the Creative Commons Attribution License
 					<p><strong>格局：</strong>${houseBean.layout}</p>
 
 					<blockquote>
-						<p>${detailBean.info}</p>
+						<p>${houseInfo}</p>
 					</blockquote>
 					<h2>詳細資訊</h2>
 					<p><strong>管理費：</strong>${detailBean.hoaFee}元</p>

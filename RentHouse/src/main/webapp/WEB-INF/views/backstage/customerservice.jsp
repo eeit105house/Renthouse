@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-    
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,10 +49,26 @@
 	<%@ include file="menu.jsp" %>	
 	<!-- start: Content -->
 			<div id="content" class="span10">
-<!-- 			這裡放置主要內容 -->
-			</div>
-<!-- 			end: Content -->
+<div class="row-fluid">
 				
+				<div class="span7">
+					<h1>未讀信件</h1>
+					
+					<ul class="messagesList">
+						
+						<c:forEach var="mail" items="${maillist }">				
+						<li>
+						<a class="testali" href="<spring:url value='/getmail/${mail.id }' />">													
+							<span class="from"><span ></span>${mail.memberBean.id }</span><span class="title"><span class="label label-warning">${mail.type }</span>${mail.title }</span><span class="date"><i class="halflings-icon time"></i>${mail.datetime }</span>						
+						</a>
+						</li>
+						</c:forEach>			
+					</ul>					
+				</div>
+			</div>				
+			</div>
+			</div>
+<!-- 			end: Content -->				
 			</div><!--/fluid-row-->
 			<%@ include file="footer.jsp" %>
 			</div><!--/.fluid-container-->

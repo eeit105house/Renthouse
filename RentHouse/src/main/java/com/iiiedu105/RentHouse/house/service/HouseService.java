@@ -1,5 +1,6 @@
 package com.iiiedu105.RentHouse.house.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.iiiedu105.RentHouse.model.House;
@@ -19,4 +20,6 @@ public interface HouseService {
 	public List<House> getHousesByMemberId(String id);
 	public void updateHouseDetail(HouseDetail detailBean,Integer houseId);
 	public void updatePictureByHouseIdAndPicNo(HousePic housePicBean);
+	public void updateHouse(House houseBean);
+	public void orderFinishied(Integer houseId,Timestamp timestamp,Integer pay);
 }

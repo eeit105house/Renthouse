@@ -46,7 +46,38 @@
 	<%@ include file="menu.jsp" %>	
 	<!-- start: Content -->
 			<div id="content" class="span10">
-<!-- 			這裡放置主要內容 -->
+<div class="row-fluid">
+				<div class="box chat span12">
+					
+					<div class="box-header">
+						<h2><i class="icon-list"></i>Chat Full width</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-close"><i class="icon-remove"></i></a>
+						</div>
+					</div>
+					<div class="contacts">
+						<ul class="list">
+							<li>
+								<img class="avatar" src="${pageContext.request.contextPath}/RHstaticresource/img/avatar.jpg" alt="avatar" />
+								<span class="name">Łukasz Holeczek</span>
+								<span class="status online"></span>
+								<span class="important">4</span>
+							</li>
+						</ul>	
+					</div>
+					<div class="conversation">
+						<div class="actions">
+							<img class="avatar" src="${pageContext.request.contextPath}/RHstaticresource/img/avatar.jpg" alt="avatar" />
+							<img class="avatar" src="${pageContext.request.contextPath}/RHstaticresource/img/avatar3.jpg" alt="avatar" />
+							<img class="avatar" src="${pageContext.request.contextPath}/RHstaticresource/img/avatar4.jpg" alt="avatar" />
+						</div>
+
+				
+					</div>
+					
+				</div>
+				
+			</div>	
 			</div>
 <!-- 			end: Content -->
 				

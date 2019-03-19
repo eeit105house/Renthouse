@@ -1,5 +1,6 @@
 package com.iiiedu105.RentHouse.house.service.impl;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,5 +79,17 @@ public class HouseServiceImpl implements HouseService {
 			dao.updatePicture(housePicBeanQ);
 		}
 	}
+	@Override
+	public void updateHouse(House houseBean) {
+		dao.updateHouse(houseBean);
+	}
+	@Override
+	public void orderFinishied(Integer houseId,Timestamp timestamp,Integer pay) {
+		House houseBean = dao.findById(houseId);
+		houseBean.setStatus("審核");
+		houseBean.setLaunched(timestamp);
+		houseBean.setPay(pay);
+	}
+
 	
 }
