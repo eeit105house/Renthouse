@@ -122,6 +122,19 @@ $(document).ready(function() {
 			$("#notyet").show();
 		}
 		});
+	$('.custom-select').on('keydown keyup keypress change focus blur',function(){
+		
+		var Year = $("#birth_Year").val();
+		var Month = $("#birth_Month").val();
+		var Date = $("#birth_Date").val();
+		$("#birthday").val(Year+"-"+Month+"-"+Date);
+		
+		var gender = $("#gender").val();
+		$("#sex").val(gender);
+		});
+	//初值
+		$("#birthday").val("1990-1-1");
+
 });
 //^\w+：@ 之前必須以一個以上的文字&數字開頭，例如 abc
 //((-\w+)：@ 之前可以出現 1 個以上的文字、數字或「-」的組合，例如 -abc-
@@ -131,4 +144,4 @@ $(document).ready(function() {
 //[A-Za-z0-9]+：@ 之後出現 1 個以上的大小寫英文及數字的組合
 //(\.|-)：@ 之後只能出現「.」或是「-」，但這兩個字元不能連續時出現
 //((\.|-)[A-Za-z0-9]+)*：@ 之後出現 0 個以上的「.」或是「-」配上大小寫英文及數字的組合
-//\.[A-Za-z]+$/：@ 之後出現 1 個以上的「.」配上大小寫英文及數字的組合，結尾需為大小寫英文
+//\.[A-Za-z]+$/：@ 之後出現 1 個以上的「.」配上大小寫英文及數字的組合，//結尾需為大小寫英文)
