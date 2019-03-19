@@ -12,10 +12,10 @@
 			
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li><a href="<spring:url value='/houseReview' />"><i class=" icon-home"></i><span class="hidden-tablet"> 房屋審核</span></a></li>
-						<li><a href="<spring:url value='/writingsReview' />"><i class=" icon-book"></i><span class="hidden-tablet"> 文章審核</span></a></li>
-						<li><a href="<spring:url value='/customerservice' />"><i class="icon-user"></i><span class="hidden-tablet"> 客服</span></a></li>
-						<li><a href="<spring:url value='/chart' />"><i class="icon-bar-chart"></i><span class="hidden-tablet"> 統計圖表</span></a></li>	
+						<li><a href="<spring:url value='/houseReview' />"><i class=" icon-home"></i><span class="hidden-tablet"> 房屋審核   </span><span class="badge">+${hlist.size() }</span></a></li>
+						<li><a href="<spring:url value='/writingsReview' />"><i class=" icon-book"></i><span class="hidden-tablet"> 文章審核    </span><span class="badge">+${wlist.size() }</span></a></li>
+						<li><a href="<spring:url value='/customerservice' />"><i class="icon-user"></i><span class="hidden-tablet"> 客服   </span></a></li>
+						<li><a href="<spring:url value='/chart' />"><i class="icon-bar-chart"></i><span class="hidden-tablet"> 統計圖表   </span></a></li>	
 						<li><a href="<spring:url value='/bslogout' />"><i class="icon-lock"></i><span class="hidden-tablet"> 登出</span></a></li>
 					</ul>
 				</div>

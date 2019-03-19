@@ -62,18 +62,55 @@
 							<span class="from"><span ></span>${mail.memberBean.id }</span><span class="title"><span class="label label-warning">${mail.type }</span>${mail.title }</span><span class="date"><i class="halflings-icon time"></i>${mail.datetime }</span>						
 						</a>
 						</li>
-						</c:forEach>			
-					</ul>					
+						</c:forEach>		
+					</ul>	
+					<hr>				
 				</div>
-			</div>				
+				<div class="span5">					
+					<div class="message">						
+						<div class="header">
+							<h1>${omail.title }</h1>
+							<div class="from"><i class="halflings-icon user"></i> <b>帳號:${omail.memberBean.id }/姓名:${omail.memberBean.name }</b> </div>
+							<div class="date"><i class="halflings-icon time"></i><b>${omail.datetime }</b></div>							
+							<div class="menu"></div>							
+						</div>					
+						<div class="content">							
+							<blockquote>
+							${content }	
+						</blockquote>	
+						</div>
+						<hr>		
+						
+															
+<%-- 						<form:form class="replyForm" method="post" modelAttribute="EmployeeReport"> --%>
+
+<!-- 							<fieldset> -->
+<%-- 							<span>請輸入員工ID:</span><form:input path="employeeBean" type="text" /> --%>
+<%-- 								<form:textarea path="content" tabindex="3" class="input-xlarge span12" id="message" name="body" rows="12" placeholder="Click here to reply"></form:textarea> --%>
+
+<!-- 								<div class="actions"> -->
+									
+<!-- 									<button tabindex="3" type="submit" class="btn btn-success">回覆</button> -->
+									
+<!-- 								</div> -->
+
+<!-- 							</fieldset> -->
+
+<%-- 						</form:form>	 --%>
+					</div>
+					
+				</div>
+						
+			</div>
+			
+       
+					
 			</div>
 			</div>
-<!-- 			end: Content -->				
+<!-- 			end: Content -->
+				
 			</div><!--/fluid-row-->
-			<%@ include file="footer.jsp" %>
-			</div><!--/.fluid-container-->
-
-
+			<%@ include file="footer.jsp" %>			
 	<!-- start: JavaScript-->
 		<script src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-1.10.2.min.js"></script>
 	<script src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-migrate-1.2.1.min.js"></script>	
