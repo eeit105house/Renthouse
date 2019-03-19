@@ -27,13 +27,14 @@
         <div class="card card-signin my-6">
           <div class="card-body">
             <h5 class="card-title text-center">加入新會員</h5>
-            <form:form class="form-signin " id="commentForm" action="insertMemberOk" method="post" modelAttribute="member" commandName="member">
+            <form:form class="form-signin " id="commentForm" action="insertMemberOk" method="post" modelAttribute="member" commandName="member" enctype="multipart/form-data">
 <!--圖片 -->
 			<div class="text-center" style="height: 100px ;">
 				<img id="showImg" src="" alt="" style="height: 100px ;width: 100px"/>
 			</div>
 			<div class="text-center">
-			<label class="btn btn-info" style="width: 150px; height: 50px;">更換頭像<input  type="file" name="pic0" id="pic" style=" opacity:0; "/></label>
+			<label class="btn btn-info" style="width: 150px; height: 50px;">更換頭像
+			<input  type="file" name="memberimg" id="pic" style=" opacity:0; "/></label>
 			</div>
 <!--帳號 -->
 	<div class="form-group input-group">

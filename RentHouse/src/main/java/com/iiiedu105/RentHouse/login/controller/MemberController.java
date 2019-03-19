@@ -54,7 +54,7 @@ public class MemberController {
 // URL為 /members, 搭配 POST方法可以新增一筆紀錄
 // 儲存瀏覽器送來的Member資料
 @RequestMapping(value = "insertMemberOk", method = RequestMethod.POST)
-	public String saveMember(Member member,@RequestParam(value = "pic") MultipartFile file0) throws SerialException, SQLException {
+	public String saveMember(Member member,@RequestParam(value = "memberimg") MultipartFile file0) throws SerialException, SQLException {
 //	預設圖片
 	String noImg = "/WEB-INF/views/login/img/PresetMember.png";
 //	轉blob
@@ -64,11 +64,7 @@ public class MemberController {
 		member.setPic(P_Img);
 		memberService.saveMember(member);
 	}else {
-//	String contentType= file0.getContentType();
-//	System.out.println(contentType);
-//	if(!contentType.equals("image/jpeg")){
-//		errorMsg.put("typeE", "請上傳jpeg檔");
-//	}
+
 	Blob blob;
 	blob = getImageBlob(file0);
 	member.setPic(blob);
