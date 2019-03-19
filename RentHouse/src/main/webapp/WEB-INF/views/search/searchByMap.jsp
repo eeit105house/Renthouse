@@ -10,8 +10,12 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 <link rel='stylesheet'
-	href='${pageContext.request.contextPath}/search/css/houselist.css'
+	href='${pageContext.request.contextPath}/search/css/houseMap.css'
 	type="text/css" />
+<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnU2A9Fhu8V2CtP9qgZGBGbN8qNbFtJKM&callback=initMap"
+		async defer>	
+</script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script
@@ -104,117 +108,167 @@
 		</div>
 	</div>
 	<hr>
-<div class = "start">
-
-</div>
+<div id="map"></div>
 	<hr>
-	<div id="map"></div>
+	
 
-
-<!-- 	<script -->
-<!-- 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiEowD-jl-xl0Y_GkFppPI1SkfoF5lWTc&callback=initMap" -->
-<!-- 		async defer>	 -->
-<!-- 	</script> -->
+<div class = "start"></div>
+	
 	
 	<script>
 		var map;
 		var a = -1;
-		var url = 'https://ruienyuski.github.io/git_test/itaiwan.json';
-
+		var markers=[];
+	
 		function initMap() {
-			map = new google.maps.Map(document.getElementById('map'), {
-				zoom : 17,
-				center : {
-					lat : 22.630884,
-					lng : 120.301065
+			map = new google.maps.Map(document.getElementById('map'), {	
+				zoom : 15,	center : {lat : 25.033757,lng : 121.543385}});		
+		}
+		
+		if(sessionStorage.getItem("clearList") != null){			
+			var Searchcriteria = sessionStorage.getItem("clearList");
+			$(".clearList").text(Searchcriteria);
+			$(".eliminateCriteria").show();
+			$(".start").empty();
+			searchCriteriaJson(Searchcriteria)
+		}else{		
+			$(".start").empty();
+			searchAllHouse();
+		}
+		
+		function searchAllHouse(){
+			$.ajax({
+				url:"${pageContext.request.contextPath}/search/searchPage_Json_start",
+				type:"Get",
+				dataType:"json",
+				cache:"false",
+				success:function(data){
+					createMarker(data);
+				},
+				error:function(){alert("error");}
+			});
+			$.ajax({
+				url:"${pageContext.request.contextPath}/search/searchPage_start",
+				type:"Get",
+				cache:"false",
+				success:function(data){
+						$(".start").html(data);
 				}
 			});
-
-			callAjax(url);
-
-			function callAjax(url) {
-				var xhr = new XMLHttpRequest();
-				xhr.open('get', url, true);
-				xhr.send(null);
-
-				xhr.onload = function() {
-
-					var record = JSON.parse(xhr.responseText);
-					wifiData = record.result.records;
-					len = wifiData.length;
-
-					//跑迴圈依序將值塞入到 marker
-					for (i = 0; i < wifiData.length; i++) {
-						var str = {};
-						var place = {};
-
-						place.lat = parseFloat(wifiData[i]['lat']);
-						place.lng = parseFloat(wifiData[i]['lng']);
-
-						str.map = map;
-						str.title = wifiData[i]['地點']
-						str.position = place;
-						str.clickable = true, //可否點擊
-						str.visible = true, //是否顯示
-						console.log(str);
-						var marker = new google.maps.Marker(str);
-
-						attachSecretMessage(marker, i)
-					}
-					function attachSecretMessage(marker, number) {
-						var infowindow = new google.maps.InfoWindow({
-							content : "data" + number,
-							size : new google.maps.Size(50, 50)
-						});
-						google.maps.event.addListener(marker, 'click',
-								function() {
-									a = a * -1;
-									if (a > 0) {
-										infowindow.open(map, marker);
-									} else {
-										infowindow.close();
-									}
-								});
-					}
-				};
-			}
-			;
-
-		}
-	</script>
-	
-	<script>
-	$(document).ready(function(){
-		if(sessionStorage.getItem("clearList") != null){	
-			$(".clearList").text(sessionStorage.getItem("clearList"));
-			$(".eliminateCriteria").show();
 		};
 		
-		$.ajax({
-			url:"${pageContext.request.contextPath}/search/searchPage_start",
-			type:"Get",
-			cache:"false",
-			success:function(data){
-				$(".start").html(data);
-				
-			}
-		});
-		
+		function searchCriteriaJson(Searchcriteria){
+			$.ajax({
+				url:"${pageContext.request.contextPath}/search/searchPage_criteria",
+				data:{Searchcriteria:$(".clearList").text()},
+				type:"Get",
+				cache:"false",
+				success:function(data){
+					$(".start").html(data);					
+				}
+			});
+			$.ajax({
+				url:"${pageContext.request.contextPath}/search/searchPage_Json_criteria",
+				data:{Searchcriteria:$(".clearList").text()},
+				type:"Get",
+				dataType:"json",
+				cache:"false",
+				success:function(data){
+					createMarker(data);
+				},
+				error:function(){alert("error");}
+			});
+		};
 		
 		$("#zipcode2").twzipcode({
-		countySel: "臺北市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
-		districtSel: "大安區", // 地區預設值
-		zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區
-		css: ["city city-control", "town town-control"], // 自訂 "城市"、"地區" class 名稱 
-		countyName: "city", // 自訂城市 select 標籤的 name 值
-		districtName: "town" // 自訂地區 select 標籤的 name 值
+			countySel: "縣市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
+			districtSel: "鄉鎮市區", // 地區預設值
+			zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區
+			css: ["city city-control", "town town-control"], // 自訂 "城市"、"地區" class 名稱 
+			countyName: "city", // 自訂城市 select 標籤的 name 值
+			districtName: "town" // 自訂地區 select 標籤的 name 值
+			});
+		
+		
+		
+		$("div#sitebody").click(function(){
+			$("#sitebody").css("background-color","red");
 		});
-	
-	});
-	
-	$(".mapSelectOnly").change(function() {
+		
+		function createMarker(data){ 	 //建立大頭針
+			initMap();
+			var len = data.length;
+			for (i = 0; i < len; i++) {
+				for(j = 0 ; j<data[i].length;j++){						
+			
+					    var str = {};
+						var msg = data[i][7];
+						var place = {};
+						place.lat = parseFloat(data[i][11]);
+						place.lng = parseFloat(data[i][12]);
+						
+						str.map = map;
+						str.title = data[i][1];
+						str.position = place;
+						str.clickable = true; //可否點擊
+						str.visible = true; //是否顯示
+						
+						var marker = new google.maps.Marker(str);
+						attachSecretMessage(marker, msg); 
+										 						
+				}			
+				markers[i] = marker;
+			}
+		}
+		
+		function attachSecretMessage(marker, msg) {			
+			var infowindow = new google.maps.InfoWindow({
+				content : msg,
+				size : new google.maps.Size(50, 50)
+			});
+			google.maps.event.addListener(marker, 'click',		//點擊大頭針後動作
+					function() {
+						a = a * -1;
+						if (a > 0) {
+							
+							infowindow.open(map, marker);
+							
+							$.ajax({
+								url:"${pageContext.request.contextPath}/search/searchPage_Msg",
+								data:{msg:msg},
+								type:"Get",
+								cache:"false",
+								success:function(data){
+									$(".start").html(data);
+								}
+							});	
+							
+						} else {
+							infowindow.close();
+						}
+					});
+		}	
+		
+	$(".mapSelectOnly").change(function() {			//選取條件後動作
 		var text = $(this).children('option:selected').text();
 		var id = $(this).children('option:selected').attr("id");
+		changeSelect(text,id);
+	});
+
+	$(".city-control").change(function() {			//選取城市後動作
+		var text = $(this).children('option:selected').text();
+		var id = $(this).children('option:selected').attr("id");
+		changeSelect(text,id);
+	});
+	
+	$(".town-control").change(function() {	//選取縣市後後動作
+		var text = $(this).children('option:selected').text();
+		var id = $(this).children('option:selected').attr("id");
+		changeSelect(text,id);
+	});
+	
+	function changeSelect(text,id){
+		
 			$(".start").empty();
 		if ($(".clearList").text() == "") {
 			sessionStorage.setItem(id, text);
@@ -237,8 +291,19 @@
 				sessionStorage.setItem(id, text);
 				$(".clearList").append("," + text);
 			}
-		}
+		}		
 		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/search/searchPage_Json_criteria",
+			data:{Searchcriteria:$(".clearList").text()},
+			type:"Get",
+			dataType:"json",
+			cache:"false",
+			success:function(data){
+				createMarker(data);
+			},
+			error:function(){alert("error");}
+		});
 		
 		$.ajax({
 			url:"${pageContext.request.contextPath}/search/searchPage_criteria",
@@ -247,17 +312,17 @@
 			cache:"false",
 			success:function(data){
 				$(".start").html(data);
-				
 			}
 		});
 		sessionStorage.setItem("clearList",$(".clearList").text());
-	});
-
-	$(".eliminateCriteria").click(function() {		
+	};
+	
+	$(".eliminateCriteria").click(function() {		//點擊清除條件後動作
 		$(".clearList").empty();
 		$(this).hide();
 		sessionStorage.clear();
 		$(".test").empty();
+
 		$.ajax({
 			url:"${pageContext.request.contextPath}/search/searchPage_start",
 			type:"Get",
@@ -268,20 +333,18 @@
 			}
 		});
 		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/search/searchPage_Json_start",
+			type:"Get",
+			dataType:"json",
+			cache:"false",
+			success:function(data){
+				createMarker(data);
+			},
+			error:function(){alert("error");}
+		});
 	});
-
-	$("#twzipcode").twzipcode();
-	// 		$(".selectType").click(function() {
-	// 			$.ajax({
-	// 				url : "/queryByType",
-	// 				data:{type:$(this).text()}
-	// 				type : "GET",
-	// 				cache : "false",
-	// 				success : function(data) {
-	// 					alert(data);
-	// 				}
-	// 			});
-	// 		});
+	
 </script>
 </body>
 </html>
