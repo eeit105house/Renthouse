@@ -1,5 +1,6 @@
 package com.iiiedu105.RentHouse.model;
 
+import java.sql.Clob;
 import java.sql.Timestamp;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -21,7 +22,7 @@ import javax.persistence.Transient;
 public class Forum {
 	private Integer id;
 	private String title;
-	private String content;
+	private Clob content;
 	private String sort;	
 	private Timestamp datetime;
 	private String status;
@@ -36,7 +37,7 @@ public class Forum {
 	public Forum() {
 	}
 
-	public Forum(Integer id, String title, String content, Timestamp datetime, String sort, String status, String memberId) {
+	public Forum(Integer id, String title, Clob content, Timestamp datetime, String sort, String status, String memberId) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -66,12 +67,12 @@ public class Forum {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	@Column(columnDefinition="varchar(max)")
-	public String getContent() {
+
+	public Clob getContent() {
 		return content;
 	}
 
-	public void setContent(String content) {
+	public void setContent(Clob content) {
 		this.content = content;
 	}
 

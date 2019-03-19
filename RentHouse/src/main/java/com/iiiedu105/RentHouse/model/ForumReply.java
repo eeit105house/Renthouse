@@ -1,5 +1,6 @@
 package com.iiiedu105.RentHouse.model;
 
+import java.sql.Clob;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
@@ -18,7 +19,7 @@ import javax.persistence.Transient;
 public class ForumReply {
 	private Integer id;
 	private String title;
-	private String content;
+	private Clob content;
 	private Timestamp datetime;
 	private String status;
 	private String memberId;
@@ -27,7 +28,7 @@ public class ForumReply {
 	private Forum forumBean;
 	private Member memberBean;
 
-	public ForumReply(Integer id, String title, String content, Timestamp datetime, String status,
+	public ForumReply(Integer id, String title, Clob content, Timestamp datetime, String status,
 			String memberId, Integer frId) {
 		super();
 		this.id = id;
@@ -56,15 +57,12 @@ public class ForumReply {
 		this.title = title;
 	}
 
-	@Column(columnDefinition="varchar(max)")
-	public String getContent() {
+	public Clob getContent() {
 		return content;
 	}
-
-	public void setContent(String content) {
+	public void setContent(Clob content) {
 		this.content = content;
 	}
-
 	public Timestamp getDatetime() {
 		return datetime;
 	}
