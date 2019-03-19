@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> 
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
 <!DOCTYPE html>
 <html>
@@ -16,9 +16,6 @@
 <script src="login/js/date.js"></script>
 <!-- 登入彈跳視窗 -->
   <script src="login/js/bootstrap.bundle.min.js"></script>
-  
-
-		
 <title>Insert title here</title>
 </head>
 <body>
