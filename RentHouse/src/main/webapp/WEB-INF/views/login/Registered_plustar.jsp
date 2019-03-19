@@ -40,13 +40,13 @@
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i id="Acc_i" class="fa fa-user"></i> </span>
 		 </div>
-        <form:input path="id" name="Acc" id="Acc" class="form-control" required="required" placeholder="帳號" type="text"/>
+        <form:input path="id" name="Acc" id="Acc" class="form-control" required="required" placeholder="帳號 *第一個字大寫英文 混合英數 8-12字" type="text"/>
     </div>
 <!--密碼 --> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i id="Pwd_i" class="fa fa-lock"></i> </span></div>
-        <form:input path="pwd" name="Pwd" id="Pwd" class="form-control" required="required" placeholder="密碼" type="password"/>
+        <form:input path="pwd" name="Pwd" id="Pwd" class="form-control" required="required" placeholder="密碼*混合英數 8-12字" type="password"/>
     </div> 
 <!--重複密碼 --> 
     <div class="form-group input-group">
