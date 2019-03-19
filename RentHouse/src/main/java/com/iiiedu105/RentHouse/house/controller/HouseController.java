@@ -3,6 +3,7 @@ package com.iiiedu105.RentHouse.house.controller;
 import java.sql.Blob;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +34,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iiiedu105.RentHouse.house.service.HouseService;
@@ -40,6 +42,10 @@ import com.iiiedu105.RentHouse.model.House;
 import com.iiiedu105.RentHouse.model.HouseDetail;
 import com.iiiedu105.RentHouse.model.HousePic;
 import com.iiiedu105.RentHouse.model.Member;
+
+import allPay.payment.integration.AllInOne;
+import allPay.payment.integration.domain.AioCheckOutOneTime;
+import allPay.payment.integration.exception.AllPayException;
 
 @Controller
 public class HouseController {
@@ -51,6 +57,9 @@ public class HouseController {
 	@Autowired
 	ServletContext context;
 	private Integer houseId = null;
+	private String orderResultURL = "http://localhost:8080/RentHouse/orderFinished/";
+	private List<Map<String,String>> vipProjects;
+
 
 	public HouseController() {
 	}
@@ -101,9 +110,12 @@ public class HouseController {
 //			HousePic housePicBean = new HousePic(null, houseId, getImageBlob(file), picNo);
 //			houseService.updatePictureByHouseIdAndPicNo(housePicBean);
 //		}
-		return "House/HouseRefactPic";
+		return "redirect:/houseRefactPictureSuc";
 	}
-	
+	@RequestMapping(value="/houseRefactPictureSuc")
+	public String houseRefactPic(Model model) {
+		return "redirect:/houseRefactPicture";
+	}
 	
 	//導入房屋詳細
 	@RequestMapping(value="/houseRefactDet/{hId}")
@@ -148,7 +160,7 @@ public class HouseController {
 		
 		if (errorMsg.isEmpty()) {
 			String movingInN = request.getParameter("movingInN");
-			detailBean.setMovingIn(getSqlDateByString(movingInN));
+			detailBean.setMovingIn(getSqlDateByString(movingInN,"dd/MM/YYYY"));
 			String shortestN =request.getParameter("shortestN");
 			detailBean.setShortest(detailBean.getShortest()+shortestN);
 			houseService.updateHouseDetail(detailBean,houseId);
@@ -256,7 +268,7 @@ public class HouseController {
 		return responseEntity;
 	}
 //	
-	//=====ADD NEW HOUSE=====
+	//=====新增房屋=====
 	@RequestMapping(value = "/house", method = RequestMethod.GET)
 	public String getAddNewHouseForm(Model model) {
 		House houseBean = new House();
@@ -335,7 +347,7 @@ public class HouseController {
 		
 		if (errorMsg.isEmpty()) {
 			String movingInN = request.getParameter("movingInN");
-			detailBean.setMovingIn(getSqlDateByString(movingInN));
+			detailBean.setMovingIn(getSqlDateByString(movingInN,"dd/MM/YYYY"));
 			String shortestN =request.getParameter("shortestN");
 			detailBean.setShortest(detailBean.getShortest()+shortestN);
 			houseService.insertDetail(detailBean);
@@ -367,7 +379,7 @@ public class HouseController {
 			return "forward:/housePicE";
 		}
 		String contentType= file0.getContentType();
-		System.out.println(contentType);
+		System.out.println("upload："+contentType);
 		if(!contentType.equals("image/jpeg")){
 			errorMsg.put("typeE", "請上傳jpeg檔");
 		}
@@ -410,10 +422,85 @@ public class HouseController {
 
 	@RequestMapping(value = "/houseOrder", method = RequestMethod.GET)
 	public String getAddNewHouseOrderForm(Model model) {
-
+		theVipProject();
+		Object command = new Object();
+		model.addAttribute("VipProjects", vipProjects);
+		model.addAttribute("command", command);
 		return "House/HouseFormOrder";
 	}
-
+	@RequestMapping(value = "/houseOrder", method = RequestMethod.POST)
+	public String postAddNewHouseOrderForm(Model model,@RequestParam String vip) {		
+		if(!vip.equals(null) || vip.length()!=0) {
+			for(Map<String,String> vipProject:vipProjects) {
+				if(vipProject.get("pNumber").equals(vip)) {
+					return "redirect:/houseOrderSelect/"+vip;
+				}
+			}
+		}
+		Map<String, String> errorMsg = new HashMap<String, String>();
+		errorMsg.put("orderE", "請由此選擇方案");
+		return "forward:/houseOrderE";
+	}
+	@RequestMapping(value = "/houseOrderE")
+	public String getAddNewHouseOrderFormE(Model model) {
+		return "House/HouseFormOrder";
+	}
+	@RequestMapping(value = "/houseOrderSelect/{vip}",produces="text/html;charset=UTF-8")
+	public @ResponseBody String toAllPay(Model model, @PathVariable String vip) {
+		AioCheckOutOneTime aio = new AioCheckOutOneTime();
+		AllInOne all = new AllInOne("");
+		System.out.println(aio.getRemark());
+//		InvoiceObj invoice = new InvoiceObj();
+		String itemName = null,totalAmount = null,tradeDesc = null;
+		for(Map<String,String> vipProject:vipProjects) {
+			if(vipProject.get("pNumber").equals(vip)) {
+				itemName=vipProject.get("pNumber");
+				totalAmount=vipProject.get("pPrice");
+				tradeDesc=vipProject.get("pName")+"："+vipProject.get("pInfo");
+			}
+		}
+		//模擬不開發票
+//		invoice = null;
+		//廠商系統自行產生
+		aio.setMerchantTradeNo("EEIT105RentHouse"+UUID.randomUUID().toString().replaceAll("-", "").substring(0, 4));
+		java.util.Date date = new java.util.Date();
+		//廠商可自行決定交易時間
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		aio.setMerchantTradeDate(sdf.format(date));
+		//從廠商DB撈出的商品資訊
+		aio.setItemName(itemName);
+		aio.setTotalAmount(totalAmount);
+		aio.setTradeDesc(tradeDesc);
+		//廠商可自行決定是否延遲撥款
+		aio.setHoldTradeAMT("0");
+		//後端設定付款完成通知回傳網址
+		aio.setReturnURL("http://211.23.128.214:5000");
+		aio.setOrderResultURL(orderResultURL+vip);
+		try{
+			String html = all.aioCheckOut(aio);
+			System.out.println(html);
+			return html;
+		} catch(AllPayException e){
+			throw new Error(e.getNewExceptionMessage());
+		}
+//		return "";
+	}
+	
+	@RequestMapping(value = "/orderFinished/{pay}", method = RequestMethod.POST)
+	public String orderFinishedPage(Model model, HttpServletRequest request,@PathVariable Integer pay) throws ParseException {
+		int rtnCode  = Integer.parseInt(request.getParameter("RtnCode"));
+		String rtnMsg = request.getParameter("RtnMsg"),
+				tradeDate  = request.getParameter("TradeDate");
+		 
+		if(rtnCode==1 && rtnMsg.equals("Succeeded") ) {
+			Timestamp timestamp = getTimestampByString(tradeDate,"yyyy/MM/dd HH:mm:ss");
+			houseService.orderFinishied(houseId, timestamp,pay);
+		}
+		System.out.println(rtnCode+"\n"+rtnMsg+"\n"+tradeDate);
+		return "redirect:/houseRefactSelect";
+	}
+	
+	
 	private Blob getImageBlob(MultipartFile mf) {
 		Blob blob;
 		try {
@@ -427,12 +514,23 @@ public class HouseController {
 		return blob;
 	}
 
-	private Date getSqlDateByString(String ddMMYYYY) throws ParseException {
-		SimpleDateFormat sDF = new SimpleDateFormat("dd/MM/YYYY");
+	
+	//Extra Code
+	private Timestamp getTimestampByString(String dateStr,String dateFormat) throws ParseException {
+		SimpleDateFormat sDF = new SimpleDateFormat(dateFormat);
 		sDF.setLenient(false);
-		Date date = new Date(sDF.parse(ddMMYYYY).getTime());
+		Timestamp timestamp = new Timestamp(sDF.parse(dateStr).getTime());
+		return timestamp;
+	}
+	
+	private Date getSqlDateByString(String dateStr,String dateFormat) throws ParseException {
+		SimpleDateFormat sDF = new SimpleDateFormat(dateFormat);
+//		SimpleDateFormat sDF = new SimpleDateFormat("dd/MM/YYYY");
+		sDF.setLenient(false);
+		Date date = new Date(sDF.parse(dateStr).getTime());
 		return date;
 	}
+	
 	private String getStringBySqlDate(Date date,String dateFormat) {
 		java.util.Date javaDate = new java.util.Date(date.getTime());
 		SimpleDateFormat sDF = new SimpleDateFormat(dateFormat);
@@ -440,5 +538,26 @@ public class HouseController {
 		String yYYYMMdd = sDF.format(javaDate);
 		return yYYYMMdd;
 	}
-
+	
+	private void theVipProject() {
+		vipProjects =new  LinkedList<Map<String,String>>();
+		Map<String,String> normal = new HashMap<>();
+		normal.put("pName", "普通刊登");
+		normal.put("pPrice", "500");
+		normal.put("pNumber", "0");
+		normal.put("pInfo", "普通刊登");
+		vipProjects.add(normal);
+		Map<String,String> vip = new HashMap<>();
+		vip.put("pName", "高級刊登");
+		vip.put("pPrice", "1000");
+		vip.put("pNumber", "1");
+		vip.put("pInfo", "可享有優先搜尋");
+		vipProjects.add(vip);
+		Map<String,String> superVip = new HashMap<>();
+		superVip.put("pName", "超高級刊登");
+		superVip.put("pPrice", "2000");
+		superVip.put("pNumber", "2");
+		superVip.put("pInfo", "可享有優先搜尋及輪播牆");
+		vipProjects.add(superVip);
+	}
 }

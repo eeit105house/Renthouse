@@ -94,7 +94,7 @@
 		}
 	</script>
 	<meta charset="UTF-8">
-	<title>上架</title>
+	<title>詳細資訊</title>
 </head>
 
 <body>
