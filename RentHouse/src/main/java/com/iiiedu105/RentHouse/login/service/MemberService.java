@@ -3,7 +3,7 @@ package com.iiiedu105.RentHouse.login.service;
 import java.util.List;
 
 import com.iiiedu105.RentHouse.model.Member;
-import com.iiiedu105.RentHouse.model.TestTest;
+//import com.iiiedu105.RentHouse.model.TestTest;
 
 public interface MemberService {
 

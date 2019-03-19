@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.iiiedu105.RentHouse.login.dao.MemberDao;
 import com.iiiedu105.RentHouse.login.service.MemberService;
 import com.iiiedu105.RentHouse.model.Member;
-import com.iiiedu105.RentHouse.model.TestTest;
+//import com.iiiedu105.RentHouse.model.TestTest;
 
 @Service
 @Transactional

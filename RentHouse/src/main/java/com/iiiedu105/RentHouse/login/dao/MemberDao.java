@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.iiiedu105.RentHouse.model.HousePic;
 import com.iiiedu105.RentHouse.model.Member;
-import com.iiiedu105.RentHouse.model.TestTest;
+//import com.iiiedu105.RentHouse.model.TestTest;
 @Repository
 public interface MemberDao {
 
