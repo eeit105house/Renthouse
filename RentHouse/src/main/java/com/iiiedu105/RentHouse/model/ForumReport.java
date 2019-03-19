@@ -1,8 +1,10 @@
 package com.iiiedu105.RentHouse.model;
 
+import java.sql.Clob;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,9 +21,8 @@ public class ForumReport {
 	private Integer id;
 	private Integer forumId;
 	private String type;
-	private String content;
+	private Clob content;
 	private Timestamp datetime;
-	private String memberId;
 	private String status;
 	
 	private Forum forumBean;
@@ -29,17 +30,19 @@ public class ForumReport {
 	
 	public ForumReport() {
 	}
-
-
-	public ForumReport(Integer id, Integer forumId, String type, String content, Timestamp datetime,String memberId) {
+	public ForumReport(Integer id, Integer forumId, String type, Clob content, Timestamp datetime, String status,
+			Forum forumBean, Member memberBean) {
 		super();
 		this.id = id;
 		this.forumId = forumId;
 		this.type = type;
 		this.content = content;
 		this.datetime = datetime;
-		this.memberId = memberId;
+		this.status = status;
+		this.forumBean = forumBean;
+		this.memberBean = memberBean;
 	}
+
 
 
 	@Id
@@ -74,39 +77,22 @@ public class ForumReport {
 		this.type = type;
 	}
 
-
-	public String getContent() {
-		return content;
-	}
-
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-
 	public Timestamp getDatetime() {
 		return datetime;
 	}
 
 
+	public Clob getContent() {
+		return content;
+	}
+	public void setContent(Clob content) {
+		this.content = content;
+	}
 	public void setDatetime(Timestamp datetime) {
 		this.datetime = datetime;
 	}
 	
 	
-	@Transient
-	public String getMemberId() {
-		return memberId;
-	}
-
-
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
-	
-	
-
 
 	public String getStatus() {
 		return status;
@@ -139,6 +125,4 @@ public class ForumReport {
 		this.memberBean = memberBean;
 	}
 
-	
-	
 }

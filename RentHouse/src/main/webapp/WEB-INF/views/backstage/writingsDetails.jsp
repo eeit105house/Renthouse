@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,28 +35,125 @@
 	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-72-precomposed.png" />
 <link rel="apple-touch-icon-precomposed"
 	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-57-precomposed.png" />
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/RHstaticresource/ico/favicon.png" />
+<link rel="shortcut icon" href="img/hicon.svg" />
 <!-- end: Favicon and Touch Icons -->
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
 
+</style>
 </head>
 <body>
 <%@ include file="header.jsp" %>
-		<div class="container-fluid-full">
+<div class="container-fluid-full">
 		<div class="row-fluid">
 	<%@ include file="menu.jsp" %>	
-	<!-- start: Content -->
-			<div id="content" class="span10">
-<!-- 			這裡放置主要內容 -->
-			</div>
-<!-- 			end: Content -->
+				<div id="content" class="span10">		
+			<div class="row-fluid">
+			<div class="box box-success"><!--span-->
+					<div class="box-header">
+						<h2><i class="icon-list"></i>檢舉內容</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-minimize"><i class="icon-chevron-up"></i></a>
+						</div>
+					</div>			
+					<div class="box-content">
+					<div class="tooltip-demo well">				
+						  <h3>檢舉人帳號:</h3>
+						  <p>${olist[4] }</p>
+						  <h3>類型:</h3>
+						  <p>${olist[7] }</p>
+						  <h3>時間:</h3>
+						  <p>${olist[6] }</p>
+						  <h3>原由:</h3>
+						  <p>${olist[5] }</p>    
+						  </div>       
+					</div>
+				</div><!--/span-->
 				
-			</div><!--/fluid-row-->
-			<%@ include file="footer.jsp" %>
-			</div><!--/.fluid-container-->
+					<div class="box"><!--span-->
+					<div class="box-header">
+						<h2><i class="icon-font"></i><span class="break"></span>檢舉文章</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-minimize"><i class="icon-chevron-up"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						  <div class="row-fluid">            
+							  <div class="well">
+							  <div class="page-header">
+								<h3>文章ID:</h3>
+								<p>${olist[0] }</p>
+								<h3>標題:</h3>
+								<p>${olist[1] }</p>
+								<h3>分類:</h3>
+								<p>${olist[3] }</p>
+								</div>
+								<h3>內文:</h3>
+								<p>${olist[2] }</p>
+							  </div>
+							 
+						  </div><!--/row -->                           						 
+					  </div>
+				</div><!--/span-->
+			</div>		
 
-
+			<!-- 											通過審核 -->
+											<button type="button" class="btn btn-large btn-round  btn-success"
+												data-toggle="modal" data-target="#checkpass">
+												<i class=" icon-ok"></i>
+											</button> <!-- 動態視窗 -->
+											<div class="modal fade" id="checkpass"
+												tabindex="-1" role="dialog"
+												aria-labelledby="hello" aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"
+																aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+															<h5 class="modal-title" id="hello">是否要通過審核?</h5>
+														</div>
+														<div class="modal-footer">
+															<a href="<spring:url value='/pass/${olist[8] }' />"
+																class="btn btn-primary">確認</a>
+															<button type="button" class="btn" data-dismiss="modal">取消</button>
+														</div>
+													</div>
+												</div>
+											</div> <!-- /動態視窗 -->
+											
+<!-- 											下架文章 -->
+											<button type="button" class="btn btn-large btn-danger"
+												data-toggle="modal" data-target="#checkfail">
+												<i class=" icon-remove"></i>
+											</button> <!-- 動態視窗 -->
+											<div class="modal fade" id="checkfail"
+												tabindex="-1" role="dialog"
+												aria-labelledby="hi" aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"
+																aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+															<h5 class="modal-title" id="hi">是否要下架商品?</h5>
+														</div>
+														<div class="modal-footer">
+															<a href="<spring:url value='/fail/${olist[8] }' />"
+																class="btn btn-primary">確認</a>
+															<button type="button" class="btn" data-dismiss="modal">取消</button>
+														</div>
+													</div>
+												</div>
+											</div> <!-- /動態視窗 -->
+										<a class="btn btn-large btn-primary" href="<spring:url value='/writingsReview' />">返回</a>	
+																							
+			</div>
+</div>
+</div>
 	<!-- start: JavaScript-->
 		<script src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-1.10.2.min.js"></script>
 	<script src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-migrate-1.2.1.min.js"></script>	

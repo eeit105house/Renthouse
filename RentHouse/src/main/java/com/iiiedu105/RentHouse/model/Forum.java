@@ -1,5 +1,6 @@
 package com.iiiedu105.RentHouse.model;
 
+import java.sql.Clob;
 import java.sql.Timestamp;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -21,31 +22,30 @@ import javax.persistence.Transient;
 public class Forum {
 	private Integer id;
 	private String title;
-	private String content;
+	private Clob content;
 	private String sort;	
 	private Timestamp datetime;
 	private String status;
 	private String memberId;
-	private Integer frId; //[FR_id(回文關聯主鍵)]
+//	private Integer frId; //[FR_id(回文關聯主鍵)]
 	
 	private Member memberBean;
-	private Forum forumBean;
-	private Set<Forum> forumBeans = new LinkedHashSet<Forum>(); //[FR_id(回文關聯主鍵)]
+//	private Forum forumBean;
+	private Set<ForumReply> forumReplyBeans = new LinkedHashSet<ForumReply>();
 	private Set<ForumReport> forumReportBeans = new LinkedHashSet<ForumReport>();
 	
 	public Forum() {
 	}
 
-	public Forum(Integer id, String title, String content, Timestamp datetime, String status, String memberId,
-			Integer frId) {
+	public Forum(Integer id, String title, Clob content, Timestamp datetime, String sort, String status, String memberId) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.datetime = datetime;
+		this.sort = sort;
 		this.status = status;
 		this.memberId = memberId;
-		this.frId = frId;
 	}
 
 	
@@ -67,12 +67,12 @@ public class Forum {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	@Column(columnDefinition="varchar(max)")
-	public String getContent() {
+
+	public Clob getContent() {
 		return content;
 	}
 
-	public void setContent(String content) {
+	public void setContent(Clob content) {
 		this.content = content;
 	}
 
@@ -109,15 +109,6 @@ public class Forum {
 		this.memberId = memberId;
 	}
 
-	@Transient
-	public Integer getFrId() {
-		return frId;
-	}
-
-	public void setFrId(Integer frId) {
-		this.frId = frId;
-	}
-
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="Member_Id")
 	public Member getMemberBean() {
@@ -128,23 +119,13 @@ public class Forum {
 		this.memberBean = memberBean;
 	}
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="Forum_Id")
-	public Forum getForumBean() {
-		return forumBean;
-	}
-
-	public void setForumBean(Forum forumBean) {
-		this.forumBean = forumBean;
-	}
-
 	@OneToMany(mappedBy="forumBean",cascade=CascadeType.ALL)
-	public Set<Forum> getForumBeans() {
-		return forumBeans;
+	public Set<ForumReply> getForumReplyBeans() {
+		return forumReplyBeans;
 	}
 
-	public void setForumBeans(Set<Forum> forumBeans) {
-		this.forumBeans = forumBeans;
+	public void setForumReplyBeans(Set<ForumReply> forumReplyBeans) {
+		this.forumReplyBeans = forumReplyBeans;
 	}
 	
 	@OneToMany(mappedBy="forumBean",cascade=CascadeType.ALL)

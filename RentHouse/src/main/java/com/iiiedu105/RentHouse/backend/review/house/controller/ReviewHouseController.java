@@ -19,7 +19,7 @@ public class ReviewHouseController {
 	OTShelfService service;
 	@RequestMapping(value="/houseReview")
 	public String products(Model model) {
-		List<Object[]> list = service.getAllHouse();
+		List<House> list = service.getAllHouse();
 		model.addAttribute("hlist", list);
 
 		return "backstage/houseReview";		

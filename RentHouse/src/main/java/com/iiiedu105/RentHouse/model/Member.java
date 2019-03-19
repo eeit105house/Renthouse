@@ -38,6 +38,9 @@ public class Member {
 	private Set<Chat> chatBeansRead = new LinkedHashSet<Chat>();
 	private Set<EmployeeReport> employeeReportBeans = new LinkedHashSet<EmployeeReport>();
 	private Set<Forum> forumBeans = new LinkedHashSet<Forum>();
+
+	private Set<ForumReply> ForumReplyBeans = new LinkedHashSet<ForumReply>();
+
 	private Set<ForumReport> forumReportBeans = new LinkedHashSet<ForumReport>();
 	
 	public Member() {
@@ -252,6 +255,16 @@ public class Member {
 	public void setForumBeans(Set<Forum> forumBeans) {
 		this.forumBeans = forumBeans;
 	}
+
+	@OneToMany(mappedBy="memberBean",cascade=CascadeType.ALL)
+	public Set<ForumReply> getForumReplyBeans() {
+		return ForumReplyBeans;
+	}
+
+	public void setForumReplyBeans(Set<ForumReply> forumReplyBeans) {
+		ForumReplyBeans = forumReplyBeans;
+	}
+
 	@OneToMany(mappedBy="memberBean",cascade=CascadeType.ALL)
 	public Set<ForumReport> getForumReportBeans() {
 		return forumReportBeans;
@@ -260,6 +273,5 @@ public class Member {
 	public void setForumReportBeans(Set<ForumReport> forumReportBeans) {
 		this.forumReportBeans = forumReportBeans;
 	}
-	
-	
+
 }

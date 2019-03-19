@@ -6,9 +6,9 @@ import com.iiiedu105.RentHouse.model.House;
 
 public interface OTShelfDao {
 
-	List<Object[]> getAllHouse();
+	List<House> getAllHouse();
 
-	void updateHouseStatus(int id);
+	void updateHouseStatus(Integer id);
 
-	void deleteHouse(int id);
+	void deleteHouse(Integer id);
 }
