@@ -1,6 +1,7 @@
 package com.iiiedu105.RentHouse;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.Reader;
 import java.sql.Clob;
 import java.sql.SQLException;
@@ -11,26 +12,28 @@ import org.springframework.stereotype.Component;
 @Component
 public class ChangeClob {
 
-	public String ClobToString(Clob clob) {
-		String cString = null;
-		StringBuffer sb = null;
+	public String ClobToString(Clob c) {
+		StringBuffer s = new StringBuffer();
+		if(c != null){
+		BufferedReader bufferRead = null;
 		try {
-		Reader read = clob.getCharacterStream();
-		BufferedReader br = new BufferedReader(read);
-		String s = br.readLine();
-		sb = new StringBuffer();
-		while (br != null) {
-			sb.append(s);
-			s = br.readLine();
-			} 
-		}catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-		cString = sb.toString();
-		return cString;
+			bufferRead = new BufferedReader(c.getCharacterStream());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		String str;
+		try {
+			while ((str = bufferRead.readLine()) != null) {
+			s.append(str);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+		return s.toString();
 	}
-	
+
 	public Clob stringToClob(String str) {
 		Clob clob = null;
 		try {
