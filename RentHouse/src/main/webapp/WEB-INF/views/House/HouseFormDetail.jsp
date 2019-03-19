@@ -131,9 +131,9 @@
 				<div>
 					最短租期
 					<form:input path="shortest" />
-					<input type="radio" name="shortestN" id="shortest2-1" value="天" checked="true"><label for="shortest2-1">日</label> 
+					<input type="radio" name="shortestN" id="shortest2-1" value="日" checked="true"><label for="shortest2-1">日</label> 
 					<input type="radio" name="shortestN" id="shortest2-2" value="周"><label for="shortest2-2">周</label> 
-					<input type="radio" name="shortestN" id="shortest2-3" value="個月"><label for="shortest2-3">月</label> 
+					<input type="radio" name="shortestN" id="shortest2-3" value="月"><label for="shortest2-3">月</label> 
 					<p>${errorMsg.shortestE}</p>
 				</div>
 				<div>

@@ -1,6 +1,7 @@
 package com.iiiedu105.RentHouse.model;
 
 import java.sql.Blob;
+import java.sql.Clob;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -23,7 +24,7 @@ public class Furniture {
 	private String title;
 	private String type;
 	private Integer price;
-	private String info;
+	private Clob info;
 	private Blob photo;
 	private String status;
 	private String memberId;
@@ -36,7 +37,7 @@ public class Furniture {
 	public Furniture() {
 	}
 
-	public Furniture(Integer id, String title, String type, Integer price, String info, Blob photo, String status,
+	public Furniture(Integer id, String title, String type, Integer price, Clob info, Blob photo, String status,
 			String memberId, String addr, String delvery) {
 		super();
 		this.id = id;
@@ -85,11 +86,11 @@ public class Furniture {
 		this.price = price;
 	}
 
-	public String getInfo() {
+	public Clob getInfo() {
 		return info;
 	}
 
-	public void setInfo(String info) {
+	public void setInfo(Clob info) {
 		this.info = info;
 	}
 

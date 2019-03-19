@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-    
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,734 +20,225 @@
 <!-- end: Mobile Specific -->
 
 <!-- start: CSS -->
-<link href="RHstaticresource/css/bootstrap.min.css" rel="stylesheet" />
-<link href="RHstaticresource/css/bootstrap-responsive.min.css" rel="stylesheet" />
-<link href="RHstaticresource/css/style.min.css" rel="stylesheet" />
-<link href="RHstaticresource/css/style-responsive.min.css" rel="stylesheet" />
-<link href="RHstaticresource/css/retina.css" rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/RHstaticresource/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/RHstaticresource/css/bootstrap-responsive.min.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/RHstaticresource/css/style.min.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/RHstaticresource/css/style-responsive.min.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/RHstaticresource/css/retina.css"
+	rel="stylesheet" />
 <!-- end: CSS -->
 <!-- start: Favicon and Touch Icons -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="RHstaticresource/ico/apple-touch-icon-144-precomposed.png" />
+	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-144-precomposed.png" />
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="RHstaticresource/ico/apple-touch-icon-114-precomposed.png" />
+	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-114-precomposed.png" />
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="RHstaticresource/ico/apple-touch-icon-72-precomposed.png" />
+	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-72-precomposed.png" />
 <link rel="apple-touch-icon-precomposed"
-	href="RHstaticresource/ico/apple-touch-icon-57-precomposed.png" />
-<link rel="shortcut icon" href="RHstaticresource/ico/favicon.png" />
+	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-57-precomposed.png" />
+<link rel="shortcut icon" href="img/hicon.svg" />
 <!-- end: Favicon and Touch Icons -->
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+<style type="text/css">
+</style>
 </head>
 <body>
-<%@ include file="header.jsp" %>
-		<div class="container-fluid-full">
+	<%@ include file="header.jsp"%>
+	<div class="container-fluid-full">
 		<div class="row-fluid">
-	<%@ include file="menu.jsp" %>	
-	<!-- start: Content -->
+			<%@ include file="menu.jsp"%>
+			<!-- start: Content -->
 			<div id="content" class="span10">
-<div class="box span12">
+				<div class="box span12">
 					<div class="box-header" data-original-title="">
-						<h2><i class="icon-user"></i><span class="break"></span>Members</h2>
+						<h2>
+							<i class="icon-user"></i><span class="break"></span>待審文章
+						</h2>
 						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="icon-wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="icon-remove"></i></a>
 						</div>
 					</div>
 					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable">
-						  <thead>
-							  <tr>
-								  <th>Username</th>
-								  <th>Date registered</th>
-								  <th>Role</th>
-								  <th>Status</th>
-								  <th>Actions</th>
-							  </tr>
-						  </thead>   
-						  <tbody>
-							<tr>
-								<td>Anton Phunihel</td>
-								<td class="center">2012/01/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-success">Active</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>  
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>  
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Alphonse Ivo</td>
-								<td class="center">2012/01/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-success">Active</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>  
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>  
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Thancmar Theophanes</td>
-								<td class="center">2012/01/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-success">Active</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>  
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>  
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-									</a>
-								</td>
-								
-							</tr>
-							<tr>
-								<td>Walerian Khwaja</td>
-								<td class="center">2012/01/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-success">Active</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Clemens Janko</td>
-								<td class="center">2012/02/01</td>
-								<td class="center">Staff</td>
-								<td class="center">
-									<span class="label label-important">Banned</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Chidubem Gottlob</td>
-								<td class="center">2012/02/01</td>
-								<td class="center">Staff</td>
-								<td class="center">
-									<span class="label label-important">Banned</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Hristofor Sergio</td>
-								<td class="center">2012/03/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-warning">Pending</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Tadhg Griogair</td>
-								<td class="center">2012/03/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-warning">Pending</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Pollux Beaumont</td>
-								<td class="center">2012/01/21</td>
-								<td class="center">Staff</td>
-								<td class="center">
-									<span class="label label-success">Active</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Adam Alister</td>
-								<td class="center">2012/01/21</td>
-								<td class="center">Staff</td>
-								<td class="center">
-									<span class="label label-success">Active</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Carlito Roffe</td>
-								<td class="center">2012/08/23</td>
-								<td class="center">Staff</td>
-								<td class="center">
-									<span class="label label-important">Banned</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Sana Amrin</td>
-								<td class="center">2012/08/23</td>
-								<td class="center">Staff</td>
-								<td class="center">
-									<span class="label label-important">Banned</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Adinah Ralph</td>
-								<td class="center">2012/06/01</td>
-								<td class="center">Admin</td>
-								<td class="center">
-									<span class="label">Inactive</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Dederick Mihail</td>
-								<td class="center">2012/06/01</td>
-								<td class="center">Admin</td>
-								<td class="center">
-									<span class="label">Inactive</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Hipólito András</td>
-								<td class="center">2012/03/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-warning">Pending</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Fricis Arieh</td>
-								<td class="center">2012/03/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-warning">Pending</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Scottie Maximilian</td>
-								<td class="center">2012/03/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-warning">Pending</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Bao Gaspar</td>
-								<td class="center">2012/01/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-success">Active</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Tullio Luka</td>
-								<td class="center">2012/02/01</td>
-								<td class="center">Staff</td>
-								<td class="center">
-									<span class="label label-important">Banned</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Felice Arseniy</td>
-								<td class="center">2012/02/01</td>
-								<td class="center">Admin</td>
-								<td class="center">
-									<span class="label">Inactive</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Finlay Alf</td>
-								<td class="center">2012/02/01</td>
-								<td class="center">Admin</td>
-								<td class="center">
-									<span class="label">Inactive</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Theophilus Nala</td>
-								<td class="center">2012/03/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-warning">Pending</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Sullivan Robert</td>
-								<td class="center">2012/03/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-warning">Pending</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Kristóf Filiberto</td>
-								<td class="center">2012/01/21</td>
-								<td class="center">Staff</td>
-								<td class="center">
-									<span class="label label-success">Active</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Kuzma Edvard</td>
-								<td class="center">2012/01/21</td>
-								<td class="center">Staff</td>
-								<td class="center">
-									<span class="label label-success">Active</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Bünyamin Kasper</td>
-								<td class="center">2012/08/23</td>
-								<td class="center">Staff</td>
-								<td class="center">
-									<span class="label label-important">Banned</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Crofton Arran</td>
-								<td class="center">2012/08/23</td>
-								<td class="center">Staff</td>
-								<td class="center">
-									<span class="label label-important">Banned</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Bernhard Shelah</td>
-								<td class="center">2012/06/01</td>
-								<td class="center">Admin</td>
-								<td class="center">
-									<span class="label">Inactive</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Grahame Miodrag</td>
-								<td class="center">2012/03/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-warning">Pending</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Innokentiy Celio</td>
-								<td class="center">2012/03/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-warning">Pending</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Kostandin Warinhari</td>
-								<td class="center">2012/03/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-warning">Pending</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 
+						<table class="table table-striped bootstrap-datatable datatable">
+							<thead>
+								<tr>
+									<th>文章ID</th>
+									<th>檢舉人</th>
+									<th>時間</th>
+									<th>類型</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="write" items="${wlist }">
+									<tr>
+										<td>${write.forumBean.id }</td>
+										<td class="center">${write.memberBean.id }</td>
+										<td class="center">${write.datetime }</td>
+										<td class="center"><span class="label label-success">${write.type }</span>
+										</td>
+										<td class="center">
+											<!--詳情   -->
+											<a class="btn btn-info"
+											href="Details/${write.id }"> <i class=" icon-eye-open"></i>
+										</a>
+<!-- 											通過審核 -->
+											<button type="button" class="btn btn-success"
+												data-toggle="modal" data-target="#checkpass${write.id }">
+												<i class=" icon-ok"></i>
+											</button> <!-- 動態視窗 -->
+											<div class="modal fade" id="checkpass${write.id }"
+												tabindex="-1" role="dialog"
+												aria-labelledby="ok" aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"
+																aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+															<h5 class="modal-title" id="ok">是否要通過審核?</h5>
+														</div>
+														<div class="modal-footer">
+															<a href="<spring:url value='/pass/${write.id }' />"
+																class="btn btn-primary">確認</a>
+															<button type="button" class="btn" data-dismiss="modal">取消</button>
+														</div>
+													</div>
+												</div>
+											</div> <!-- /動態視窗 -->
+											
+<!-- 											下架文章 -->
+											<button type="button" class="btn btn-danger"
+												data-toggle="modal" data-target="#checkfail${write.id }">
+												<i class=" icon-remove"></i>
+											</button> <!-- 動態視窗 -->
+											<div class="modal fade" id="checkfail${write.id }"
+												tabindex="-1" role="dialog"
+												aria-labelledby="remove" aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"
+																aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+															<h5 class="modal-title" id="remove">是否要下架商品?</h5>
+														</div>
+														<div class="modal-footer">
+															<a href="<spring:url value='/fail/${write.id }' />"
+																class="btn btn-primary">確認</a>
+															<button type="button" class="btn" data-dismiss="modal">取消</button>
+														</div>
+													</div>
+												</div>
+											</div> <!-- /動態視窗 -->
 
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Ajith Hristijan</td>
-								<td class="center">2012/03/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-warning">Pending</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in "></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="icon-edit "></i>                                            
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="icon-trash "></i> 										
-									</a>
-								</td>
-							</tr>
-						  </tbody>
-					  </table>            
+										</td>
+								</c:forEach>
+							</tbody>
+						</table>
 					</div>
-				</div><!--/span-->			
-			</div><!--/row-->			
-			</div>
-<!-- 			end: Content -->
-				
-			</div><!--/fluid-row-->
-			</div><!--/.fluid-container-->
+				</div>
+				<!--/span-->
 
-<%@ include file="footer.jsp" %>
+			</div>
+			<!--/row-->
+		</div>
+		<!-- 			end: Content -->
+		<%@ include file="footer.jsp"%>
+	</div>
+	<!--/fluid-row-->
+
+
 	<!-- start: JavaScript-->
-		<script src="RHstaticresource/js/jquery-1.10.2.min.js"></script>
-	<script src="RHstaticresource/js/jquery-migrate-1.2.1.min.js"></script>	
-		<script src="RHstaticresource/js/jquery-ui-1.10.3.custom.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.ui.touch-punch.js"></script>	
-		<script src="RHstaticresource/js/modernizr.js"></script>	
-		<script src="RHstaticresource/js/bootstrap.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.cookie.js"></script>	
-		<script src='RHstaticresource/js/fullcalendar.min.js'></script>	
-		<script src='RHstaticresource/js/jquery.dataTables.min.js'></script>
-		<script src="RHstaticresource/js/excanvas.js"></script>
-	<script src="RHstaticresource/js/jquery.flot.js"></script>
-	<script src="RHstaticresource/js/jquery.flot.pie.js"></script>
-	<script src="RHstaticresource/js/jquery.flot.stack.js"></script>
-	<script src="RHstaticresource/js/jquery.flot.resize.min.js"></script>
-	<script src="RHstaticresource/js/jquery.flot.time.js"></script>
-		
-		<script src="RHstaticresource/js/jquery.chosen.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.uniform.min.js"></script>		
-		<script src="RHstaticresource/js/jquery.cleditor.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.noty.js"></script>	
-		<script src="RHstaticresource/js/jquery.elfinder.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.raty.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.iphone.toggle.js"></script>	
-		<script src="RHstaticresource/js/jquery.uploadify-3.1.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.gritter.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.imagesloaded.js"></script>	
-		<script src="RHstaticresource/js/jquery.masonry.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.knob.modified.js"></script>	
-		<script src="RHstaticresource/js/jquery.sparkline.min.js"></script>	
-		<script src="RHstaticresource/js/counter.min.js"></script>	
-		<script src="RHstaticresource/js/raphael.2.1.0.min.js"></script>
-	<script src="RHstaticresource/js/justgage.1.0.1.min.js"></script>	
-		<script src="RHstaticresource/js/jquery.autosize.min.js"></script>	
-		<script src="RHstaticresource/js/retina.js"></script>
-		<script src="RHstaticresource/js/jquery.placeholder.min.js"></script>
-		<script src="RHstaticresource/js/wizard.min.js"></script>
-		<script src="RHstaticresource/js/core.min.js"></script>	
-		<script src="RHstaticresource/js/charts.min.js"></script>	
-		<script src="RHstaticresource/js/custom.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-1.10.2.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-migrate-1.2.1.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.ui.touch-punch.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/modernizr.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.cookie.js"></script>
+	<script
+		src='${pageContext.request.contextPath}/RHstaticresource/js/fullcalendar.min.js'></script>
+	<script
+		src='${pageContext.request.contextPath}/RHstaticresource/js/jquery.dataTables.min.js'></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/excanvas.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.flot.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.flot.pie.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.flot.stack.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.flot.resize.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.flot.time.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.chosen.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.uniform.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.cleditor.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.noty.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.elfinder.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.raty.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.iphone.toggle.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.uploadify-3.1.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.gritter.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.imagesloaded.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.masonry.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.knob.modified.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.sparkline.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/counter.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/raphael.2.1.0.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/justgage.1.0.1.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.autosize.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/retina.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/jquery.placeholder.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/wizard.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/core.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/charts.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/RHstaticresource/js/custom.min.js"></script>
 	<!-- end: JavaScript-->
-	
 </body>
 </html>
