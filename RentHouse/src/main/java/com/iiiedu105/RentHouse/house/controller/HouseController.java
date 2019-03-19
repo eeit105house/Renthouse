@@ -2,9 +2,12 @@ package com.iiiedu105.RentHouse.house.controller;
 
 import java.sql.Blob;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +43,9 @@ import com.iiiedu105.RentHouse.model.Member;
 
 @Controller
 public class HouseController {
+	//clt+f 下面
+	//假定會員
+	
 	@Autowired
 	HouseService houseService;
 	@Autowired
@@ -45,25 +55,132 @@ public class HouseController {
 	public HouseController() {
 	}
 	
+	//選擇修改
+	@RequestMapping(value="/houseRefactSelect")
+	public String houseRefactSelect(Model model) {
+		String mId = "abc123";	//假定會員
+		Member memberBean = houseService.getMemberById(mId);
+		List<House> houseList = houseService.getHousesByMemberId(mId);
+//		for(House house: houseList) {
+//			System.out.println(house.getDetailBean().getTitle()+house.getDetailBean().getId());
+//		}
+		Collections.sort(houseList, new Comparator<House>() {   
+            @Override 
+            public int compare(House arg0,House arg1) { 
+                return arg0.getId().compareTo(arg1.getId());
+            }
+        });
+//		for(House house: houseList) {
+//			System.out.println(house.getDetailBean().getTitle()+house.getDetailBean().getId());
+//		}
+//		
+		model.addAttribute("houseList", houseList);
+		return "House/HouseRefactSelect";
+	}
+	//導入房屋圖片
+	@RequestMapping(value="/houseRefactPic/{hId}")
+	public String houseRefactPic(Model model,@PathVariable Integer hId) {
+		houseId = hId;
+		return "redirect:/houseRefactPicture";
+	}
+	@RequestMapping(value="/houseRefactPicture",method=RequestMethod.GET)
+	public String houseRefactPictureFormGet(Model model) {
+		House houseBean = houseService.findById(houseId);
+		List<Integer> picIds = houseService.getPicIdsByHouse(houseBean);
+		model.addAttribute("picIds", picIds);
+		return "House/HouseRefactPic";
+	}
+	@RequestMapping(value="/houseRefactPicture",method=RequestMethod.POST)
+	public String houseRefactPictureFormPost(Model model,@RequestParam(value = "pic") MultipartFile file0,@RequestParam(value = "picNo") Integer picNo) {
+		System.out.println(picNo+"張圖片");
+		if(!file0.isEmpty())   {
+			HousePic housePicBean = new HousePic(null, houseId, getImageBlob(file0), picNo);
+			houseService.updatePictureByHouseIdAndPicNo(housePicBean);
+		}
+//			else if(!file.isEmpty()) {
+//			HousePic housePicBean = new HousePic(null, houseId, getImageBlob(file), picNo);
+//			houseService.updatePictureByHouseIdAndPicNo(housePicBean);
+//		}
+		return "House/HouseRefactPic";
+	}
 	
+	
+	//導入房屋詳細
+	@RequestMapping(value="/houseRefactDet/{hId}")
+	public String houseRefactDetail(Model model,@PathVariable Integer hId) {
+		houseId = hId;
+		return "redirect:/houseRefactDetail";
+	}
+	@RequestMapping(value="/houseRefactDetail",method=RequestMethod.GET)
+	public String houseRefactDetailFormGet(Model model) {
+		HouseDetail detailBean = houseService.findById(houseId).getDetailBean();
+		model.addAttribute("detailBean", detailBean);
+		model.addAttribute("movingInStr", getStringBySqlDate(detailBean.getMovingIn(),"dd/MM/YYYY"));
+		model.addAttribute("shortestN", detailBean.getShortest().substring(0, detailBean.getShortest().length()-1));
+		model.addAttribute("defaultShortestN", detailBean.getShortest().substring(detailBean.getShortest().length()-1));
+		model.addAttribute("defaultLe", detailBean.getLe());
+		return "House/HouseRefactDetail";
+	}
+	@RequestMapping(value="/houseRefactDetailE")
+	public String houseRefactDetailFormGetE(Model model) {
+		return "House/HouseRefactDetail";
+	}
+	
+	@RequestMapping(value="/houseRefactDetail",method=RequestMethod.POST)
+	public String houseRefactDetailFormPost(Model model, @ModelAttribute("detailBean") HouseDetail detailBean,HttpServletRequest request) throws ParseException {
+//		House houseBean = houseService.findById(houseId);
+//		detailBean.setId(houseBean.getDetailBean().getId());
+//		detailBean.setHouseBean(houseBean);
+		Map<String, String> errorMsg = new HashMap<String, String>();
 
+		House houseBean = houseService.findById(houseId);
+		detailBean.setHouseBean(houseBean);
+		if(detailBean.getTitle()==null || detailBean.getTitle().length()==0)
+			errorMsg.put("titleE", "必須有標題");
+		if(request.getParameter("movingInN")==null ||request.getParameter("movingInN").length()==0)
+			errorMsg.put("movingInNE", "請選擇日期！");
+		if(detailBean.getPrice()==null)
+			errorMsg.put("priceE", "請輸入租金！");
+		if(detailBean.getShortest()==null || detailBean.getShortest().length()==0)
+			errorMsg.put("shortestE", "請輸入最短租期！");
+		if(detailBean.getHoaFee()==null)
+			detailBean.setHoaFee(0);
+		
+		if (errorMsg.isEmpty()) {
+			String movingInN = request.getParameter("movingInN");
+			detailBean.setMovingIn(getSqlDateByString(movingInN));
+			String shortestN =request.getParameter("shortestN");
+			detailBean.setShortest(detailBean.getShortest()+shortestN);
+			houseService.updateHouseDetail(detailBean,houseId);
+			return "redirect:/houseRefactSelect";
+		} else {
+			model.addAttribute("errorMsg", errorMsg);
+			return "forward:/houseRefactDetailE";
+		}
+	}
+	
+	
+	//====View House=======
 	@RequestMapping(value="/houseView/{shId}")
 	public String viewHousePage(Model model,@PathVariable Integer shId) {
 		House houseBean = houseService.findById(shId);
 		Member memberBean = houseBean.getMemberBean();
 		HouseDetail detailBean = houseBean.getDetailBean();
-		Set<HousePic> picBeans = houseBean.getPictureBean();
+		List<Integer> picIds = houseService.getPicIdsByHouse(houseBean);
 		model.addAttribute("houseBean", houseBean);
 		model.addAttribute("memberBean", memberBean);
 		model.addAttribute("detailBean", detailBean);
-		model.addAttribute("picBeans", picBeans);
-		String movingInStr = getStringBySqlDate(detailBean.getMovingIn());
+		model.addAttribute("picIds", picIds);
+		
+		String movingInStr = getStringBySqlDate(detailBean.getMovingIn(),"YYYY年MM月dd日");
 		model.addAttribute("movingInStr", movingInStr);
 		String fakeName = memberBean.getName().substring(0, 1);
 		if(memberBean.getSex().equalsIgnoreCase("MALE"))
 			fakeName += "先生";
-		else
+		else if(memberBean.getSex().equalsIgnoreCase("FEMALE"))
 			fakeName += "小姐";
+		else
+			fakeName += "**";
 		model.addAttribute("fakeName", fakeName);
 		if(detailBean.getAppliance()!=null || detailBean.getAppliance().length()>0) {
 			List<String> appliance = Arrays.asList(detailBean.getAppliance().split(";"));
@@ -78,8 +195,9 @@ public class HouseController {
 			model.addAttribute("furnitureList", "無提供家具");
 		}
 		if(detailBean.getInclude()!=null || detailBean.getInclude().length()>0) {
+			String includeList = detailBean.getInclude().replace(";", "、");
 			List<String> include = Arrays.asList(detailBean.getInclude().split(";"));
-			model.addAttribute("includeList", include);
+			model.addAttribute("includeList", includeList);
 		} else {
 			model.addAttribute("includeList", "無包含其餘費用");
 		}
@@ -99,45 +217,44 @@ public class HouseController {
 		return "House/HouseView";
 	}
 
-//	@RequestMapping(value="/houseView/hPic/{picId}", method=RequestMethod.GET)
-//	public ResponseEntity<byte[]> getPicture(HttpServletResponse response, @PathVariable Integer picId) {
-//		String filePath = "/WEB-INF/views/images/NoImage.jpg";
-//				
-//	    byte[] media = null;
-//	    HttpHeaders headers = new HttpHeaders();
-//	    String filename = "";
-//	    int len = 0;
-//	    BookBean bb = service.getProductById(bookId);
-//	    if(bb !=null) {
-//	    	
-//	    	Blob blob = bb.getCoverImage();
-//	    	if(blob!=null) {
-//	    		filename=bb.getFileName();
-//		    	try {
-//		    		len=(int) blob.length();
-//		    		media=blob.getBytes(1, len);
-//				} catch (SQLException e) {
-//					throw new RuntimeException("ProductController.getImage()發生SQLException："+e.getMessage());
-//				}
-//	    	} else {
+	//Get Picture
+	@RequestMapping(value="/houseView/hPic/{picId}", method=RequestMethod.GET)
+	public ResponseEntity<byte[]> getPicture(HttpServletResponse response, @PathVariable Integer picId) {
+		String filePath = "/WEB-INF/views/images/NoImage.jpg";
+		HousePic housePicBean = houseService.getPicById(picId);
+	    byte[] media = null;
+	    HttpHeaders headers = new HttpHeaders();
+	    String filename = "";
+	    int len = 0;
+	    if(housePicBean !=null) {
+	    	
+	    	Blob blob = housePicBean.getPic();
+	    	if(blob!=null) {
+		    	try {
+		    		len=(int) blob.length();
+		    		media=blob.getBytes(1, len);
+				} catch (SQLException e) {
+					throw new RuntimeException("ProductController.getImage()發生SQLException："+e.getMessage());
+				}
+	    	} else {
 //	    		media=toByteArray(filePath);
 //		    	filename=filePath;
-//	    	}
-//	    	
-//	    } else {
+	    	}
+	    	
+	    } else {
 //	    	media=toByteArray(filePath);
 //	    	filename=filePath;
-//	    }
-//	    headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+	    }
+	    headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 //		String mimeType = context.getMimeType(filename);
-//		MediaType mediaType = MediaType.valueOf(mimeType);
+		MediaType mediaType = MediaType.valueOf("image/jpeg");
 //		System.out.println("Media Type = "+mimeType);
-//		headers.setContentType(mediaType);
-//		ResponseEntity<byte[]> responseEntity = 
-//				new ResponseEntity<>(media,headers,HttpStatus.OK);
-//		
-//		return responseEntity;
-//	}
+		headers.setContentType(mediaType);
+		ResponseEntity<byte[]> responseEntity = 
+				new ResponseEntity<>(media,headers,HttpStatus.OK);
+		
+		return responseEntity;
+	}
 //	
 	//=====ADD NEW HOUSE=====
 	@RequestMapping(value = "/house", method = RequestMethod.GET)
@@ -181,7 +298,6 @@ public class HouseController {
 			return "redirect:/houseDetail";
 		} else {
 			model.addAttribute("errorMsg", errorMsg);
-//			return "House/HouseForm";
 			return "forward:/houseE";
 		}
 	}
@@ -214,7 +330,8 @@ public class HouseController {
 			errorMsg.put("priceE", "請輸入租金！");
 		if(detailBean.getShortest()==null || detailBean.getShortest().length()==0)
 			errorMsg.put("shortestE", "請輸入最短租期！");
-		
+		if(detailBean.getHoaFee()==null)
+			detailBean.setHoaFee(0);
 		
 		if (errorMsg.isEmpty()) {
 			String movingInN = request.getParameter("movingInN");
@@ -224,7 +341,6 @@ public class HouseController {
 			houseService.insertDetail(detailBean);
 			return "redirect:/housePic";
 		} else {
-			
 			model.addAttribute("errorMsg", errorMsg);
 			return "forward:/houseDetailE";
 		}
@@ -317,11 +433,12 @@ public class HouseController {
 		Date date = new Date(sDF.parse(ddMMYYYY).getTime());
 		return date;
 	}
-	private String getStringBySqlDate(Date date) {
+	private String getStringBySqlDate(Date date,String dateFormat) {
 		java.util.Date javaDate = new java.util.Date(date.getTime());
-		SimpleDateFormat sDF = new SimpleDateFormat("YYYY年MM月dd日");
-		String yYYYMMdd = sDF.format(javaDate);
+		SimpleDateFormat sDF = new SimpleDateFormat(dateFormat);
 		sDF.setLenient(false);
+		String yYYYMMdd = sDF.format(javaDate);
 		return yYYYMMdd;
 	}
+
 }
