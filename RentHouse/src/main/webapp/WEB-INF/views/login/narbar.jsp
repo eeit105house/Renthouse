@@ -25,7 +25,7 @@
       <a class="navbar-brand"  href="${pageContext.request.contextPath}"><img style="height: 70px" alt="租你幸福" src="login/img/logo.png"></a>
       </div>
       <div>
-      <a class="btn btn-primary" href="#">想要租屋</a>
+       <a class="btn btn-primary" href="${pageContext.request.contextPath}/search/searchPage_sessionStorage">想要租屋</a>
       <a class="btn btn-primary" href="insertPicPage">想要照片</a>
       </div>
       <div>
