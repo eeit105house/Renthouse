@@ -1,8 +1,6 @@
 package com.iiiedu105.RentHouse.model;
 
 import java.sql.Timestamp;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,43 +10,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
 @Table
-public class Forum {
+public class ForumReply {
 	private Integer id;
 	private String title;
 	private String content;
-	private String sort;	
 	private Timestamp datetime;
 	private String status;
 	private String memberId;
-//	private Integer frId; //[FR_id(回文關聯主鍵)]
+	private Integer frId; //[FR_id(回文關聯主鍵)]
 	
+	private Forum forumBean;
 	private Member memberBean;
-//	private Forum forumBean;
-	private Set<ForumReply> forumReplyBeans = new LinkedHashSet<ForumReply>();
-	private Set<ForumReport> forumReportBeans = new LinkedHashSet<ForumReport>();
-	
-	public Forum() {
-	}
 
-	public Forum(Integer id, String title, String content, Timestamp datetime, String sort, String status, String memberId) {
+	public ForumReply(Integer id, String title, String content, Timestamp datetime, String status,
+			String memberId, Integer frId) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.datetime = datetime;
-		this.sort = sort;
 		this.status = status;
 		this.memberId = memberId;
+		this.frId = frId;
 	}
-
-	
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
@@ -66,6 +55,7 @@ public class Forum {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	@Column(columnDefinition="varchar(max)")
 	public String getContent() {
 		return content;
@@ -73,14 +63,6 @@ public class Forum {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public String getSort() {
-		return sort;
-	}
-
-	public void setSort(String sort) {
-		this.sort = sort;
 	}
 
 	public Timestamp getDatetime() {
@@ -98,7 +80,6 @@ public class Forum {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 	@Transient
 	public String getMemberId() {
 		return memberId;
@@ -108,32 +89,32 @@ public class Forum {
 		this.memberId = memberId;
 	}
 
+	@Transient
+	public Integer getFrId() {
+		return frId;
+	}
+
+	public void setFrId(Integer frId) {
+		this.frId = frId;
+	}
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="Forum_Id")
+	public Forum getForumBean() {
+		return forumBean;
+	}
+
+	public void setForumBean(Forum forumBean) {
+		this.forumBean = forumBean;
+	}
+	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="Member_Id")
 	public Member getMemberBean() {
 		return memberBean;
 	}
-
 	public void setMemberBean(Member memberBean) {
 		this.memberBean = memberBean;
-	}
-	
-	@OneToMany(mappedBy="forumBean",cascade=CascadeType.ALL)
-	public Set<ForumReply> getForumReplyBeans() {
-		return forumReplyBeans;
-	}
-
-	public void setForumReplyBeans(Set<ForumReply> forumReplyBeans) {
-		this.forumReplyBeans = forumReplyBeans;
-	}
-	
-	@OneToMany(mappedBy="forumBean",cascade=CascadeType.ALL)
-	public Set<ForumReport> getForumReportBeans() {
-		return forumReportBeans;
-	}
-
-	public void setForumReportBeans(Set<ForumReport> forumReportBeans) {
-		this.forumReportBeans = forumReportBeans;
 	}
 	
 }

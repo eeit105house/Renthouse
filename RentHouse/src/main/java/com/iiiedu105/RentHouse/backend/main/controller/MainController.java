@@ -1,4 +1,4 @@
-package com.iiiedu105.RentHouse.backend.main.Controller;
+package com.iiiedu105.RentHouse.backend.main.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

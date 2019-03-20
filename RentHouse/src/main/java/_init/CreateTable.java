@@ -10,15 +10,17 @@ import java.text.SimpleDateFormat;
 
 import com.iiiedu105.RentHouse.model.Employee;
 import com.iiiedu105.RentHouse.model.Forum;
+
+import com.iiiedu105.RentHouse.model.ForumReport;
 import com.iiiedu105.RentHouse.model.House;
 import com.iiiedu105.RentHouse.model.HouseDetail;
 import com.iiiedu105.RentHouse.model.HousePic;
 import com.iiiedu105.RentHouse.model.Member;
-import com.iiiedu105.RentHouse.model.ForumReport;
-
-
 
 import _init.util.SystemUtils;
+
+
+
 
 public class CreateTable {
 
@@ -27,9 +29,7 @@ public class CreateTable {
 		Blob blob=null;
 		SimpleDateFormat sDF = new SimpleDateFormat("yyyy-MM-dd");
 		sDF.setLenient(false);
-
 		Long date = new java.util.Date().getTime();
-
 
 		Member member0 = null;
 		Member member1 = null;
@@ -154,8 +154,8 @@ public class CreateTable {
 	
 
 		new CreateTable2().CreateTableEmp(employee);
-		new CreateTable2().CreateTableOther(member0, house0, houseDetail0, housePic0, forumR0);
-		new CreateTable2().CreateTableOther(member1, house1, houseDetail1, housePic1, forumR1);
+		new CreateTable2().CreateTableOther(member0, house0, houseDetail0, housePic0, forumR0, null, null);
+		new CreateTable2().CreateTableOther(member1, house1, houseDetail1, housePic1, forumR1, null, null);
 
 		new CreateTable2().CreateTableEmp(employee);	
 		new CreateTable2().CreateTableAllPic(member0, house0, houseDetail0, housePic0,housePic00,housePic01,housePic02,housePic03, forumR0);
@@ -163,8 +163,8 @@ public class CreateTable {
 //		new CreateTable2().CreateTableOther(member0, house0, houseDetail0, housePic0, forumR0);
 //		new CreateTable2().CreateTableOther(member1, house1, houseDetail1, housePic1, forumR1);
 
-		new CreateTable2().CreateTableOther(member2, house2, houseDetail2, housePic2, forumR2);
-		new CreateTable2().CreateTableOther(member3, house3, houseDetail3, housePic3, forumR3);
+		new CreateTable2().CreateTableOther(member2, house2, houseDetail2, housePic2, forumR2, null, null);
+		new CreateTable2().CreateTableOther(member3, house3, houseDetail3, housePic3, forumR3, null, null);
 		
 		new CreateTable2().CloseFactory();
 	}

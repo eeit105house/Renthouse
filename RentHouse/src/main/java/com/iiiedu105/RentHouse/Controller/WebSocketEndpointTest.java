@@ -1,4 +1,4 @@
-package com.iiiedu105.RentHouse.controller;
+package com.iiiedu105.RentHouse.Controller;
 
 
 

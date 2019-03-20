@@ -150,11 +150,11 @@ public class HouseDetail {
 		this.le = le;
 	}
 
-	public String getindetity() {
+	public String getIndetity() {
 		return indetity;
 	}
 
-	public void setindetity(String indetity) {
+	public void setIndetity(String indetity) {
 		this.indetity = indetity;
 	}
 

@@ -21,6 +21,7 @@ public class ReviewHouseController {
 	public String products(Model model) {
 		List<Object[]> list = service.getAllHouse();
 		model.addAttribute("hlist", list);
+
 		return "backstage/houseReview";		
 	}
 	@RequestMapping(value="/update/{id}")
