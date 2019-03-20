@@ -1,4 +1,4 @@
-package com.iiiedu105.RentHouse.Controller;
+package com.iiiedu105.RentHouse.listHouse.controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -77,7 +77,6 @@ public class SearchHouseByConditionDaoImpl implements SearchHouseByConditionDao 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object[]> getHouseByCriteria(String Searchcriteria) {
-		System.out.println("DAO = " + Searchcriteria);
 		List<Object[]> list = new ArrayList<>();
 		String hql = "select hp.id,hd.title,h.type,h.sqft,h.floor,h.topFloor,h.boroughs,h.addr,m.name,hd.price ,h.launched ,h.lat,h.lon " + 
 				"from House h,HouseDetail hd,Member m ,HousePic hp " + 
@@ -95,7 +94,6 @@ public class SearchHouseByConditionDaoImpl implements SearchHouseByConditionDao 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object[]> getHouseByMsg(String msg) {
-		System.out.println("DAO = " + msg);
 		List<Object[]> list = new ArrayList<>();
 		String hql = "select hp.id,hd.title,h.type,h.sqft,h.floor,h.topFloor,h.boroughs,h.addr,m.name,hd.price ,h.launched ,h.lat,h.lon " + 
 				"from House h,HouseDetail hd,Member m ,HousePic hp " + 
