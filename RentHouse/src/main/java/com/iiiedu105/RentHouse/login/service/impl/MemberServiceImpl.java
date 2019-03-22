@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.iiiedu105.RentHouse.login.dao.MemberDao;
 import com.iiiedu105.RentHouse.login.service.MemberService;
+import com.iiiedu105.RentHouse.model.EmployeeReport;
 import com.iiiedu105.RentHouse.model.Member;
 //import com.iiiedu105.RentHouse.model.TestTest;
+import com.iiiedu105.RentHouse.model.Reservation;
 
 @Service
 @Transactional
@@ -89,5 +91,25 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void insertMemberPicture(Member member) {
 		memberDao.insertMemberPicture(member);
+	}
+
+	@Override
+	public List<Object[]> getAllMsg(String id) {		
+		return memberDao.getAllMsg(id);
+	}
+
+	@Override
+	public List<Reservation> getUnreadReservation() {		
+		return memberDao.getUnreadReservation();
+	}
+
+	@Override
+	public List<EmployeeReport> getUnreadEmployeeReport() {
+		return memberDao.getUnreadEmployeeReport();
+	}
+
+	@Override
+	public void addEmployeeReport(EmployeeReport employeeReport) {
+		memberDao.addEmployeeReport(employeeReport);
 	}
 }

@@ -6,17 +6,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.sql.Clob;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -31,13 +30,16 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iiiedu105.RentHouse.ChangeClob;
 import com.iiiedu105.RentHouse.login.service.MemberService;
-import com.iiiedu105.RentHouse.model.HousePic;
+import com.iiiedu105.RentHouse.model.EmployeeReport;
 import com.iiiedu105.RentHouse.model.Member;
 
 
@@ -51,6 +53,8 @@ public class MemberController {
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
+	@Autowired
+	ChangeClob changeClob;
 // URL為 /members, 搭配 POST方法可以新增一筆紀錄
 // 儲存瀏覽器送來的Member資料
 @RequestMapping(value = "insertMemberOk", method = RequestMethod.POST)
@@ -73,15 +77,16 @@ public class MemberController {
 	return "redirect: return_index";
 	}
 @RequestMapping(value = "loginMember", method = RequestMethod.POST)
-	public String checkMember(HttpServletRequest request) {
+	public String checkMember(HttpServletRequest request, Model model) {
 	Map<String, String> errorMsg = new HashMap<String, String>();
 	Member member = memberService.login(request.getParameter("inputAccount"), request.getParameter("inputPassword"));
-	
+	List<Object[]> list = memberService.getAllMsg(member.getId());
 	if(member!=null) {
 		HttpSession session = request.getSession();
 		session.setAttribute("user", member);
+		session.setAttribute("allmsg",list);
 	return "redirect: return_index";
-	}else {
+	}else{
 		errorMsg.put("error", "帳號或密碼錯誤");
 		return "redirect: return_index";
 	}
@@ -138,6 +143,9 @@ public String addMemberPic(Model model, @RequestParam(value = "pic0") MultipartF
 	}
 	return "redirect: return_index";
 }
+
+
+
 
 @SuppressWarnings("unused")
 private Blob getImageBlob(MultipartFile mf) {
@@ -231,5 +239,7 @@ public ResponseEntity<byte[]> getPicture(HttpServletResponse response,HttpServle
 	
 	return responseEntity;
 }
+
+
 
 }

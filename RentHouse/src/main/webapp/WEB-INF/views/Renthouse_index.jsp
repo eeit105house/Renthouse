@@ -15,7 +15,6 @@
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 <!-- 首頁樣式 -->
 <link href="login/css/landing-page.css" rel="stylesheet">
-
 <!--   地址用 -->
 <script src="login/js/Address.js"></script>
 <script src="//cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>

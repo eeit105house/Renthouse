@@ -13,6 +13,7 @@ import com.iiiedu105.RentHouse.model.House;
 import com.iiiedu105.RentHouse.model.HouseDetail;
 import com.iiiedu105.RentHouse.model.HousePic;
 import com.iiiedu105.RentHouse.model.Member;
+import com.iiiedu105.RentHouse.model.Reservation;
 
 import _init.util.HibernateUtils;
  
@@ -62,7 +63,8 @@ public class CreateTable2 {
 		}
 	}
 	public void CreateTableOther(Member member,House house,HouseDetail houseDetail,
-			HousePic housePic,Forum forum,ForumReport forumReport,ForumReply forumReply,EmployeeReport employeeReport) {	
+			HousePic housePic,Forum forum,ForumReport forumReport,ForumReply forumReply,
+			EmployeeReport employeeReport,Reservation reservation) {	
 		Transaction tx = null;
 		try {
 			tx=session.beginTransaction();
@@ -99,6 +101,11 @@ public class CreateTable2 {
 			
 			employeeReport.setMemberBean(session.get(Member.class,member.getId()));
 			session.save(employeeReport);
+			session.flush();
+			
+			reservation.setMemberBean(session.get(Member.class,member.getId()));
+			reservation.setHouseBean(session.get(House.class, house.getId()));
+			session.save(reservation);
 			session.flush();
 			
 			tx.commit();

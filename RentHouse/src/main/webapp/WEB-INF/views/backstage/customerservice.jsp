@@ -58,7 +58,7 @@
 						
 						<c:forEach var="mail" items="${maillist }">				
 						<li>
-						<a class="testali" href="<spring:url value='/getmail/${mail.id }' />">													
+						<a class="testali" href="<spring:url value='/backstage/getmail/${mail.id }' />">													
 							<span class="from"><span ></span>${mail.memberBean.id }</span><span class="title"><span class="label label-warning">${mail.type }</span>${mail.title }</span><span class="date"><i class="halflings-icon time"></i>${mail.datetime }</span>						
 						</a>
 						</li>

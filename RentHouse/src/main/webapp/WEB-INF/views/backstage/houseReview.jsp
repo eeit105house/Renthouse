@@ -90,7 +90,7 @@
 										<td class="center">${house.addr }</td>
 										<td class="center">${house.city }</td>
 										<td class="center">${house.launched }</td>
-										<td class="center"><a class="btn btn-info" href="<spring:url value='/houseView/${house.id }' />">
+										<td class="center"><a class="btn btn-info" href="<spring:url value='/backstage/houseView/${house.id }' />">
 												<i class=" icon-eye-open"></i>
 										</a>   
 										<!-- Button trigger modal -->
@@ -108,7 +108,7 @@
         <h5 class="modal-title" id="ok">是否要通過審核?</h5>     
       </div>
       <div class="modal-footer">
-        <a href="<spring:url value='/update/${house.id }' />" class="btn btn-primary">確認</a>
+        <a href="<spring:url value='/backstage/update/${house.id }' />" class="btn btn-primary">確認</a>
         <button type="button" class="btn" data-dismiss="modal">取消</button>
       </div>
     </div>
@@ -129,7 +129,7 @@
         <h5 class="modal-title" id="remove">是否要下架商品?</h5>     
       </div>
       <div class="modal-footer">
-        <a href="<spring:url value='/delete/${house.id }' />" class="btn btn-primary">確認</a>
+        <a href="<spring:url value='/backstage/delete/${house.id }' />" class="btn btn-primary">確認</a>
         <button type="button" class="btn" data-dismiss="modal">取消</button>
       </div>
     </div>

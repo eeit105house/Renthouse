@@ -110,7 +110,7 @@
 															<h5 class="modal-title" id="ok">是否要通過審核?</h5>
 														</div>
 														<div class="modal-footer">
-															<a href="<spring:url value='/pass/${write.id }' />"
+															<a href="<spring:url value='/backstage/pass/${write.id }' />"
 																class="btn btn-primary">確認</a>
 															<button type="button" class="btn" data-dismiss="modal">取消</button>
 														</div>
@@ -136,7 +136,7 @@
 															<h5 class="modal-title" id="remove">是否要下架商品?</h5>
 														</div>
 														<div class="modal-footer">
-															<a href="<spring:url value='/fail/${write.id }' />"
+															<a href="<spring:url value='/backstage/fail/${write.id }' />"
 																class="btn btn-primary">確認</a>
 															<button type="button" class="btn" data-dismiss="modal">取消</button>
 														</div>

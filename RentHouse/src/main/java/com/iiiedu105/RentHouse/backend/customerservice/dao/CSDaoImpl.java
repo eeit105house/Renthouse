@@ -1,5 +1,6 @@
 package com.iiiedu105.RentHouse.backend.customerservice.dao;
 
+import java.sql.Clob;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -31,15 +32,25 @@ public class CSDaoImpl implements CSDao {
 		return employeeReport;
 	}
 	
+//	@Override
+//	public void updateMailById(String eid,String reply,Integer id) {
+//		Session session = null;
+//		session = factory.getCurrentSession();
+//		String hql =
+//		"update EmployeeReport set memberBean = :employeeId, reply = :reply where id = :id";
+//		session.createQuery(hql).setParameter("employeeId", eid)
+//								.setParameter("reply", reply)
+//								.setParameter("id", id)
+//								.executeUpdate();
+//	}
 	@Override
-	public void updateMailById(String eid,String reply,Integer id) {
-		Session session = null;
-		session = factory.getCurrentSession();
-		String hql =
-		"update EmployeeReport set memberBean = :employeeId, reply = :reply where id = :id";
-		session.createQuery(hql).setParameter("employeeId", eid)
-								.setParameter("reply", reply)
+	public void updateMail(String eid,Clob content,Integer id) {
+		Session session = factory.getCurrentSession();
+		String hql = "UPDATE EmployeeReport SET status='會員未讀', employeeBean.id = :eid, content = :content where id = :id";
+		session.createQuery(hql).setParameter("eid", eid)
+								.setParameter("content", content)
 								.setParameter("id", id)
 								.executeUpdate();
+		
 	}
 }

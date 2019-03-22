@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,68 +49,15 @@
 	<%@ include file="menu.jsp" %>	
 	<!-- start: Content -->
 			<div id="content" class="span10">
-<div class="row-fluid">
-				
-				<div class="span7">
-					<h1>未讀信件</h1>
-					
-					<ul class="messagesList">
-						
-						<c:forEach var="mail" items="${maillist }">				
-						<li>
-						<a class="testali" href="<spring:url value='/backstage/getmail/${mail.id }' />">													
-							<span class="from"><span ></span>${mail.memberBean.id }</span><span class="title"><span class="label label-warning">${mail.type }</span>${mail.title }</span><span class="date"><i class="halflings-icon time"></i>${mail.datetime }</span>						
-						</a>
-						</li>
-						</c:forEach>		
-					</ul>	
-					<hr>				
-				</div>
-				<div class="span5">					
-					<div class="message">						
-						<div class="header">
-							<h1>${omail.title }</h1>
-							<div class="from"><i class="halflings-icon user"></i> <b>帳號:${omail.memberBean.id }/姓名:${omail.memberBean.name }</b> </div>
-							<div class="date"><i class="halflings-icon time"></i><b>${omail.datetime }</b></div>							
-							<div class="menu"></div>							
-						</div>					
-						<div class="content">							
-							<blockquote>
-							${content }	
-						</blockquote>	
-						</div>
-						<hr>		
-						
-															
-						<form class="replyForm" method="post" >
-							<fieldset>
-							<input type="hidden" name="id" value="${omail.id }"/>
-							<span>請輸入員工ID:</span><input type="text" name="ename" />
-								<textarea tabindex="3" class="input-xlarge span12" id="message" name="content" rows="12" placeholder="Click here to reply"></textarea>
-
-								<div class="actions">
-									
-									<button tabindex="3" type="submit" class="btn btn-success">回覆</button>
-									
-								</div>
-
-							</fieldset>
-
-						</form>	
-					</div>
-					
-				</div>
-						
-			</div>
-			
-       
-					
-			</div>
+<!-- 			這裡放置主要內容 -->
 			</div>
 <!-- 			end: Content -->
 				
 			</div><!--/fluid-row-->
-			<%@ include file="footer.jsp" %>			
+			<%@ include file="footer.jsp" %>
+			</div><!--/.fluid-container-->
+
+
 	<!-- start: JavaScript-->
 		<script src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-1.10.2.min.js"></script>
 	<script src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-migrate-1.2.1.min.js"></script>	

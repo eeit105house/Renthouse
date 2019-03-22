@@ -20,6 +20,7 @@ import com.iiiedu105.RentHouse.model.House;
 import com.iiiedu105.RentHouse.model.HouseDetail;
 import com.iiiedu105.RentHouse.model.HousePic;
 import com.iiiedu105.RentHouse.model.Member;
+import com.iiiedu105.RentHouse.model.Reservation;
 public class CreateTable {
  
 	
@@ -111,6 +112,9 @@ public class CreateTable {
 		ForumReply forumReply2 = null;
 		ForumReport forumReport1 = null;
 		ForumReport forumReport2 = null;
+		
+		Reservation reservation1 = null;
+		Reservation reservation2 = null;
 
 		
 		try {
@@ -146,8 +150,8 @@ public class CreateTable {
 			houseDetail3= new HouseDetail(null, "城市中歐洲城堡的日常!4米2魔幻空間!", clob4, 2, 4000, new Date(sDF.parse("2019-03-15").getTime()), "一年", "電視，冰箱，熱水器，洗衣機", "床，衣櫃，椅子，桌子", "管理費", "近便利商店，近傳統市場", "學生", 30000);
 			
 			employee = new Employee("master01", "!@Qa1234", "林忠明", "staff",null);
-			employeeReport1 = new EmployeeReport(null,null,null,"系統相關","遇到房屋圖片死圖",clob4,time,"未讀",null);
-			employeeReport2 = new EmployeeReport(null,null,null,"系統相關","遇到房屋圖片死圖",clob3,time,"未讀",null);
+			employeeReport1 = new EmployeeReport(null,null,null,"系統相關","遇到房屋圖片死圖",clob4,time,"會員未讀",null);
+			employeeReport2 = new EmployeeReport(null,null,null,"系統相關","遇到房屋圖片死圖",clob3,time,"會員未讀",null);
 
 			forumR0 = new Forum(null, "Test00",clob1, new Timestamp(sDF.parse("2019-03-04").getTime()),"租屋交流", "審核", null);
 			forumR1 = new Forum(null,"Test01", clob3, new Timestamp(sDF.parse("2019-03-05").getTime()),"心情抒發", "審核",  null);
@@ -157,6 +161,9 @@ public class CreateTable {
 			forumReply2 = new ForumReply(null, "test2", clob1, time, "待審", null, null);
 			forumReport1 = new ForumReport(null, null, "Xxxxx", clob1, time,"待審",null,null);
 			forumReport2 = new ForumReport(null, null, "污辱字眼", clob3, time,"待審",null,null);
+			
+			reservation1 = new Reservation(null,time,"未看",null,null,3,"未讀",null,null);
+			reservation2 = new Reservation(null,time,"未看",null,null,5,"未讀",null,null);
 
 		} catch (ParseException e1) {
 			e1.printStackTrace();
@@ -168,8 +175,8 @@ public class CreateTable {
 		new CreateTable2().CreateTableEmp(employee);	
 		new CreateTable2().CreateTableAllPic(member3, house0, houseDetail0, housePic0,housePic00,housePic01,housePic02,housePic03, forumR0);
 		new CreateTable2().CreateTableAllPic(member2, house1, houseDetail1, housePic1,housePic10,housePic11,housePic12,housePic13, forumR1);
-		new CreateTable2().CreateTableOther(member0, house2, houseDetail2, housePic2, forumR2,forumReport1,forumReply1,employeeReport1);
-		new CreateTable2().CreateTableOther(member1, house3, houseDetail3, housePic3, forumR3,forumReport2,forumReply2,employeeReport2);
+		new CreateTable2().CreateTableOther(member0, house2, houseDetail2, housePic2, forumR2,forumReport1,forumReply1,employeeReport1,reservation1);
+		new CreateTable2().CreateTableOther(member1, house3, houseDetail3, housePic3, forumR3,forumReport2,forumReply2,employeeReport2,reservation2);
 
 		new CreateTable2().CloseFactory();
 	

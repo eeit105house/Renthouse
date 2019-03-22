@@ -12,6 +12,34 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
 <!-- google fonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+<style>
+
+ 		.alarm {
+                position: relative;
+                width: 60px;
+                height: 60px;
+                margin: 0px;
+            }
+            .alarm img {
+                width: 50px;
+                height: 50px;
+            }
+ 		.divright {
+                position: absolute;
+                color: white;
+                font-size: 17px;
+                background-color: red;
+                width: 23px;
+                height: 23px;
+                line-height:23px;
+                left: 80%;
+                top: -12px;
+                text-align: center;
+                -webkit-border-radius: 24px;
+                border-radius: 24px;
+            }
+</style>
+
 <!-- 日期用 -->
 <script src="login/js/date.js"></script>
 <!-- 登入彈跳視窗 -->
@@ -38,10 +66,15 @@
     </div>
     </div>
     
+    <div class="alarm">
+    <a id="hello" name="hello" href="member/${user.id}">
+    <img class="rounded-circle" src="<c:url value='showMemberPic'/>" title="${user.name}"/>
+    <span class="divright">${allmsg.size() }</span>
+    </a>
+    </div>
+    <div><a href="member/${user.name}">${user.name}</a></div> 
     
-    <a id="hello" name="hello" href="member/${user.name}">
-    <img style="width: 50px; height: 50px" src="<c:url value='showMemberPic'/>" title="${user.name}"/>
-    ${user.name}</a>
+    
     </nav>
     <!--   登入 -->
 <%@include file="Login_plustar.jsp" %>

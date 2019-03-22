@@ -1,4 +1,4 @@
-package com.iiiedu105.RentHouse.login.dao;
+package com.iiiedu105.RentHouse.membercenter.dao;
 
 import java.util.List;
 
@@ -10,29 +10,15 @@ import com.iiiedu105.RentHouse.model.Member;
 import com.iiiedu105.RentHouse.model.Reservation;
 //import com.iiiedu105.RentHouse.model.TestTest;
 @Repository
-public interface MemberDao {
+public interface MemberCenterDao {
 
 	Member findMemberById(String id);
-
-	List<Member> checkMemberById(String id);
-
-	void saveMember(Member member);
-
-	void updateMember(Member member);
-
-	void deleteMemberById(String id);
-
-	List<Member> findAllMembers();
-
-	void deleteAllMembers();
-
-	void insertMemberPicture(Member member);
 	
 	List<Object[]> getAllMsg(String id);
 	
-	List<Reservation> getUnreadReservation();
+	List<Reservation> getUnreadReservation(String mid);
 	
-	List<EmployeeReport> getUnreadEmployeeReport();
+	List<EmployeeReport> getUnreadEmployeeReport(String mid);
 
 	void addEmployeeReport(EmployeeReport employeeReport);
 }

@@ -35,7 +35,11 @@
 	<!-- end: Favicon and Touch Icons -->	
 		
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
-
+<style>
+/* body{ */
+/* background-image:url("${pageContext.request.contextPath}/RHstaticresource/img/avatar.jpg");  */
+/* } */
+</style>
 </head>
 <body>
 		<div class="container-fluid-full">
@@ -43,20 +47,17 @@
 					
 			<div class="row-fluid">
 				<div class="login-box">
-					<h2>Login to your account</h2>
-					<form class="form-horizontal" action="index.html" method="post" />
+					<h2>後臺登入</h2>
+					<form class="form-horizontal" action="<spring:url value='/backlogin/processLogin' />" method="post">
 						<fieldset>
 							
-							<input class="input-large span12" name="username" id="username" type="text" placeholder="type username" />
+							<input class="input-large span12" name="user" id="username" type="text" placeholder="type username"  required="true"/>
 
-							<input class="input-large span12" name="password" id="password" type="password" placeholder="type password" />
+							<input class="input-large span12" name="pwd" id="password" type="password" placeholder="type password" required="true" />
 
-							<div class="clearfix"></div>
-							
-							<label class="remember" for="remember"><input type="checkbox" id="remember" />Remember me</label>
-							
-							<div class="clearfix"></div>
-							
+							<div class="clearfix"></div><br/>							
+							<b class="remember">${errorMsg.error }</b>
+														
 							<button type="submit" class="btn btn-primary span12">Login</button>
 						</fieldset>	
 
