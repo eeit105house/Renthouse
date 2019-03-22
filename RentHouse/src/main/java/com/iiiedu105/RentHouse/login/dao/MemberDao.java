@@ -26,4 +26,8 @@ public interface MemberDao {
 
 	void insertMemberPicture(Member member);
 
+	List<Member> checkMemberByPersonID(String personID);
+
+	List<Member> checkMemberByEmail(String email);
+
 }
