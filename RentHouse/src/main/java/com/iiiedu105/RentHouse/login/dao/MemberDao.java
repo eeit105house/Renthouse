@@ -35,4 +35,9 @@ public interface MemberDao {
 	List<EmployeeReport> getUnreadEmployeeReport();
 
 	void addEmployeeReport(EmployeeReport employeeReport);
+	
+	List<Member> checkMemberByPersonID(String personID);
+
+	List<Member> checkMemberByEmail(String email);
+
 }

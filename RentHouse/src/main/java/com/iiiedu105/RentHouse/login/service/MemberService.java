@@ -11,7 +11,7 @@ public interface MemberService {
 
 	Member findMemberById(String id);
 
-	List<Member> findByName(String id);
+	List<Member> checkByid(String id);
 
 	void saveMember(Member member);
 
@@ -34,5 +34,11 @@ public interface MemberService {
 	List<EmployeeReport> getUnreadEmployeeReport();
 
 	void addEmployeeReport(EmployeeReport employeeReport);
+
+	List<Member> checkByPersonID(String personID);
+
+	List<Member> checkByEmail(String email);
+
+
 
 }

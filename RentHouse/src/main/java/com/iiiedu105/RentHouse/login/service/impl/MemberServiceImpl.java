@@ -33,8 +33,17 @@ public class MemberServiceImpl implements MemberService {
 	 * @see com.iiiedu105.RentHouse.login.service.impl.MemberService#findByName(java.lang.String)
 	 */
 	@Override
-	public List<Member> findByName(String id) {
+	public List<Member> checkByid(String id) {
 		return memberDao.checkMemberById(id);
+	}
+	
+	@Override
+	public List<Member> checkByPersonID(String personID) {
+		return memberDao.checkMemberByPersonID(personID);
+	}
+	@Override
+	public List<Member> checkByEmail(String email) {
+		return memberDao.checkMemberByEmail(email);
 	}
 	@Override
 	public Member login(String id,String pwd) {

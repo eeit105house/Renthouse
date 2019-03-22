@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
      pageEncoding="UTF-8"%>  
 <%@ taglib prefix='form' uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="login/js/Registered_check.js" type="text/javascript"></script>
+<title>registered</title>
+<script src="${pageContext.request.contextPath}/login/js/Registered_check.js" type="text/javascript"></script>
 </head>
 <body>
 <!-- Modal -->
@@ -19,7 +20,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-<!--登入 -->
+<!--註冊 -->
       <div class="modal-body">
 <div class="container">
     <div class="row">
@@ -30,7 +31,7 @@
             <form:form class="form-signin " id="commentForm" action="insertMemberOk" method="post" modelAttribute="member" commandName="member" enctype="multipart/form-data">
 <!--圖片 -->
 			<div class="text-center" style="height: 100px ;">
-				<img id="showImg" src="" alt="" style="height: 100px ;width: 100px"/>
+				<img id="showImg" src="<c:url value='/login/img/PresetMember.png'/>" alt="" style="height: 100px ;width: 100px"/>
 			</div>
 			<div class="text-center">
 			<label class="btn btn-info" style="width: 150px; height: 50px;">更換頭像
@@ -124,21 +125,5 @@
 </div>
 </div>
 </div>
-<script type="text/javascript">
-$(document).ready(function() {
-$('#pic').on('change',function(){
-	var file = this.files[0];
-	if(file!=null){
-		var reader = new FileReader();
-		reader.onload = function(e){
-			$('#showImg').attr('src',e.target.result);
-		}
-		reader.readAsDataURL(file);
-	}else{
-		$('#showImg').attr('src',"");
-	}
-});
-});
-</script>
 </body>
 </html>
