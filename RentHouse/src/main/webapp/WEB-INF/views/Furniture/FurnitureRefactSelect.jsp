@@ -22,7 +22,7 @@
 	<link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet"
 		type="text/css" />
 	<meta charset="UTF-8">
-	<title>您的房屋</title>
+	<title>您的家具</title>
 
 	<script>
 // 		$(document).ready(function () {
@@ -54,7 +54,7 @@
 					<thead>
 						<tr>
 							<th>
-								<h2>您的房屋一覽</h2>
+								<h2>您的家具一覽</h2>
 							</th>
 						</tr>
 						<tr>
@@ -64,37 +64,31 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var='house' items='${houseList}'>
+						<c:forEach var='furniture' items='${furnitureList}'>
 							<tr>
-								<td>${house.detailBean.title}</td>
-								<td>${house.status}</td>
+								<td>${furniture.title}</td>
+								<td>${furniture.status}</td>
 								<td><a class="button orange"
-										href='<c:url value="/houseView/${house.detailBean.id}" />'>檢視</a></td>
+										href='<c:url value="/furnitureView/${furniture.id}" />'>檢視</a></td>
 								<td><a class="button orange"
-										href='<c:url value="/houseRefactDet/${house.detailBean.id}" />'>修改詳細</a></td>
-								<td><a class="button orange"
-										href='<c:url value="/houseRefactPic/${house.detailBean.id}" />'>修改圖片</a></td>
+										href='<c:url value="/furnitureRefact/${furniture.id}" />'>修改詳細</a></td>
 								<td>
-									<c:if test="${house.status == '上架' || house.status == '審核'}">
+									<c:if test="${furniture.status == '上架' || furniture.status == '審核'}">
 										<!-- <input type="button" id="Down" class="button red" value="主動下架">
 										<input type="hidden" id="DontPost"
 											value='<c:url value="/houseDontPost/${house.id}" />'> -->
-
-
 										<a id="DontPost" class="button red" href="#hidden_content">主動下架</a>
 										<div id="hidden_content" style="display: none;">
 											<div class="inline_content" style="width: 350px; height: 200px;">
 												<h4>請確認是否確定下架?</h4>
-												<p>*手動下架並不會退還刊登費*</p>
-												<a class="button red" href='<c:url value="/houseDontPost/${house.id}" />'>是的，我要下架</a>
-												<a class=" button green " id="cc" onclick="$.lightbox('close');">不是，繼續刊登</a>
-												
+												<a class="button red" href='<c:url value="/furnitureDontPost/${furniture.id}" />'>是的，我要下架</a>
+												<a class=" button green" id="cc" onclick="$.lightbox('close');">不是，繼續刊登</a>
 											</div>
 										</div>
 									</c:if>
-									<c:if test="${house.status == '下架'}">
+									<c:if test="${furniture.status == '下架'}">
 										<a id="RePost" class="button green"
-											href='<c:url value="/houseRePost/${house.id}" />'>重新上架</a>
+											href='<c:url value="/furnitureRePost/${furniture.id}" />'>重新上架</a>
 									</c:if>
 								</td>
 							</tr>
@@ -115,9 +109,6 @@
 				</p> -->
 	</div>
 	<!-- end #footer -->
-
-
-
 </body>
 
 </html>

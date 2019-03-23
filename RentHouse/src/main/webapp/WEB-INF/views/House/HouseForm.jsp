@@ -12,22 +12,18 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		crossorigin="anonymous"></script>
-<%-- 	<script src="${pageContext.request.contextPath}/HouseResorce/js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script> --%>
+
+	<%-- 	<script src="${pageContext.request.contextPath}/HouseResorce/js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script> --%>
 	<script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
 
 	<script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script>
 	<!-- KICKSTART -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/css/kickstart.css" media="all" />
 	<!-- KICKSTART -->
-
 	<script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBR1UlWEzeskb_Jx_RbBtPypXUDGWdF-U8"
 		type="text/javascript"></script>
+	<!-- house模板CSS	 -->
+	<link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet" type="text/css" />
 	<script>
 
 		$("*").ready(function () {
@@ -38,10 +34,12 @@
 			$("[name='zipcode']").remove();
 			$("select[name='county']").change(function () {
 				$("#cityId").val($(this).val());
+				codeAddress();
 			});
 			$("select[name='county'],select[name='district']").attr("class", "col_2");
 			$("select[name='county'],select[name='district']").change(function () {
 				$("#boroughsId").val($("select[name='district']").val());
+				codeAddress();
 			});
 			$("select[name='buildS']").change(function () {
 				$("#build").val($(this).val());
@@ -137,79 +135,105 @@
 </head>
 
 <body>
-	<div class="col_7">
-		<form:form method='POST' modelAttribute="houseBean">
-			<fieldset>
-				<legend>租房類型</legend>
-				<div>
-					<label for="addr" class="label.col_1">地址：</label>
-					<span id="twzipcode"></span>
+		<div id="header">
 
-					<form:hidden id="cityId" path="city" onchange="codeAddress()" />
-					<form:hidden id="boroughsId" path="boroughs" onchange="codeAddress()" />
-					<form:input path="addr" class="col_6" onchange="codeAddress()" />
+			</div>
+			<!-- end #header -->
+			<div id="menu">
+	
+			</div>
+			<!-- end #menu -->
+			<div id="content">
+				<div >
+						<div class="post">
+								<form:form method='POST' modelAttribute="houseBean">
+									<fieldset>
+										<legend>租房類型</legend>
+										<div>
+											<label for="addr" class="label.col_1">地址：</label>
+											<span id="twzipcode"></span>
+						
+											<form:hidden id="cityId" path="city" onchange="codeAddress()" />
+											<form:hidden id="boroughsId" path="boroughs" onchange="codeAddress()" />
+											<form:input path="addr" class="col_6" onchange="codeAddress()" />
+										</div>
+										<p>${errorMsg.addrE}</p>
+										<div>
+											<label for="sqft" class="label.col_1">坪數：</label>
+											<form:input path="sqft" value="" class="col_1" />
+											<label for="" class="label.col_1">坪</label>
+										</div>
+										<p>${errorMsg.sqftE}</p>
+						
+										<div>
+											<label for="build" class="label.col_1">建築型態：</label>
+											<form:select path="build" class="col_2">
+												<form:option value="">-請選擇-</form:option>
+												<form:option value="公寓">公寓</form:option>
+												<form:option value="電梯大樓">電梯大樓</form:option>
+												<form:option value="透天厝">透天厝</form:option>
+												<form:option value="別墅">別墅</form:option>
+											</form:select>
+										</div>
+										<p>${errorMsg.buildE}</p>
+						
+										<div>
+											<label for="type" class="label.col_1">住房類型：</label>
+											<form:select path="type" class="col_2">
+												<form:option value="">-請選擇-</form:option>
+												<form:option value="整層住家">整層住家</form:option>
+												<form:option value="獨立套房">獨立套房</form:option>
+												<form:option value="分租套房">分租套房</form:option>
+												<form:option value="雅房">雅房</form:option>
+												<form:option value="其他類型">其他類型</form:option>
+											</form:select>
+										</div>
+										<p>${errorMsg.typeE}</p>
+						
+										<div>
+											<label for="floor" class="label.col_1">所在樓層：</label>
+											<form:input path="floor" class="col_1" />
+											<label for="" class="label.col_1">樓</label>
+										</div>
+										<p>${errorMsg.floorE}</p>
+						
+										<div>
+											<label for="topfloor" class="label.col_1">頂樓樓層：</label>
+											<form:input path="topFloor" class="col_1" />
+											<label for="" class="label.col_1">樓</label>
+										</div>
+										<p>${errorMsg.topfloorE}</p>
+						
+										<div>
+											<label for="layout" class="label.col_1">格局：</label>
+											<form:input path="layout" class="col_6" />
+										</div>
+										<p>${errorMsg.layoutE}</p>
+						
+										<form:hidden path="memberId" />
+										<form:hidden path="category" value="住家" />
+										<form:hidden path="lat" value="" />
+										<form:hidden path="lon" value="" />
+										<div>
+											<input type="submit" class="medium green" id="submit" value="送出">
+										</div>
+									</fieldset>
+								</form:form>
+							</div>
 				</div>
-				<p>${errorMsg.addrE}</p>
-				<div>
-					<label for="sqft" class="label.col_1">坪數：</label>
-					<form:input path="sqft" value="" class="col_1" />
-					<label for="" class="label.col_1">坪</label>
-				</div>
-				<p>${errorMsg.sqftE}</p>
+				<!-- end #posts -->
+				<div id="links">
 
-				<div>
-					<label for="build" class="label.col_1">建築型態：</label>
-					<form:select path="build" class="col_2">
-						<form:option value="">-請選擇-</form:option>
-						<form:option value="大樓">大樓</form:option>
-						<form:option value="公寓">公寓</form:option>
-						<form:option value="透天厝">透天厝</form:option>
-					</form:select>
 				</div>
-				<p>${errorMsg.buildE}</p>
-
-				<div>
-					<label for="type" class="label.col_1">住房類型：</label>
-					<form:select path="type" class="col_2">
-						<form:option value="">-請選擇-</form:option>
-						<form:option value="雅房">雅房</form:option>
-						<form:option value="獨立套房">獨立套房</form:option>
-						<form:option value="分租套房">分租套房</form:option>
-						<form:option value="整棟透天">整棟透天</form:option>
-					</form:select>
-				</div>
-				<p>${errorMsg.typeE}</p>
-
-				<div>
-					<label for="floor" class="label.col_1">所在樓層：</label>
-					<form:input path="floor" class="col_1" />
-					<label for="" class="label.col_1">樓</label>
-				</div>
-				<p>${errorMsg.floorE}</p>
-
-				<div>
-					<label for="topfloor" class="label.col_1">頂樓樓層：</label>
-					<form:input path="topFloor" class="col_1" />
-					<label for="" class="label.col_1">樓</label>
-				</div>
-				<p>${errorMsg.topfloorE}</p>
-
-				<div>
-					<label for="layout" class="label.col_1">格局：</label>
-					<form:input path="layout" class="col_6" />
-				</div>
-				<p>${errorMsg.layoutE}</p>
-
-				<form:hidden path="memberId" />
-				<form:hidden path="category" value="住家" />
-				<form:hidden path="lat" value="" />
-				<form:hidden path="lon" value="" />
-				<div>
-					<input type="submit" class="medium green" id="submit" value="送出">
-				</div>
-			</fieldset>
-		</form:form>
-	</div>
+				<!-- end #links -->
+				<div style="clear: both;">&nbsp;</div>
+			</div>
+			<!-- end #content -->
+			<div id="footer">
+				<!-- <p id="legal">Copyright &copy; Logistix. Designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>
+				</p> -->
+			</div>
+			<!-- end #footer -->
 </body>
 
 </html>
