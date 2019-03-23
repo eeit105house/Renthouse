@@ -31,12 +31,15 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iiiedu105.RentHouse.login.service.MemberService;
+import com.iiiedu105.RentHouse.model.House;
 import com.iiiedu105.RentHouse.model.HousePic;
 import com.iiiedu105.RentHouse.model.Member;
 
@@ -54,41 +57,69 @@ public class MemberController {
 // URL為 /members, 搭配 POST方法可以新增一筆紀錄
 // 儲存瀏覽器送來的Member資料
 @RequestMapping(value = "insertMemberOk", method = RequestMethod.POST)
-	public String saveMember(Member member,@RequestParam(value = "memberimg") MultipartFile file0) throws SerialException, SQLException {
-//	預設圖片
+	public String saveMember(Member member,@RequestParam(value = "memberimg") MultipartFile file0 , 
+			HttpServletRequest request , Model model) throws SerialException, SQLException {
+	Map<String, String> errorMsg = new HashMap<String, String>();
+	Map<String, String> create = new HashMap<String, String>();
+	//	預設圖片
 	String noImg = "/WEB-INF/views/login/img/PresetMember.png";
 //	轉blob
 	Blob P_Img = new SerialBlob(toByteArray(noImg));
+//	取 id 驗證是否重複
+	List<Member> used = memberService.checkByid(member.getId());
+	List<Member> personId = memberService.checkByPersonID(member.getPersonID());
+	List<Member> email = memberService.checkByEmail(member.getEmail());
 	
+	if(used==null) {
+		if(personId==null) {
+			if(email==null) {
 	if(file0.isEmpty()) {
 		member.setPic(P_Img);
 		memberService.saveMember(member);
+		}else {
+			Blob blob;
+			blob = getImageBlob(file0);
+			member.setPic(blob);
+			memberService.saveMember(member);
+	}
+	create.put("createOk", "註冊成功，開始找好屋");
+	model.addAttribute("create", create);
+	return "forward:/return_index";
+			}else {
+				errorMsg.put("mailUsed", "電子信箱重複註冊");
+			}
 	}else {
-
-	Blob blob;
-	blob = getImageBlob(file0);
-	member.setPic(blob);
-	memberService.saveMember(member);
+		errorMsg.put("personIdUsed", "身分證或居留證重複註冊");
 	}
-	return "redirect: return_index";
+	}else {
+		errorMsg.put("idUsed", "帳號重複註冊");
 	}
-@RequestMapping(value = "loginMember", method = RequestMethod.POST)
-	public String checkMember(HttpServletRequest request) {
+	if(!errorMsg.isEmpty()) 
+		model.addAttribute("errorMsg", errorMsg);
+		return "forward:/return_index";
+	}
+@RequestMapping(value = "/loginMember", method = RequestMethod.POST)
+	public String checkMember(HttpServletRequest request , Model model) {
 	Map<String, String> errorMsg = new HashMap<String, String>();
+	Map<String, String> create = new HashMap<String, String>();
 	Member member = memberService.login(request.getParameter("inputAccount"), request.getParameter("inputPassword"));
 	
 	if(member!=null) {
 		HttpSession session = request.getSession();
 		session.setAttribute("user", member);
-	return "redirect: return_index";
 	}else {
-		errorMsg.put("error", "帳號或密碼錯誤");
-		return "redirect: return_index";
+		errorMsg.put("errorAccPwd", "帳號或密碼錯誤");
+		model.addAttribute("errorMsg", errorMsg);
 	}
+	if(!errorMsg.isEmpty()) {
+		return "forward:/return_index";
+	}
+	create.put("signin", "租你幸福，祝你幸福");
+		return "forward:/return_index";
 	}
 
 
-@RequestMapping(value = "signOut", method = RequestMethod.GET)
+@RequestMapping(value = "/signOut", method = RequestMethod.GET)
 	public String SignOutMember(HttpSession session) {
 	session.removeAttribute("user");
 	return "redirect: return_index";
@@ -103,12 +134,53 @@ public class MemberController {
 	return date;
 }
 
-	@RequestMapping(value = "insertPicPage", method = RequestMethod.GET)
+	@RequestMapping(value = "/insertPicPage", method = RequestMethod.GET)
 	public String insertPic(Model model) {
 		model.addAttribute("member", new Member());
 		return "/login/insertPic";
 	}
 
+	@RequestMapping(value = "/membercontrol/{id}")
+	public String membercontrol(Model model,HttpServletRequest request,
+			@PathVariable String id,Member member) {
+		HttpSession session = request.getSession();
+		member = (Member) session.getAttribute("user");
+		model.addAttribute("member", member);
+		return "/login/MemberUpdata";
+		}
+	@RequestMapping(value = "/membercontrol/updataMember", method = RequestMethod.POST)
+	public String updataMember(Model model, @RequestParam(value = "memberimg") MultipartFile file0,
+			HttpServletRequest request,@ModelAttribute("member") Member member) throws SerialException, SQLException {
+		Map<String, String> create = new HashMap<String, String>();
+		
+		HttpSession session = request.getSession();
+////		從session 取 member資料  
+		Member user = (Member) session.getAttribute("user");
+		user.setName(member.getName());
+		user.setPwd(member.getPwd());
+		user.setPhone(member.getPhone());
+		if(file0.isEmpty()) {
+			user.setPic(user.getPic());
+			memberService.updateMember(user);
+		}else {
+//		String contentType= file0.getContentType();
+//		System.out.println(contentType);
+//		if(!contentType.equals("image/jpeg")){
+//			errorMsg.put("typeE", "請上傳jpeg檔");
+//		}
+		Blob blob;
+		blob = getImageBlob(file0);
+		user.setPic(blob);
+		memberService.updateMember(user);
+		
+		}
+		create.put("createOk", "修改成功");
+		user =memberService.findMemberById(user.getId());
+		session.setAttribute("user", user);
+		model.addAttribute("create", create);
+		return "forward:/membercontrol/"+user.getId();
+	}
+	
 @RequestMapping(value = "/updatePic", method = RequestMethod.POST)
 public String addMemberPic(Model model, @RequestParam(value = "pic0") MultipartFile file0,
 		HttpServletRequest request,Member member) throws SerialException, SQLException {

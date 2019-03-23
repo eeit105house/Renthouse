@@ -47,7 +47,7 @@ public class MemberDaoImpl implements MemberDao  {
 	@SuppressWarnings("unchecked")
 	public List<Member> checkMemberById(String id) {
 		Session session = factory.getCurrentSession();
-		String hql = "id.pwd FROM Member WHERE id=:id";
+		String hql = "FROM Member WHERE id=:id";
 		
 		List<Member> list = session.createQuery(hql)
 								.setParameter("id", id)
@@ -57,6 +57,36 @@ public class MemberDaoImpl implements MemberDao  {
 		return null;
 		}
 		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Member> checkMemberByPersonID(String personID) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Member WHERE personID=:personID";
+		
+		List<Member> list = session.createQuery(hql)
+								.setParameter("personID", personID)
+								.getResultList();
+		
+		if (list.isEmpty()) {
+		return null;
+		}
+		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Member> checkMemberByEmail(String email) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Member WHERE email=:email";
+		List<Member> list = session.createQuery(hql)
+								.setParameter("email", email)
+								.getResultList();
+		if (list.isEmpty()) {
+			return null;
+		}
+			return list;
 	}
 
 	/* (non-Javadoc)

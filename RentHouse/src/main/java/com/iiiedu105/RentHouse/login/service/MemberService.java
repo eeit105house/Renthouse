@@ -9,7 +9,7 @@ public interface MemberService {
 
 	Member findMemberById(String id);
 
-	List<Member> findByName(String id);
+	List<Member> checkByid(String id);
 
 	void saveMember(Member member);
 
@@ -24,5 +24,11 @@ public interface MemberService {
 	Member login(String id, String pwd);
 
 	void insertMemberPicture(Member member);
+
+	List<Member> checkByPersonID(String personID);
+
+	List<Member> checkByEmail(String email);
+
+
 
 }
