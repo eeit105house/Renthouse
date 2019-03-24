@@ -2,13 +2,13 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-    
+ <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>   
 <!DOCTYPE html>
 <html>
 <head>
 <!-- start: Meta -->
 <meta charset="utf-8" />
-<title>商品審核</title>
+<title>員工資料更新</title>
 <meta name="description"
 	content="SimpliQ - Flat & Responsive Bootstrap Admin Template." />
 <meta name="author" content="Łukasz Holeczek" />
@@ -49,10 +49,64 @@
 	<%@ include file="menu.jsp" %>	
 	<!-- start: Content -->
 			<div id="content" class="span10">
-<!-- 			這裡放置主要內容 -->
+ 				<div class="row-fluid">
+				<div class="box span12">
+					<div class="box-header">
+						<h2><i class="icon-edit"></i>編輯員工資料</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-close"><i class="icon-remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<form:form class="form-horizontal" enctype="multipart/form-data" modelAttribute="upemployee">
+						  <fieldset>
+<!-- 						  <div class="control-group"> -->
+<!-- 								<label class="control-label" for="disabledInput">員工帳號:</label> -->
+<!-- 								<div class="controls"> -->
+<!-- 								  <input class="form-control" id="disabledInput" type="text" placeholder="這裡放員工ID" disabled="true" /> -->
+<!-- 								</div> -->
+<!-- 							  </div> -->
+							  <div class="control-group">
+								     		<label class="control-label">員工帳號:</label>
+											<div class="controls">
+												<span class="input-xlarge uneditable-input">${employee.id }</span>
+												<form:hidden path="id" value="${employee.id }"/>
+											</div>
+										</div>
+							<div class="control-group">
+							  <label class="control-label" for="typeahead">姓名: </label>
+							  <div class="controls">
+								<form:input path="name" type="text" class="span6 typeahead" id="typeahead" value="${employee.name }" required="true"/>								
+							  </div>
+							</div>
+<!-- 							密碼未驗證 -->
+							<div class="control-group">
+							  <label class="control-label" for="typeahead">密碼: </label>
+							  <div class="controls">
+								<form:input path="pwd" type="password" class="span6 typeahead" id="typeahead" required="true"/>								
+							  	<p class="help-block text-danger">須中英混和且至少6位數</p>
+							  </div>  
+							</div>
+							<div class="control-group">
+							  <label class="control-label" for="fileInput">更改大頭貼:</label>
+							  <div class="controls">
+								<input class="input-file uniform_on" id="fileInput" type="file" name="eimg" />
+							   	<p class="help-block text-danger">${error.fileerror }</p>							 
+							  </div>
+							</div>          
+							<div class="form-actions">
+							  <button type="submit" class="btn btn-primary">送出</button>
+							  <button type="reset" class="btn">取消</button>
+							</div>
+						  </fieldset>
+						</form:form>   
+
+					</div>
+				</div><!--/span-->
+
+			</div><!--/row-->
 			</div>
-<!-- 			end: Content -->
-				
+<!-- 			end: Content -->			
 			</div><!--/fluid-row-->
 			<%@ include file="footer.jsp" %>
 			</div><!--/.fluid-container-->

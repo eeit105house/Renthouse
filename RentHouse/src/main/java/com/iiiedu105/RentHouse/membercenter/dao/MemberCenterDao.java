@@ -21,4 +21,6 @@ public interface MemberCenterDao {
 	List<EmployeeReport> getUnreadEmployeeReport(String mid);
 
 	void addEmployeeReport(EmployeeReport employeeReport);
+	
+	public List<EmployeeReport> getAllMail();
 }

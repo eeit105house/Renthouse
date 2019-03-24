@@ -1,5 +1,6 @@
 package com.iiiedu105.RentHouse.membercenter.dao.Impl;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +48,7 @@ public class MemberCenterDaoImpl implements MemberCenterDao  {
 	@Override
 	public List<Reservation> getUnreadReservation(String mid) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM Reservation where readStatus='未讀' and memberBean.id=':mid'";
+		String hql = "FROM Reservation where readStatus='未讀' and memberBean.id=:mid";
 		List<Reservation> list = session.createQuery(hql).setParameter("mid", mid).getResultList();		
 		return list;
 	}
@@ -56,7 +57,7 @@ public class MemberCenterDaoImpl implements MemberCenterDao  {
 	@Override
 	public List<EmployeeReport> getUnreadEmployeeReport(String mid) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM EmployeeReport where status='會員未讀' and memberBean.id=':mid' ";
+		String hql = "FROM EmployeeReport where status='會員未讀' and memberBean.id=:mid ";
 		List<EmployeeReport> list = session.createQuery(hql).setParameter("mid", mid).getResultList();		
 		return list;
 	}
@@ -65,9 +66,19 @@ public class MemberCenterDaoImpl implements MemberCenterDao  {
 	public void addEmployeeReport(EmployeeReport employeeReport) {
 		Session session = factory.getCurrentSession();
 		java.util.Date date = new java.util.Date();
-		Timestamp time = new Timestamp(date.getTime());
-		employeeReport.setDatetime(time);
+		Date date1 = new Date(date.getTime());
+		employeeReport.setDatetime(date1);
 		employeeReport.setStatus("未讀");
 		session.save(employeeReport);
 		}
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<EmployeeReport> getAllMail(){
+		Session session = null;
+		session = factory.getCurrentSession();
+		List<EmployeeReport> list = null;
+		String hql = "FROM EmployeeReport where status in ('未讀','已讀')";
+		list = session.createQuery(hql).getResultList();
+		return list;
+	}
 }

@@ -27,7 +27,7 @@
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn account dropdown-toggle" data-toggle="dropdown" href="#">
-								<div class="avatar"><img src="${pageContext.request.contextPath}/RHstaticresource/img/avatar.jpg" alt="Avatar" /></div>
+								<div class="avatar"><img src="<spring:url value='/backstage/getEmployeePic/${employee.id }'/>" alt="Avatar" /></div>
 								<div class="user">
 									<span class="hello">Welcome!</span>
 									<span class="name">${employee.name }</span>
@@ -37,8 +37,8 @@
 								<li class="dropdown-menu-title">
 									
 								</li>								
-								<li><a href="<spring:url value='/backstage/updateemployee' />"><i class="icon-cog"></i> Settings</a></li>
-								<li><a href="<spring:url value='/backlogin/logout' />"><i class="icon-off"></i> Logout</a></li>
+								<li><a href="<spring:url value='/backstage/updateemployee'/>"><i class="icon-cog"></i> Settings</a></li>
+								<li><a href="<spring:url value='/backlogin/logout'/>"><i class="icon-off"></i> Logout</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->

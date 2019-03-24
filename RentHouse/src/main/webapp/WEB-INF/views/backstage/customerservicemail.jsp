@@ -8,7 +8,7 @@
 <head>
 <!-- start: Meta -->
 <meta charset="utf-8" />
-<title>商品審核</title>
+<title>客服回覆</title>
 <meta name="description"
 	content="SimpliQ - Flat & Responsive Bootstrap Admin Template." />
 <meta name="author" content="Łukasz Holeczek" />
@@ -67,9 +67,11 @@
 					<hr>				
 				</div>
 				<div class="span5">					
-					<div class="message">						
+					<div class="message">	
+								
 						<div class="header">
 							<h1>${omail.title }</h1>
+							<c:if test="${!empty omail }">			
 							<div class="from"><i class="halflings-icon user"></i> <b>帳號:${omail.memberBean.id }/姓名:${omail.memberBean.name }</b> </div>
 							<div class="date"><i class="halflings-icon time"></i><b>${omail.datetime }</b></div>							
 							<div class="menu"></div>							
@@ -79,9 +81,7 @@
 							${content }	
 						</blockquote>	
 						</div>
-						<hr>		
-						
-															
+						<hr>																					
 						<form class="replyForm" method="post" >
 							<fieldset>
 							<input type="hidden" name="id" value="${omail.id }"/>
@@ -95,8 +95,8 @@
 								</div>
 
 							</fieldset>
-
 						</form>	
+						</c:if>	
 					</div>
 					
 				</div>

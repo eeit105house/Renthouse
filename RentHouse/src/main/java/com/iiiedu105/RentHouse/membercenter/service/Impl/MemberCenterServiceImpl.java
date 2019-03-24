@@ -45,4 +45,8 @@ public class MemberCenterServiceImpl implements MemberCenterService {
 	public void addEmployeeReport(EmployeeReport employeeReport) {
 		memberDao.addEmployeeReport(employeeReport);
 	}
+	@Override
+	public List<EmployeeReport> getAllMail() {
+		return memberDao.getAllMail();
+	}
 }

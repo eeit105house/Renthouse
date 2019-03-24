@@ -19,4 +19,5 @@ Member findMemberById(String id);
 
 	void addEmployeeReport(EmployeeReport employeeReport);
 
+	public List<EmployeeReport> getAllMail();
 }

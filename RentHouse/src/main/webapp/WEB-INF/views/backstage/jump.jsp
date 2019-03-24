@@ -8,7 +8,7 @@
 <head>
 <!-- start: Meta -->
 <meta charset="utf-8" />
-<title>統計圖表</title>
+<title>跳轉頁面</title>
 <meta name="description"
 	content="SimpliQ - Flat & Responsive Bootstrap Admin Template." />
 <meta name="author" content="Łukasz Holeczek" />
@@ -27,6 +27,9 @@
 <link href="${pageContext.request.contextPath}/RHstaticresource/css/style-responsive.min.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/RHstaticresource/css/retina.css" rel="stylesheet" />
 <!-- end: CSS -->
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
 <!-- start: Favicon and Touch Icons -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
 	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-144-precomposed.png" />
@@ -43,22 +46,25 @@
 
 </head>
 <body>
-<%@ include file="header.jsp" %>
-		<div class="container-fluid-full">
+	<div class="container">
 		<div class="row-fluid">
-	<%@ include file="menu.jsp" %>	
-	<!-- start: Content -->
-			<div id="content" class="span10">
-<!-- 			這裡放置主要內容 -->
-			</div>
-<!-- 			end: Content -->
-				
-			</div><!--/fluid-row-->
-			<%@ include file="footer.jsp" %>
-			</div><!--/.fluid-container-->
-
-
+				<div class="row-fluid">            				
+				<div class="well" style="text-align:center">
+		<h1 class="text"></h1>								 
+				</div>
+			  </div>
+		  </div><!--/row --> 
+		</div><!--/fluid-row-->
 	<!-- start: JavaScript-->
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$(".text").html("更新資料成功，系統將於10秒後返回登入畫面，如果不跳轉，請<a href='<spring:url value='/backlogin/login'/>'>點選這裡</a>將直接進行跳轉")
+		setTimeout(function() {					
+			window.location.replace("<spring:url value='/backlogin/login'/>")},10000);
+		});
+	</script>
+	
+	
 		<script src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-1.10.2.min.js"></script>
 	<script src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-migrate-1.2.1.min.js"></script>	
 		<script src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-ui-1.10.3.custom.min.js"></script>	

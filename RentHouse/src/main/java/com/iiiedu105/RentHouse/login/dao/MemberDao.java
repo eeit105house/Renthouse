@@ -39,5 +39,7 @@ public interface MemberDao {
 	List<Member> checkMemberByPersonID(String personID);
 
 	List<Member> checkMemberByEmail(String email);
+	
+	void updateAllMsgById(String mid);
 
 }

@@ -2,11 +2,12 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix='form' uri="http://www.springframework.org/tags/form"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>修改個人</title>
 <style type="text/css">
 </style>
 </head>
@@ -18,17 +19,7 @@
 <h1 class="container">親愛的 ${user.name} 您好</h1>
 <div class="d-flex container" id="wrapper">
     <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading list-group-item bg-warning">會員中心</div>
-      <div class="list-group list-group-flush">
-        <a href="<c:url value='/membercontrol/${user.id}'/>" class="list-group-item list-group-item-action bg-light">&gt;&gt;會員資料修改</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-      </div>
-    </div>
+    <%@include file="membermenu.jsp"%>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->

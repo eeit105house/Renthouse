@@ -1,5 +1,6 @@
 package com.iiiedu105.RentHouse.backend.main.service;
 
+import java.sql.Blob;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,14 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public List<Employee> getOneEmployee(String mid,String pwd) {
 		return dao.getOneEmployee(mid,pwd);
+	}
+	@Override
+	public void updateEmployee(String eid, String ename, Blob pic, String pwd) {
+		dao.updateEmployee(eid, ename, pic, pwd);
+	}
+	@Override
+	public Employee getEmployeeById(String mid) {
+		return dao.getEmployeeById(mid);
 	}
 
 }

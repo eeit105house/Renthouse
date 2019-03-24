@@ -39,6 +39,6 @@ public interface MemberService {
 
 	List<Member> checkByEmail(String email);
 
-
+	void updateAllMsgById(String mid);
 
 }

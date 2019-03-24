@@ -1,6 +1,7 @@
 package com.iiiedu105.RentHouse.login.dao.impl;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -192,10 +193,21 @@ public class MemberDaoImpl implements MemberDao  {
 	@Override
 	public void addEmployeeReport(EmployeeReport employeeReport) {
 		Session session = factory.getCurrentSession();
-		java.util.Date date = new java.util.Date();
-		Timestamp time = new Timestamp(date.getTime());
-		employeeReport.setDatetime(time);
+		Date date1 = new Date();
+		java.sql.Date date = new java.sql.Date(date1.getTime());
+		employeeReport.setDatetime(date);
 		employeeReport.setStatus("未讀");
 		session.save(employeeReport);
 		}
+
+	@Override
+	public void updateAllMsgById(String mid) {
+		Session session = factory.getCurrentSession();
+		String hql =
+				"UPDATE Reservation r SET r.readStatus='已讀' WHERE r.memberBean.id = :id";
+				String hql2 =
+				"UPDATE  EmployeeReport e SET e.status='已讀' WHERE e.memberBean.id = :mid";
+		session.createQuery(hql).setParameter("id", mid).executeUpdate();
+		session.createQuery(hql2).setParameter("mid", mid).executeUpdate();
+	}
 }

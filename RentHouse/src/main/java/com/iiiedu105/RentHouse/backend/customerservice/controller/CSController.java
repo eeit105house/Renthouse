@@ -1,7 +1,14 @@
 package com.iiiedu105.RentHouse.backend.customerservice.controller;
 
 import java.sql.Clob;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -48,9 +55,9 @@ public class CSController {
 		List<EmployeeReport> list = cservice.getAllMail();
 		return list;
 	}
-	@RequestMapping(value="/customerservice")
-	public String customerservice(Model model) {		
-		return "backstage/customerservice";		
+	@RequestMapping(value="/customerservicemail")
+	public String customerservice() {
+		return "backstage/customerservicemail";		
 
 	}
 	@RequestMapping(value="/getmail/{id}", method=RequestMethod.GET)
@@ -70,10 +77,8 @@ public class CSController {
 	public String processForm(@PathVariable("id") Integer id,HttpServletRequest request) {			
 		Clob content = changeType.stringToClob(request.getParameter("content"));
 		String eid = request.getParameter("ename");
-//		String rid = request.getParameter("id");
-		
 		cservice.updateMail(eid, content, id);		
-		return "redirect:/backstage/customerservice";		
+		return "redirect:/backstage/customerservicemail";		
 	}
 	
 }

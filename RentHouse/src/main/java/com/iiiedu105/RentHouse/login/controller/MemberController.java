@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
-import java.sql.Clob;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -39,9 +38,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.iiiedu105.RentHouse.ChangeClob;
 import com.iiiedu105.RentHouse.login.service.MemberService;
-import com.iiiedu105.RentHouse.model.EmployeeReport;
-import com.iiiedu105.RentHouse.model.House;
-import com.iiiedu105.RentHouse.model.HousePic;
 import com.iiiedu105.RentHouse.model.Member;
 
 
@@ -51,6 +47,7 @@ public class MemberController {
 	MemberService memberService;
 	@Autowired
 	ServletContext context;
+	
 @Autowired
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
@@ -101,13 +98,14 @@ public class MemberController {
 		model.addAttribute("errorMsg", errorMsg);
 		return "forward:/return_index";
 	}
+//會員登入
 @RequestMapping(value = "/loginMember", method = RequestMethod.POST)
 	public String checkMember(HttpServletRequest request , Model model) {
 	Map<String, String> errorMsg = new HashMap<String, String>();
 	Map<String, String> create = new HashMap<String, String>();
-	Member member = memberService.login(request.getParameter("inputAccount"), request.getParameter("inputPassword"));
-	List<Object[]> list = memberService.getAllMsg(member.getId());
+	Member member = memberService.login(request.getParameter("inputAccount"), request.getParameter("inputPassword"));	
 	if(member!=null) {
+		List<Object[]> list = memberService.getAllMsg(member.getId());
 		HttpSession session = request.getSession();
 		session.setAttribute("user", member);
 		session.setAttribute("allmsg", list);
@@ -150,7 +148,10 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		member = (Member) session.getAttribute("user");
 		model.addAttribute("member", member);
-		return "/login/MemberUpdata";
+		memberService.updateAllMsgById(id);
+		List<Object[]> list = memberService.getAllMsg(member.getId());
+		session.setAttribute("allmsg",list);
+		return "login/MemberUpdata";
 		}
 	@RequestMapping(value = "/membercontrol/updataMember", method = RequestMethod.POST)
 	public String updataMember(Model model, @RequestParam(value = "memberimg") MultipartFile file0,

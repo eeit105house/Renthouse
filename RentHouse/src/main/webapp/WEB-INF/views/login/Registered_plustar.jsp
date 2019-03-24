@@ -21,6 +21,7 @@
         </button>
       </div>
 <!--註冊 -->
+<!-- form:form表單未用GET方法傳一member物件而報錯 -->
       <div class="modal-body">
 <div class="container">
     <div class="row">

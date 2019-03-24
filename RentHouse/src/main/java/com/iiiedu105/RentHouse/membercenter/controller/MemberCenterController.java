@@ -23,6 +23,7 @@ import com.iiiedu105.RentHouse.model.Reservation;
 
 
 @Controller
+@RequestMapping("/membercontrol")
 public class MemberCenterController {
 	@Autowired
 	MemberCenterService memberService;
@@ -31,6 +32,8 @@ public class MemberCenterController {
 	@Autowired
 	ChangeClob changeClob;
 	//=========會員中心===================	
+	
+	//客服與預約通知
 	@ModelAttribute
 	public void getReservation(HttpServletRequest request,Model model) {
 		HttpSession session = request.getSession();
@@ -46,33 +49,34 @@ public class MemberCenterController {
 		}
 			
 	}
-	//客服表單
-	@RequestMapping(value="/member/{mid}" ,method= RequestMethod.GET)
-	public String memberService(@PathVariable("mid") String mid,Model model) {
+	//客服填寫問題表單
+	@RequestMapping(value="/memberservice/{mid}" ,method= RequestMethod.GET)
+	public String memberService(Model model) {
 		EmployeeReport employeeReport = new EmployeeReport();
 		model.addAttribute("employeeReport",employeeReport);
-		return "House/HouseCService";	
+		return "login/MemberService";	
 	}
 
 	//客服表單處理
-	//預定連結導向會員中心首頁(未改)
-	@RequestMapping(value="/member/{mid}" ,method= RequestMethod.POST)
+	@RequestMapping(value="/memberservice/{mid}" ,method= RequestMethod.POST)
 	public String processMemberService(@PathVariable("mid") String mid,@ModelAttribute("employeeReport")EmployeeReport employeeReport,HttpServletRequest request ) {	
 		String content = request.getParameter("content1");
 		Clob clob = changeClob.stringToClob(content);
 		employeeReport.setContent(clob);
 		employeeReport.setMemberBean(memberService.findMemberById(mid));
 		memberService.addEmployeeReport(employeeReport);
-		return "redirect:/member/"+mid;	
+		return "redirect:/membercontrol/memberservice/"+mid;	
 	}
 	//預定導向預約中心
 	@RequestMapping(value="/reservationservice")
 	public String getAllReservation(Model model) {
 				return "backstage/bsindex";
 	}
-	//預定導向客服中心
-	@RequestMapping(value="/cservice")
+	//客服中心回覆信件
+	@RequestMapping(value="/cservicereport")
 	public String getAllEmployeeReport(Model model) {
-		return "backstage/bsindex";
+		List<EmployeeReport> list = memberService.getAllMail();
+		model.addAttribute("allmail",list);
+		return "login/MemberServiceReport";
 	}
 }

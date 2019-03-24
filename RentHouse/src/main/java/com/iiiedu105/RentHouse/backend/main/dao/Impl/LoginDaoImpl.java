@@ -1,5 +1,6 @@
 package com.iiiedu105.RentHouse.backend.main.dao.Impl;
 
+import java.sql.Blob;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -20,8 +21,27 @@ public class LoginDaoImpl implements LoginDao {
 	@Override
 	public List<Employee> getOneEmployee(String mid,String pwd){
 		Session session = factory.getCurrentSession();
-		String hql = "FROM Employee where id =:memberid and pwd=:pwd";
-		List<Employee> employee = session.createQuery(hql).setParameter("memberid",mid).setParameter("pwd", pwd).getResultList();
+		String hql = "FROM Employee where id =:employeeid and pwd=:pwd";
+		List<Employee> employee = session.createQuery(hql).setParameter("employeeid",mid).setParameter("pwd", pwd).getResultList();
+		return employee;
+	}
+
+	@Override
+	public void updateEmployee(String eid, String ename, Blob pic, String pwd) {
+		Session session = factory.getCurrentSession();
+		String hql = "UPDATE Employee SET name=:ename,pic=:pic,pwd=:pwd where id=:eid";
+		session.createQuery(hql).setParameter("ename", ename)
+								.setParameter("pic", pic)
+								.setParameter("pwd", pwd)
+								.setParameter("eid", eid).executeUpdate();
+								
+	}
+
+	@Override
+	public Employee getEmployeeById(String mid) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Employee where id =:employeeid";
+		Employee employee = (Employee) session.createQuery(hql).setParameter("employeeid",mid).getSingleResult();
 		return employee;
 	}
 	

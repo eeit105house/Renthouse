@@ -121,4 +121,9 @@ public class MemberServiceImpl implements MemberService {
 	public void addEmployeeReport(EmployeeReport employeeReport) {
 		memberDao.addEmployeeReport(employeeReport);
 	}
+
+	@Override
+	public void updateAllMsgById(String mid) {
+		memberDao.updateAllMsgById(mid);
+	}
 }
