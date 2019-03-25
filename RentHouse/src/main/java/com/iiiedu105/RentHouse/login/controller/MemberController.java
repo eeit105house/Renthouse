@@ -11,12 +11,10 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -38,9 +36,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iiiedu105.RentHouse.ChangeClob;
 import com.iiiedu105.RentHouse.login.service.MemberService;
-import com.iiiedu105.RentHouse.model.House;
-import com.iiiedu105.RentHouse.model.HousePic;
 import com.iiiedu105.RentHouse.model.Member;
 
 
@@ -50,10 +47,13 @@ public class MemberController {
 	MemberService memberService;
 	@Autowired
 	ServletContext context;
+	
 @Autowired
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
+	@Autowired
+	ChangeClob changeClob;
 // URL為 /members, 搭配 POST方法可以新增一筆紀錄
 // 儲存瀏覽器送來的Member資料
 @RequestMapping(value = "insertMemberOk", method = RequestMethod.POST)
@@ -98,15 +98,17 @@ public class MemberController {
 		model.addAttribute("errorMsg", errorMsg);
 		return "forward:/return_index";
 	}
+//會員登入
 @RequestMapping(value = "/loginMember", method = RequestMethod.POST)
 	public String checkMember(HttpServletRequest request , Model model) {
 	Map<String, String> errorMsg = new HashMap<String, String>();
 	Map<String, String> create = new HashMap<String, String>();
-	Member member = memberService.login(request.getParameter("inputAccount"), request.getParameter("inputPassword"));
-	
+	Member member = memberService.login(request.getParameter("inputAccount"), request.getParameter("inputPassword"));	
 	if(member!=null) {
+		List<Object[]> list = memberService.getAllMsg(member.getId());
 		HttpSession session = request.getSession();
 		session.setAttribute("user", member);
+		session.setAttribute("allmsg", list);
 	}else {
 		errorMsg.put("errorAccPwd", "帳號或密碼錯誤");
 		model.addAttribute("errorMsg", errorMsg);
@@ -146,7 +148,10 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		member = (Member) session.getAttribute("user");
 		model.addAttribute("member", member);
-		return "/login/MemberUpdata";
+		memberService.updateAllMsgById(id);
+		List<Object[]> list = memberService.getAllMsg(member.getId());
+		session.setAttribute("allmsg",list);
+		return "login/MemberUpdata";
 		}
 	@RequestMapping(value = "/membercontrol/updataMember", method = RequestMethod.POST)
 	public String updataMember(Model model, @RequestParam(value = "memberimg") MultipartFile file0,
@@ -210,6 +215,9 @@ public String addMemberPic(Model model, @RequestParam(value = "pic0") MultipartF
 	}
 	return "redirect: return_index";
 }
+
+
+
 
 @SuppressWarnings("unused")
 private Blob getImageBlob(MultipartFile mf) {
@@ -303,5 +311,7 @@ public ResponseEntity<byte[]> getPicture(HttpServletResponse response,HttpServle
 	
 	return responseEntity;
 }
+
+
 
 }

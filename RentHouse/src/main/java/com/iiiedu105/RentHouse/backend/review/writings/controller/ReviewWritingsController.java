@@ -14,6 +14,7 @@ import com.iiiedu105.RentHouse.model.ForumReport;
 import com.iiiedu105.RentHouse.model.House;
 
 @Controller
+@RequestMapping("/backstage")
 public class ReviewWritingsController {
 	@Autowired
 	RWritingsService rservice;
@@ -30,12 +31,12 @@ public class ReviewWritingsController {
 	@RequestMapping(value="/pass/{id}")
 	public String updatepass(@PathVariable("id") Integer id) {
 		rservice.updatePassWritings(id);
-		return "redirect:/writingsReview";		
+		return "redirect:/backstage/writingsReview";		
 	}
 	@RequestMapping(value="/fail/{id}")
 	public String updatefail(@PathVariable("id") Integer id) {
 		rservice.updateFailWritings(id);
-		return "redirect:/writingsReview";		
+		return "redirect:/backstage/writingsReview";		
 	}
 	@RequestMapping(value="/Details/{id}")
 	public String details(@PathVariable("id") Integer id,Model model) {

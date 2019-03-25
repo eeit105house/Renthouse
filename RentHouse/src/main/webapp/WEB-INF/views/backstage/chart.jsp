@@ -8,7 +8,7 @@
 <head>
 <!-- start: Meta -->
 <meta charset="utf-8" />
-<title>商品審核</title>
+<title>統計圖表</title>
 <meta name="description"
 	content="SimpliQ - Flat & Responsive Bootstrap Admin Template." />
 <meta name="author" content="Łukasz Holeczek" />

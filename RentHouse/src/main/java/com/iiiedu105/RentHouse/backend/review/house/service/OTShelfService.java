@@ -11,4 +11,5 @@ public interface OTShelfService {
 	
 	void deleteHouse(Integer id);
 
+	
 }

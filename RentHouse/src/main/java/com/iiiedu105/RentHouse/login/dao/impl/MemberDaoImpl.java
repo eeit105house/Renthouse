@@ -1,8 +1,8 @@
 package com.iiiedu105.RentHouse.login.dao.impl;
 
-import java.util.HashMap;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,8 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iiiedu105.RentHouse.login.dao.MemberDao;
-
+import com.iiiedu105.RentHouse.model.EmployeeReport;
 import com.iiiedu105.RentHouse.model.Member;
+import com.iiiedu105.RentHouse.model.Reservation;
 
 @Repository
 public class MemberDaoImpl implements MemberDao  {
@@ -161,5 +162,52 @@ public class MemberDaoImpl implements MemberDao  {
 			.executeUpdate();
 		}
 			
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object[]> getAllMsg(String id) {
+		Session session = factory.getCurrentSession();
+		String hql =
+		"FROM Reservation r where r.readStatus='未讀' and r.memberBean.id = :id";
+		String hql2 =
+				"FROM  EmployeeReport e where e.status='會員未讀' and e.memberBean.id = :mid";
+		List<Object[]> list = null;
+		list = session.createQuery(hql).setParameter("id", id).getResultList();
+		list.addAll(session.createQuery(hql2).setParameter("mid", id).getResultList());
+		return list;
+	}
+
+	@Override
+	public List<Reservation> getUnreadReservation() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<EmployeeReport> getUnreadEmployeeReport() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addEmployeeReport(EmployeeReport employeeReport) {
+		Session session = factory.getCurrentSession();
+		Date date1 = new Date();
+		java.sql.Date date = new java.sql.Date(date1.getTime());
+		employeeReport.setDatetime(date);
+		employeeReport.setStatus("未讀");
+		session.save(employeeReport);
+		}
+
+	@Override
+	public void updateAllMsgById(String mid) {
+		Session session = factory.getCurrentSession();
+		String hql =
+				"UPDATE Reservation r SET r.readStatus='已讀' WHERE r.memberBean.id = :id";
+				String hql2 =
+				"UPDATE  EmployeeReport e SET e.status='已讀' WHERE e.memberBean.id = :mid";
+		session.createQuery(hql).setParameter("id", mid).executeUpdate();
+		session.createQuery(hql2).setParameter("mid", mid).executeUpdate();
 	}
 }

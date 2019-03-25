@@ -1,6 +1,7 @@
 package com.iiiedu105.RentHouse.model;
 
 import java.sql.Clob;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
@@ -24,7 +25,7 @@ public class EmployeeReport {
 	private String type;
 	private String title;
 	private Clob content;
-	private Timestamp datetime;
+	private Date datetime;
 	private String status;
 	private Clob reply;
 	
@@ -36,7 +37,7 @@ public class EmployeeReport {
 
 
 	public EmployeeReport(Integer id, String memberId, String employeeId, String type, String title, Clob content,
-			Timestamp datetime, String status, Clob reply) {
+			Date datetime, String status, Clob reply) {
 		super();
 		this.id = id;
 		this.memberId = memberId;
@@ -112,12 +113,12 @@ public class EmployeeReport {
 	}
 
 
-	public Timestamp getDatetime() {
+	public Date getDatetime() {
 		return datetime;
 	}
 
 
-	public void setDatetime(Timestamp datetime) {
+	public void setDatetime(Date datetime) {
 		this.datetime = datetime;
 	}
 

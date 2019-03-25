@@ -27,6 +27,35 @@
 <script src="${pageContext.request.contextPath}/login/js/Address.js"></script>
 <script src="//cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.js"></script>
 
+<style>
+
+ 		.alarm {
+                position: relative;
+                 width: 60px; 
+                height: 60px;
+                margin: 0px;
+            }
+            .alarm img {
+                width: 50px;
+                height: 50px;
+            }
+ 		.divright {
+                position: absolute;
+                color: white;
+                font-size: 17px;
+                background-color: red;
+                width: 23px;
+                height: 23px;
+                line-height:23px;
+                left: 80%;
+                top: -8px;
+                text-align: center;
+                -webkit-border-radius: 24px;
+                border-radius: 24px;
+            }
+</style>
+
+
 <script type="text/javascript">
 $(document).ready(function(){
 	$(".lightbox").lightbox();
@@ -91,17 +120,24 @@ console.log('User disconnect.');
       
     </div>
     </div>
-    
-    <div style="padding-left: 20px;">
-    <a id="hello" name="hello" href="<c:url value='/membercontrol/${user.id}'/>" style="font-family: 標楷體; font-size: 25px; color: silver;float: right;">
-    <img style="width: 50px; height: 50px" src="<c:url value='/showMemberPic'/>" title="${user.name}"/>
-    ${user.name}</a>
+
+   
+   
+    <div class="alarm">
+    <a id="hello" name="hello" href="<c:url value='/membercontrol/${user.id}'/>">
+    <img class="rounded-circle" src="<c:url value='/showMemberPic'/>" title="${user.name}"/>
+    <c:if test="${allmsg.size()!=0 }">
+    <span class="divright">${allmsg.size() }</span>
+    </c:if>
+    </a>
 	</div>
+	<a href="<c:url value='/membercontrol/${user.id}'/>">${user.name}</a>
+	
     </nav>
 <!--   登入 -->
 <%@include file="Login_plustar.jsp" %>
  <!-- 註冊 --> 
-<%@include file="Registered_plustar.jsp" %>
+<%-- <%@include file="Registered_plustar.jsp" %> --%>
 
 <a href="#hidden_content" class="lightbox" ></a>
 
