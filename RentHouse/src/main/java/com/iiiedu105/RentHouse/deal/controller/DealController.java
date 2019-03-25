@@ -66,7 +66,7 @@ public class DealController {
 		HouseDeal houseDeal = new HouseDeal();
 		String from="",to="";
 		int dealPrice=0;
-		String path = "redirect:/deal/MemberAllHouse";
+		String path = "redirect:/membercontrol/houseRefactSelect";
 		if(req != null) {
 			from = req.getParameter("from");
 			to = req.getParameter("to");
