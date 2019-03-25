@@ -41,6 +41,13 @@ public class MemberDaoImpl implements MemberDao  {
 		return member;
 	}
 
+	@Override
+	public Member findMemberByEmail(String id) {
+		Session session = factory.getCurrentSession();
+		Member member = session.get(Member.class, id);
+		return member;
+	}
+
 	/* (non-Javadoc)
 	 * @see com.iiiedu105.RentHouse.login.dao.MemberDao#checkMemberById(java.lang.String)
 	 */
@@ -89,7 +96,6 @@ public class MemberDaoImpl implements MemberDao  {
 		}
 			return list;
 	}
-
 	/* (non-Javadoc)
 	 * @see com.iiiedu105.RentHouse.login.dao.MemberDao#saveMember(com.iiiedu105.RentHouse.model.Member)
 	 */

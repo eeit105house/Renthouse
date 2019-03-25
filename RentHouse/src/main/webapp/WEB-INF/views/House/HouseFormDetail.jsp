@@ -11,12 +11,11 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
+        	<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
 
-	<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
-	<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
 	<!--   <link rel="stylesheet" href="jqueryui/style.css"> -->
-
+<!-- 	<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script> -->
 	<script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script>
 	<!-- KICKSTART -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/css/kickstart.css" media="all" />
@@ -25,7 +24,7 @@
 <%-- 		<link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet" type="text/css" /> --%>
 	<script type="text/javascript">
 		$("*").ready(function () {
-			$("#datepicker").datepicker({
+			$("#datepickerA").datepicker({
 				showOtherMonths: true,
 				selectOtherMonths: true
 			});
@@ -101,7 +100,8 @@
 
 <body style="background-color: #ffebd7;">
     <div style="height: 75px;">
-        <%@include file="narbar.jsp"%>
+            <%@include file="../login/narbar.jsp"%>
+    
     </div>
     <div>
         <h1 class="container">親愛的 ${user.name} 您好</h1>
@@ -124,10 +124,10 @@
             <!-- Page Content -->
             <div id="page-content-wrapper">
 
-                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    </div>
-                </nav>
+<!--                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom"> -->
+<!--                     <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+<!--                     </div> -->
+<!--                 </nav> -->
                 <!-- 		內容 -->
                 <div class="container-fluid" style="width: 800px;">
                     <h1 class="mt-4"></h1>
@@ -142,7 +142,7 @@
 						</div>
 						<div>
 							簡介
-							<textarea name="infoN" id="infoN" cols="30" rows="10"></textarea>
+							<textarea name="infoN" id="infoN" cols="30" rows="10"></textarea><br>
 							<!-- <form:textarea path="info" /> -->
 						</div>
 						<div>
@@ -159,7 +159,7 @@
 							<form:input path="hoaFee" value="0" />
 						</div>
 						<div>
-							可遷入日<input id="datepicker" name="movingInN" readonly="readonly" placeholder="請選擇日期" />
+							可遷入日<input id="datepickerA" name="movingInN" readonly="readonly" placeholder="請選擇日期" />
 							<p>${errorMsg.movingInNE}</p>
 						</div>
 						<div>
@@ -272,6 +272,8 @@
 
         </div>
     </div>
+    	<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    
 </body>
 
 

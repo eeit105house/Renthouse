@@ -11,7 +11,6 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};HandleGoogleApiLibrary()"
         onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
-<script src="${pageContext.request.contextPath}/login/js/Login_check.js" type="text/javascript"></script>
 <script type="text/javascript">
 //google signin
 //進入 https://console.developers.google.com/，找「憑證」頁籤(記得先選對專案)，即可找到用戶端ID

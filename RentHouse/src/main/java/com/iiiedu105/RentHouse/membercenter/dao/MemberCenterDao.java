@@ -22,5 +22,7 @@ public interface MemberCenterDao {
 
 	void addEmployeeReport(EmployeeReport employeeReport);
 	
-	public List<EmployeeReport> getAllMail();
+	public List<EmployeeReport> getAllMail(String mid);
+	
+	public EmployeeReport getMailById(Integer id);
 }

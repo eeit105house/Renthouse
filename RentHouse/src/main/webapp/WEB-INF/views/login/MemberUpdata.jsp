@@ -43,8 +43,15 @@
 			<input  type="file" name="memberimg" id="pic2" style=" opacity:0; "/></label>
 			</div>
 			</div>
-<!--帳號 -->
+<!--開通狀態 -->
 <div style="float: left; width: 300px;">
+	<div class="form-group input-group">
+		<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fas fa-fingerprint"></i> </span>
+		 </div>
+        <label>${user.active}</label><span id="acti" style="padding-left: 60px;"><a class="btn btn-primary" href="reActive">重新發送驗證信</a></span>
+    </div>
+<!--帳號 -->
 	<div class="form-group input-group">
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i id="Acc_i2" class="fa fa-user"></i> </span>
@@ -93,5 +100,15 @@
 
   </div>
   </div>
+  <script type="text/javascript">
+  $(document).ready(function(){
+	 if("${user.active}"=="已驗證"){
+		 $("#acti").hide();
+	 }else{
+		 $("#acti").show();
+	 };
+  });
+  </script>
+  <input type="hidden" id="herenow" value="updata"/> 
 </body>
 </html>

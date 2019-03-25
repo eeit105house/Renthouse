@@ -32,7 +32,7 @@
 
 <body style="background-color: #ffebd7;">
     <div style="height: 75px;">
-        <%@include file="narbar.jsp"%>
+        <%@include file="../login/narbar.jsp"%>
     </div>
     <div>
         <h1 class="container">親愛的 ${user.name} 您好</h1>
@@ -55,10 +55,10 @@
             <!-- Page Content -->
             <div id="page-content-wrapper">
 
-                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    </div>
-                </nav>
+<!--                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom"> -->
+<!--                     <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+<!--                     </div> -->
+<!--                 </nav> -->
                 <!-- 		內容 -->
                 <div class="container-fluid" style="width: 800px;">
                     <h1 class="mt-4"></h1>

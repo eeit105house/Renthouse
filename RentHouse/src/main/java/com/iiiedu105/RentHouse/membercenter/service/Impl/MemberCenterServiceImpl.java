@@ -46,7 +46,11 @@ public class MemberCenterServiceImpl implements MemberCenterService {
 		memberDao.addEmployeeReport(employeeReport);
 	}
 	@Override
-	public List<EmployeeReport> getAllMail() {
-		return memberDao.getAllMail();
+	public List<EmployeeReport> getAllMail(String mid) {
+		return memberDao.getAllMail(mid);
+	}
+	@Override
+	public EmployeeReport getMailById(Integer id) {
+		return memberDao.getMailById(id);
 	}
 }
