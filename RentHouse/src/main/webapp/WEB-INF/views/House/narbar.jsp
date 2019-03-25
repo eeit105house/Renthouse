@@ -17,16 +17,18 @@
 <!-- google fonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 <!-- 日期用 -->
-<script src="${pageContext.request.contextPath}/login/js/date.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/login/js/date.js"></script> --%>
 <!-- 登入彈跳視窗 -->
 <script src="${pageContext.request.contextPath}/login/js/bootstrap.bundle.min.js"></script>
 <!-- 彈跳錯誤視窗 與地址有衝突-->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/login/css/site.css"> 
 <script type="text/javascript" src="${pageContext.request.contextPath}/login/js/site.js"></script>
 <!--地址用 擺後面-->
-<script src="${pageContext.request.contextPath}/login/js/Address.js"></script>
 <script src="//cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.js"></script>
-
+	<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<%-- 	<script src="${pageContext.request.contextPath}/login/js/Address.js"></script> --%>
+	
 <script type="text/javascript">
 $(document).ready(function(){
 	$(".lightbox").lightbox();
@@ -77,7 +79,7 @@ console.log('User disconnect.');
       <a class="navbar-brand"  href="${pageContext.request.contextPath}"><img style="height: 60px" alt="租你幸福" src="<c:url value='/login/img/logo.png'/>"></a>
       <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-       <li class="nav-item"><a class="btn btn-nav-primary" href="search/searchPage_sessionStorage">想要租屋</a></li>
+       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/search/searchPage_sessionStorage'/>">想要租屋</a></li>
       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/insertPicPage'/>">測試用</a></li>
       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/membercontrol/${user.id}'/>">會員中心</a></li>
       </ul>

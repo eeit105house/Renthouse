@@ -28,7 +28,6 @@ public class ForumReply {
 	private Forum forumBean;
 	private Member memberBean;
 
-	
 	public ForumReply(Integer id, String title, Clob content, Timestamp datetime, String status,
 			String memberId, Integer frId) {
 		super();
@@ -41,6 +40,7 @@ public class ForumReply {
 		this.frId = frId;
 	}
 	public ForumReply() {
+		// TODO Auto-generated constructor stub
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

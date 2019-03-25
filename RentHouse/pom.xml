@@ -15,56 +15,7 @@
         
     </properties>
 
-  <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>1.5.6.RELEASE</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-    <dependencies>
-    
-     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-security</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-mail</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.thymeleaf.extras</groupId>
-      <artifactId>thymeleaf-extras-springsecurity4</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-      <optional>true</optional>
-    </dependency>
-    
         <!-- Servlet 3.0 API -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -72,14 +23,6 @@
             <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
-
-<!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
-<dependency>
-    <groupId>javax.websocket</groupId>
-    <artifactId>javax.websocket-api</artifactId>
-    <version>1.1</version>
-    <scope>provided</scope>
-</dependency>
 
         <!-- test dependencies -->
         <dependency>
@@ -222,10 +165,6 @@
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
-           <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

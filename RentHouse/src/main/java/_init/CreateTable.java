@@ -148,7 +148,7 @@ public class CreateTable {
 //			houseDetail7= new HouseDetail(null, "城市中歐洲城堡的日常!4米2魔幻空間!", "其他條件EX: 獨立電表一度5塊", 2, 4000, new Date(sDF.parse("2019-03-15").getTime()), "一年", "電視，冰箱，熱水器，洗衣機,冷氣,網路,第四台,瓦斯", "床，衣櫃，椅子，桌子", "管理費", "近便利商店，近傳統市場", null, 30000);
 			employee = new Employee("master01", "!@Qa1234", "林忠明", "staff",SystemUtils.fileToBlob("data/images/employee/avatar1.jpg"));
 			
-
+			ChangeClob changeClob = new ChangeClob();
 //
 			forumR0 = new Forum(null, "Test00", null, new Timestamp(sDF.parse("2019-03-04").getTime()),"租屋交流", "審核", null);
 			String forumR0Content = "（中央社華盛頓13日綜合外電報導）美國總統川普今天宣布，計畫下令停飛所有波音737 MAX機型飛機。這型飛機在不到5個月內兩度失事，多數國家已下令停飛，使得川普承受沈重國際與政治壓力，終於決定跟進。\r\n" + 
@@ -160,7 +160,7 @@ public class CreateTable {
 					"衣索比亞航空公司（Ethiopian Airlines）一架波音737 MAX 8型客機10日墜毀，造成機上157人全部罹難。其後中國、印度、澳洲和所有歐洲國家已相繼禁止這型飛機在空域飛行。（譯者：林治平）1080314\r\n" + 
 					"\r\n" + 
 					"波音737機瘟";
-			 Clob strToClob = ChangeClob.stringToClob(forumR0Content);
+			 Clob strToClob = changeClob.stringToClob(forumR0Content);
 			 forumR0.setContent(strToClob);
 			
 			forumR1 = new Forum(null,"Test01", null, new Timestamp(sDF.parse("2019-03-05").getTime()),"心情抒發", "審核",  null);
@@ -173,7 +173,7 @@ public class CreateTable {
 					"衣索比亞航空公司（Ethiopian Airlines）一架波音737 MAX 8型客機10日墜毀，造成機上157人全部罹難。其後中國、印度、澳洲和所有歐洲國家已相繼禁止這型飛機在空域飛行。（譯者：林治平）1080314\r\n" + 
 					"\r\n" + 
 					"波音737機瘟";
-			 Clob strToClob1 = ChangeClob.stringToClob(forumR1Content);
+			 Clob strToClob1 = changeClob.stringToClob(forumR1Content);
 			 forumR1.setContent(strToClob1);
 			forumR2 = new Forum(null,"Test02", null, new Timestamp(sDF.parse("2019-03-06").getTime()),"知識問答", "審核",  null);
 			String forumR2Content = "（中央社華盛頓13日綜合外電報導）美國總統川普今天宣布，計畫下令停飛所有波音737 MAX機型飛機。這型飛機在不到5個月內兩度失事，多數國家已下令停飛，使得川普承受沈重國際與政治壓力，終於決定跟進。\r\n" + 
@@ -185,7 +185,7 @@ public class CreateTable {
 					"衣索比亞航空公司（Ethiopian Airlines）一架波音737 MAX 8型客機10日墜毀，造成機上157人全部罹難。其後中國、印度、澳洲和所有歐洲國家已相繼禁止這型飛機在空域飛行。（譯者：林治平）1080314\r\n" + 
 					"\r\n" + 
 					"波音737機瘟";
-			 Clob strToClob2 = ChangeClob.stringToClob(forumR2Content);
+			 Clob strToClob2 = changeClob.stringToClob(forumR2Content);
 			 forumR2.setContent(strToClob2);
 			forumR3 = new Forum(null,"Test03", null, new Timestamp(sDF.parse("2019-03-06").getTime()),"房價討論", "審核",  null);
 			String forumR3Content = "（中央社華盛頓13日綜合外電報導）美國總統川普今天宣布，計畫下令停飛所有波音737 MAX機型飛機。這型飛機在不到5個月內兩度失事，多數國家已下令停飛，使得川普承受沈重國際與政治壓力，終於決定跟進。\r\n" + 
@@ -197,23 +197,23 @@ public class CreateTable {
 					"衣索比亞航空公司（Ethiopian Airlines）一架波音737 MAX 8型客機10日墜毀，造成機上157人全部罹難。其後中國、印度、澳洲和所有歐洲國家已相繼禁止這型飛機在空域飛行。（譯者：林治平）1080314\r\n" + 
 					"\r\n" + 
 					"波音737機瘟";
-			 Clob strToClob3 = ChangeClob.stringToClob(forumR3Content);
+			 Clob strToClob3 = changeClob.stringToClob(forumR3Content);
 			 forumR3.setContent(strToClob3);
 			forumReply1 = new ForumReply(null, "test1", null, time, "待審", null, null);
 			String forumReply1Content = "asdqwrcwqefefqwe";
-			 Clob strToClob4 = ChangeClob.stringToClob(forumReply1Content);
+			 Clob strToClob4 = changeClob.stringToClob(forumReply1Content);
 			 forumReply1.setContent(strToClob4);
 			forumReply2 = new ForumReply(null, "test2", null, time, "待審", null, null);
 			String forumReply2Content = "好棒棒";
-			 Clob strToClob5 = ChangeClob.stringToClob(forumReply2Content);
+			 Clob strToClob5 = changeClob.stringToClob(forumReply2Content);
 			 forumReply2.setContent(strToClob5);
 			forumReport1 = new ForumReport(null, null, "不當言論", null, time,"待審");
 			String forumReport1Content = "hello world";
-			 Clob strToClob6 = ChangeClob.stringToClob(forumReport1Content);
+			 Clob strToClob6 = changeClob.stringToClob(forumReport1Content);
 			 forumReport1.setContent(strToClob6);
 			forumReport2 = new ForumReport(null, null, "騷擾言論", null, time,"待審");
 			 String forumReport2Content = "此文章有不雅字眼";
-			 Clob strToClob7 = ChangeClob.stringToClob(forumReport2Content);
+			 Clob strToClob7 = changeClob.stringToClob(forumReport2Content);
 			 forumReport2.setContent(strToClob7);
 
 
