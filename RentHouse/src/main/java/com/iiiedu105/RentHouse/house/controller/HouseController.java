@@ -152,13 +152,13 @@ public class HouseController {
 //		}
 		return "redirect:/membercontrol/houseRefactPictureSuc";
 	}
-	@RequestMapping(value="/myHouse/houseRefactPictureSuc")
+	@RequestMapping(value="/membercontrol/houseRefactPictureSuc")
 	public String houseRefactPic(Model model) {
 		return "redirect:/membercontrol/houseRefactPicture";
 	}
 	
 	//導入房屋詳細
-	@RequestMapping(value="/myHouse/houseRefactDet/{hId}")
+	@RequestMapping(value="/membercontrol/houseRefactDet/{hId}")
 	public String houseRefactDetail(Model model,@PathVariable Integer hId,HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
 		httpSession.setAttribute("houseId", hId);
@@ -170,8 +170,12 @@ public class HouseController {
 		HttpSession httpSession = request.getSession();
 		Integer houseId = (Integer) httpSession.getAttribute("houseId");
 		HouseDetail detailBean = houseService.findById(houseId).getDetailBean();
-		
 		Member member = (Member) httpSession.getAttribute("user");
+		if(detailBean == null) {
+			detailBean = new HouseDetail();
+			model.addAttribute("detailBean", detailBean);
+			return "House/HouseRefactDetail";
+		}
 		if(member == null)
 			return "redirect:/";
 		if(!(detailBean.getHouseBean().getMemberBean().getId().equals(member.getId())))
@@ -230,10 +234,10 @@ public class HouseController {
 			detailBean.setShortest(detailBean.getShortest()+shortestN);
 
 			houseService.updateHouseDetail(detailBean,houseId);
-			return "redirect:/myHouse/houseRefactSelect";
+			return "redirect:/membercontrol/houseRefactSelect";
 		} else {
 			model.addAttribute("errorMsg", errorMsg);
-			return "forward:/myHouse/houseRefactDetailE";
+			return "forward:/membercontrol/houseRefactDetailE";
 		}
 	}
 	

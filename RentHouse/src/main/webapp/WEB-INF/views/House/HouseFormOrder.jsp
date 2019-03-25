@@ -38,7 +38,7 @@
             <legend>請選擇付款方案</legend>
             <p>${errorMsg.orderE}</p>
             <c:forEach var="VipProject" items="${VipProjects}">
-              <div>
+              <div style="background-color: white;">
                 <input type="radio" name="vip" id="${VipProject.pNumber}" value="${VipProject.pNumber}">
                 <label for="${VipProject.pNumber}">${VipProject.pName}</label>
                 <p>${VipProject.pInfo}</p>
@@ -46,7 +46,8 @@
               </div>
             </c:forEach>
           </fieldset>
-          <input type="submit" class="large green" value="前往付款">
+          <input type="submit" class="large green button" value="前往付款">
+          <a class="button orange medium" href="/membercontrol/houseRefactSelect">稍後付款</a>
         </form:form>
       </div>
     </div>

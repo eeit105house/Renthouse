@@ -9,14 +9,14 @@
 /*---------------------------------
 	BUTTONS
 -----------------------------------*/
-button,
-a.btn,
-a.btn:visited,
-a.button,
-a.button:visited,
-input[type="submit"],
-input[type="reset"],
-input[type="button"]{
+/* button, */
+/* a.btn, */ 
+/* a.btn:visited, */ 
+/* a.button, */
+/* a.button:visited, */
+/* input[type="submit"], */
+/* input[type="reset"], */
+/* input[type="button"]*/button,a.button,a.button:visited,input[type="submit"].button,input[type="button"].button{ 
 position:relative;
 top:0;
 left:0;
@@ -52,30 +52,36 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', end
 background: linear-gradient(top, rgba(252,252,252,1) 0%,rgba(224,224,224,1) 100%); /* W3C */
 }
 
-button:active,
-a.btn:active,
-a.btn:visited:active,
-a.button:active,
-a.button:visited:active,
-input[type="submit"]:active,
-input[type="reset"]:active,
-input[type="button"]:active{-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,0.2),inset 0 -10px 20px rgba(0,0,0,0.07);-moz-box-shadow:inset 0 3px 5px rgba(0,0,0,0.2),inset 0 -10px 20px rgba(0,0,0,0.07);box-shadow:inset 0 3px 5px rgba(0,0,0,0.2),inset 0 -10px 20px rgba(0,0,0,0.07);}
+/* button:active, */
+/* a.btn:active, */
+/* a.btn:visited:active, */
+/* a.button:active, */
+/* a.button:visited:active, */
+/* input[type="submit"]:active, */
+/* input[type="reset"]:active, */
+/* input[type="button"]:active*/button:active,a.button:active,a.button:visited:active,input[type="submit"].button:active,input[type="button"].button:active{-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,0.2),inset 0 -10px 20px rgba(0,0,0,0.07);-moz-box-shadow:inset 0 3px 5px rgba(0,0,0,0.2),inset 0 -10px 20px rgba(0,0,0,0.07);box-shadow:inset 0 3px 5px rgba(0,0,0,0.2),inset 0 -10px 20px rgba(0,0,0,0.07);}
 button[disabled],.disabled:active{-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;}
 
 button,
-input[type="submit"],
-input[type="reset"],
-input[type="button"]{*padding:7px 15px;}/*IE 7 ONLY*/
+input[type="submit"].button,
+input[type="reset"].button,
+input[type="button"].button{*padding:7px 15px;}IE 7 ONLY
 
-	a.btn,a.button{}/*overrides*/
-	button.small, a.btn.small, a.button.small{font-size:0.8em;padding:5px 10px;}
-	button.medium, a.btn.medium, a.button.medium{}/*default*/
-	button.large, a.btn.large, a.button.large{font-size:1.3em;padding:10px 20px;}
-	button.disabled, a.btn.disabled, a.button.disabled{color:#ccc;cursor:default;background:#efefef;}
-	button.disabled:hover, a.btn.disabled:hover, a.button.disabled:hover{border:1px solid #ccc;background:#efefef;}
+/* 	a.btn,a.button{}/*overrides */
+/* 	button.small, a.btn.small, a.button.small{font-size:0.8em;padding:5px 10px;} */
+/* 	button.medium, a.btn.medium, a.button.medium{}default */
+/* 	button.large, a.btn.large, a.button.large{font-size:1.3em;padding:10px 20px;} */
+/* 	button.disabled, a.btn.disabled, a.button.disabled{color:#ccc;cursor:default;background:#efefef;} */
+/* 	button.disabled:hover, a.btn.disabled:hover, a.button.disabled:hover{border:1px solid #ccc;background:#efefef;} */
+	a.button{}/*overrides*/
+	button.small,  a.button.small{font-size:0.8em;padding:5px 10px;}
+	button.medium,  a.button.medium{}/*default*/
+	button.large, a.button.large{font-size:1.3em;padding:10px 20px;}
+	button.disabled, a.button.disabled{color:#ccc;cursor:default;background:#efefef;}
+	button.disabled:hover,  a.button.disabled:hover{border:1px solid #ccc;background:#efefef;}
 
 	button:hover,
-	a.btn:hover,
+/* 	a.btn:hover, */
 	a.button:hover,
 	input[type="submit"]:hover,
 	input[type="reset"]:hover,
@@ -197,7 +203,7 @@ background:0;
 	ORANGE
 -----------------------------------*/
 button.orange,
-a.btn.orange,
+/* a.btn.orange, */
 a.button.orange,
 input[type=submit].orange,
 input[type=reset].orange,
@@ -215,7 +221,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa84c', end
 }
 
 	button.orange:hover,
-	a.btn.orange:hover,
+/* 	a.btn.orange:hover, */
 	a.button.orange:hover{
 	text-shadow:0 1px 0 #FC730A;
 	border:1px solid #FC730A;
@@ -232,7 +238,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa84c', end
 	BLUE
 -----------------------------------*/
 button.blue,
-a.btn.blue,
+/* a.btn.blue, */
 a.button.blue,
 input[type=submit].blue,
 input[type=reset].blue,
@@ -250,7 +256,7 @@ background: linear-gradient(top, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,r
 }
 
 	button.blue:hover,
-	a.btn.blue:hover,
+/* 	a.btn.blue:hover, */
 	a.button.blue:hover{
 	text-shadow:0 1px 0 #1D6DC1;
 	border:1px solid #1D6DC1;
@@ -267,7 +273,7 @@ background: linear-gradient(top, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,r
 	PINK
 -----------------------------------*/
 button.pink,
-a.btn.pink,
+/* a.btn.pink, */
 a.button.pink,
 input[type=submit].pink,
 input[type=reset].pink,
@@ -285,7 +291,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', end
 }
 
 	button.pink:hover,
-	a.btn.pink:hover,
+/* 	a.btn.pink:hover, */
 	a.button.pink:hover{
 	text-shadow:0 1px 0 #EF0251;
 	border:1px solid #EF0251;
@@ -302,7 +308,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', end
 	GREEN
 -----------------------------------*/
 button.green,
-a.btn.green,
+/* a.btn.green, */
 a.button.green,
 input[type=submit].green,
 input[type=reset].green,
@@ -320,7 +326,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8fc400', end
 }
 
 	button.green:hover,
-	a.btn.green:hover,
+/* 	a.btn.green:hover, */
 	a.button.green:hover{
 	text-shadow:0 1px 0 #669E00;
 	border:1px solid #669E00;
@@ -337,7 +343,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8fc400', end
 	RED
 -----------------------------------*/
 button.red,
-a.btn.red,
+/* a.btn.red, */
 a.button.red,
 input[type=submit].red,
 input[type=reset].red,
@@ -355,7 +361,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e53c16', end
 }
 
 	button.red:hover,
-	a.btn.red:hover,
+/* 	a.btn.red:hover, */
 	a.button.red:hover{
 	text-shadow:0 1px 0 #B21203;
 	border:1px solid #B21203;

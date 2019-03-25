@@ -8,7 +8,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>房屋上架</title>
+	<title>上架</title>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
@@ -23,7 +23,7 @@
 	<script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBR1UlWEzeskb_Jx_RbBtPypXUDGWdF-U8"
 		type="text/javascript"></script>
 	<!-- house模板CSS	 -->
-<%-- 	<link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet" type="text/css" /> --%>
+	<link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet" type="text/css" />
 	<script>
 
 		$("*").ready(function () {
@@ -134,42 +134,21 @@
 	</script>
 </head>
 
-<body style="background-color: #ffebd7;">
-    <div style="height: 75px;">
-        <%@include file="narbar.jsp"%>
-    </div>
-    <div>
-        <h1 class="container">親愛的 ${user.name} 您好</h1>
-        <div class="d-flex container" id="wrapper">
-            <!-- Sidebar -->
-<!--             <div class="bg-light border-right" id="sidebar-wrapper"> -->
-<!--                 <div class="sidebar-heading list-group-item bg-warning">會員中心</div> -->
-<!--                 <div class="list-group list-group-flush"> -->
-<%--                     <a href="<c:url value='/membercontrol/${user.id}'/>" --%>
-<!--                         class="list-group-item list-group-item-action bg-light">&gt;&gt;會員資料修改</a> -->
-<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a> -->
-<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a> -->
-<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Events</a> -->
-<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a> -->
-<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Status</a> -->
-<!--                 </div> -->
-<!--             </div> -->
-            <!-- /#sidebar-wrapper -->
+<body>
+		<div id="header">
 
-            <!-- Page Content -->
-            <div id="page-content-wrapper">
-
-<!--                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom"> -->
-<!--                     <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
-<!--                     </div> -->
-<!--                 </nav> -->
-                <!-- 		內容 -->
-                <div class="container-fluid" style="width: 800px;">
-                    <h1 class="mt-4"></h1>
-                    <div class="post">
+			</div>
+			<!-- end #header -->
+			<div id="menu">
+	
+			</div>
+			<!-- end #menu -->
+			<div id="content">
+				<div >
+						<div class="post">
 								<form:form method='POST' modelAttribute="houseBean">
 									<fieldset>
-										<legend>房屋類型</legend>
+										<legend>租房類型</legend>
 										<div>
 											<label for="addr" class="label.col_1">地址：</label>
 											<span id="twzipcode"></span>
@@ -241,19 +220,20 @@
 									</fieldset>
 								</form:form>
 							</div>
-                </div>
-            </div>
-            <!-- /#page-content-wrapper -->
+				</div>
+				<!-- end #posts -->
+				<div id="links">
 
-        </div>
-    </div>
+				</div>
+				<!-- end #links -->
+				<div style="clear: both;">&nbsp;</div>
+			</div>
+			<!-- end #content -->
+			<div id="footer">
+				<!-- <p id="legal">Copyright &copy; Logistix. Designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>
+				</p> -->
+			</div>
+			<!-- end #footer -->
 </body>
 
 </html>
-
-
-
-
-
-
-						
