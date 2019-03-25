@@ -137,7 +137,7 @@ console.log('User disconnect.');
 <!--   登入 -->
 <%@include file="Login_plustar.jsp" %>
  <!-- 註冊 --> 
-<%-- <%@include file="Registered_plustar.jsp" %> --%>
+<%@include file="Registered_plustar.jsp" %>
 
 <a href="#hidden_content" class="lightbox" ></a>
 

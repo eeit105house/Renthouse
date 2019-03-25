@@ -27,7 +27,6 @@
 				<span class="font-22B">${objectlist[1]}</span><br> <span
 					class="font-16B">${objectlist[2]}&nbsp;&nbsp;|&nbsp;&nbsp;${objectlist[3]}坪&nbsp;&nbsp;|&nbsp;&nbsp;樓層:${objectlist[4]}/${objectlist[5]}</span><br>
 				<span class="font-16B">${objectlist[6]}&nbsp;-&nbsp;${objectlist[7]}</span>
-				<br> <span class="font-16B">屋主&nbsp;${objectlist[8]}&nbsp;&nbsp;/&nbsp;&nbsp;${objectlist[10]}</span>
 			</div>
 
 		</div>
@@ -57,34 +56,23 @@ $("div span.page-link").click(function(){
 	var page= $(this).attr("id");
 	$(".start").empty();
 	if(page == 1){
-		if(sessionStorage.getItem("clearList") != null){
-			
-		}else{
-			$.ajax({
-				url:"${pageContext.request.contextPath}/search/searchPage_start",
-				type:"Get",
-				cache:"false",
-				success:function(data){
-						$(".start").html(data);
-				}
-			});
-		}
-		
-	}else{
-		if(sessionStorage.getItem("clearList") != null){{
-			
-			}
-		}else{
-			$.ajax({
-				url:"${pageContext.request.contextPath}/search/searchPage_start_page",
-				type:"Get",
-				data:{"page":page},
-				success:function(data){
+		$.ajax({
+			url:"${pageContext.request.contextPath}/search/searchPage_start_map",
+			type:"Get",
+			cache:"false",
+			success:function(data){
 					$(".start").html(data);
-				}
-			});
-		}
-		
+			}
+		});
+	}else{
+		$.ajax({
+			url:"${pageContext.request.contextPath}/search/searchPage_start_page_map",
+			type:"Get",
+			data:{"page":page},
+			success:function(data){
+				$(".start").html(data);
+			}
+		});
 	}			
 	
 });
