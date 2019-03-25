@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%> 
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
@@ -77,20 +81,26 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 </style>
 </head>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">		
 <body>
 <button class="open-button" onclick="openForm()">點我預約</button>
 
 <div class="form-popup" id="myForm">
-  <form action="/TenantServlet" class="form-container" method="post">
-    <h1>選擇預約時段</h1>
-
-    <label for="time"><b>Date</b></label>
-    <input type="datetime-local" name="email" required>
-    <p/>
-
-    <button type="submit" class="btn">送出預約</button>
-    <button type="button" class="btn cancel" onclick="closeForm()">關閉</button>
-  </form>
+  <form:form method='POST' modelAttribute= "Reservation" class='form-container'>
+		<div>
+			<label for="time">預約時間</label>
+			<div>
+				<input id="time" name="time" type="datetime-local"/>
+			</div>
+		</div>
+		<form:input path="status" id="status" type="hidden" value="未看"/>
+		<form:input path="check" id="check" type="hidden" value="待確認"/>		
+		<button type="submit" class="btn">reservation</button>
+    	<button type="button" class="btn cancel" onclick="closeForm()">close</button>
+	</form:form>
 </div>
 
 <script>

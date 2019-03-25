@@ -22,6 +22,7 @@ public class Reservation {
 	private Integer houseId;
 	private Integer score;
 	private String readStatus;
+	private String check;
 	
 	private Member memberBean;
 	private House houseBean;
@@ -105,6 +106,16 @@ public class Reservation {
 		this.readStatus = readStatus;
 	}
 	
+	public String getCheck() {
+		return check;
+	}
+
+
+	public void setCheck(String check) {
+		this.check = check;
+	}
+
+
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="Member_Id")
 	public Member getMemberBean() {
