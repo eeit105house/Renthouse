@@ -96,5 +96,6 @@
   </form:form>
   </div>
   </div>
+  <input type="hidden" id="herenow" value="customer"/> 
 </body>
 </html>

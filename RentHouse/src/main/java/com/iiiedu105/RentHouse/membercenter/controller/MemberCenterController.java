@@ -54,6 +54,7 @@ public class MemberCenterController {
 	public String memberService(Model model) {
 		EmployeeReport employeeReport = new EmployeeReport();
 		model.addAttribute("employeeReport",employeeReport);
+		model.addAttribute("member", new Member());
 		return "login/MemberService";	
 	}
 
@@ -77,6 +78,7 @@ public class MemberCenterController {
 	public String getAllEmployeeReport(Model model) {
 		List<EmployeeReport> list = memberService.getAllMail();
 		model.addAttribute("allmail",list);
+		model.addAttribute("member", new Member());
 		return "login/MemberServiceReport";
 	}
 }
