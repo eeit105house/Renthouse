@@ -1,4 +1,4 @@
-package com.iiiedu105.RentHouse.Controller;
+package com.iiiedu105.RentHouse.listHouse.controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -72,8 +72,20 @@ public class HomeController {
 	// 輪播牆
 	@RequestMapping("/search/searchPage_carousel")
 	public String searchPageCarouselData(Model model) {
-		List<Object[]> Objectlist = service.getAllhouse();
-		model.addAttribute("Objectlists", Objectlist);
+		List<Object[]> Objectlist = service.getAllVipHouse();
+		
+		int totalList = Objectlist.size(); //全部vip
+		double carPage = Math.ceil(totalList/5.0);	//算共幾頁輪播
+		model.addAttribute("carPage",carPage);
+		for(int j =0 ; j <carPage;j++) {				
+			List<Object[]> Newlist = new ArrayList<>();
+			for(int i =j*5 ; i<j*5+5;i++) {			//每頁輪播5筆
+				if(i>=totalList) break;
+				Newlist.add(Objectlist.get(i));
+			}		
+			String listName = "Newlist"+j;
+			model.addAttribute(listName,Newlist);
+		}		
 		return "search/searchPage_carousel";
 	}
 	// 輪播牆
@@ -195,7 +207,6 @@ public class HomeController {
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 		String mimeType = context.getMimeType(filename);
 		MediaType mediaType = MediaType.valueOf(mimeType);
-		System.out.println("mediaType =" + mediaType);
 		headers.setContentType(mediaType);
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 		return responseEntity;

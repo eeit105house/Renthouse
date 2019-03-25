@@ -25,7 +25,6 @@
           <h1 class="mb-5">租的快速，住的幸福</h1>
         </div>
         <div class="col-md-10 col-lg-12 col-xl-12 mx-auto">
-          <form>
             <div class="form-row">
               <div class="col-md-9">
                 <div id="zipcode3" class="row form-group">
@@ -42,7 +41,6 @@
                 <button type="submit" class="btn btn-block btn-primary">搜尋找幸福 Click!</button>
               </div>
           </div>
-         </form>
         </div>
       </div>
     </div>
@@ -214,5 +212,14 @@
       </div>
     </div>
   </footer>
+  <script>
+  $("div.col-md-2 button").click(function(){
+	  var text = $("div.col-md-9 input").val();
+	  var id = "keyWord";
+	  sessionStorage.setItem("clearList",text)
+	  sessionStorage.setItem(id,text);
+	  window.location.href="${pageContext.request.contextPath}/search/searchPage_sessionStorage";
+  });
+  </script>
 </body>
 </html>

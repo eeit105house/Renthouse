@@ -10,4 +10,5 @@ public interface SearchHouseByConditionService {
 	public HousePic getHousePicById(Integer id);
 	public List<Object[]> gethouse();
 	public List<Object[]> getHouseByMsg(String msg);
+	public List<Object[]> getAllVipHouse();
 }
