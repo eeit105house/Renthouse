@@ -33,8 +33,7 @@ Released for free under the Creative Commons Attribution License
 
 <body>
 	<div id="header">
-		<h1>Logistix</h1>
-		<h2>By TEMPLATED</h2>
+
 	</div>
 	<!-- end #header -->
 	<div id="menu">
