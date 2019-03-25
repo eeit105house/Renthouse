@@ -1,6 +1,35 @@
-* {
-	padding: 0px;
-	margin: 0px;
+.body {
+	margin: 0;
+	padding: 0;
+	background: #ffebd7;
+}
+.pinImg{
+	whidth:30px;
+	height:30px;
+}
+.mapImg{
+	margin-right:100px;
+	float:right;
+	margin-top: 30px;
+	width:100px;
+	height: 40px;
+}
+.carousel-inner{
+	
+}
+.perDivIncarousel{
+	margin:10px;
+	width:200px;
+	float:left;
+	clear:right;
+}
+.perImgIncarousel{
+	width: 200px;
+	height: 150px;
+
+}
+.perSpanIncarousel{
+	
 }
 #carouselimg{
 	width: 50px;
@@ -19,7 +48,6 @@
 }
 .titleDiv {
 	float:left;
-	clear:right;
 }
 .textDiv{
 	float:right;
@@ -81,24 +109,26 @@
 }
 
 .searchDiv {
-	margin-left: 100px;
+/* 	margin-left: 100px; */
 	background-color: #F2FFF2;
 	height: 80px;
+	background: #ffebd7;
 }
 
 .searchBut {
-	margin-top: 20px;
+	margin-top: 30px;
 	width: 90px;
 	height: 40px;
 }
 
 .searchText {
-	margin-top: 20px;
+	margin-left:100px;
+	margin-top: 30px;
 	width: 400px;
 	height: 40px;
 }
 
-#sitebody {
+.sitebody {
 	line-height: 40px;
 	border-bottom: 0.5px solid #9d9d9d;
 	width: 900px;

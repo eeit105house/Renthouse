@@ -16,7 +16,7 @@
 <body>
 	<c:forEach var='objectlist' varStatus="check" items="${Objectlists}">
 		<c:if test="${check.count<6}">
-		<div id="sitebody">
+		<div class="sitebody" id = "${objectlist[13]}" onclick='window.open("${pageContext.request.contextPath}/houseView/${objectlist[13]}")'>
 			<div id="sidebar_left">
 				<img id="img" src="<c:url value='/getPicture/${objectlist[0]}' />" />
 			</div>
@@ -51,31 +51,44 @@
 	  </ul>
 	</nav>
 	<hr>
+
 <script>
 $("div span.page-link").click(function(){
 	var page= $(this).attr("id");
 	$(".start").empty();
 	if(page == 1){
-		$.ajax({
-			url:"${pageContext.request.contextPath}/search/searchPage_start",
-			type:"Get",
-			cache:"false",
-			success:function(data){
-					$(".start").html(data);
-			}
-		});
+		if(sessionStorage.getItem("clearList") != null){
+			
+		}else{
+			$.ajax({
+				url:"${pageContext.request.contextPath}/search/searchPage_start",
+				type:"Get",
+				cache:"false",
+				success:function(data){
+						$(".start").html(data);
+				}
+			});
+		}
+		
 	}else{
-		$.ajax({
-			url:"${pageContext.request.contextPath}/search/searchPage_start_page",
-			type:"Get",
-			data:{"page":page},
-			success:function(data){
-				$(".start").html(data);
+		if(sessionStorage.getItem("clearList") != null){{
+			
 			}
-		});
+		}else{
+			$.ajax({
+				url:"${pageContext.request.contextPath}/search/searchPage_start_page",
+				type:"Get",
+				data:{"page":page},
+				success:function(data){
+					$(".start").html(data);
+				}
+			});
+		}
+		
 	}			
 	
 });
 </script>
+
 </body>
 </html>

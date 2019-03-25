@@ -2,6 +2,7 @@ package com.iiiedu105.RentHouse.house.service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import com.iiiedu105.RentHouse.model.House;
 import com.iiiedu105.RentHouse.model.HouseDetail;
@@ -22,4 +23,6 @@ public interface HouseService {
 	public void updatePictureByHouseIdAndPicNo(HousePic housePicBean);
 	public void updateHouse(House houseBean);
 	public void orderFinishied(Integer houseId,Timestamp timestamp,Integer pay);
+	public Map<Integer,Integer> getPicNumberWithIdByIds(List<Integer> picIds);
+	public void dontPostHouseById(Integer houseId);
 }

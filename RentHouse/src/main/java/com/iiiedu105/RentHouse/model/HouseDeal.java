@@ -23,14 +23,14 @@ public class HouseDeal {
 	private Date leaseDate;
 	private Integer dealPrice;
 	private Blob pdf;
-	
+	private String fileName;
 	private House houseBean;
 
 	public HouseDeal() {
 	}
 	
 	
-	public HouseDeal(Integer id, Integer houseId, Date dealDate, Date leaseDate, Integer dealPrice, Blob pdf) {
+	public HouseDeal(Integer id, Integer houseId, Date dealDate, Date leaseDate, Integer dealPrice,String fileName, Blob pdf) {
 		super();
 		this.id = id;
 		this.houseId = houseId;
@@ -38,6 +38,7 @@ public class HouseDeal {
 		this.leaseDate = leaseDate;
 		this.dealPrice = dealPrice;
 		this.pdf = pdf;
+		this.fileName = fileName;
 	}
 
 	@Id
@@ -91,6 +92,13 @@ public class HouseDeal {
 		this.pdf = pdf;
 	}
 
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="House_Id")
 	public House getHouseBean() {

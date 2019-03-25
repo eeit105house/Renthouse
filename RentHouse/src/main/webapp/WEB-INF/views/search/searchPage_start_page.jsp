@@ -15,8 +15,8 @@
 </head>
 <body>
 	<c:forEach var='newList' varStatus="check" items="${NewList}">
-		<div id="sitebody">
-			<div id="sidebar_left">
+		<div class="sitebody" id="${newList[13]}" onclick='window.open("${pageContext.request.contextPath}/houseView/${newList[13]}")'>
+			<div class="sidebar_left">
 				<img id="img" src="<c:url value='/getPicture/${newList[0]}' />" />
 			</div>
 			<div id="sidebar_right">
@@ -49,6 +49,7 @@
 	    </li>
 	  </ul>
 	</nav>
+
 	<script>
 $("div span.page-link").click(function(){
 	var page= $(this).attr("id");
@@ -75,5 +76,6 @@ $("div span.page-link").click(function(){
 	
 });
 </script>
+
 </body>
 </html>

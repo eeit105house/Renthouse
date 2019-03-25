@@ -8,33 +8,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- bootStrap的css -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
 <!-- 自定義的css -->
 <link rel='stylesheet'	href='${pageContext.request.contextPath}/search/css/houselist.css'	type="text/css" />
 
-<!-- 縣市套件 -->
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script	src="${pageContext.request.contextPath}/search/js/paging-master/js/paging.js"></script>
-<script	src="${pageContext.request.contextPath}/search/js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
-	
+
 <title>Insert title here</title>
 </head>
-<body>
-<a href="${pageContext.request.contextPath}/search/searchByMap">地圖查詢</a>
+<body class="body">
+
+	<div style="height: 75px;">
+		<%@include file="../login/narbar.jsp"%>
+	</div>
+	
+<%-- <a href="${pageContext.request.contextPath}/deal/AllHouseDealForAMember">某一房子(houseid)---歷年房屋成交紀錄</a> --%>
 	<form method="get">
 		<div class="searchDiv">
-			<input class="searchText" type="text" placeholder="請輸入關鍵字(社區、街道等)" />
-			<button class="searchBut">
+			<input class="searchText" type="text" placeholder="請輸入關鍵字(社區、街道等)" id="keyWord"/>
+			<button class="searchBut" onclick="getKeyWord()">
 				<img src='${pageContext.request.contextPath}/search/img/search.PNG' />
 			</button>
+		<a class = "mapImg" href="${pageContext.request.contextPath}/search/searchByMap"><img class="pinImg"src="${pageContext.request.contextPath}\search\img\Pin.png">地圖查詢</a>
 		</div>
 	</form>
 
 	<hr>
 	<div class="selectNumberScreen">
 		<div class="hasBeenSelected">
-			<span class="clearList_left">已選擇條件：</span>
+			<span class="clearList_left">篩選條件：</span>
 			<span class="clearList"></span>
 			<span class="eliminateCriteria">全部清除</span>
 		</div>
@@ -116,15 +117,28 @@
 		</div>
 	</div>
 	<br>
-<!-- 	<div class="titleDiv">輪播牆</div> -->
+	<div class="titleDiv">精選推薦</div>
 	<hr>
 		<div class = "carousel"></div>
 	<hr>
 		<div class = "start"></div>
 	<hr>
 
+<script>$("#zipcode2").twzipcode({
+	countySel: "縣市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
+	districtSel: "鄉鎮市區", // 地區預設值
+	zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區
+	css: ["city city-control", "town town-control"], // 自訂 "城市"、"地區" class 名稱 
+	countyName: "city", // 自訂城市 select 標籤的 name 值
+	districtName: "town" // 自訂地區 select 標籤的 name 值
+	});</script>
+<script>
+	function getKeyWord(){
+		var text = $("div.searchDiv input").val();
+		var id = "keyWord";
+		changeSpan(text,id);
+	};
 	
-	<script>	
 	if(sessionStorage.getItem("clearList") != null){
 		if(sessionStorage.getItem("clearList") == "106 大安區"){
 			$(".clearList").empty();
@@ -176,54 +190,12 @@
 	}
 			
 			
-			$("#zipcode2").twzipcode({
-			countySel: "縣市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
-			districtSel: "鄉鎮市區", // 地區預設值
-			zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區
-			css: ["city city-control", "town town-control"], // 自訂 "城市"、"地區" class 名稱 
-			countyName: "city", // 自訂城市 select 標籤的 name 值
-			districtName: "town" // 自訂地區 select 標籤的 name 值
-			});
-
+		
 					
 		$(".titleDiv span ").click(function() {
 			var text = $(this).text();
 			var id = $(this).attr("id");
-				$(".start").empty();
-			if ($(".clearList").text() == "") {
-				sessionStorage.setItem(id, text);
-				$(".clearList").append(text);
-				$(".eliminateCriteria").show();
-			} else {
-				if (sessionStorage.getItem(id) != null) {
-					var deldata = sessionStorage.getItem(id);
-					sessionStorage.removeItem(id);
-					var ca = $(".clearList").text().split(',');
-					$(".clearList").empty();
-					for (var i = 0; i < ca.length; i++) {
-						if (ca[i] != deldata) {
-							$(".clearList").append(ca[i] + ",");
-						}
-					}
-					$(".clearList").append(text);
-					sessionStorage.setItem(id, text);
-				} else {
-					sessionStorage.setItem(id, text);
-					$(".clearList").append("," + text);
-				}
-			}
-			
-			$.ajax({
-				url:"${pageContext.request.contextPath}/search/searchPage_criteria",
-				data:{Searchcriteria:$(".clearList").text()},
-				type:"Get",
-				cache:"false",
-				success:function(data){
-					$(".start").html(data);
-					
-				}
-			});
-			sessionStorage.setItem("clearList",$(".clearList").text());
+			changeSpan(text,id);
 		});
 
 		$(".titleDiv > input ").click(function() {
@@ -287,8 +259,45 @@
 			changeSelect(text,id);
 		});
 		
-		function changeSelect(text,id){
+		function changeSpan(text,id){
+			$(".start").empty();
+			if ($(".clearList").text() == "") {
+				sessionStorage.setItem(id, text);
+				$(".clearList").append(text);
+				$(".eliminateCriteria").show();
+			} else {
+				if (sessionStorage.getItem(id) != null) {
+					var deldata = sessionStorage.getItem(id);
+					sessionStorage.removeItem(id);
+					var ca = $(".clearList").text().split(',');
+					$(".clearList").empty();
+					for (var i = 0; i < ca.length; i++) {
+						if (ca[i] != deldata) {
+							$(".clearList").append(ca[i] + ",");
+						}
+					}
+					$(".clearList").append(text);
+					sessionStorage.setItem(id, text);
+				} else {
+					sessionStorage.setItem(id, text);
+					$(".clearList").append("," + text);
+				}
+			}
 			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/search/searchPage_criteria",
+				data:{Searchcriteria:$(".clearList").text()},
+				type:"Get",
+				cache:"false",
+				success:function(data){
+					$(".start").html(data);
+					
+				}
+			});
+			sessionStorage.setItem("clearList",$(".clearList").text());		
+		}
+		
+		function changeSelect(text,id){			
 		$(".start").empty();
 		if ($(".clearList").text() == "") {
 			sessionStorage.setItem(id, text);
@@ -426,28 +435,17 @@
 			
 		});
 		
+
 		
-		
-		$("#twzipcode").twzipcode();
-		
-	      
-	    
-		// 		$(".selectType").click(function() {
-		// 			$.ajax({
-		// 				url : "/queryByType",
-		// 				data:{type:$(this).text()}
-		// 				type : "GET",
-		// 				cache : "false",
-		// 				success : function(data) {
-		// 					alert(data);
-		// 				}
-		// 			});
-		// 		});
-	</script>
+		$('.carousel').carousel({
+			  interval: 2000
+			});
+</script>
 
 		<!-- bootStrap的Jquery'Popper'JavaScript 插件 -->
-<!-- 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> -->
-<!-- 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script	src="${pageContext.request.contextPath}/search/js/paging-master/js/paging.js"></script>
 </body>
 </html>

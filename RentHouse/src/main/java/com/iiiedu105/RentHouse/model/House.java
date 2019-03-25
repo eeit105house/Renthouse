@@ -43,7 +43,7 @@ public class House {
 	private HouseDetail detailBean;
 	private Set<HousePic> pictureBeans = new LinkedHashSet<HousePic>();
 	private Set<HouseQA> qaBeans = new LinkedHashSet<HouseQA>();
-	private HouseDeal dealBean;
+	private Set<HouseDeal> dealBean;
 	private Set<Reservation> reservationBeans = new LinkedHashSet<Reservation>();
 	private Set<HouseFavorite> houseFavoriteBeans = new LinkedHashSet<HouseFavorite>();
 	
@@ -226,12 +226,12 @@ public class House {
 		this.detailBean = detailBean;
 	}
 	
-	@OneToOne(mappedBy="houseBean",cascade=CascadeType.ALL)
-	public HouseDeal getDealBean() {
+	@OneToMany(mappedBy="houseBean",cascade=CascadeType.ALL)
+	public Set<HouseDeal> getDealBean() {
 		return dealBean;
 	}
 	
-	public void setDealBean(HouseDeal dealBean) {
+	public void setDealBean(Set<HouseDeal> dealBean) {
 		this.dealBean = dealBean;
 	}
 	
