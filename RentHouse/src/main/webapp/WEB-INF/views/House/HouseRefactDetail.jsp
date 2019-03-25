@@ -14,7 +14,6 @@
 
 	<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
 	<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<!--   <link rel="stylesheet" href="jqueryui/style.css"> -->
 
 	<script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script>
@@ -22,7 +21,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/css/kickstart.css" media="all" />
 	<!-- KICKSTART -->
 	  	<!-- house模板CSS	 -->
-		  <link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet" type="text/css" />
+<%-- 		  <link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet" type="text/css" /> --%>
 
 	<script type="text/javascript">
 		$("*").ready(function () {
@@ -119,19 +118,39 @@
 	<title>修改</title>
 </head>
 
-<body>
+<body style="background-color: #ffebd7;">
+    <div style="height: 75px;">
+        <%@include file="../login/narbar.jsp"%>
+    </div>
+    <div>
+        <h1 class="container">親愛的 ${user.name} 您好</h1>
+        <div class="d-flex container" id="wrapper">
+            <!-- Sidebar -->
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading list-group-item bg-warning">會員中心</div>
+                <div class="list-group list-group-flush">
+                    <a href="<c:url value='/membercontrol/${user.id}'/>"
+                        class="list-group-item list-group-item-action bg-light">&gt;&gt;會員資料修改</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+                </div>
+            </div>
+            <!-- /#sidebar-wrapper -->
 
-	<div id="header">
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
 
-	</div>
-	<!-- end #header -->
-	<div id="menu">
-
-	</div>
-	<!-- end #menu -->
-	<div id="content">
-		<div>
-			<div class="post">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    </div>
+                </nav>
+                <!-- 		內容 -->
+                <div class="container-fluid" style="width: 800px;">
+                    <h1 class="mt-4"></h1>
+                    <div class="post">
 				<form:form method='POST' modelAttribute="detailBean">
 					<fieldset>
 						<legend>詳細資訊</legend>
@@ -268,20 +287,13 @@
 					</fieldset>
 				</form:form>
 			</div>
-		</div>
-		<!-- end #posts -->
-		<div id="links">
+                </div>
+            </div>
+            <!-- /#page-content-wrapper -->
 
-		</div>
-		<!-- end #links -->
-		<div style="clear: both;">&nbsp;</div>
-	</div>
-	<!-- end #content -->
-	<div id="footer">
-		<!-- <p id="legal">Copyright &copy; Logistix. Designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>
-				</p> -->
-	</div>
-	<!-- end #footer -->
+        </div>
+    </div>
+    	<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 </body>
 
 </html>

@@ -21,7 +21,7 @@
 </head>
 <body style="background-color: #ffebd7;">
     <div style="height: 75px;">
-        <%@include file="narbar.jsp"%>
+        <%@include file="../login/narbar.jsp"%>
     </div>
     <div>
         <h1 class="container">親愛的 ${user.name} 您好</h1>

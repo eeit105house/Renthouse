@@ -16,8 +16,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
 <!-- google fonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-<!-- 日期用 -->
-<script src="${pageContext.request.contextPath}/login/js/date.js"></script>
+
 <!-- 登入彈跳視窗 -->
 <script src="${pageContext.request.contextPath}/login/js/bootstrap.bundle.min.js"></script>
 <!-- 彈跳錯誤視窗 與地址有衝突-->
@@ -134,11 +133,14 @@ console.log('User disconnect.');
 	<a href="<c:url value='/membercontrol/${user.id}'/>">${user.name}</a>
 	
     </nav>
+<c:if test="${user==null}">    
+<!-- 日期用 -->
+<script src="${pageContext.request.contextPath}/login/js/date.js"></script>
 <!--   登入 -->
 <%@include file="Login_plustar.jsp" %>
  <!-- 註冊 --> 
-<%-- <%@include file="Registered_plustar.jsp" %> --%>
-
+<%@include file="Registered_plustar.jsp" %>
+</c:if>
 <a href="#hidden_content" class="lightbox" ></a>
 
 <div id="hidden_content" style="display: none ;">

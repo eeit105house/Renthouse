@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- jquery -->
-<script src="//code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
+<!-- <head> -->
+<!-- <meta charset="UTF-8"> -->
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+<!-- <!-- jquery --> -->
+<!-- <script src="//code.jquery.com/jquery-3.3.1.slim.min.js" -->
+<!-- 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
+<!-- 		crossorigin="anonymous"></script> -->
 <!-- bootstrap -->
 <link href="${pageContext.request.contextPath}/login/css/bootstrap.css" rel="stylesheet">
 <!-- icon -->
@@ -71,9 +71,9 @@ console.log('User disconnect.');
 	session.invalidate();
 }
 </script>
-<title>導覽</title>
-</head>
-<body >            
+<!-- <title>導覽</title> -->
+<!-- </head> -->
+<!-- <body >             -->
 <nav class="navbar navbar-light bg-light navbar-expand-lg static-top navbar-fixed-top" style="border-bottom:1px solid black; ">
     <div class="container" style="margin: 0;padding: 0;">
       <a class="navbar-brand"  href="${pageContext.request.contextPath}"><img style="height: 60px" alt="租你幸福" src="<c:url value='/login/img/logo.png'/>"></a>
@@ -100,11 +100,12 @@ console.log('User disconnect.');
     ${user.name}</a>
 	</div>
     </nav>
+<c:if test="${user==null}">    
 <!--   登入 -->
-<%-- <%@include file="Login_plustar.jsp" %> --%>
-<!--  <!-- 註冊 -->  -->
-<%-- <%@include file="Registered_plustar.jsp" %> --%>
-
+<%@include file="../login/Login_plustar.jsp" %>
+<!--  註冊  -->
+<%@include file="../login/Registered_plustar.jsp" %>
+</c:if>
 <a href="#hidden_content" class="lightbox" ></a>
 
 <div id="hidden_content" style="display: none ;">
@@ -112,5 +113,5 @@ console.log('User disconnect.');
 		<h2 id="errormsg" style="text-align: center; padding-top: 20%;"></h2>
 	</div>
 </div>
-</body>
-</html>
+<!-- </body> -->
+<!-- </html> -->

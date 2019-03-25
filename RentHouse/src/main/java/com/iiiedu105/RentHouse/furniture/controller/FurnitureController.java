@@ -138,6 +138,11 @@ public class FurnitureController {
 		return "Furniture/FurnitureRefactForm";
 	}
 	// ====檢視=======
+	@RequestMapping(value = "/furnitureView/")
+	public String viewAllFurniturePage(Model model) {
+		model.addAttribute("member", new Member());;
+		return "";
+	}
 	@RequestMapping(value = "/furnitureView/{fuId}")
 	public String viewFurniturePage(Model model, @PathVariable Integer fuId) {
 		Furniture furnitureBean = furnitureServise.findById(fuId);
@@ -145,6 +150,7 @@ public class FurnitureController {
 //		List<Integer> picIds = furnitureServise.getPicIdsByHouse(houseBean);
 		model.addAttribute("furnitureBean", furnitureBean);
 		model.addAttribute("memberBean", memberBean);
+		model.addAttribute("member", new Member());
 //		model.addAttribute("picIds", picIds);
 		String cStr = "";
 //			try {
