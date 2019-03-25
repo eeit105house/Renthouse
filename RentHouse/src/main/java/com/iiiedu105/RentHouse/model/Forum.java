@@ -30,7 +30,7 @@ public class Forum {
 //	private Integer frId; //[FR_id(回文關聯主鍵)]
 	
 	private Member memberBean;
-	private Forum forumBean;
+//	private Forum forumBean;
 	private Set<ForumReply> forumReplyBeans = new LinkedHashSet<ForumReply>();
 	private Set<ForumReport> forumReportBeans = new LinkedHashSet<ForumReport>();
 	
@@ -85,12 +85,11 @@ public class Forum {
 	}
 
 	public Timestamp getDatetime() {
-	
 		return datetime;
 	}
 
 	public void setDatetime(Timestamp datetime) {
-		datetime = datetime;
+		this.datetime = datetime;
 	}
 
 	public String getStatus() {
@@ -101,7 +100,7 @@ public class Forum {
 		this.status = status;
 	}
 
-	
+	@Transient
 	public String getMemberId() {
 		return memberId;
 	}
@@ -136,14 +135,6 @@ public class Forum {
 
 	public void setForumReportBeans(Set<ForumReport> forumReportBeans) {
 		this.forumReportBeans = forumReportBeans;
-	}
-	@OneToMany(mappedBy="forumBean",cascade=CascadeType.ALL)
-	public Forum getForumBeans(Forum forumBeans) {
-		return forumBeans;
-	}
-	
-	public void setForumBeans(Forum forumBeans) {		
-		this.forumBean = forumBeans;
 	}
 	
 }

@@ -87,7 +87,11 @@ public class HouseDaoImpl implements HouseDao {
 		Session session = factory.getCurrentSession();
 		String hql ="SELECT hp.id FROM  HousePic hp WHERE :hId = hp.houseBean ORDER BY hp.picNo ASC";
 		List<Integer> picIds = new ArrayList<Integer>();
+
 		picIds = session.createQuery(hql).setParameter("hId", houseBean).getResultList();
+		for(Integer picId:picIds) {
+			System.out.println(picId);
+		}
 		return picIds;
 	}
 
@@ -134,7 +138,7 @@ public class HouseDaoImpl implements HouseDao {
 		String hql = "FROM  HousePic hp WHERE hp.houseBean = :house AND hp.picNo = :pNo";
 		List<HousePic> pics = session.createQuery(hql).setParameter("house", houseBean).setParameter("pNo", picNo).getResultList();
 		if(!pics.isEmpty())
-			return pics.get(0);
+			return pics.get(0); 
 		else
 			return null;
 	}

@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.iiiedu105.RentHouse.login.dao.MemberDao;
 import com.iiiedu105.RentHouse.login.service.MemberService;
+import com.iiiedu105.RentHouse.model.EmployeeReport;
 import com.iiiedu105.RentHouse.model.Member;
 //import com.iiiedu105.RentHouse.model.TestTest;
+import com.iiiedu105.RentHouse.model.Reservation;
 
 @Service
 @Transactional
@@ -31,8 +33,17 @@ public class MemberServiceImpl implements MemberService {
 	 * @see com.iiiedu105.RentHouse.login.service.impl.MemberService#findByName(java.lang.String)
 	 */
 	@Override
-	public List<Member> findByName(String id) {
+	public List<Member> checkByid(String id) {
 		return memberDao.checkMemberById(id);
+	}
+	
+	@Override
+	public List<Member> checkByPersonID(String personID) {
+		return memberDao.checkMemberByPersonID(personID);
+	}
+	@Override
+	public List<Member> checkByEmail(String email) {
+		return memberDao.checkMemberByEmail(email);
 	}
 	@Override
 	public Member login(String id,String pwd) {
@@ -89,5 +100,30 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void insertMemberPicture(Member member) {
 		memberDao.insertMemberPicture(member);
+	}
+
+	@Override
+	public List<Object[]> getAllMsg(String id) {		
+		return memberDao.getAllMsg(id);
+	}
+
+	@Override
+	public List<Reservation> getUnreadReservation() {		
+		return memberDao.getUnreadReservation();
+	}
+
+	@Override
+	public List<EmployeeReport> getUnreadEmployeeReport() {
+		return memberDao.getUnreadEmployeeReport();
+	}
+
+	@Override
+	public void addEmployeeReport(EmployeeReport employeeReport) {
+		memberDao.addEmployeeReport(employeeReport);
+	}
+
+	@Override
+	public void updateAllMsgById(String mid) {
+		memberDao.updateAllMsgById(mid);
 	}
 }

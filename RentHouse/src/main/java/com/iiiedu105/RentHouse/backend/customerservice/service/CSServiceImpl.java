@@ -1,5 +1,6 @@
 package com.iiiedu105.RentHouse.backend.customerservice.service;
 
+import java.sql.Clob;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,18 @@ public class CSServiceImpl implements CSService {
 		
 		return dao.getMailById(id);
 	}
-
 	@Transactional
 	@Override
-	public void updateMailById(String eid, String reply, Integer id) {
-		dao.updateMailById(eid, reply, id);
+	public void updateMail(String eid, Clob content, Integer id) {
+		dao.updateMail(eid, content, id);
 	}
 
+//	@Transactional
+//	@Override
+//	public void updateMailById(String eid, String reply, Integer id) {
+//		dao.updateMailById(eid, reply, id);
+//	}
+
+	
+	
 }

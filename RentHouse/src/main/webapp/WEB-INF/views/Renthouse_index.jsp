@@ -5,41 +5,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- jquery -->
-<script src="//code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- bootstrap 模板-->
-<link href="login/css/bootstrap.css" rel="stylesheet">
-  <!-- google fonts -->
-<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
 <!-- 首頁樣式 -->
-<link href="login/css/landing-page.css" rel="stylesheet">
 
-<!--   地址用 -->
-<script src="login/js/Address.js"></script>
-<script src="//cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
+<link href="${pageContext.request.contextPath}/login/css/landing-page.css" rel="stylesheet">
 <title>租你幸福~*</title>
-
-
-
 </head>
 <body>
 <!-- header -->
-<%@include file="login/narbar.jsp" %> 
-<a href = "ForumView">forum</a>
-<a href = "HouseView">House</a>
+<div style="height: 75px;">
+<%@include file="login/narbar.jsp"%>
+</div>
   <!-- Masthead -->
-  <header class="masthead text-white text-center" style="background: url(login/img/index.jpg) no-repeat center center;" >
+  <header class="masthead text-white text-center" style="background: url(http://upload.cc/i1/2019/03/22/ZhpAo8.jpg) no-repeat center center;" >
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-xl-9 mx-auto">
-          <h1 class="mb-5">Slogan</h1>
+          <h1 class="mb-5">租的快速，住的幸福</h1>
         </div>
         <div class="col-md-10 col-lg-12 col-xl-12 mx-auto">
           <form>

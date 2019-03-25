@@ -21,10 +21,8 @@ public class ForumReport {
 	private Integer id;
 	private Integer forumId;
 	private String type;
-
 	private Clob content;
 	private Timestamp datetime;
-
 	private String status;
 	
 	private Forum forumBean;
@@ -32,10 +30,8 @@ public class ForumReport {
 	
 	public ForumReport() {
 	}
-
 	public ForumReport(Integer id, Integer forumId, String type, Clob content, Timestamp datetime, String status,
 			Forum forumBean, Member memberBean) {
-
 		super();
 		this.id = id;
 		this.forumId = forumId;
@@ -45,7 +41,6 @@ public class ForumReport {
 		this.status = status;
 		this.forumBean = forumBean;
 		this.memberBean = memberBean;
-
 	}
 
 
@@ -94,8 +89,7 @@ public class ForumReport {
 		this.content = content;
 	}
 	public void setDatetime(Timestamp datetime) {
-		Timestamp Datetime= new Timestamp(System.currentTimeMillis());
-		datetime = Datetime;
+		this.datetime = datetime;
 	}
 	
 	

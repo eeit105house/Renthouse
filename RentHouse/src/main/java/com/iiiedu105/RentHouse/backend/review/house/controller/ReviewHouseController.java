@@ -1,8 +1,5 @@
 package com.iiiedu105.RentHouse.backend.review.house.controller;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.iiiedu105.RentHouse.backend.review.house.service.OTShelfService;
 import com.iiiedu105.RentHouse.backend.review.writings.Service.RWritingsService;
@@ -20,10 +15,9 @@ import com.iiiedu105.RentHouse.house.controller.HouseController;
 import com.iiiedu105.RentHouse.house.service.HouseService;
 import com.iiiedu105.RentHouse.model.ForumReport;
 import com.iiiedu105.RentHouse.model.House;
-import com.iiiedu105.RentHouse.model.HouseDetail;
-import com.iiiedu105.RentHouse.model.Member;
 
 @Controller
+@RequestMapping("/backstage")
 public class ReviewHouseController {
 	@Autowired
 	OTShelfService oservice;
@@ -52,12 +46,12 @@ public class ReviewHouseController {
 	@RequestMapping(value="/update/{id}")
 	public String updateHouse(@PathVariable("id") Integer id) {
 		oservice.updateHouseStatus(id);
-		return "redirect:/houseReview";		
+		return "redirect:/backstage/houseReview";		
 		}
 	@RequestMapping(value="/delete/{id}")
 	public String deleteHouse(@PathVariable("id") Integer id) {
 		oservice.deleteHouse(id);
-		return "redirect:/houseReview";		
+		return "redirect:/backstage/houseReview";		
 		}
 	
 	}

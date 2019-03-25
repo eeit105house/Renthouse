@@ -176,7 +176,7 @@ public class ForumController {
 		System.out.println(fakeM);
 		ForumBean.setDatetime(new Timestamp(System.currentTimeMillis()));
 		ForumBean.setStatus("上架");
-		ForumBean.setForumBeans(ForumBean);
+//		ForumBean.setForumBeans(ForumBean);
 		if(ForumBean.getTitle()==null || ForumBean.getTitle().length()==0)
 			{errorMsg.put("titleE", "必須有標題");
 			System.out.println("必須有標題");}

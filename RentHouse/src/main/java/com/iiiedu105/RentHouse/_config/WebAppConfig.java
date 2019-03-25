@@ -19,7 +19,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	public WebAppConfig() {
 	}
-
+ 
+	
 	@Bean
 	public ViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -27,26 +28,14 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		resolver.setPrefix("/WEB-INF/views/");//EX: /WEB-INF/views/ + ??????
 		resolver.setSuffix(".jsp");//EX: ???? + .jsp
 		return resolver;
-	}
-
+	}	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/HouseResorce/**").addResourceLocations("/WEB-INF/views/House/");
 		registry.addResourceHandler("/RHstaticresource/**")
 		.addResourceLocations("/WEB-INF/views/backstage/RHstaticresource/");
-
-//		rhr.addResourceHandler("/font/**")
-//		.addResourceLocations("/WEB-INF/views/backstage/font/");
-//		rhr.addResourceHandler("/ico/**")
-//		.addResourceLocations("/WEB-INF/views/backstage/ico/");
-//		rhr.addResourceHandler("/img/**")
-//		.addResourceLocations("/WEB-INF/views/backstage/img/");
-//		rhr.addResourceHandler("/js/**")
-//		.addResourceLocations("/WEB-INF/views/backstage/js/");		
 		registry.addResourceHandler("/login/**").addResourceLocations("/WEB-INF/views/login/");
 		registry.addResourceHandler("/search/**").addResourceLocations("/WEB-INF/views/search/");
-		registry.addResourceHandler("/Forum/**").addResourceLocations("/WEB-INF/views/Forum/");
-
 	}
 	
 	@Bean
@@ -57,4 +46,3 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		return resolver;		
 	}
 }
-

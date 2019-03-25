@@ -33,13 +33,11 @@ public class HouseDetail {
 	
 	private House houseBean;
 	
-
-
 	public HouseDetail() {
 	}
-
 	
-	public HouseDetail(Integer id, String title, Clob info, Integer deposit, Integer hoaFee, Date movingIn,
+
+	public HouseDetail(Integer id, String title,  Clob info, Integer deposit, Integer hoaFee, Date movingIn,
 			String shortest, String appliance, String furniture, String include, String le, String indetity,
 			Integer price) {
 		super();
@@ -56,9 +54,7 @@ public class HouseDetail {
 		this.le = le;
 		this.indetity = indetity;
 		this.price = price;
-		this.houseBean = houseBean;
 	}
-
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -78,14 +74,15 @@ public class HouseDetail {
 		this.title = title;
 	}
 
-//	@Column(columnDefinition="varchar(max)")
 	public Clob getInfo() {
 		return info;
 	}
 
-	public void setInfo(Clob clob) {
-		this.info = clob;
+
+	public void setInfo(Clob info) {
+		this.info = info;
 	}
+
 
 	public Integer getDeposit() {
 		return deposit;

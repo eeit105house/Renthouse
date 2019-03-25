@@ -1,7 +1,6 @@
 package com.iiiedu105.RentHouse.house.controller;
 
 import java.sql.Blob;
-import java.sql.Clob;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -41,6 +40,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.iiiedu105.RentHouse.ChangeClob;
 import com.iiiedu105.RentHouse.house.service.HouseService;
+import com.iiiedu105.RentHouse.model.Furniture;
 import com.iiiedu105.RentHouse.model.House;
 import com.iiiedu105.RentHouse.model.HouseDetail;
 import com.iiiedu105.RentHouse.model.HousePic;
@@ -53,8 +53,10 @@ import allPay.payment.integration.exception.AllPayException;
 @Controller
 public class HouseController {
 	//clt+f 下面
-	String fakeM = "abc123";//假定會員
+//	String fakeM = "abc123";//假定會員
 	
+	///newHouse
+	//membercontrol
 	@Autowired
 	HouseService houseService;
 	@Autowired
@@ -62,23 +64,26 @@ public class HouseController {
 	@Autowired
 	ChangeClob changeClob;
 //	private Integer houseId = null;
-	private String returnURL = "http://211.23.128.214:5000";
+	private String  returnURL = "http://211.23.128.214:5000";
 	private String orderResultURL = "http://localhost:8080/RentHouse/orderFinished/";
-	private List<Map<String,String>> vipProjects;
+//	private String orderResultURL = "http://eeitdemo10519.southeastasia.cloudapp.azure.com:8080/RentHouse/orderFinished/";
+	private List<Map<String,String>> vipProjects = theVipProject();
 
 
 	public HouseController() {
 	}
 	
 	//選擇修改
-	@RequestMapping(value="/houseRefactSelect")
-	public String houseRefactSelect(Model model) {
-		String mId = fakeM;	//假定會員
-		Member memberBean = houseService.getMemberById(mId);
-		List<House> houseList = houseService.getHousesByMemberId(mId);
-//		for(House house: houseList) {
-//			System.out.println(house.getDetailBean().getTitle()+house.getDetailBean().getId());
-//		}
+	@RequestMapping(value="/membercontrol/houseRefactSelect")
+	public String houseRefactSelect(Model model,HttpServletRequest request) {
+//		String mId = fakeM;	//假定會員
+		HttpSession httpSession = request.getSession();
+		Member member = (Member) httpSession.getAttribute("user");
+		if(member == null)
+			return "redirect:/";
+//		Member memberBean = houseService.getMemberById(member.getId());
+		List<House> houseList = houseService.getHousesByMemberId(member.getId());
+
 		Collections.sort(houseList, new Comparator<House>() {   
             @Override 
             public int compare(House arg0,House arg1) { 
@@ -88,28 +93,51 @@ public class HouseController {
 //		for(House house: houseList) {
 //			System.out.println(house.getDetailBean().getTitle()+house.getDetailBean().getId());
 //		}
-//		
+		for(House house: houseList) {
+			System.out.println(house.getId());
+		}
 		model.addAttribute("houseList", houseList);
 		return "House/HouseRefactSelect";
 	}
+	//重新上架房屋
+	@RequestMapping(value="/membercontrol/houseRePost/{hId}")
+	public String houseRePost(Model model,@PathVariable Integer hId,HttpServletRequest request) {
+		HttpSession httpSession = request.getSession();
+		httpSession.setAttribute("houseId", hId);
+		return "forward:/newHouse/houseOrder";
+	}
+	//下架房屋
+	@RequestMapping(value="/membercontrol/houseDontPost/{hId}")
+	public String houseDontPost(Model model,@PathVariable Integer hId,HttpServletRequest request) {
+		houseService.dontPostHouseById(hId);
+		return "redirect:/membercontrol/houseRefactSelect";
+	}
 	//導入房屋圖片
-	@RequestMapping(value="/houseRefactPic/{hId}")
+	@RequestMapping(value="/membercontrol/houseRefactPic/{hId}")
 	public String houseRefactPic(Model model,@PathVariable Integer hId,HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
 		httpSession.setAttribute("houseId", hId);
 //		houseId = hId;
-		return "redirect:/houseRefactPicture";
+		return "redirect:/membercontrol/houseRefactPicture";
 	}
-	@RequestMapping(value="/houseRefactPicture",method=RequestMethod.GET)
+	@RequestMapping(value="/membercontrol/houseRefactPicture",method=RequestMethod.GET)
 	public String houseRefactPictureFormGet(Model model,HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
 		Integer houseId = (Integer) httpSession.getAttribute("houseId");
 		House houseBean = houseService.findById(houseId);
-		List<Integer> picIds = houseService.getPicIdsByHouse(houseBean);
+		
+		Member member = (Member) httpSession.getAttribute("user");
+		if(member == null)
+			return "redirect:/";
+		if(!(houseBean.getMemberBean().getId().equals(member.getId())))
+			return "redirect:/";
+		
+		Map<Integer, Integer> picIds = houseService.getPicNumberWithIdByIds(houseService.getPicIdsByHouse(houseBean));
 		model.addAttribute("picIds", picIds);
+		model.addAttribute("picId0", picIds.get(0));
 		return "House/HouseRefactPic";
 	}
-	@RequestMapping(value="/houseRefactPicture",method=RequestMethod.POST)
+	@RequestMapping(value="/membercontrol/houseRefactPicture",method=RequestMethod.POST)
 	public String houseRefactPictureFormPost(Model model,@RequestParam(value = "pic") MultipartFile file0,@RequestParam(value = "picNo") Integer picNo,HttpServletRequest request) {
 		System.out.println(picNo+"張圖片");
 		HttpSession httpSession = request.getSession();
@@ -122,47 +150,59 @@ public class HouseController {
 //			HousePic housePicBean = new HousePic(null, houseId, getImageBlob(file), picNo);
 //			houseService.updatePictureByHouseIdAndPicNo(housePicBean);
 //		}
-		return "redirect:/houseRefactPictureSuc";
+		return "redirect:/membercontrol/houseRefactPictureSuc";
 	}
-	@RequestMapping(value="/houseRefactPictureSuc")
+	@RequestMapping(value="/membercontrol/houseRefactPictureSuc")
 	public String houseRefactPic(Model model) {
-		return "redirect:/houseRefactPicture";
+		return "redirect:/membercontrol/houseRefactPicture";
 	}
 	
 	//導入房屋詳細
-	@RequestMapping(value="/houseRefactDet/{hId}")
+	@RequestMapping(value="/membercontrol/houseRefactDet/{hId}")
 	public String houseRefactDetail(Model model,@PathVariable Integer hId,HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
 		httpSession.setAttribute("houseId", hId);
 //		houseId = hId;
-		return "redirect:/houseRefactDetail";
+		return "redirect:/membercontrol/houseRefactDetail";
 	}
-	@RequestMapping(value="/houseRefactDetail",method=RequestMethod.GET)
+	@RequestMapping(value="/membercontrol/houseRefactDetail",method=RequestMethod.GET)
 	public String houseRefactDetailFormGet(Model model,HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
 		Integer houseId = (Integer) httpSession.getAttribute("houseId");
 		HouseDetail detailBean = houseService.findById(houseId).getDetailBean();
+		Member member = (Member) httpSession.getAttribute("user");
+		if(detailBean == null) {
+			detailBean = new HouseDetail();
+			model.addAttribute("detailBean", detailBean);
+			return "House/HouseRefactDetail";
+		}
+		if(member == null)
+			return "redirect:/";
+		if(!(detailBean.getHouseBean().getMemberBean().getId().equals(member.getId())))
+			return "redirect:/";
+		
 		model.addAttribute("detailBean", detailBean);
-		model.addAttribute("movingInStr", getStringBySqlDate(detailBean.getMovingIn(),"dd/MM/YYYY"));
+		model.addAttribute("movingInStr", getStringBySqlDate(detailBean.getMovingIn(),"MM/dd/YYYY"));
 		model.addAttribute("shortestN", detailBean.getShortest().substring(0, detailBean.getShortest().length()-1));
 		model.addAttribute("defaultShortestN", detailBean.getShortest().substring(detailBean.getShortest().length()-1));
 		model.addAttribute("defaultLe", detailBean.getLe());
 		String cStr = "";
-		try {
-			cStr =detailBean.getInfo().getSubString(1, (int) detailBean.getInfo().length());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			cStr =detailBean.getInfo().getSubString(1, (int) detailBean.getInfo().length());
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+		cStr =changeClob.ClobToString(detailBean.getInfo());
+
 		model.addAttribute("houseInfo", cStr);
 		return "House/HouseRefactDetail";
 	}
-	@RequestMapping(value="/houseRefactDetailE")
+	@RequestMapping(value="/membercontrol/houseRefactDetailE")
 	public String houseRefactDetailFormGetE(Model model) {
 		return "House/HouseRefactDetail";
 	}
 	
-	@RequestMapping(value="/houseRefactDetail",method=RequestMethod.POST)
+	@RequestMapping(value="/membercontrol/houseRefactDetail",method=RequestMethod.POST)
 	public String houseRefactDetailFormPost(Model model, @ModelAttribute("detailBean") HouseDetail detailBean,HttpServletRequest request) throws ParseException {
 //		House houseBean = houseService.findById(houseId);
 //		detailBean.setId(houseBean.getDetailBean().getId());
@@ -172,32 +212,32 @@ public class HouseController {
 		Integer houseId = (Integer) httpSession.getAttribute("houseId");
 		House houseBean = houseService.findById(houseId);
 		detailBean.setHouseBean(houseBean);
-		if(detailBean.getTitle().equals(null) || detailBean.getTitle().length()==0)
+		if(detailBean.getTitle()==null || detailBean.getTitle().trim().length()==0)
 			errorMsg.put("titleE", "必須有標題");
-		if(request.getParameter("movingInN").equals(null) ||request.getParameter("movingInN").length()==0)
+		if(request.getParameter("movingInN")==null ||request.getParameter("movingInN").trim().length()==0)
 			errorMsg.put("movingInNE", "請選擇日期！");
 		if(detailBean.getPrice()==null)
 			errorMsg.put("priceE", "請輸入租金！");
-		if(detailBean.getShortest().equals(null) || detailBean.getShortest().length()==0)
+		if(detailBean.getShortest()==null || detailBean.getShortest().trim().length()==0)
 			errorMsg.put("shortestE", "請輸入最短租期！");
 		if(detailBean.getHoaFee()==null)
 			detailBean.setHoaFee(0);
 		
 		if (errorMsg.isEmpty()) {
 			String infoN ="";
-			if(!request.getParameter("infoN").equals(null) && request.getParameter("infoN").length()>0) 
+			if(request.getParameter("infoN")!=null && request.getParameter("infoN").trim().length()>0) 
 				infoN =request.getParameter("infoN");
 			detailBean.setInfo(changeClob.stringToClob(infoN));
 			String movingInN = request.getParameter("movingInN");
-			detailBean.setMovingIn(getSqlDateByString(movingInN,"dd/MM/YYYY"));
+			detailBean.setMovingIn(getSqlDateByString(movingInN,"MM/dd/YYYY"));
 			String shortestN =request.getParameter("shortestN");
 			detailBean.setShortest(detailBean.getShortest()+shortestN);
 
 			houseService.updateHouseDetail(detailBean,houseId);
-			return "redirect:/houseRefactSelect";
+			return "redirect:/membercontrol/houseRefactSelect";
 		} else {
 			model.addAttribute("errorMsg", errorMsg);
-			return "forward:/houseRefactDetailE";
+			return "forward:/membercontrol/houseRefactDetailE";
 		}
 	}
 	
@@ -214,12 +254,13 @@ public class HouseController {
 		model.addAttribute("detailBean", detailBean);
 		model.addAttribute("picIds", picIds);
 		String cStr = "";
-		try {
-			cStr =detailBean.getInfo().getSubString(1, (int) detailBean.getInfo().length());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			cStr =detailBean.getInfo().getSubString(1, (int) detailBean.getInfo().length());
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+		cStr =changeClob.ClobToString(detailBean.getInfo());
+
 		model.addAttribute("houseInfo", cStr);
 		String movingInStr = getStringBySqlDate(detailBean.getMovingIn(),"YYYY年MM月dd日");
 		model.addAttribute("movingInStr", movingInStr);
@@ -231,32 +272,32 @@ public class HouseController {
 		else
 			fakeName += "**";
 		model.addAttribute("fakeName", fakeName);
-		if(!detailBean.getAppliance().equals(null) && detailBean.getAppliance().length()>0) {
+		if(detailBean.getAppliance()!=null && detailBean.getAppliance().trim().length()>0) {
 			List<String> appliance = Arrays.asList(detailBean.getAppliance().split(";"));
 			model.addAttribute("applianceList", appliance);
 		} else {
 			model.addAttribute("applianceList", "無提供設備");
 		}
-		if(!detailBean.getFurniture().equals(null) && detailBean.getFurniture().length()>0) {
+		if(detailBean.getFurniture()!=null && detailBean.getFurniture().trim().length()>0) {
 			List<String> furniture = Arrays.asList(detailBean.getFurniture().split(";"));
 			model.addAttribute("furnitureList", furniture);
 		} else {
 			model.addAttribute("furnitureList", "無提供家具");
 		}
-		if(!detailBean.getInclude().equals(null) && detailBean.getInclude().length()>0) {
+		if(detailBean.getInclude()!=null && detailBean.getInclude().trim().length()>0) {
 			String includeList = detailBean.getInclude().replace(";", "、");
 			List<String> include = Arrays.asList(detailBean.getInclude().split(";"));
 			model.addAttribute("includeList", includeList);
 		} else {
 			model.addAttribute("includeList", "無包含其餘費用");
 		}
-		if(!detailBean.getLe().equals(null) && detailBean.getLe().length()>0) {
+		if(detailBean.getLe()!=null && detailBean.getLe().trim().length()>0) {
 			List<String> le = Arrays.asList(detailBean.getLe().split(";"));
 			model.addAttribute("leList", le);
 		} else {
 			model.addAttribute("leList", "無");
 		}
-		if(!detailBean.getIndetity().equals(null) && detailBean.getIndetity().length()>0) {
+		if(detailBean.getIndetity()!=null && detailBean.getIndetity().trim().length()>0) {
 			List<String> indetity = Arrays.asList(detailBean.getIndetity().split(";"));
 			model.addAttribute("indetityList", indetity);
 		} else {
@@ -306,67 +347,76 @@ public class HouseController {
 	}
 //	
 	//=====新增房屋=====
-	@RequestMapping(value = "/house", method = RequestMethod.GET)
-	public String getAddNewHouseForm(Model model) {
+	@RequestMapping(value = "/newHouse/house", method = RequestMethod.GET)
+	public String getAddNewHouseForm(Model model,HttpServletRequest request) {
+		
+		HttpSession httpSession = request.getSession();
+		Member member = (Member) httpSession.getAttribute("user");
+		if (member == null)
+			return "redirect:/";
 		House houseBean = new House();
 		model.addAttribute("houseBean", houseBean);
 		return "House/HouseForm";
 	}
 
-	@RequestMapping(value = "/houseE")
+	@RequestMapping(value = "/newHouse/houseE")
 	public String getAddNewHouseFormE(Model model) {
 		House houseBean = new House();
 		model.addAttribute("houseBean", houseBean);
 		return "House/HouseForm";
 	}
 
-	@RequestMapping(value = "/house", method = RequestMethod.POST)
+	@RequestMapping(value = "/newHouse/house", method = RequestMethod.POST)
 	public String addNewHouse(Model model, @ModelAttribute("houseBean") House houseBean, BindingResult br,HttpServletRequest request) {
+		
 		Map<String, String> errorMsg = new HashMap<String, String>();
-			houseBean.setMemberId(fakeM);//假定會員
-		if (houseBean.getAddr().equals(null) || houseBean.getAddr().length() == 0 || houseBean.getCity().equals(null)
-				|| houseBean.getCity().length() == 0 || houseBean.getBoroughs().equals(null)
-				|| houseBean.getBoroughs().length() == 0) {
+		if (houseBean.getAddr()==null || houseBean.getAddr().trim().length() == 0 || houseBean.getCity()==null
+				|| houseBean.getCity().trim().length() == 0 || houseBean.getBoroughs()==null
+				|| houseBean.getBoroughs().trim().length() == 0) {
 			errorMsg.put("addrE", "地址未輸入完成！");
 		}
 		if (houseBean.getSqft() == null || houseBean.getSqft() == 0)
 			errorMsg.put("sqftE", "坪數未輸入完成！");
-		if (houseBean.getBuild().equals(null) || houseBean.getBuild().length() == 0)
+		if (houseBean.getBuild()==null || houseBean.getBuild().trim().length() == 0)
 			errorMsg.put("buildE", "建築型態未選擇完成！");
-		if (houseBean.getType().equals(null) || houseBean.getType().length() == 0)
+		if (houseBean.getType()==null || houseBean.getType().trim().length() == 0)
 			errorMsg.put("typeE", "住房類型未選擇完成！");
 		if (houseBean.getFloor() == null || houseBean.getFloor() == 0)
 			errorMsg.put("floorE", "樓層未輸入完成！");
 		if (houseBean.getTopFloor() == null || houseBean.getTopFloor() < 0)
 			errorMsg.put("topfloorE", "頂樓樓層未輸入完成！");
-		if (houseBean.getLayout().equals(null) || houseBean.getLayout().length() == 0)
+		if (houseBean.getLayout()==null || houseBean.getLayout().trim().length() == 0)
 			errorMsg.put("layoutE", "格局未輸入完成！(例：3房2廳，樓中樓......");
 		if (errorMsg.isEmpty()) {
-			houseService.insertHouse(houseBean);
 			HttpSession httpSession = request.getSession();
+			Member member = (Member) httpSession.getAttribute("user");
+			houseBean.setMemberId(member.getId());//假定會員
+			houseBean.setStatus("下架");
+
+			houseService.insertHouse(houseBean);
 			httpSession.setAttribute("houseId", houseBean.getId());
 //			houseId = houseBean.getId();
-			return "redirect:/houseDetail";
+			return "redirect:/newHouse/houseDetail";
 		} else {
 			model.addAttribute("errorMsg", errorMsg);
-			return "forward:/houseE";
+			return "forward:/newHouse/houseE";
 		}
 	}
 
-	@RequestMapping(value = "/houseDetail", method = RequestMethod.GET)
+	@RequestMapping(value = "/newHouse/houseDetail", method = RequestMethod.GET)
 	public String getAddNewHouseFormDetail(Model model) {
 		HouseDetail detailBean = new HouseDetail();
 		model.addAttribute("detailBean", detailBean);
 		return "House/HouseFormDetail";
 	}
-	@RequestMapping(value = "/houseDetailE")
+	@RequestMapping(value = "/newHouse/houseDetailE")
 	public String getAddNewHouseFormDetailE(Model model) {
 		HouseDetail detailBean = new HouseDetail();
 		model.addAttribute("detailBean", detailBean);
 		return "House/HouseFormDetail";
 	}
 
-	@RequestMapping(value = "/houseDetail", method = RequestMethod.POST)
+	@RequestMapping(value = "/newHouse/houseDetail", method = RequestMethod.POST)
 	public String addNewHouseFormDetail(Model model, @ModelAttribute("detailBean") HouseDetail detailBean,
 			HttpServletRequest request) throws ParseException {
 		Map<String, String> errorMsg = new HashMap<String, String>();
@@ -374,44 +424,44 @@ public class HouseController {
 		HttpSession httpSession = request.getSession();
 		House houseBean = houseService.findById((Integer) httpSession.getAttribute("houseId"));
 		detailBean.setHouseBean(houseBean);
-		if(detailBean.getTitle().equals(null) || detailBean.getTitle().length()==0)
+		if(detailBean.getTitle()==null || detailBean.getTitle().trim().length()==0)
 			errorMsg.put("titleE", "必須有標題");
-		if(request.getParameter("movingInN").equals(null) ||request.getParameter("movingInN").length()==0)
+		if(request.getParameter("movingInN")==null ||request.getParameter("movingInN").trim().length()==0)
 			errorMsg.put("movingInNE", "請選擇日期！");
 		if(detailBean.getPrice()==null)
 			errorMsg.put("priceE", "請輸入租金！");
-		if(detailBean.getShortest().equals(null) || detailBean.getShortest().length()==0)
+		if(detailBean.getShortest()==null || detailBean.getShortest().trim().length()==0)
 			errorMsg.put("shortestE", "請輸入最短租期！");
 		if(detailBean.getHoaFee()==null)
 			detailBean.setHoaFee(0);
 
 		if (errorMsg.isEmpty()) {
-			if(!request.getParameter("infoN").equals(null) && request.getParameter("infoN").length()>0) 
+			if(request.getParameter("infoN")==null && request.getParameter("infoN").trim().length()>0) 
 				infoN=request.getParameter("infoN");
 			detailBean.setInfo(changeClob.stringToClob(infoN));
 			String movingInN = request.getParameter("movingInN");
-			detailBean.setMovingIn(getSqlDateByString(movingInN,"dd/MM/YYYY"));
+			detailBean.setMovingIn(getSqlDateByString(movingInN,"MM/dd/YYYY"));
 			String shortestN =request.getParameter("shortestN");
 			detailBean.setShortest(detailBean.getShortest()+shortestN);
 			
 			houseService.insertDetail(detailBean);
-			return "redirect:/housePic";
+			return "redirect:/newHouse/housePic";
 		} else {
 			model.addAttribute("errorMsg", errorMsg);
-			return "forward:/houseDetailE";
+			return "forward:/newHouse/houseDetailE";
 		}
 	}
 
-	@RequestMapping(value = "/housePic", method = RequestMethod.GET)
+	@RequestMapping(value = "/newHouse/housePic", method = RequestMethod.GET)
 	public String getAddNewHouseFormPic(Model model) {
 		return "House/HouseFormPic";
 	}
-	@RequestMapping(value = "/housePicE")
+	@RequestMapping(value = "/newHouse/housePicE")
 	public String getAddNewHouseFormPicE(Model model) {
 		return "House/HouseFormPic";
 	}
 
-	@RequestMapping(value = "/housePic", method = RequestMethod.POST)
+	@RequestMapping(value = "/newHouse/housePic", method = RequestMethod.POST)
 	public String addNewHouseFormPic(Model model, @RequestParam(value = "pic0") MultipartFile file0,
 			@RequestParam(value = "pics") MultipartFile[] file,HttpServletRequest request) {
 		Map<String, String> errorMsg = new HashMap<String, String>();
@@ -436,7 +486,7 @@ public class HouseController {
 		housePicBean0.setHouseBean(houseBean);
 		houseService.insertPicture(housePicBean0);
 		int i = 1;
-		List<HousePic> picBeans = new LinkedList<HousePic>();
+//		List<HousePic> picBeans = new LinkedList<HousePic>();
 		for (MultipartFile mf : file) {
 			if (!mf.isEmpty()) {
 
@@ -446,11 +496,15 @@ public class HouseController {
 					errorMsg.put("typeE", "請上傳jpeg檔");
 					break;
 				}
+				HousePic housePicBean = null;
+				 blob = getImageBlob(mf);
+				housePicBean = new HousePic(null, houseId, blob, i);
+//				housePicBean.setHouseBean(houseBean);
+				houseService.insertPicture(housePicBean);
+
 				// 获得文件后缀名称
-				blob = getImageBlob(file0);
-				HousePic housePicBean = new HousePic(null, houseId, blob, i);
-				housePicBean.setHouseBean(houseBean);
-				picBeans.add(housePicBean);
+
+//				picBeans.add(housePicBean);
 				imageName = contentType.substring(contentType.indexOf("/") + 1);
 				i += 1;
 			}
@@ -458,28 +512,29 @@ public class HouseController {
 				break;
 		}
 		if(errorMsg.isEmpty()) {
-			for(HousePic housePicBean:picBeans) {
-				houseService.insertPicture(housePicBean);
-			}
-			return "redirect:/houseOrder";
+//			for(HousePic housePicBean:picBeans) {
+//				
+//				houseService.insertPicture(housePicBean);
+//			}
+			return "redirect:/newHouse/houseOrder";
 		}
-		return "forward:/housePicE";
+		return "forward:/newHouse/housePicE";
 	}
 
-	@RequestMapping(value = "/houseOrder", method = RequestMethod.GET)
+	@RequestMapping(value = "/newHouse/houseOrder", method = RequestMethod.GET)
 	public String getAddNewHouseOrderForm(Model model) {
-		theVipProject();
+//		theVipProject();
 		Object command = new Object();
 		model.addAttribute("VipProjects", vipProjects);
 		model.addAttribute("command", command);
 		return "House/HouseFormOrder";
 	}
-	@RequestMapping(value = "/houseOrder", method = RequestMethod.POST)
+	@RequestMapping(value = "/newHouse/houseOrder", method = RequestMethod.POST)
 	public String postAddNewHouseOrderForm(Model model,@RequestParam String vip) {		
-		if(!vip.equals(null) || vip.length()!=0) {
+		if(vip!=null || vip.trim().length()>0) {
 			for(Map<String,String> vipProject:vipProjects) {
 				if(vipProject.get("pNumber").equals(vip)) {
-					return "redirect:/houseOrderSelect/"+vip;
+					return "redirect:/newHouse/houseOrderSelect/"+vip;
 				}
 			}
 		}
@@ -487,11 +542,11 @@ public class HouseController {
 		errorMsg.put("orderE", "請由此選擇方案");
 		return "forward:/houseOrderE";
 	}
-	@RequestMapping(value = "/houseOrderE")
+	@RequestMapping(value = "/newHouse/houseOrderE")
 	public String getAddNewHouseOrderFormE(Model model) {
 		return "House/HouseFormOrder";
 	}
-	@RequestMapping(value = "/houseOrderSelect/{vip}",produces="text/html;charset=UTF-8")
+	@RequestMapping(value = "/newHouse/houseOrderSelect/{vip}",produces="text/html;charset=UTF-8")
 	public @ResponseBody String toAllPay(Model model, @PathVariable String vip) {
 		AioCheckOutOneTime aio = new AioCheckOutOneTime();
 		AllInOne all = new AllInOne("");
@@ -517,7 +572,7 @@ public class HouseController {
 		sdf.applyPattern("yyyy/MM/dd hh:mm:ss");
 		aio.setMerchantTradeDate(sdf.format(date));
 		//從廠商DB撈出的商品資訊
-		aio.setItemName(itemName);
+		aio.setItemName(tradeDesc);
 		aio.setTotalAmount(totalAmount);
 		aio.setTradeDesc(tradeDesc);
 		//廠商可自行決定是否延遲撥款
@@ -537,6 +592,7 @@ public class HouseController {
 	
 	@RequestMapping(value = "/orderFinished/{pay}", method = RequestMethod.POST)
 	public String orderFinishedPage(Model model, HttpServletRequest request,@PathVariable Integer pay) throws ParseException {
+		
 		int rtnCode  = Integer.parseInt(request.getParameter("RtnCode"));
 		String rtnMsg = request.getParameter("RtnMsg"),
 				tradeDate  = request.getParameter("TradeDate");
@@ -547,7 +603,8 @@ public class HouseController {
 			houseService.orderFinishied(houseId, timestamp,pay);
 		}
 		System.out.println(rtnCode+"\n"+rtnMsg+"\n"+tradeDate);
-		return "redirect:/houseRefactSelect";
+		httpSession.setAttribute("houseId", "");
+		return "redirect:/myHouse/houseRefactSelect";
 	}
 	
 	//Extra Code
@@ -560,7 +617,7 @@ public class HouseController {
 			e.printStackTrace();
 			System.out.println("上船異常：" + e.getMessage());
 			throw new RuntimeException(e);
-		}
+		} 
 		return blob;
 	}
 
@@ -588,8 +645,8 @@ public class HouseController {
 		return yYYYMMdd;
 	}
 	
-	private void theVipProject() {
-		vipProjects =new  LinkedList<Map<String,String>>();
+	private List<Map<String,String>> theVipProject() {
+		List<Map<String,String>> vipProjects =new  LinkedList<Map<String,String>>();
 		Map<String,String> normal = new HashMap<>();
 		normal.put("pName", "普通刊登");
 		normal.put("pPrice", "500");
@@ -608,5 +665,6 @@ public class HouseController {
 		superVip.put("pNumber", "2");
 		superVip.put("pInfo", "可享有優先搜尋及輪播牆");
 		vipProjects.add(superVip);
+		return vipProjects;
 	}
 }
