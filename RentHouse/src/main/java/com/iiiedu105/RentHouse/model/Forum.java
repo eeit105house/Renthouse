@@ -1,5 +1,6 @@
 package com.iiiedu105.RentHouse.model;
 
+import java.sql.Clob;
 import java.sql.Timestamp;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -21,7 +22,7 @@ import javax.persistence.Transient;
 public class Forum {
 	private Integer id;
 	private String title;
-	private String content;
+	private Clob content;
 	private String sort;	
 	private Timestamp datetime;
 	private String status;
@@ -29,14 +30,14 @@ public class Forum {
 //	private Integer frId; //[FR_id(回文關聯主鍵)]
 	
 	private Member memberBean;
-//	private Forum forumBean;
+	private Forum forumBean;
 	private Set<ForumReply> forumReplyBeans = new LinkedHashSet<ForumReply>();
 	private Set<ForumReport> forumReportBeans = new LinkedHashSet<ForumReport>();
 	
 	public Forum() {
 	}
 
-	public Forum(Integer id, String title, String content, Timestamp datetime, String sort, String status, String memberId) {
+	public Forum(Integer id, String title, Clob content, Timestamp datetime, String sort, String status, String memberId) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -66,12 +67,12 @@ public class Forum {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	@Column(columnDefinition="varchar(max)")
-	public String getContent() {
+
+	public Clob getContent() {
 		return content;
 	}
 
-	public void setContent(String content) {
+	public void setContent(Clob content) {
 		this.content = content;
 	}
 
@@ -84,11 +85,12 @@ public class Forum {
 	}
 
 	public Timestamp getDatetime() {
+	
 		return datetime;
 	}
 
 	public void setDatetime(Timestamp datetime) {
-		this.datetime = datetime;
+		datetime = datetime;
 	}
 
 	public String getStatus() {
@@ -99,7 +101,7 @@ public class Forum {
 		this.status = status;
 	}
 
-	@Transient
+	
 	public String getMemberId() {
 		return memberId;
 	}
@@ -134,6 +136,14 @@ public class Forum {
 
 	public void setForumReportBeans(Set<ForumReport> forumReportBeans) {
 		this.forumReportBeans = forumReportBeans;
+	}
+	@OneToMany(mappedBy="forumBean",cascade=CascadeType.ALL)
+	public Forum getForumBeans(Forum forumBeans) {
+		return forumBeans;
+	}
+	
+	public void setForumBeans(Forum forumBeans) {		
+		this.forumBean = forumBeans;
 	}
 	
 }

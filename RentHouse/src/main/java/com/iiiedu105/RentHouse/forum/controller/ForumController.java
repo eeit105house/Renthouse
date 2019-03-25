@@ -2,36 +2,49 @@ package com.iiiedu105.RentHouse.forum.controller;
 
 
 import java.util.Date;
+import java.util.HashMap;
+import java.sql.Clob;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.iiiedu105.RentHouse.ChangeClob;
 import com.iiiedu105.RentHouse.forum.service.ForumService;
 import com.iiiedu105.RentHouse.model.Forum;
+import com.iiiedu105.RentHouse.model.ForumReply;
+import com.iiiedu105.RentHouse.model.House;
 import com.iiiedu105.RentHouse.model.Member;
 
 @Controller
 public class ForumController {
+	String fakeM = "abc123";//假定會員
 	@Autowired
 	ForumService service;
-	
+	@Autowired
+	ChangeClob changeClob;
 	@Autowired
 	ServletContext context;
-	private Integer fid = null;
-
 	public ForumController() {
 	}
 	
@@ -46,15 +59,14 @@ public class ForumController {
 //		ForumService.deleteForum(id);
 //		return "redirect:/Forum";		
 //		}
-	@RequestMapping(value="/ForumView")
+	@RequestMapping(value= "/ForumView")
 	public String viewForum(Model model) {
 		List<Forum> list = service.getAllPosts();
 		model.addAttribute("flist", list);
-//		String 444 =  service.getAllPosts().;
+		
 		return "Forum/ForumView";		
 	}
-		
-	
+			
 	@RequestMapping(value="/update/{fid}")
 	public String updatForum(Model model) {
 		Forum forum = new Forum();
@@ -63,31 +75,37 @@ public class ForumController {
 		}
 	@RequestMapping(value="/delete/{fid}")
 	public String deleteForum(@PathVariable("fid") Integer fid) {
+		Forum ForumBean = new Forum();
+		ForumBean.setStatus("下架");
 		service.deletePost(fid);
 		return "redirect:/Forumview";		
 		}
-	@RequestMapping(value="/time/{fId}")
-	public String getStringByTime(Model model,@PathVariable("fId") Integer fId) {
-		Forum ForumBean = service.findById(fId);
-		String datetimeStr = null;
-		String postTime =getStringByTime  (ForumBean.getDatetime(), datetimeStr);
-		model.addAttribute("datetimeStr", datetimeStr);
-		return "redirect:/Forumview";		
-		}
+//	@RequestMapping(value="/time/{fId}")
+//	public String getStringByTime(Model model,@PathVariable("fId") Integer fId) {
+//		Forum ForumBean = service.findById(fId);
+//		String datetimeStr = null;
+//		String postTime =getStringByTime  (ForumBean.getDatetime(), datetimeStr);
+//		model.addAttribute("datetimeStr", datetimeStr);
+//		return "redirect:/Forumview";		
+//		}
 	
-	@RequestMapping(value= {"/ForumDetail/{fid}","/ForumView/fId"})
-		public String viewForum (Model model,@PathVariable Integer fId) {
+	@RequestMapping(value= "/ForumDetail/{fId}")
+		public String viewPost (Model model,@PathVariable Integer fId,HttpServletRequest request) {
+		String mId = fakeM;	//假定會員	
+		List<ForumReply> list = service.getAllReplies();
+		HttpSession httpSession = request.getSession();
+		httpSession.setAttribute("fid", fId);	
 		Forum ForumBean = service.findById(fId);
 		Member memberBean = ForumBean.getMemberBean();
-	    String datetimeStr = null;
-	   
-		String postTime =getStringByTime  (ForumBean.getDatetime(), datetimeStr);
+		ForumReply reply = new ForumReply();
+		service.insertReply(reply);		
+	    String datetimeStr = null;	  
+		String replyTime =getStringByTime  (reply.getDatetime(), datetimeStr);
 
-		
 		model.addAttribute("ForumBean", ForumBean);
 		model.addAttribute("memberBean", memberBean);
-		
-
+		model.addAttribute("replyTime", replyTime);
+		model.addAttribute("Replylist", list);
 		
 //		String datetimeStr = getStringBySqlDate(ForumBean.getDatetime());
 //		model.addAttribute("datetimeStr", datetimeStr);
@@ -104,11 +122,17 @@ public class ForumController {
 		} else {
 			model.addAttribute("titleList", "必須輸入標題");
 		}
-		if(ForumBean.getContent()!=null || ForumBean.getContent().length()>0) {
-			List<String> content = Arrays.asList(ForumBean.getContent().split(";"));
-			model.addAttribute("contentList", content);
-		} else {
-			model.addAttribute("contentList", "必須輸入內文");
+		try {
+			if(ForumBean.getContent()!=null || ForumBean.getContent().length()>0) {
+				String contentList = "";			
+					contentList =ForumBean.getContent().getSubString(1, (int) ForumBean.getContent().length());		
+				String aa = changeClob.ClobToString(ForumBean.getContent());
+				model.addAttribute("contentList", contentList);
+			} else {
+				model.addAttribute("contentList", "必須輸入內文");								
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		if(ForumBean.getSort()!=null || ForumBean.getSort().length()>0) {
 			List<String> sort = Arrays.asList(ForumBean.getSort().split(";"));
@@ -120,29 +144,103 @@ public class ForumController {
 			List<String> Status = Arrays.asList(ForumBean.getStatus().split(";"));
 			model.addAttribute("StatusList", Status);
 		} else {
-			model.addAttribute("StatusList", "無");
+			model.addAttribute("StatusList", "下架");
 		}
-		Date time=new Date(new java.util.Date().getTime()); 
-		model.addAttribute("getTime", time);
-
-		return "ForumDetail/{fid}";
+		
+		return "Forum/ForumDetail";
 	}
 
-	//=====ADD NEW Forum=====
-	@RequestMapping(value = "/ForumView/addPost", method = RequestMethod.GET)
+	   @ModelAttribute("SortList")
+	    public List<Forum> getAllSorts() {
+	        return service.getAllSorts();
+	    }
+	    
+//	=====ADD NEW Forum=====
+	@RequestMapping(value = "/Forum/add", method = RequestMethod.GET)
 	public String getAddNewPostForm(Model model) {
 		Forum ForumBean = new Forum();
 		model.addAttribute("ForumBean", ForumBean);
-		return "ForumView";
+		return "Forum/addPost";
 	}
-
-//	@RequestMapping(value = "/ForumE")
-//	public String getAddNewForumPostE(Model model) {
-//		Forum ForumBean = new Forum();
-//		model.addAttribute("ForumBean", ForumBean);
-//		return "Forum/ForumPost";
-//	}
-//
+	@RequestMapping(value = "/Forum/addE")
+	public String getAddNewPostFormE(Model model) {
+		Forum ForumBean = new Forum();
+		model.addAttribute("ForumBean", ForumBean);
+		return "Forum/addPost";
+	}
+	@RequestMapping(value = "/Forum/add", method = RequestMethod.POST)	
+		public String addNewPostForm(Model model,@ModelAttribute("ForumBean")Forum ForumBean, 
+		HttpServletRequest request) throws ParseException {	
+		Map<String, String> errorMsg = new HashMap<String, String>();		
+		ForumBean.setMemberId(fakeM);
+		System.out.println(fakeM);
+		ForumBean.setDatetime(new Timestamp(System.currentTimeMillis()));
+		ForumBean.setStatus("上架");
+		ForumBean.setForumBeans(ForumBean);
+		if(ForumBean.getTitle()==null || ForumBean.getTitle().length()==0)
+			{errorMsg.put("titleE", "必須有標題");
+			System.out.println("必須有標題");}
+		if(ForumBean.getSort()==null ||ForumBean.getSort().length()==0)
+		{	errorMsg.put("SortE", "請選擇分類！");			
+		System.out.println("必須有分類");
+		}
+//		try {
+//			contentList =ForumBean.getContent().getSubString(1, (int) ForumBean.getContent().length());
+//		} catch (SQLException e) {
+//					e.printStackTrace();
+//		}	
+		String aa = changeClob.ClobToString(ForumBean.getContent());
+		aa=request.getParameter("article");
+		if(aa==null|| aa.length()==0)
+			{errorMsg.put("ContentE", "請輸入內容！");
+		System.out.println("必須有分類");
+	}
+		if (errorMsg.isEmpty()) {
+			 Clob strToClob = changeClob.stringToClob(aa);
+			 ForumBean.setContent(strToClob);
+			service.savePost(ForumBean);	
+		return "redirect:/ForumView";
+		}else {
+		model.addAttribute("errorMsg", errorMsg);		
+		return "forward:/Forum/addE";
+	}
+	}
+	@RequestMapping(value = "/Forum/report", method = RequestMethod.GET)
+	public String getAddNewReport(Model model) {
+		Forum ForumBean = new Forum();
+		model.addAttribute("ForumBean", ForumBean);
+		return "Forum/ForumPost";
+	}
+	@RequestMapping(value = "/Forum/reply", method = RequestMethod.POST)
+	public String getAddNewReply(Model model,@ModelAttribute("Reply")ForumReply reply, 
+			HttpServletRequest request) throws ParseException {	
+		Map<String, String> errorMsg = new HashMap<String, String>();		
+		reply.setMemberId(fakeM);
+		reply.setDatetime(new Timestamp(System.currentTimeMillis()));
+		reply.setStatus("上架");
+//		Forum.setForumReply(reply);
+		if(reply.getTitle()==null || reply.getTitle().length()==0)
+			{errorMsg.put("titleE", "必須有標題");
+			System.out.println("必須有標題");}
+		
+		String aa = changeClob.ClobToString(reply.getContent());
+		aa=request.getParameter("article");
+		if(aa==null|| aa.length()==0)
+			{errorMsg.put("ContentE", "請輸入內容！");
+		System.out.println("必須有分類");
+	}
+		if (errorMsg.isEmpty()) {
+			 Clob strToClob = changeClob.stringToClob(aa);
+			 reply.setContent(strToClob);
+			service.insertReply(reply);	
+		return "redirect:/Forum/ForumDetail/{fid}";
+		}else {
+		model.addAttribute("errorMsg", errorMsg);		
+		return "forward:/Forum/reply";
+	}
+			
+}
+	
 //	@RequestMapping(value = "/ForumView", method = RequestMethod.POST)
 //	public String addNewForum(Model model, @ModelAttribute("ForumBean") Forum ForumBean, BindingResult br) {
 //		Map<String, String> errorMsg = new HashMap<String, String>();
@@ -155,7 +253,6 @@ public class ForumController {
 //			}
 //			else {
 //				model.addAttribute("errorMsg", errorMsg);
-////				return "House/HouseForm";
 //				return "forward:/ForumE";
 //			}
 //		
@@ -189,7 +286,8 @@ public class ForumController {
 //		if(ForumReportBean.getShortest()==null || ForumReportBean.getShortest().length()==0)
 //			errorMsg.put("shortestE", "請輸入最短租期！");
 //		
-//		
+//
+//		    }
 //		if (errorMsg.isEmpty()) {
 //			String movingInN = request.getParameter("movingInN");
 //			ForumReportBean.setMovingIn(getSqlDateByString(movingInN));

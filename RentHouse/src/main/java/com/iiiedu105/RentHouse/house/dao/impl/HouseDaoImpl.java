@@ -63,11 +63,10 @@ public class HouseDaoImpl implements HouseDao {
 			String hqlUp = "UPDATE HousePic hp SET hp.pic = :pic WHERE houseBean = :hID AND picNo = :pNo";
 			session.createQuery(hqlUp)
 			.setParameter("pic", housePicBean.getPic())
-			.setParameter("hID", housePicBean.getHouseId())
+			.setParameter("hID", housePicBean.getHouseBean())
 			.setParameter("pNo", housePicBean.getPicNo())
 			.executeUpdate();
 		}
-			
 	}
 	@Override
 	public Member getMemberById(String id) {
@@ -138,6 +137,12 @@ public class HouseDaoImpl implements HouseDao {
 			return pics.get(0);
 		else
 			return null;
+	}
+
+	@Override
+	public void updateHouse(House houseBean) {
+		Session session = factory.getCurrentSession();
+		session.update(houseBean);
 	}
 
 

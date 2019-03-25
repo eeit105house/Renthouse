@@ -14,11 +14,13 @@ public interface ForumService  {
 	public void saveReport(ForumReport Report);
 	public Member findMemberById(String Mid);
 
-	List<Forum> getAllPosts();
+
 	void savePost(Forum forum);
 	
 	void updatePost(Forum forum);
 
 	void deletePost(int id);
-
+	List<Forum> getAllSorts();
+	List<Forum> getAllPosts();
+	List<ForumReply> getAllReplies();
 }

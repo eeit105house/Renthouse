@@ -1,8 +1,10 @@
 package com.iiiedu105.RentHouse.model;
 
+import java.sql.Clob;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,10 +23,10 @@ public class EmployeeReport {
 	private String employeeId;
 	private String type;
 	private String title;
-	private String content;
+	private Clob content;
 	private Timestamp datetime;
 	private String status;
-	private String reply;
+	private Clob reply;
 	
 	private Member memberBean;
 	private Employee employeeBean;
@@ -33,8 +35,8 @@ public class EmployeeReport {
 	}
 
 
-	public EmployeeReport(Integer id, String memberId, String employeeId, String type, String title, String content,
-			Timestamp datetime, String status, String reply) {
+	public EmployeeReport(Integer id, String memberId, String employeeId, String type, String title, Clob content,
+			Timestamp datetime, String status, Clob reply) {
 		super();
 		this.id = id;
 		this.memberId = memberId;
@@ -100,13 +102,12 @@ public class EmployeeReport {
 		this.title = title;
 	}
 
-
-	public String getContent() {
+	public Clob getContent() {
 		return content;
 	}
 
 
-	public void setContent(String content) {
+	public void setContent(Clob content) {
 		this.content = content;
 	}
 
@@ -130,15 +131,15 @@ public class EmployeeReport {
 		this.status = status;
 	}
 
-
-	public String getReply() {
+	public Clob getReply() {
 		return reply;
 	}
 
 
-	public void setReply(String reply) {
+	public void setReply(Clob reply) {
 		this.reply = reply;
 	}
+
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="Member_Id")

@@ -259,6 +259,7 @@ public class Member {
 		return ForumReplyBeans;
 	}
 
+
 	public void setForumReplyBeans(Set<ForumReply> forumReplyBeans) {
 		ForumReplyBeans = forumReplyBeans;
 	}
@@ -271,5 +272,5 @@ public class Member {
 	public void setForumReportBeans(Set<ForumReport> forumReportBeans) {
 		this.forumReportBeans = forumReportBeans;
 	}
-	
+
 }

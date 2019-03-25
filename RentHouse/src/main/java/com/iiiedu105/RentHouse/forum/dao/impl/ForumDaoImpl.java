@@ -1,6 +1,7 @@
 package com.iiiedu105.RentHouse.forum.dao.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -43,7 +44,10 @@ public class ForumDaoImpl implements ForumDao {
 	@Override
 	public void savePost(Forum forum) {
 		Session session = factory.getCurrentSession();
-		session.saveOrUpdate(forum);
+//		Forum fb = findById(post.findMemberById());
+//		post.setForumBeans(fb);
+		List<Forum> list = null;
+		session.save(forum);
 	}
 	@Override
 	public  Member findMemberById(String Mid) {
@@ -61,10 +65,28 @@ public class ForumDaoImpl implements ForumDao {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Forum> getAllPosts(){
+	public List<Forum> getAllSorts(){
+		String hql = "SELECT sort FROM Forum";		
+		Session session = null;
+		List<Forum> list = null;
+		session = factory.getCurrentSession();
+		list = session.createQuery(hql).getResultList();		
+		return list;		
+	}
+	@Override
+	public List<Forum> getAllPosts() {
 		String hql = "FROM Forum";		
 		Session session = null;
 		List<Forum> list = null;
+		session = factory.getCurrentSession();
+		list = session.createQuery(hql).getResultList();		
+		return list;		
+	}
+	@Override
+	public List<ForumReply> getAllReplies() {
+		String hql = "FROM ForumReply";		
+		Session session = null;
+		List<ForumReply> list = null;
 		session = factory.getCurrentSession();
 		list = session.createQuery(hql).getResultList();		
 		return list;		
@@ -101,16 +123,19 @@ public void updatePost(Forum forum) {
 @Override
 public void insertReply(ForumReply reply) {
 	Session session = factory.getCurrentSession();
-	Member memberBean = findMemberById(reply.getMemberId());
-	reply.setMemberBean(memberBean);
+//	Forum fb = findById(post.findMemberById());
+//	post.setForumBeans(fb);
+	List<ForumReply> list = null;
 	session.saveOrUpdate(reply);
 }
 
 @Override
-public void saveReport(ForumReport Report) {
+public void saveReport(ForumReport report) {
 	Session session = factory.getCurrentSession();
-	session.saveOrUpdate(Report);
+	session.saveOrUpdate(report);
 	
 }
+
+
 }
 

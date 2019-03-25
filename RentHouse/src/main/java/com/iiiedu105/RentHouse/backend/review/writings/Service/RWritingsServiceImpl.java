@@ -7,30 +7,40 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.iiiedu105.RentHouse.backend.review.house.dao.OTShelfDao;
+import com.iiiedu105.RentHouse.backend.review.writings.dao.RWritingsDao;
+import com.iiiedu105.RentHouse.model.ForumReport;
 import com.iiiedu105.RentHouse.model.House;
 
 @Service
 public class RWritingsServiceImpl implements RWritingsService {
 
 	@Autowired
-	RWritingsService dao;
+	RWritingsDao dao;
 	
 	@Transactional
 	@Override
-	public List<Object[]> getAllWritings() {
+	public List<ForumReport> getAllWritings() {
 		return dao.getAllWritings();
 	}
 
 	@Transactional
 	@Override
-	public void passWritings(int id) {
-		dao.passWritings(id);
+	public void updatePassWritings(Integer id) {
+		dao.updatePassWritings(id);;
 	}
 
 	@Transactional
 	@Override
-	public void failWritings(int id) {
-		dao.failWritings(id);
+	public void updateFailWritings(Integer id) {
+		dao.updateFailWritings(id);;
 	}
+
+	@Transactional
+	@Override
+	public Object[] getAllDetailWritingsById(Integer id) {
+		return dao.getAllDetailWritingsById(id);
+	
+	}
+	
 	
 }

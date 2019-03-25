@@ -1,5 +1,6 @@
 package com.iiiedu105.RentHouse.model;
 
+import java.sql.Clob;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
@@ -20,8 +21,10 @@ public class ForumReport {
 	private Integer id;
 	private Integer forumId;
 	private String type;
-	private String content;
+
+	private Clob content;
 	private Timestamp datetime;
+
 	private String status;
 	
 	private Forum forumBean;
@@ -30,8 +33,9 @@ public class ForumReport {
 	public ForumReport() {
 	}
 
+	public ForumReport(Integer id, Integer forumId, String type, Clob content, Timestamp datetime, String status,
+			Forum forumBean, Member memberBean) {
 
-	public ForumReport(Integer id, Integer forumId, String type, String content, Timestamp datetime,String status) {
 		super();
 		this.id = id;
 		this.forumId = forumId;
@@ -39,7 +43,11 @@ public class ForumReport {
 		this.content = content;
 		this.datetime = datetime;
 		this.status = status;
+		this.forumBean = forumBean;
+		this.memberBean = memberBean;
+
 	}
+
 
 
 	@Id
@@ -74,24 +82,20 @@ public class ForumReport {
 		this.type = type;
 	}
 
-	@Column(columnDefinition="varchar(max)")
-	public String getContent() {
-		return content;
-	}
-
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-
 	public Timestamp getDatetime() {
 		return datetime;
 	}
 
 
+	public Clob getContent() {
+		return content;
+	}
+	public void setContent(Clob content) {
+		this.content = content;
+	}
 	public void setDatetime(Timestamp datetime) {
-		this.datetime = datetime;
+		Timestamp Datetime= new Timestamp(System.currentTimeMillis());
+		datetime = Datetime;
 	}
 	
 	
@@ -127,5 +131,4 @@ public class ForumReport {
 		this.memberBean = memberBean;
 	}
 
-	
 }

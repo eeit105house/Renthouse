@@ -36,6 +36,7 @@
 	<mapping class="com.iiiedu105.RentHouse.model.EmployeeReport"></mapping>
 	<mapping class="com.iiiedu105.RentHouse.model.Forum"></mapping>
 	<mapping class="com.iiiedu105.RentHouse.model.ForumReport"></mapping>
+	<mapping class="com.iiiedu105.RentHouse.model.ForumReply"></mapping>
 	<mapping class="com.iiiedu105.RentHouse.model.Furniture"></mapping>
 	<mapping class="com.iiiedu105.RentHouse.model.FurnitureFavorite"></mapping>
 	<mapping class="com.iiiedu105.RentHouse.model.House"></mapping>

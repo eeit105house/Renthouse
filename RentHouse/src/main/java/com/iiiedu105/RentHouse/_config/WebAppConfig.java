@@ -34,6 +34,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/HouseResorce/**").addResourceLocations("/WEB-INF/views/House/");
 		registry.addResourceHandler("/RHstaticresource/**")
 		.addResourceLocations("/WEB-INF/views/backstage/RHstaticresource/");
+
 //		rhr.addResourceHandler("/font/**")
 //		.addResourceLocations("/WEB-INF/views/backstage/font/");
 //		rhr.addResourceHandler("/ico/**")
@@ -43,7 +44,9 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 //		rhr.addResourceHandler("/js/**")
 //		.addResourceLocations("/WEB-INF/views/backstage/js/");		
 		registry.addResourceHandler("/login/**").addResourceLocations("/WEB-INF/views/login/");
+		registry.addResourceHandler("/search/**").addResourceLocations("/WEB-INF/views/search/");
 		registry.addResourceHandler("/Forum/**").addResourceLocations("/WEB-INF/views/Forum/");
+
 	}
 	
 	@Bean

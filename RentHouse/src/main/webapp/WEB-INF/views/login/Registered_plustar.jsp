@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+     pageEncoding="UTF-8"%>  
+<%@ taglib prefix='form' uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-<!--       登入 -->
+<!--登入 -->
       <div class="modal-body">
 <div class="container">
     <div class="row">
@@ -26,69 +27,74 @@
         <div class="card card-signin my-6">
           <div class="card-body">
             <h5 class="card-title text-center">加入新會員</h5>
-            <form class="form-signin " id="commentForm" action="" method="post">
-              <!-- 	帳號 -->
+            <form:form class="form-signin " id="commentForm" action="insertMemberOk" method="post" modelAttribute="member" commandName="member" enctype="multipart/form-data">
+<!--圖片 -->
+			<div class="text-center" style="height: 100px ;">
+				<img id="showImg" src="" alt="" style="height: 100px ;width: 100px"/>
+			</div>
+			<div class="text-center">
+			<label class="btn btn-info" style="width: 150px; height: 50px;">更換頭像
+			<input  type="file" name="memberimg" id="pic" style=" opacity:0; "/></label>
+			</div>
+<!--帳號 -->
 	<div class="form-group input-group">
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i id="Acc_i" class="fa fa-user"></i> </span>
 		 </div>
-        <input name="Acc" id="Acc" class="form-control required" required="required" placeholder="帳號" type="text">
+        <form:input path="id" name="Acc" id="Acc" class="form-control" required="required" placeholder="帳號 *第一個字大寫英文 混合英數 8-12字" type="text"/>
     </div>
-<!--     密碼 -->
+<!--密碼 --> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
-		    <span class="input-group-text"><i id="Pwd_i" class="fa fa-lock"></i> </span>
-		</div>
-        <input name="Pwd" id="Pwd" class="form-control required" placeholder="密碼" type="password">
+		    <span class="input-group-text"><i id="Pwd_i" class="fa fa-lock"></i> </span></div>
+        <form:input path="pwd" name="Pwd" id="Pwd" class="form-control" required="required" placeholder="密碼*混合英數 8-12字" type="password"/>
     </div> 
-<!--     重複密碼 -->
+<!--重複密碼 --> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i class="fas fa-key" id="rePwd_i"></i></span>
 		</div>
-        <input name="rePwd" id="rePwd" class="form-control required"   placeholder="重複確定密碼" type="password">
+        <input name="rePwd" id="rePwd" class="form-control" required="required" placeholder="重複確定密碼" type="password">
     </div> 
-<!--     會員姓名   -->
+<!--會員姓名   --> 
         <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i class="fas fa-grin-alt" id="inputname_i"></i></span>
 		</div>
-        <input name="inputname" id="inputname" class="form-control required" placeholder="大名" type="text">
+        <form:input path="name" name="inputname" id="inputname" class="form-control" required="required" placeholder="您的大名/Name" type="text"/>
     </div>
-<!--     信箱 -->
+<!--信箱 -->
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i class="fa fa-envelope" id="email_i"></i> </span>
 		 </div>
-        <input name="email" id="email" class="form-control required" placeholder="信箱" type="email">
+        <form:input path="email" name="email" id="email" class="form-control" required="required" placeholder="Email信箱" type="email"/>
     </div> 
-<!--     電話 -->
+<!--電話 --> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i class="fa fa-phone" id="phone_i"></i> </span>
 		</div>
-    	<input name="phone" id="phone" class="form-control required" placeholder="市話/手機" type="text">
+    	<form:input path="phone" name="phone" id="phone" class="form-control" required="required" placeholder="市話/手機" type="text"/>
     </div> 
-<!--     身分證字號 -->
+<!--身分證字號 --> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i class="far fa-id-card" id="identity_i"></i></span>
 		</div>
-    	<input name="identity" id="identity" class="form-control required" placeholder="身分證字號/國際護照" type="text">
+    	<form:input path="personID" name="identity" id="identity" class="form-control" required="required" placeholder="身分證字號/居留證" type="text"/>
     </div>      
-<!--     生日 -->
+<!--生日 --> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
 		</div>
-<!--     	<input name="" id="" class="form-control" placeholder="出生年月日" type="text"  > -->
-<!--     	<select class="custom-select" id="idSelectYear" style="max-width: 120px;"> -->
-<!-- 		</select> -->
 		 <select class="custom-select" name="birth_Year" id="birth_Year"></select><span style="font-family: 標楷體;">年</span>
          <select class="custom-select" name="birth_Month" id="birth_Month"></select><span style="font-family: 標楷體;">月</span>
          <select class="custom-select" name="birth_Date" id="birth_Date"></select><span style="font-family: 標楷體;">日</span>
+         <form:input path="birthday" name="birthday" id="birthday" type="hidden" />
     </div>    
-<!--     性別 -->
+<!--性別 --> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
     	<span class="input-group-text"><i class="fas fa-venus-mars" id="gender_i"></i></span>
@@ -98,14 +104,17 @@
 		    <option value="male">男</option>
 		    <option value="female">女</option>
 		</select>
-    	
+    	<form:input type="hidden" id="sex" name="sex" path='sex'/>
     </div>             
     <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block" id="create" > 建立新會員  </button>
-        <button type="submit" class="btn btn-primary btn-block" id="notyet" disabled="disabled" > 尚有資料未填寫  </button>
-    </div> <!-- form-group// -->     
-
-            </form>
+    <input type="submit"  class="btn btn-primary btn-block" id="create" value="建立新會員"/>
+    <input type="submit"  class="btn btn-primary btn-block" id="notyet" disabled="disabled" value="尚有資料未填寫"/>
+    </div>    
+<%--     <form:input type="hidden" id="active" name="active" path='active' value="未開通" />   --%>
+<%--     <form:input type="hidden" id="pic" name="pic" path='pic' />   --%>
+<%--     <form:input type="hidden" id="score" name="score" path='score' />   --%>
+<%--     <form:input type="hidden" id="report" name="report" path='report' />   --%>
+            </form:form>
           </div>
         </div>
       </div>
@@ -115,5 +124,21 @@
 </div>
 </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+$('#pic').on('change',function(){
+	var file = this.files[0];
+	if(file!=null){
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$('#showImg').attr('src',e.target.result);
+		}
+		reader.readAsDataURL(file);
+	}else{
+		$('#showImg').attr('src',"");
+	}
+});
+});
+</script>
 </body>
 </html>

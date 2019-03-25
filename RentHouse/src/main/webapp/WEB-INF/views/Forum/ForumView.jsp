@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -44,46 +43,92 @@
 	<%-- <jsp:include page="login/narbar.jsp"/> --%>
 	<header class="masthead text-white text-center"
 		style="background: url(login/img/index.jpg) no-repeat center center;">
+		  <h2>租你幸福</h2>
+  <p>討論區 租屋,房屋買賣,搬家,房屋討論</p>
 		</header>
-<!-- BEGIN TEMPLATE list_threads.tpl -->
-<div class="nav" style="padding-left:50px">
+<!-- <!-- BEGIN TEMPLATE list_threads.tpl --> 
+<!-- <div class="nav" style="padding-left:50px"> -->
 	
-</div>
-<br/>
+<!-- </div> -->
+<!-- <br/> -->
 
-<table class="list_table" width="800" border="0" align="center" cellpadding="0" cellspacing="0">
-	<tr>
-		<td colspan="7" class="list_tatle_title">&nbsp;</td>
-	</tr>
-	<tr>
-		<td width="10" rowspan="100" class="list_sides"></td>
-		<td class="list_title">　標題</td>
-		<td width="100" class="list_title" align="center">作者</td> 
-		<td width="75" class="list_title" align="center" style="font-size:14px">分類</td>
-		<td width="140" class="list_title">　發表時間</td> 
-				<td width="10" rowspan="100" class="list_sides">&nbsp;
-	</tr>
+<!-- <table class="list_table" width="800" border="0" align="center" cellpadding="0" cellspacing="0"> -->
+<!-- 	<tr> -->
+<!-- 		<td colspan="7" class="list_tatle_title">&nbsp;</td> -->
+<!-- 	</tr> -->
+<!-- 	<tr> -->
+<!-- 		<td width="10" rowspan="100" class="list_sides"></td> -->
+<!-- 		<td class="list_title">　標題</td> -->
+<!-- 		<td width="100" class="list_title" align="center">作者</td>  -->
+<!-- 		<td width="75" class="list_title" align="center" style="font-size:14px">分類</td> -->
+<!-- 		<td width="140" class="list_title">　發表時間</td>  -->
+<!-- 				<td width="10" rowspan="100" class="list_sides">&nbsp; -->
+<!-- 	</tr> -->
 
-     <c:forEach var="forum" items="${flist}">
-	<tr>
-		<td class="list_content" style="padding-left: 10px">
-			<img style="vertical-align:bottom" src="http://mepopedia.com/forum/templates/village/images/bell.png" alt="置頂" title="置頂" />
-			<a href="" class="" title="置頂">${forum.title}</a>
-			
-			<!--<small>(1 發表文章數)</small>-->
-    </td>
    
-    <td class="list_info" align="center">
+<!-- 	<tr> -->
+<!-- 		<td class="list_content" style="padding-left: 10px"> -->
+<!-- 			<img style="vertical-align:bottom" src="http://mepopedia.com/forum/templates/village/images/bell.png" alt="置頂" title="置頂" /> -->
+<%-- 			<a href="" class="" title="置頂">${forum.title}</a> --%>
+			
+<!-- 			<!--<small>(1 發表文章數)</small>--> 
+<!--     </td> -->
+   
+<!--     <td class="list_info" align="center"> -->
 		
-			<a href="">${forum.memberBean.id}</a> <br/>
+<%-- 			<a href="">${forum.memberBean.id}</a> <br/> --%>
 		
-		<td class="list_info" align="center">${forum.sort}></td>
-    <td class="list_info" >${forum.content}</td>
+<%-- 		<td class="list_info" align="center">${forum.sort}></td> --%>
+<%--     <td class="list_info" >${forum.datetime}</td> --%>
     
-    </tr>
-	</c:forEach>
+<!--     </tr> -->
+    <div class="container">
 
-	</table>
+  <table class="table">
+    <thead class="thead-dark">
+					<tr align="center">
+						<td class="list_title">　標題</td>
+						<th>發表</th>
+						<th>分類</th>
+						<th>發表時間</th>
+					</tr>
+				</thead>
+    <tbody>
+      <c:forEach var="forum" items="${flist}">
+      <tr align="center">
+        <td><a href='<c:url value="/ForumDetail/${forum.id}" />'>${forum.title}</a></td>
+        <td><a href='<c:url value="" />'>${forum.memberBean.id}</td>
+        <td>${forum.sort}</td>
+       <td> ${forum.datetime}</td> 
+      </tr>
+     </c:forEach>	
+    </tbody>
+    
+    <div id="act-list">
+    	<div class="head">
+            <div class="pub-btn"><a class="btn btn-primary" href="Forum/add">發表文章</a>     
+             <div class="modal-footer">
+        <a href="<spring:url value='/delete/${forum.id }' />" class="btn btn-primary">確認</a>
+        <button type="button" class="btn" data-dismiss="modal">取消</button>                  
+              </div>
+</div>
+  </table>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+   
+      
+    </tbody>
+
+ </table>
+  
+	
 
 </body>
 </html>

@@ -42,8 +42,12 @@ public class ForumServiceImpl implements ForumService {
 	}
 
 @Override
-public List<Forum> getAllPosts() {
+public List<Forum> getAllSorts() {
 	
+	return dao.getAllSorts();
+}
+@Override
+public List<Forum> getAllPosts() {
 	return dao.getAllPosts();
 }
 @Override
@@ -68,7 +72,8 @@ public void saveReport(ForumReport Report) {
 	dao.saveReport(Report);
 	
 }
-
-	
-
+@Override
+public List<ForumReply> getAllReplies(){
+	return dao.getAllReplies();
+}
 }
