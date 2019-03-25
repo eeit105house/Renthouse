@@ -1,5 +1,7 @@
 package com.iiiedu105.RentHouse._config;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -36,6 +38,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		.addResourceLocations("/WEB-INF/views/backstage/RHstaticresource/");
 		registry.addResourceHandler("/login/**").addResourceLocations("/WEB-INF/views/login/");
 		registry.addResourceHandler("/search/**").addResourceLocations("/WEB-INF/views/search/");
+		registry.addResourceHandler("/deal/**").addResourceLocations("/WEB-INF/views/deal/");
 	}
 	
 	@Bean
@@ -45,4 +48,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		resolver.setMaxUploadSize(81920000);
 		return resolver;		
 	}
+	
+//	public ViewResolver pdfViewResolver(ServletContext context) {
+//		return new PdfViewResolver(context);
+//	}
 }

@@ -16,7 +16,7 @@
 <body>
 	<c:forEach var='objectlist' varStatus="check" items="${Objectlists}">
 		<c:if test="${check.count<6}">
-		<div id="sitebody">
+		<div class="sitebody" id = "${objectlist[13]}" onclick='window.open("${pageContext.request.contextPath}/houseView/${objectlist[13]}")'>
 			<div id="sidebar_left">
 				<img id="img" src="<c:url value='/getPicture/${objectlist[0]}' />" />
 			</div>
@@ -51,6 +51,7 @@
 	  </ul>
 	</nav>
 	<hr>
+
 <script>
 $("div span.page-link").click(function(){
 	var page= $(this).attr("id");
@@ -77,5 +78,6 @@ $("div span.page-link").click(function(){
 	
 });
 </script>
+
 </body>
 </html>
