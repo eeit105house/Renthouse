@@ -3,5 +3,6 @@
 /.project
 /build/
 /target/
+/image/
 /CreateTable.java
 /CreateTable2.java
