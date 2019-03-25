@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-		<%@include file="narbar.jsp"%>
 
 <!DOCTYPE html>
 <html>
@@ -12,7 +11,7 @@
 <!--   <link rel="stylesheet" href="/resources/demos/style.css"> -->
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+  
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
@@ -22,13 +21,6 @@
 	<script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script> <!-- KICKSTART -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/css/kickstart.css" media="all" />
 <!-- 	KICKSTART -->
-
-<link href="${pageContext.request.contextPath}/login/css/bootstrap.css" rel="stylesheet">
-<!-- icon -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
-<!-- google fonts -->
-<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-<
 	<!-- house舊模板CSS	 -->
 <%-- 	<link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet" --%>
 <!-- 		type="text/css" /> -->
@@ -42,16 +34,16 @@
 		// 			});
 
 		// 		});
-		$(document).ready(function () {
+		Formstone.Ready(function () {
 			$("a[name='DontPost']").lightbox({
 			});
 		});
 	</script>
-	
 </head>
 
 <body style="background-color: #ffebd7;">
 	<div style="height: 75px;">
+		<%@include file="narbar.jsp"%>
 	</div>
 	<div>
 		<h1 class="container">親愛的 ${user.name} 您好</h1>
@@ -80,78 +72,35 @@
 				</nav>
 				<!-- 		內容 -->
 				<div class="container-fluid" style="width: 800px;">
-					<h1 class="mt-4">您的房屋一覽</h1>
+					<h1 class="mt-4"></h1>
 					<table>
 						<thead>
 							<tr>
 								<th>
-									<h2></h2>
+									<h2>歷年成交紀錄</h2>
 								</th>
 							</tr>
 							<tr>
-								<th>標題</th>
-								<th>狀態</th>
-								<th></th>
+								<th>成交編號</th><th>簽約日</th><th>月租金</th><th>到期日</th><th>契約</th><th>修改內容</th>
 							</tr>
+							
 						</thead>
 						<tbody>
-							<c:forEach var='house' items='${houseList}'>
+							<c:forEach var = "houseDeal" items="${allHouseDeal}">
 								<tr>
-									<td>${house.detailBean.title}</td>
-									<td>${house.status}</td>
-									<c:if test="${house.status == '上架' || house.status == '審核' || house.status == '下架'}">
-									
-										<td><a class="button orange"
-												href='<c:url value="/houseView/${house.id}" />'>檢視</a></td>
-										<td><a class="button orange"
-												href='<c:url value="/membercontrol/houseRefactDet/${house.id}" />'>修改詳細</a>
-										</td>
-										<td><a class="button orange"
-												href='<c:url value="/membercontrol/houseRefactPic/${house.id}" />'>修改圖片</a>
-										</td>
-									</c:if>
-									<c:if test="${house.status == '填寫中'}">
-									
-									<td><a class="button "
-											href='<c:url value="" />'>檢視</a></td>
-									<td><a class="button orange"
-											href='<c:url value="/membercontrol/houseRefactDet/${house.id}" />'>填寫詳細</a>
+									<td>${houseDeal.id}</td>
+									<td>${houseDeal.dealDate}</td>
+									<td>${houseDeal.dealPrice}</td>
+									<td>${houseDeal.leaseDate}</td>
+									<td><form action="${pageContext.request.contextPath}/deal/getPdf/${houseDeal.id}" method="GET">
+									<c:set var="pdf" value="${houseDeal.fileName}" />
+									<c:if test="${pdf != null}"><button type="submit">查看契約</button></c:if>
+									<c:if test="${pdf == null}">尚無檔案</c:if>
+									</form>									</td>
+									<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+									data-from="${houseDeal.dealDate}" data-price="${houseDeal.dealPrice}" data-to="${houseDeal.leaseDate}"  data-id="${houseDeal.id}" >
+									修改成交資訊</button>
 									</td>
-									<td><a class="button orange"
-											href='<c:url value="/membercontrol/houseRefactPic/${house.id}" />'>上傳圖片</a>
-									</td>
-									</c:if>
-									<td>
-										<c:if test="${house.status == '上架' || house.status == '審核'}">
-											<!-- <input type="button" id="Down" class="button red" value="主動下架">
-											<input type="hidden" id="DontPost"
-												value='<c:url value="/houseDontPost/${house.id}" />'> -->
-
-
-											<a name="DontPost" class="button red" href="#hidden_content_dontpost${house.id}">主動下架</a>
-											<div id="hidden_content_dontpost${house.id}" style="display: none;">
-												<div class="inline_content" style="width: 350px; height: 200px; background-color: #ffebd7;">
-													<h4>請確認是否確定下架?</h4>
-													<p>*手動下架並不會退還刊登費*</p>
-													<a class="button red"
-														href='<c:url value="/membercontrol/houseDontPost/${house.id}" />'>是的，我要下架</a>
-													<a class=" button green " id="cc"
-														onclick="$.lightbox('close');">不是，繼續刊登</a>
-
-												</div>
-											</div>
-										</c:if>
-										<c:if test="${house.status == '下架' }">
-											<a id="RePost" class="button green"
-												href='<c:url value="/membercontrol/houseRePost/${house.id}" />'>付款上架</a>
-										</c:if>
-									</td>
-									<td>
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" data-id="${house.id }">新增成交</button>
-									</td>
-								<td>
-								<button type="button" onclick="location.href='${pageContext.request.contextPath}/deal/AllHouseDealForAnHouse/${house.id }'">歷年成交</button>
-								</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -167,48 +116,56 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-    <form method='POST' enctype="multipart/form-data" onsubmit='return confirm("確定送出");'>
+     <form method='POST' enctype="multipart/form-data" onsubmit='return confirm("確定送出");'>
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>    
+      </div>
       <div class="modal-body">
+     
           <div class="form-group">
             <label for="from" class="col-form-label">成交日期</label>
             <input type="text" class="form-control" id="from" name="from"/>
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">每月租金</label>
-            <input type="text" class="form-control" id="recipient-name" name="dealPrice" />
+            <input type="text" class="form-control" id="dealPrice" name="dealPrice"/>
           </div>
            <div class="form-group">
             <label for="to" class="col-form-label">租約到期日</label>
             <input type="text" class="form-control" id="to" name="to"/>
           </div>
-          <input type = "file" value = "上傳租賃契約" multiple="multiple" name="file" />
+          <input type = "file" value = "如要修改才需上傳" multiple="multiple" name="file" />
+        
       </div>          
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-        <button type="submit" class="btn btn-primary">送出資訊</button>
+        <button type="submit" class="btn btn-primary" >送出資訊</button>
       </div>
       </form>
     </div>
   </div>
 </div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <script>
-	$('#exampleModal').on('show.bs.modal', function (event) {		
-		  var button = $(event.relatedTarget) // Button that triggered the modal
-		  var id = button.data('id')
-		  var modal = $(this)
-		  modal.find('.modal-title').text('請新增房屋編號:'+id+'的資訊')
-		  var action = "${pageContext.request.contextPath}/deal/insertPage/"+id
-		  modal.find('.modal-content form').attr("action",action);
-	})
+$('#exampleModal').on('show.bs.modal', function (event) {
+	
+	  var button = $(event.relatedTarget) // Button that triggered the modal
+	  var id = button.data('id')
+	  var from = button.data('from')
+	  var price = button.data('price')
+	  var to = button.data('to')  
+	  var modal = $(this)
+	  modal.find('.modal-title').text('請修改成交編號:'+id+'的資訊')
+	  modal.find('.modal-body #from').val(from)
+	  modal.find('.modal-body #dealPrice').val(price)
+	  modal.find('.modal-body #to').val(to)
+	  var action = "${pageContext.request.contextPath}/deal/updatePage/"+id
+	  modal.find('.modal-content form').attr("action",action);
+})
 
 	 $( function() {
     var dateFormat = "mm/dd/yy",
