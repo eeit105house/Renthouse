@@ -1,4 +1,17 @@
 $(document).ready(function() {
+	$('#pic').on('change',function(){
+		var file = this.files[0];
+		if(file!=null){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$('#showImg').attr('src',e.target.result);
+			}
+			reader.readAsDataURL(file);
+		}else{
+			$('#showImg').attr('src',"<c:url value='/login/img/PresetMember.png'/>");
+		}
+	});
+	
 	$("#create").hide();
 	$("#notyet").show();
 	var acc_ok,pwd_ok,repwd_ok,name_ok,email_ok,phone_ok,id_ok,gender_ok = false;
@@ -134,7 +147,84 @@ $(document).ready(function() {
 		});
 	//初值
 		$("#birthday").val("1990-1-1");
-
+//		修改會員
+		$('#pic2').on('change',function(){
+			var file = this.files[0];
+			if(file!=null){
+				var reader = new FileReader();
+				reader.onload = function(e){
+					$('#showImg2').attr('src',e.target.result);
+				}
+				reader.readAsDataURL(file);
+			}else{
+				$('#showImg2').attr('src',"<c:url value='/login/img/PresetMember.png'/>");
+			}
+		});
+		$("#create2").hide();
+		$("#notyet2").show();
+		$('#Pwd2').on('keydown keyup keypress change focus blur',function(){
+			var re = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,16}$/;
+			var check = $(this).val();
+			var repwd = $("#rePwd").val();
+			  if(re.test(check)){
+			    $("#Pwd_i2").css({"color": "green"});
+				  pwd_ok = true;
+				if(check!=repwd){
+					 $("#rePwd_i2").css({"color": "red"});
+					 repwd_ok = false;
+				}
+			  }else{
+			    $("#Pwd_i2").css({"color": "red"});
+				  pwd_ok = false;
+			  }
+			});
+		$('#rePwd2').on('keydown keyup keypress change focus blur',function(){
+			var re = $("#Pwd").val();
+			var check = $(this).val();
+			  if(re==check){
+			    $("#rePwd_i2").css({"color": "green"});
+				  repwd_ok = true;
+			  }else{
+			    $("#rePwd_i2").css({"color": "red"});
+				  repwd_ok = false;
+			  }
+			});
+		$('#inputname2').on('keydown keyup keypress change focus blur',function(){
+			var re_zh = /^[\u4e00-\u9fa5]{2,}$/;
+			var re_en = /^[a-zA-Z]{3,}$/;
+			var check = $(this).val();
+			  if(re_zh.test(check)){
+			    $("#inputname_i2").css({"color": "green"});
+				  name_ok = true;
+			  }else if(re_en.test(check)){
+				$("#inputname_i2").css({"color": "green"});
+				  name_ok = true;
+			  }else{
+				$("#inputname_i2").css({"color": "red"});
+				  name_ok = false;
+				  }
+			});
+		$('#phone2').on('keydown keyup keypress change focus blur',function(){
+			var re = /^([0]+)([1-9]+)([0-9]{8,})$/
+			var check = $(this).val();
+			  if(re.test(check)){
+			    $("#phone_i2").css({"color": "green"});
+				  phone_ok = true;
+			  }else{
+			    $("#phone_i2").css({"color": "red"});
+				  phone_ok = false;
+			  }
+			});
+		$('.form-control').on('keydown keyup keypress change focus blur',function(){
+			if(true==pwd_ok && true==repwd_ok &&
+			   true==name_ok && true==phone_ok ){
+				$("#create2").show();
+				$("#notyet2").hide();
+			}else{
+				$("#create2").hide();
+				$("#notyet2").show();
+			}
+			});
 });
 //^\w+：@ 之前必須以一個以上的文字&數字開頭，例如 abc
 //((-\w+)：@ 之前可以出現 1 個以上的文字、數字或「-」的組合，例如 -abc-

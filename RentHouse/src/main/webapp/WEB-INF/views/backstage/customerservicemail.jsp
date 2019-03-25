@@ -8,7 +8,7 @@
 <head>
 <!-- start: Meta -->
 <meta charset="utf-8" />
-<title>商品審核</title>
+<title>客服回覆</title>
 <meta name="description"
 	content="SimpliQ - Flat & Responsive Bootstrap Admin Template." />
 <meta name="author" content="Łukasz Holeczek" />
@@ -58,7 +58,7 @@
 						
 						<c:forEach var="mail" items="${maillist }">				
 						<li>
-						<a class="testali" href="<spring:url value='/getmail/${mail.id }' />">													
+						<a class="testali" href="<spring:url value='/backstage/getmail/${mail.id }' />">													
 							<span class="from"><span ></span>${mail.memberBean.id }</span><span class="title"><span class="label label-warning">${mail.type }</span>${mail.title }</span><span class="date"><i class="halflings-icon time"></i>${mail.datetime }</span>						
 						</a>
 						</li>
@@ -67,9 +67,11 @@
 					<hr>				
 				</div>
 				<div class="span5">					
-					<div class="message">						
+					<div class="message">	
+								
 						<div class="header">
 							<h1>${omail.title }</h1>
+							<c:if test="${!empty omail }">			
 							<div class="from"><i class="halflings-icon user"></i> <b>帳號:${omail.memberBean.id }/姓名:${omail.memberBean.name }</b> </div>
 							<div class="date"><i class="halflings-icon time"></i><b>${omail.datetime }</b></div>							
 							<div class="menu"></div>							
@@ -79,24 +81,22 @@
 							${content }	
 						</blockquote>	
 						</div>
-						<hr>		
-						
-															
-<%-- 						<form:form class="replyForm" method="post" modelAttribute="EmployeeReport"> --%>
+						<hr>																					
+						<form class="replyForm" method="post" >
+							<fieldset>
+							<input type="hidden" name="id" value="${omail.id }"/>
+							<span>請輸入員工ID:</span><input type="text" name="ename" />
+								<textarea tabindex="3" class="input-xlarge span12" id="message" name="content" rows="12" placeholder="Click here to reply"></textarea>
 
-<!-- 							<fieldset> -->
-<%-- 							<span>請輸入員工ID:</span><form:input path="employeeBean" type="text" /> --%>
-<%-- 								<form:textarea path="content" tabindex="3" class="input-xlarge span12" id="message" name="body" rows="12" placeholder="Click here to reply"></form:textarea> --%>
-
-<!-- 								<div class="actions"> -->
+								<div class="actions">
 									
-<!-- 									<button tabindex="3" type="submit" class="btn btn-success">回覆</button> -->
+									<button tabindex="3" type="submit" class="btn btn-success">回覆</button>
 									
-<!-- 								</div> -->
+								</div>
 
-<!-- 							</fieldset> -->
-
-<%-- 						</form:form>	 --%>
+							</fieldset>
+						</form>	
+						</c:if>	
 					</div>
 					
 				</div>

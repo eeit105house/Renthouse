@@ -1,5 +1,4 @@
-
- document.addEventListener("DOMContentLoaded", function () {
+$(document).ready(function () {
             document.getElementById("birth_Year").addEventListener("change", addMDate);
             document.getElementById("birth_Month").addEventListener("change", addDate);
 

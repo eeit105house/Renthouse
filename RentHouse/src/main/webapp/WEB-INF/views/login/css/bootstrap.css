@@ -2422,10 +2422,43 @@ fieldset:disabled a.btn {
   pointer-events: none;
 }
 
+.btn-nav-primary {
+  color: #000000;
+  background-color: #ffdabb;
+  border-color: #ffdabb;
+}
+
+.btn-nav-primary:hover {
+  color: #000000;
+  background-color: #ff9640;
+  border-color: #ff9640;
+}
+
+.btn-nav-primary:focus, .btn-nav-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.btn-nav-primary.disabled, .btn-nav-primary:disabled {
+  color: #000000;
+  background-color: #ffdabb;
+  border-color: #ffdabb;
+}
+
+.btn-nav-primary:not(:disabled):not(.disabled):active, .btn-nav-primary:not(:disabled):not(.disabled).active,
+.show > .btn-nav-primary.dropdown-toggle {
+  color: #000000;
+  background-color: #ffdabb;
+  border-color: #ffdabb;
+}
+
+.btn-nav-primary:not(:disabled):not(.disabled):active:focus, .btn-nav-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-nav-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
 .btn-primary {
-  color: #fff;
-  background-color: #ff7300;
-  border-color: #ff7300;
+  color: #ffffff;
+  background-color: #ff8040;
+  border-color: #ff8040;
 }
 
 .btn-primary:hover {
@@ -2439,16 +2472,16 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
-  color: #fff;
-  background-color: #ff7300;
-  border-color: #ff7300;
+  color: #ffffff;
+  background-color: #ff8040;
+  border-color: #ff8040;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
-  color: #fff;
-  background-color: #ff7300;
-  border-color: #ff7300;
+  color: #ffffff;
+  background-color: #ff8040;
+  border-color: #ff8040;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -4145,6 +4178,8 @@ input[type="button"].btn-block {
 .tab-content > .active {
   display: block;
 }
+/* plustar */
+
 
 .navbar {
   position: relative;
@@ -4243,6 +4278,83 @@ input[type="button"].btn-block {
   background: no-repeat center center;
   background-size: 100% 100%;
 }
+/* plustar */
+@media (min-width: 768px) {
+  .navbar-collapse {
+    width: auto;
+    border-top: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .navbar-collapse.collapse {
+    display: block !important;
+    height: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+  }
+  .navbar-collapse.in {
+    overflow-y: visible;
+  }
+  .navbar-fixed-top .navbar-collapse,
+  .navbar-static-top .navbar-collapse,
+  .navbar-fixed-bottom .navbar-collapse {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+.navbar-fixed-top .navbar-collapse,
+.navbar-fixed-bottom .navbar-collapse {
+  max-height: 340px;
+}
+@media (max-device-width: 480px) and (orientation: landscape) {
+  .navbar-fixed-top .navbar-collapse,
+  .navbar-fixed-bottom .navbar-collapse {
+    max-height: 200px;
+  }
+}
+.container > .navbar-header,
+.container-fluid > .navbar-header,
+.container > .navbar-collapse,
+.container-fluid > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  .container > .navbar-header,
+  .container-fluid > .navbar-header,
+  .container > .navbar-collapse,
+  .container-fluid > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+.navbar-static-top {
+  z-index: 1000;
+  border-width: 0 0 1px;
+}
+@media (min-width: 768px) {
+  .navbar-static-top {
+    border-radius: 0;
+  }
+}
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+@media (min-width: 768px) {
+  .navbar-fixed-top,
+  .navbar-fixed-bottom {
+    border-radius: 0;
+  }
+}
+.navbar-fixed-top {
+  top: 0;
+  border-width: 0 0 1px;
+}
+
 
 @media (max-width: 575.98px) {
   .navbar-expand-sm > .container,
@@ -5335,6 +5447,8 @@ a.badge-dark:focus, a.badge-dark.focus {
   width: 100%;
   color: #495057;
   text-align: inherit;
+  width: 200px;
+  height: 55px;
 }
 
 .list-group-item-action:hover, .list-group-item-action:focus {
@@ -10159,6 +10273,16 @@ a.text-dark:hover, a.text-dark:focus {
     top: 55%;
     left: 0;
     z-index: 1;
+}
+/* plustar */
+.navbar-center {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar-collapse-center {
+  text-align: center;
 }
 
 /*# sourceMappingURL=bootstrap.css.map */

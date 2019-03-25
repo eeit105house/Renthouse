@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iiiedu105.RentHouse.model.EmployeeReport;
 import com.iiiedu105.RentHouse.model.House;
 
 @Repository
@@ -45,4 +46,5 @@ public class OTShelfDaoImpl implements OTShelfDao {
 		String hql = "update House h set h.status = '下架' where h.id = :hid";
 		session.createQuery(hql).setParameter("hid", id).executeUpdate();			
 	}
+	
 }
