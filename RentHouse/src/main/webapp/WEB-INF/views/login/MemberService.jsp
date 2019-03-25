@@ -27,13 +27,14 @@
 <!-- <hr> -->
 <div class="container">
 <ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" href="<spring:url value='/membercontrol/memberservice/${user.id }'/>">我要發問</a>
+  <li class="nav-item" id="service">
+    <a id="sa" class="nav-link active" href="<spring:url value='/membercontrol/memberservice/serviceform'/>">我要發問</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="<spring:url value='/membercontrol/cservicereport'/>">客服回覆</a>
+  <li class="nav-item" id="servicereport">
+    <a id="pa" class="nav-link" href="#">客服回覆</a>
   </li>
 </ul>
+<div class="ajax1">
 <form:form method="POST" modelAttribute="employeeReport" onsubmit="window.alert('信件已送出，感謝您的來信')">
 <!--     <fieldset class="form-group"> -->
 <br/>
@@ -84,7 +85,7 @@
     <div class="form-group row">
         <label for="textarea" class="col-sm-1 col-form-label">內容:</label>
         <div class="col-7">
-        <textarea name="content1" class="form-control" id="textarea" rows="3" required=""></textarea>
+        <textarea name="content1" class="form-control" id="textarea" rows="3" required="true"></textarea>
       </div>
     </div>
     
@@ -94,7 +95,33 @@
       </div>
     </div>
   </form:form>
+</div><!--    ajax1 -->
   </div>
   </div>
+  
+  <script type="text/javascript">
+$("#servicereport").click(function(){
+	$(".ajax1").val("");
+	$("#sa").attr("class","nav-link");
+	$("#pa").attr("class","nav-link active");
+	$.ajax({
+		url: "<spring:url value='/membercontrol/memberservice/cservicereport'/>",
+		type: "POST",
+		success: function(data){
+			$(".ajax1").html(data);
+		}
+	});
+});
+// $(".clickajax").click(function(){
+// 	$(".ajax1").val("");
+// 	$.ajax({
+// 		url: "<spring:url value='/membercontrol/memberservice/memberservicedetail'/>",
+// 		type: "GET",
+// 		success: function(data){
+// 			$(".ajax1").html(data);
+// 		}
+// 	});
+// });
+</script>
 </body>
 </html>

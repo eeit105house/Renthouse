@@ -1,7 +1,9 @@
 package com.iiiedu105.RentHouse.membercenter.controller;
 
 import java.sql.Clob;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -49,34 +51,61 @@ public class MemberCenterController {
 		}
 			
 	}
+	//客服中心
 	//客服填寫問題表單
-	@RequestMapping(value="/memberservice/{mid}" ,method= RequestMethod.GET)
-	public String memberService(Model model) {
+	@RequestMapping(value="/memberservice/serviceform" ,method= RequestMethod.GET)
+	public String memberServiceajax(Model model) {
 		EmployeeReport employeeReport = new EmployeeReport();
 		model.addAttribute("employeeReport",employeeReport);
 		return "login/MemberService";	
 	}
 
 	//客服表單處理
-	@RequestMapping(value="/memberservice/{mid}" ,method= RequestMethod.POST)
-	public String processMemberService(@PathVariable("mid") String mid,@ModelAttribute("employeeReport")EmployeeReport employeeReport,HttpServletRequest request ) {	
+	@RequestMapping(value="/memberservice/serviceform" ,method= RequestMethod.POST)
+	public String processMemberService(@ModelAttribute("employeeReport")EmployeeReport employeeReport,HttpServletRequest request ) {	
+		HttpSession session = request.getSession();
 		String content = request.getParameter("content1");
+		Member member = (Member)session.getAttribute("user");
 		Clob clob = changeClob.stringToClob(content);
 		employeeReport.setContent(clob);
-		employeeReport.setMemberBean(memberService.findMemberById(mid));
+		employeeReport.setMemberBean(memberService.findMemberById(member.getId()));
 		memberService.addEmployeeReport(employeeReport);
-		return "redirect:/membercontrol/memberservice/"+mid;	
+		return "redirect:/membercontrol/memberservice/serviceform";	
 	}
 	//預定導向預約中心
 	@RequestMapping(value="/reservationservice")
 	public String getAllReservation(Model model) {
 				return "backstage/bsindex";
 	}
-	//客服中心回覆信件
-	@RequestMapping(value="/cservicereport")
-	public String getAllEmployeeReport(Model model) {
-		List<EmployeeReport> list = memberService.getAllMail();
+	//客服中心回覆信件(ajax)
+	@RequestMapping(value="/memberservice/cservicereport")
+	public String getAllEmployeeReport(Model model,HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		if(session==null) {
+			return "redirect:/";
+		}else {
+		Member member = (Member)session.getAttribute("user");
+		List<EmployeeReport> list = memberService.getAllMail(member.getId());
 		model.addAttribute("allmail",list);
 		return "login/MemberServiceReport";
+		}
 	}
+
+		//客服中心詳細回覆
+		@RequestMapping(value="/memberservice/memberservicedetail/{rid}")
+		public String MemberService(@PathVariable("rid") Integer id,Model model) {
+			if(id==null) {
+				return "redirect:/";
+			}else {
+			EmployeeReport employeeReport = memberService.getMailById(id);
+			String content = changeClob.ClobToString(employeeReport.getContent());
+			String reply = changeClob.ClobToString(employeeReport.getReply());
+			Map<String,String> map = new HashMap<>();
+			map.put("content", content);
+			map.put("reply", reply);
+			model.addAttribute("mailDetail",employeeReport);
+			model.addAttribute("strmap",map);
+			return "login/Reportdetail";
+			}
+		}
 }
