@@ -30,8 +30,9 @@ public class ForumReport {
 	
 	public ForumReport() {
 	}
-	public ForumReport(Integer id, Integer forumId, String type, Clob content, Timestamp datetime, String status,
-			Forum forumBean, Member memberBean) {
+	public ForumReport(Integer id, Integer forumId, String type, Clob content, Timestamp datetime, String status
+//			,Forum forumBean, Member memberBean
+			) {
 		super();
 		this.id = id;
 		this.forumId = forumId;

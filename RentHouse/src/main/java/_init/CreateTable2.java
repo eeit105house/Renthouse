@@ -21,11 +21,12 @@ public class CreateTable2 {
 	
 	public CreateTable2(){
 		factory = HibernateUtils.getSessionFactory();
-		session = factory.getCurrentSession();
 	}
 	
 
 	public void CreateTableEmp(Employee employee) {
+		session = factory.getCurrentSession();
+
 		Transaction tx = null;
 		try {
 			tx=session.beginTransaction();
@@ -50,6 +51,8 @@ public class CreateTable2 {
 		}
 	}
 	public void createForumReportTable() {
+		session = factory.getCurrentSession();
+
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
@@ -59,6 +62,8 @@ public class CreateTable2 {
 		}
 	}
 	public void CreateTableOther(Member member,House house,HouseDetail houseDetail,HousePic housePic,Forum forum,ForumReport forumReport,ForumReply forumReply) {	
+		session = factory.getCurrentSession();
+
 		Transaction tx = null;
 		try {
 			tx=session.beginTransaction();
@@ -107,6 +112,8 @@ public class CreateTable2 {
 
 	public void CreateTableAllPic(Member member, House house, HouseDetail houseDetail, HousePic housePic,
 			HousePic housePic0, HousePic housePic1, HousePic housePic2, HousePic housePic3, Forum forum) {
+		session = factory.getCurrentSession();
+
 		Transaction tx = null;
 		try {
 			tx=session.beginTransaction();
@@ -147,10 +154,10 @@ public class CreateTable2 {
 			session.flush();
 			
 //			forum.setForumBean(session.get(Forum.class, forum.getId()));
-////			forum.setMemberBean(session.get(Member.class,member.getId()));
-//			session.save(forum);
-//			session.flush();
-			
+			forum.setMemberBean(session.get(Member.class,member.getId()));
+			session.save(forum);
+			session.flush();
+//			
 //			forumReport.setForumBean(session.get(Forum.class, forumReport.getId()));
 //			session.save(forumReport);
 //			session.flush();

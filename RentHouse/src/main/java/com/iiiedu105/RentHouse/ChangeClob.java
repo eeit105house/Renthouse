@@ -47,7 +47,7 @@ public class ChangeClob {
 		return s.toString();
 	}
 
-	public Clob stringToClob(String str) {
+	public static Clob stringToClob(String str) {
 		Clob clob = null;
 		try {
 			clob = new SerialClob(str.toCharArray());
