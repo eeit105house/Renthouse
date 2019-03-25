@@ -11,4 +11,5 @@ public interface SearchHouseByConditionDao {
 	public List<HousePic> getAllHousePic();
 	public HousePic getHousePicById(Integer id);
 	public List<Object[]> getHouseByMsg(String msg);
+	public List<Object[]> getAllVipHouse();
 }
