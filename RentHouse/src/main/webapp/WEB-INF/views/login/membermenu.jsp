@@ -14,7 +14,7 @@
       <div class="sidebar-heading list-group-item bg-warning">會員中心</div>
       <div class="list-group list-group-flush">
         <a id="aaa" href="<c:url value='/membercontrol/${user.id}'/>" class="list-group-item list-group-item-action bg-light">會員資料修改</a>
-        <a id="bbb" href="<spring:url value='/membercontrol/memberservice/${user.id}' />" class="list-group-item list-group-item-action bg-light">客服中心</a>
+        <a id="bbb" href="<spring:url value='/membercontrol/memberservice/serviceform' />" class="list-group-item list-group-item-action bg-light">客服中心</a>
         <a id="ccc" href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
         <a id="ddd" href="#" class="list-group-item list-group-item-action bg-light">Events</a>
         <a id="eee" href="#" class="list-group-item list-group-item-action bg-light">Profile</a>

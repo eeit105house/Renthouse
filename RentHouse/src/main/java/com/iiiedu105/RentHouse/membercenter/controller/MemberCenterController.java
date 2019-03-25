@@ -57,7 +57,7 @@ public class MemberCenterController {
 	public String memberServiceajax(Model model) {
 		EmployeeReport employeeReport = new EmployeeReport();
 		model.addAttribute("employeeReport",employeeReport);
-		model.addAttribute("member", new Member());
+		
 		return "login/MemberService";	
 	}
 
