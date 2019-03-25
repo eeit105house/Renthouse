@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix='form' uri="http://www.springframework.org/tags/form"%>
+        <%@include file="../login/narbar.jsp"%>
 
 <!DOCTYPE html>
 <html>
@@ -12,9 +13,10 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
-
+<script src="${pageContext.request.contextPath}/HouseResorce/Formstone-master/js/site.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/Formstone-master/css/site.css"
+		media="all" />
 	<%-- 	<script src="${pageContext.request.contextPath}/HouseResorce/js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script> --%>
-	<script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
 
 	<script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script>
 	<!-- KICKSTART -->
@@ -80,7 +82,7 @@
 				}
 			});
 
-			$('#sqft.#floor,#topfloor').keyup(function () { //限制數字.1
+			$('#sqft,#floor,#topfloor').keyup(function () { //限制數字.1
 				if (/[^0-9\.-]/g.test(this.value)) {
 					this.value = this.value.replace(/[^0-9\.-]/g, '');
 				}
@@ -136,10 +138,11 @@
 
 <body style="background-color: #ffebd7;">
     <div style="height: 75px;">
-        <%@include file="narbar.jsp"%>
+        	<script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
+        
     </div>
     <div>
-        <h1 class="container">親愛的 ${user.name} 您好</h1>
+<%--         <h1 class="container">親愛的 ${user.name} 您好</h1> --%>
         <div class="d-flex container" id="wrapper">
             <!-- Sidebar -->
 <!--             <div class="bg-light border-right" id="sidebar-wrapper"> -->

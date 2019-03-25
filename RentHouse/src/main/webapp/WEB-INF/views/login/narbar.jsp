@@ -137,6 +137,7 @@ console.log('User disconnect.');
 	<a href="<c:url value='/membercontrol/${user.id}'/>">${user.name}</a>
 	
     </nav>
+
 <c:if test="${user==null}">
 <!-- 日期用 -->
 <script src="${pageContext.request.contextPath}/login/js/date.js"></script>
