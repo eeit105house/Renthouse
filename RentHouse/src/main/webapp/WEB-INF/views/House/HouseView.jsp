@@ -23,7 +23,8 @@ Released for free under the Creative Commons Attribution License
 	<link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet"
 		type="text/css" />
 	<script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script>
-<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">		
+<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css"/>		
+<link rel="stylesheet" href="https://trentrichardson.com/examples/timepicker/jquery-ui-timepicker-addon.css"/>		
 
 	<!-- 幻燈片 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css" />
@@ -254,19 +255,23 @@ body {font-family: Arial, Helvetica, sans-serif;}
 									<c:if test="${user!=null}">
 											<button class="open-button" onclick="openForm()">點我預約</button>
 												    <div class="form-popup" id="myForm">
-														  <form:form method='POST'  class='form-container'>
+														  <form method="post" class='form-container' action="${pageContext.request.contextPath}/Resources/add">
 																<div>
 																	<label for="time">預約時間</label>
 																	<div>
-																		<input id="time" name="time" type="datetime-local"/>
+																		<input id="time" name="time" type="text" readonly="readonly" />
 																	</div>
 																</div>
 <%-- 																<form:input path="status" id="status" type="hidden" value="未看"/> --%>
+																<input name="status" id="status" type="hidden" value="未看"/>
 <%-- 																<form:input path="confirm" id="confirm" type="hidden" value="待確認"/>	 --%>
+																<input name="confirm" id="confirm" type="hidden" value="待確認"/>	
 <%-- 																<form:input path="readStatus" id="readStatus" type="hidden" value="未讀"/>		 --%>
+																<input name="readStatus" id="readStatus" type="hidden" value="未讀"/>		
+																<input name="houseIdRv" id="houseIdRv" type="hidden" value="${houseBean.id}"/>		
 																<button type="submit" class="btn">reservation</button>
 														    	<button type="button" class="btn cancel" onclick="closeForm()">close</button>
-															</form:form>
+															</form>
 														</div>
 									</c:if>
 									<%-- 						<c:forEach var='include' items='${includeList}'> --%>
@@ -338,6 +343,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
 	    
 
 	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>    	
+	<script src="https://trentrichardson.com/examples/timepicker/jquery-ui-timepicker-addon.js"></script>
 	
 <script>
 function openForm() {
@@ -347,6 +354,13 @@ function openForm() {
 function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
+
+$("#time").datetimepicker({
+	showOtherMonths: true,
+	selectOtherMonths: true,
+	"dateFormat": "yy-mm-dd",
+    "timeFormat": "HH:mm"
+});
 </script>
 </body>
 
