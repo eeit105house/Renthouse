@@ -172,11 +172,10 @@
                     <div class="post">
 								<form:form method='POST' modelAttribute="houseBean">
 									<fieldset>
-										<legend>房屋類型</legend>
+										<legend class="legendK">房屋類型</legend>
 										<div>
 											<label for="addr" class="label.col_1">地址：</label>
 											<span id="twzipcode"></span>
-						
 											<form:hidden id="cityId" path="city" onchange="codeAddress()" />
 											<form:hidden id="boroughsId" path="boroughs" onchange="codeAddress()" />
 											<form:input path="addr" class="col_6" onchange="codeAddress()" />

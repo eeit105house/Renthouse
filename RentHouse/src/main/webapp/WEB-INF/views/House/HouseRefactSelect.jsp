@@ -32,7 +32,9 @@
 <!-- 		type="text/css" /> -->
 	<meta charset="UTF-8">
 	<title>您的房屋</title>
+<style type="text/css">
 
+</style>
 	<script>
 		// 		$(document).ready(function () {
 		// 			$("#cc").click(function(){
@@ -57,18 +59,20 @@
 		<h1 class="container">親愛的 ${user.name} 您好</h1>
 		<div class="d-flex container" id="wrapper">
 			<!-- Sidebar -->
-			<div class="bg-light border-right" id="sidebar-wrapper">
-				<div class="sidebar-heading list-group-item bg-warning">會員中心</div>
-				<div class="list-group list-group-flush">
-					<a href="<c:url value='/membercontrol/${user.id}'/>"
-						class="list-group-item list-group-item-action bg-light">會員資料修改</a>
-					<a href="<c:url value='/membercontrol/houseRefactSelect'/>" class="list-group-item list-group-item-action bg-light">&gt;&gt;房屋管理</a>
-					<a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-					<a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-					<a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-					<a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-				</div>
-			</div>
+			    <%@include file="../login/membermenu.jsp"%>
+			
+<!-- 			<div class="bg-light border-right" id="sidebar-wrapper"> -->
+<!-- 				<div class="sidebar-heading list-group-item bg-warning">會員中心</div> -->
+<!-- 				<div class="list-group list-group-flush"> -->
+<%-- 					<a href="<c:url value='/membercontrol/${user.id}'/>" --%>
+<!-- 						class="list-group-item list-group-item-action bg-light">會員資料修改</a> -->
+<%-- 					<a href="<c:url value='/membercontrol/houseRefactSelect'/>" class="list-group-item list-group-item-action bg-light">&gt;&gt;房屋管理</a> --%>
+<!-- 					<a href="#" class="list-group-item list-group-item-action bg-light">Overview</a> -->
+<!-- 					<a href="#" class="list-group-item list-group-item-action bg-light">Events</a> -->
+<!-- 					<a href="#" class="list-group-item list-group-item-action bg-light">Profile</a> -->
+<!-- 					<a href="#" class="list-group-item list-group-item-action bg-light">Status</a> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<!-- /#sidebar-wrapper -->
 
 			<!-- Page Content -->
@@ -129,7 +133,7 @@
 
 
 											<a name="DontPost" class="button red" href="#hidden_content_dontpost${house.id}">主動下架</a>
-											<div id="hidden_content_dontpost${house.id}" style="display: none;">
+											<div id="hidden_content_dontpost${house.id}" style="display: none; background-color: #ffebd7;">
 												<div class="inline_content" style="width: 350px; height: 200px; background-color: #ffebd7;">
 													<h4>請確認是否確定下架?</h4>
 													<p>*手動下架並不會退還刊登費*</p>
@@ -167,7 +171,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-    <form method='POST' enctype="multipart/form-data" onsubmit='return confirm("確定送出");'>
+    <form method='POST' enctype="multipart/form-data" onsubmit='return confirm("確定送出");' >
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -197,9 +201,6 @@
     </div>
   </div>
 </div>
-
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> -->
-<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> -->
 <script>
 	$('#exampleModal').on('show.bs.modal', function (event) {		
 		  var button = $(event.relatedTarget) // Button that triggered the modal
@@ -245,6 +246,11 @@
   } );
 </script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+
+		<input type="hidden" id="herenow" value="houseSelect">
 </body>
 </html>

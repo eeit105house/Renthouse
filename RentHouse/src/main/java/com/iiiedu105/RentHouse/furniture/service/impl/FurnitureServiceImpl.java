@@ -1,6 +1,8 @@
 package com.iiiedu105.RentHouse.furniture.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +39,23 @@ public class FurnitureServiceImpl implements FurnitureServise {
 	@Override
 	public List<Furniture> getFurnituresByMemberId(String id) {
 		return dao.getFurnituresByMemberId(id);
+	}
+	@Override
+	public List<Furniture> getFurnituresOrderbyId() {
+		return dao.getFurnituresOrderbyId();
+	}
+	@Override
+	public Map<String, List<Furniture>> getFurnituresOrderbyTypes(String types) {
+		String typesAr[] = types.split(";");
+		Map<String, List<Furniture>> furnitureMap = new HashMap<>();
+		System.out.println(types);
+		for(String type:typesAr) {
+			System.out.println(type);
+			List<Furniture> furnitureBeans = dao.getFurnituresOrderbyType(type);
+			furnitureMap.put(type, furnitureBeans);
+		}
+
+		return furnitureMap;
 	}
 
 }

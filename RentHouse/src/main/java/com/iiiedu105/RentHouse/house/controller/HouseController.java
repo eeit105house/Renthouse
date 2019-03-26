@@ -358,9 +358,11 @@ public class HouseController {
 	public String getAddNewHouseForm(Model model,HttpServletRequest request) {
 		
 		HttpSession httpSession = request.getSession();
-		Member member = (Member) httpSession.getAttribute("user");
-		if (member == null)
+		Member user = (Member) httpSession.getAttribute("user");
+		if (user == null || user.getActive()==null)
 			return "redirect:/";
+		if (!user.getActive().equals("已驗證"))
+			return "redirect:/membercontrol/"+user.getId();
 		House houseBean = new House();
 		model.addAttribute("houseBean", houseBean);
 		return "House/HouseForm";
