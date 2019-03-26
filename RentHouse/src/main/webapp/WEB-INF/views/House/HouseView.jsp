@@ -22,7 +22,7 @@ Released for free under the Creative Commons Attribution License
 	<script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script>
 
 	<!-- 幻燈片 -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"/>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css" />
 	<script>
 		$(document).ready(function () {
 			$('.slider').bxSlider();
@@ -35,8 +35,8 @@ Released for free under the Creative Commons Attribution License
 		<%@include file="../login/narbar.jsp"%>
 	</div>
 	<div>
-		<%--         <h1 class="container">親愛的 ${user.name} 您好</h1> --%>
-		<!--         <div class="d-flex container" id="wrapper"> -->
+		        <h1 class="container">親愛的 ${user.name} 您好</h1>
+		        <div class="d-flex container" id="wrapper">
 		<!--             Sidebar -->
 		<!--             <div class="bg-light border-right" id="sidebar-wrapper"> -->
 		<!--                 <div class="sidebar-heading list-group-item bg-warning">會員中心</div> -->
@@ -182,26 +182,26 @@ Released for free under the Creative Commons Attribution License
 								</ul>
 
 								<table>
-								<tr>
-									<td>
-										<h2>屋主： ${fakeName}</h2>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h2>電話： ${memberBean.phone}</h2>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h2>可遷入日： ${movingInStr}</h2>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h2>最短租期： ${detailBean.shortest}</h2>
-									</td>
-								</tr>
+									<tr>
+										<td>
+											<h2>屋主： ${fakeName}</h2>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h2>電話： ${memberBean.phone}</h2>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h2>可遷入日： ${movingInStr}</h2>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h2>最短租期： ${detailBean.shortest}</h2>
+										</td>
+									</tr>
 								</table>
 								<!-- 				<ul> -->
 								<!-- 					<li><a href="#">February 2007</a> <i>(22)</i></li> -->
@@ -239,9 +239,9 @@ Released for free under the Creative Commons Attribution License
 		<!-- /#page-content-wrapper -->
 
 	</div>
-	<!--     </div> -->
-		<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-	
+	    </div>
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
 </body>
 
 <!-- <body> -->
