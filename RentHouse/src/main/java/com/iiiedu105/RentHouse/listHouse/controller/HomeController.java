@@ -258,16 +258,17 @@ public class HomeController {
 	}
 
 //	關鍵字查詢--Map
-	@RequestMapping("/search/searchPage_Msg_mag")
+	@RequestMapping("/search/searchPage_Msg_map")
 	public String searchPageByMsgMap(Model model, @RequestParam("msg") String msg) {
 		List<Object[]> Objectlist = service.getHouseByMsg(msg);
 		model.addAttribute("number",Objectlist.size());
 		model.addAttribute("Objectlists", Objectlist);
 		return "search/searchPage_start_map";
 	}
+	
 	@RequestMapping(value = "/getPicture/{id}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer id) {
-		String filePath = "/images/NoImage.jpg";
+		String filePath = "/NoImage.jpg";
 		byte[] media = null;
 		HttpHeaders headers = new HttpHeaders();
 		String filename = "";
@@ -278,7 +279,7 @@ public class HomeController {
 			Blob blob = bean.getPic();
 			filename = "\\images\\HousePic0.jpg";
 			if (blob != null) {
-
+ 
 				try {
 					len = (int) blob.length();
 					media = blob.getBytes(1, len); // blob.getBytes(1, len): 是 1 開頭。Jdbc相關的類別都是1 開頭。

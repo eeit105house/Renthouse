@@ -56,5 +56,13 @@ public class ResourcesDaoImpl implements ResourcesDao{
 		hId= session.createQuery(hql).setParameter("mid", memberId).getResultList();
 		return hId;
 	}//查詢房東的物件
+	@Override
+	public List<Reservation> getReservationMember(String memberId) {
+		Session session = factory.getCurrentSession();
+		String hql ="FROM Reservation rt WHERE memberBean.id= :mid";
+		List<Reservation> gRtm = new ArrayList<Reservation>();
+		gRtm = session.createQuery(hql).setParameter("mid", memberId).getResultList();
+		return gRtm;
+	}//利用房客ID查詢預約資料
 
 }

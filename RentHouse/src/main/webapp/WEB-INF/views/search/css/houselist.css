@@ -56,9 +56,7 @@
 .text {
 	width: 100px;
 }
-.titleDiv {
-	float:left;
-}
+
 .textDiv{
 	float:right;
 }
