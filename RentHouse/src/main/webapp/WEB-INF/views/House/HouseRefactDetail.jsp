@@ -126,18 +126,20 @@
         <h1 class="container">親愛的 ${user.name} 您好</h1>
         <div class="d-flex container" id="wrapper">
             <!-- Sidebar -->
-            <div class="bg-light border-right" id="sidebar-wrapper">
-                <div class="sidebar-heading list-group-item bg-warning">會員中心</div>
-                <div class="list-group list-group-flush">
-                    <a href="<c:url value='/membercontrol/${user.id}'/>"
-                        class="list-group-item list-group-item-action bg-light">&gt;&gt;會員資料修改</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-                </div>
-            </div>
+            <%@include file="../login/membermenu.jsp"%>
+            
+<!--             <div class="bg-light border-right" id="sidebar-wrapper"> -->
+<!--                 <div class="sidebar-heading list-group-item bg-warning">會員中心</div> -->
+<!--                 <div class="list-group list-group-flush"> -->
+<%--                     <a href="<c:url value='/membercontrol/${user.id}'/>" --%>
+<!--                         class="list-group-item list-group-item-action bg-light">&gt;&gt;會員資料修改</a> -->
+<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a> -->
+<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a> -->
+<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Events</a> -->
+<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a> -->
+<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Status</a> -->
+<!--                 </div> -->
+<!--             </div> -->
             <!-- /#sidebar-wrapper -->
 
             <!-- Page Content -->
@@ -153,7 +155,7 @@
                     <div class="post">
 				<form:form method='POST' modelAttribute="detailBean">
 					<fieldset>
-						<legend>詳細資訊</legend>
+						<legend class="legendK">詳細資訊</legend>
 						<div>
 							標題
 							<form:input path="title" value="${detailBean.title}" />

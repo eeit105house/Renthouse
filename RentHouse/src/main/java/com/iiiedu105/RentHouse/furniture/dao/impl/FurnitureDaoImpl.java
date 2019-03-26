@@ -64,5 +64,23 @@ public class FurnitureDaoImpl implements FurnitureDao {
 
 		return furnitureBeans;
 	}
+
+	@Override
+	public List<Furniture> getFurnituresOrderbyId() {
+		String hql = "FROM Furniture fu ORDER BY fu.id";
+		Session session = factory.getCurrentSession();
+		List<Furniture> furnitureBeans = new ArrayList<>();
+		furnitureBeans = session.createQuery(hql).getResultList();
+		return furnitureBeans;
+	}
+
+	@Override
+	public List<Furniture> getFurnituresOrderbyType(String type) {
+		String hql = "FROM Furniture fu WHERE :type = fu.type ORDER BY fu.id";
+		Session session = factory.getCurrentSession();
+		List<Furniture> furnitureBeans = new ArrayList<>();
+		furnitureBeans = session.createQuery(hql).setParameter("type", type).getResultList();
+		return furnitureBeans;
+	}
 	
 }

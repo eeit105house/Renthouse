@@ -8,6 +8,10 @@
 <head>
     <meta charset="UTF-8">
     <title>家具一覽</title>
+    	<script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script>
+	<!-- KICKSTART -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/css/kickstart.css" media="all" />
+	<!-- KICKSTART -->
     <style type="text/css">
     </style>
     
@@ -45,6 +49,15 @@
                 <!-- 		內容 -->
                 <div class="container-fluid" style="width: 800px;">
                     <h1 class="mt-4"></h1>
+                    <form method="post" action="${pageContext.request.contextPath}/furnitureViewByType">
+                    	<c:forEach var="type" items="${typeList}">
+                    		<input type="checkbox" name="typesN" id="${type}" value="${type}" onclick="getCBValue('types')">
+                    		<label for="${type}">${type}</label>
+                    	</c:forEach>
+                    	<input type="hidden" name="types" id="types">
+                    	
+                    	<input type="submit" value="查詢">
+                    </form> 
                     <table>
                         <thead>
                             <tr>
@@ -55,14 +68,29 @@
                             </tr>
                         </thead>
                         <tbody>
+                        	<c:if test="${furnitureList != null}">
                         	<c:forEach var="furniture" items="${furnitureList}">
                        		 	<tr>
-                        			<td><a href='<c:url value="/furnitureView/${furniture.id}"/>'>${furniture.title}</a>></td>
+                        			<td><a href='<c:url value="/furnitureView/${furniture.id}"/>'>${furniture.title}</a></td>
                         			<td>${furniture.type}</td>
                         			<td>${furniture.price}元</td>
-                        			<td><img alt="X" src='<c:url valur="/furnitureView/fuPic/${furniture.id}"/>'></td>
+                        			<td><img alt="X" src='<c:url value="/furnitureView/fuPic/${furniture.id}"/>' height="100px"></td>
                         		</tr>
                         	</c:forEach>
+                        	</c:if>
+                        	<c:if test="${furnitureMap != null}">
+	                        	<c:forEach var="type" items="${typeList}">
+<%-- 	                        	<tr><td>${furnitureMap[type]}</td></tr> --%>
+	                       		 	<c:forEach var="furniture" items="${furnitureMap[type]}">
+			           		      		 	<tr>
+			                        			<td><a href='<c:url value="/furnitureView/${furniture.id}"/>'>${furniture.title}</a></td>
+			                        			<td>${furniture.type}</td>
+			                        			<td>${furniture.price}元</td>
+			                        			<td><img alt="X" src='<c:url value="/furnitureView/fuPic/${furniture.id}"/>' height="100px"></td>
+			                        		</tr>
+	                       		 	</c:forEach>
+	                        	</c:forEach>
+                        	</c:if>
                         </tbody>
                     </table>
                 </div>
@@ -71,6 +99,36 @@
 
         </div>
     </div>
+    
+<script>
+	
+	function getCBValue(cbName) {
+		// alert(cbName);
+		// var array_value = $('input:checkbox:checked[name="applianceN"]').map(function() { return $(this).val(); }).get();
+		var array_value = $('input:checkbox:checked[name="' + cbName + 'N"]').map(function () { return $(this).val(); }).get();
+		var one_value = "";
+		// alert(array_value.length);
+		for (var i = 0; i < array_value.length; i++) {
+			// alert(one_value+";"+i);
+			if (i == 0)
+				one_value = one_value + array_value[i];
+			else
+				one_value = one_value + ';' + array_value[i];
+			// alert(array_value[i]);
+		}
+		// $('input[name="appliance"]').val(one_value);
+		$('[name="' + cbName + '"]').val(one_value);
+		// alert(Appliance);
+		
+// 		$.ajax({
+// 			url:"${pageContext.request.contextPath}/furnitureViewByType",
+// 			data:{type:$("#typeSelect").val()},
+// 			type:"Post",
+// 			cache:false,
+// 			success:function(data){$(document).html(data)}
+// 		});
+	}
+</script>
 </body>
 
 </html>

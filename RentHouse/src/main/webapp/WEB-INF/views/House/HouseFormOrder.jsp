@@ -24,7 +24,7 @@
         <%@include file="../login/narbar.jsp"%>
     </div>
     <div>
-        <h1 class="container">親愛的 ${user.name} 您好</h1>
+<%--         <h1 class="container">親愛的 ${user.name} 您好</h1> --%>
         <div class="d-flex container" id="wrapper">
             <!-- Sidebar -->
 <!--             <div class="bg-light border-right" id="sidebar-wrapper"> -->
@@ -54,7 +54,7 @@
                     <div class="post">
 			      	  <form:form>
 			       	   <fieldset>
-			        	    <legend>請選擇付款方案</legend>
+			        	    <legend class="legendK">請選擇付款方案</legend>
 			    	        <p>${errorMsg.orderE}</p>
 				            <c:forEach var="VipProject" items="${VipProjects}">
 			            	  <div style="background-color: white;">

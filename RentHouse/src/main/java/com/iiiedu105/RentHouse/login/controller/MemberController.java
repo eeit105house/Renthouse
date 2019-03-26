@@ -225,11 +225,11 @@ public String activeMember(HttpServletRequest request ,HttpSession session,@Path
 		model.addAttribute("errorMsg", errorMsg);
 	}
 	if(!errorMsg.isEmpty()) {
-		return "redirect:/return_index";
+		return "forward:/";
 	}
 	create.put("signin", "租你幸福，祝你幸福");
 	model.addAttribute("create", create);
-		return "redirect:/return_index";
+		return "forward:/";
 	}
 
 
