@@ -37,15 +37,15 @@ public class ResourcesDaoImpl implements ResourcesDao{
 	@Override
 	public List<Reservation> getReservation(Integer houseId) {
 		Session session = factory.getCurrentSession();
-		String hql ="FROM Reservation rt WHERE houseBean.id= :hid";
+		String hql ="FROM Reservation rt WHERE houseBean.id= :hid AND rt.confirm = :cf";
 		List<Reservation> gRt = new ArrayList<Reservation>();
-		gRt = session.createQuery(hql).setParameter("hid", houseId).getResultList();
+		gRt = session.createQuery(hql).setParameter("hid", houseId).setParameter("cf", "待確認").getResultList();
 		return gRt;
 	}//利用房屋ID查詢預約資料
 	@Override
 	public void updateReservation(Integer id) {
 		Session session =factory.getCurrentSession();
-		String hql ="UPDATE Reservation rt SET rt.confirm='同意' where rt.id = :hid ";
+		String hql ="UPDATE Reservation rt SET rt.confirm='同意' where rt.id = :hid";
 		session.createQuery(hql).setParameter("hid", id).executeUpdate();
 	}
 	@Override

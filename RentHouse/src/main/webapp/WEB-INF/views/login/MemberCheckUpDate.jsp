@@ -34,7 +34,8 @@
         <h1 class="mt-4">預約資訊審核(房東)</h1>
         <table width="300" border="1">
 　			<tr>
-　				<td>房屋編號</td>
+　				<td>預約編號</td>
+				<td>房屋編號</td>
  				<td>預約時間</td>
  				<td>預約人</td>
  				<td>預約狀態</td>
@@ -45,6 +46,7 @@
 			<c:forEach var="house" items="${res.value }">
 			<tr>
 				<td>${house.id }</td>
+				<td>${house.houseBean.id }</td>
 				<td>${house.datetime }</td>
 				<td >${house.memberBean.id }</td>
 				<td>${house.confirm }</td>

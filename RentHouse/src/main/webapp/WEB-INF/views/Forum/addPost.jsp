@@ -26,7 +26,7 @@
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>發表文章</title>
 </head>
-<body>
+<body style="background-color: #ffebd7;">
 	<link href="/group/village/mepocc.css" rel="stylesheet" type="text/css" />
 
 	<script type="text/javascript">
@@ -67,20 +67,24 @@
 
 <body
 	onload="spawn();MM_preloadImages('/group/village/imgs/post-2.gif');var focuselt=document.getElementById('subject'); if (focuselt) focuselt.focus();">
-
+	<div style="height: 75px;">
+		<%@include file="../login/narbar.jsp"%>
+	</div>
 	<div class="forum">
-	<%@include file="../login/narbar.jsp"%>
+
 		<div class="crumbs">
 			發表文章
 		</div>
 		<div id="j-publish-style" style="display: none;"></div>
 		<div class="pubish_box">
 			<div class="publish_content">
-			
-		
 
-				<form:form action="./add" modelAttribute="ForumBean" method="POST" name="form1" id="form1"
-					onsubmit="return chkPost();checkBbsCate();return checkForumPost();" class='form-horizontal' enctype="multipart/form-data">
+
+
+				<form:form action="./add" modelAttribute="ForumBean" method="POST"
+					name="form1" id="form1"
+					onsubmit="return chkPost();checkBbsCate();return checkForumPost();"
+					class='form-horizontal' enctype="multipart/form-data">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
 							<td colspan="2">▎<span class="content_replay font_13">發表新文章</span>
@@ -88,70 +92,64 @@
 						</tr>
 						<tr>
 							<td width="8%">選擇分類:</td>
-							<td width="92%" colspan="2"><form:select path="sort" name="cateTitle"
-								id="cateTitle"
-								onchange="changeCateTitle(this,0);checkBbsCate();changeSubTitle(1);"><option
-										value="">請選擇分類</option>										
+							<td width="92%" colspan="2"><form:select path="sort"
+									name="cateTitle" id="cateTitle"
+									onchange="changeCateTitle(this,0);checkBbsCate();changeSubTitle(1);">
+									<option value="">請選擇分類</option>
 									<option value="心情抒發">心情抒發</option>
 									<option value="租屋交流">租屋交流</option>
 									<option value="知識問答">知識問答</option>
 									<option value="房價討論">房價討論</option>
-									</form:select> <span id="cate_id_box"></span>
-								<span id="parent_cate_id"
+								</form:select> <span id="cate_id_box"></span> <span id="parent_cate_id"
 								style="padding-top: 10px; display: none; height: 21px;">
 									<span id="cate_id_help" style="display: none"></span>
 							</span></td>
 
 						</tr>
-<!-- 						<div class="form-group"> -->
-				
-<!-- 						<div class='col-lg-10'> -->
-<%-- 						<form:select path="sort"> --%>
-<%-- 							<form:option value="-1" > --%>
-<%-- 						<p>${errorMsg.titleE}</p> --%>
-<%-- 							</form:option> --%>
-<%-- 							<form:options items="${SortList}" /> --%>
-<%-- 						</form:select> --%>
-<!-- 						</div>						 -->
-<!-- 					</div> -->
+						<!-- 						<div class="form-group"> -->
+
+						<!-- 						<div class='col-lg-10'> -->
+						<%-- 						<form:select path="sort"> --%>
+						<%-- 							<form:option value="-1" > --%>
+						<%-- 						<p>${errorMsg.titleE}</p> --%>
+						<%-- 							</form:option> --%>
+						<%-- 							<form:options items="${SortList}" /> --%>
+						<%-- 						</form:select> --%>
+						<!-- 						</div>						 -->
+						<!-- 					</div> -->
 						<tr>
 							<td>文章標題:</td>
-							
-							<td>
-							<form:input path="title" name="title" id="title" type="text" class="input"
-								onblur="checkBbsTitle();" value="" />
-<%-- 								<p>${errorMsg.titleList}</p> --%>
-							<div id="parent_title" class="col-lg-10"
+
+							<td><form:input path="title" name="title" id="title"
+									type="text" class="input" onblur="checkBbsTitle();" value="" />
+								<%-- 								<p>${errorMsg.titleList}</p> --%>
+								<div id="parent_title" class="col-lg-10"
 									style="padding-top: 10px; display: none; height: 21px;">
 									<span id="title_help" style="display: none"></span>
-								</div>	
-	
-				</td>
+								</div></td>
 						</tr>
 						<tr>
 							<td valign="top">文章內容:</td>
-							
+
 							<td><textarea id="article" name="article"
 									style="width: 90%; height: 400px;"></textarea>
 								<div id="parent_content"
 									style="padding-top: 10px; display: none; height: 21px;">
 									<span id="content_help" style="display: none"></span>
 								</div>
-								<div>
-				
-				</div></td>
+								<div></div></td>
 						</tr>
-<!-- 						<tr> -->
-<!-- 							<td>&nbsp;</td> -->
-<!-- 							<td> -->
-<!-- 								<div id="uploadBox"> -->
-<!-- 									上傳圖片：<input name="img" type="file" size="35" -->
-<!-- 										onkeydown="return false" onkeypress="return false" -->
-<!-- 										onchange="if (! isImage(this.value)) $('imgError').value=1;forumupload(this);" /> -->
-<!-- 								</div> -->
-<!-- 								<div id="failMsg" style="display: none; color: #f00">圖片太寬,請把寬度控制在770px以內</div> -->
-<!-- 							</td> -->
-<!-- 						</tr> -->
+						<!-- 						<tr> -->
+						<!-- 							<td>&nbsp;</td> -->
+						<!-- 							<td> -->
+						<!-- 								<div id="uploadBox"> -->
+						<!-- 									上傳圖片：<input name="img" type="file" size="35" -->
+						<!-- 										onkeydown="return false" onkeypress="return false" -->
+						<!-- 										onchange="if (! isImage(this.value)) $('imgError').value=1;forumupload(this);" /> -->
+						<!-- 								</div> -->
+						<!-- 								<div id="failMsg" style="display: none; color: #f00">圖片太寬,請把寬度控制在770px以內</div> -->
+						<!-- 							</td> -->
+						<!-- 						</tr> -->
 						<tr>
 							<td>&nbsp;</td>
 							<td><span id="UploadStatus"></span> <input class="pub"
@@ -163,9 +161,9 @@
 								name="user_id" type="hidden" id="user_id" value="2582982">
 								<input type="hidden" id="is_admin" value="0"></td>
 						</tr>
-						
+
 					</table>
-					<input type="submit" class="medium green" value="送出">
+				
 				</</form:form>
 			</div>
 		</div>
