@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,32 +21,39 @@ public class ReviewWritingsController {
 	RWritingsService rservice;
 	@Autowired
 	OTShelfService oservice;
+	//get房屋文章審核數量
+	@ModelAttribute("hlist")
+	public List<House> getHouseList(){
+		List<House> list = oservice.getAllHouse();
+		return list;
+	}
+	@ModelAttribute("wlist")
+	public List<ForumReport> getWriteList(){
+		List<ForumReport> list = rservice.getAllWritings();
+		return list;
+	}
+	//文章審核首頁
 	@RequestMapping(value="/writingsReview")
 	public String writings(Model model) {
-		List<ForumReport> list = rservice.getAllWritings();
-		model.addAttribute("wlist", list);
-		List<House> list1 = oservice.getAllHouse();
-		model.addAttribute("hlist", list1);
 		return "backstage/writingsReview";		
 	}
+	//文章通過審核
 	@RequestMapping(value="/pass/{id}")
 	public String updatepass(@PathVariable("id") Integer id) {
 		rservice.updatePassWritings(id);
 		return "redirect:/backstage/writingsReview";		
 	}
+	//文章下架
 	@RequestMapping(value="/fail/{id}")
 	public String updatefail(@PathVariable("id") Integer id) {
 		rservice.updateFailWritings(id);
 		return "redirect:/backstage/writingsReview";		
 	}
+	//文章詳情
 	@RequestMapping(value="/Details/{id}")
 	public String details(@PathVariable("id") Integer id,Model model) {
 		Object[] list = rservice.getAllDetailWritingsById(id);
 		model.addAttribute("olist", list);
-		List<House> list1 = oservice.getAllHouse();
-		model.addAttribute("hlist", list1);
-		List<ForumReport> list3 = rservice.getAllWritings();
-		model.addAttribute("wlist", list3);
 		return "backstage/writingsDetails";		
 	}
 	}
