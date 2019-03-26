@@ -13,15 +13,16 @@
 <link
 	href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
 	rel="stylesheet" type="text/css">
+<!-- <link  -->
+<!-- 	href="Forum/css/forumTest.css" -->
+<!-- 	rel="stylesheet" type="text/css"/> -->
 <!-- 首頁樣式 -->
 <link href="login/css/landing-page.css" rel="stylesheet">
 
 <!-- <link rel="stylesheet" -->
 <%-- 	href="${pageContext.request.contextPath}/Forum/css/common.css" --%>
 <!-- 	type="text/css" g="publish-css"> -->
-<link rel="stylesheet"
-	href="Forum/css/forumTest.css"4
-	type="text/css" >
+
 <!-- <link rel="stylesheet" -->
 <%-- 	href="${pageContext.request.contextPath}/Forum/css/bbs.css" --%>
 <!-- 	type="text/css" g="publish-css"> -->

@@ -16,8 +16,10 @@
 <link href="login/css/landing-page.css" rel="stylesheet">
 <title>租你幸福--討論區 租屋,房屋買賣,搬家,房屋討論</title>
 </head>
-<body>
-<%@include file="../login/narbar.jsp"%>
+<body style="background-color: #ffebd7;"><body>
+	<div style="height: 75px;">
+		<%@include file="../login/narbar.jsp"%>
+	</div>
 <input type="hidden" id="hid_region" value="台北市">
 
 <script language="javascript" src="./include/javascript/newHeader/jsCookie.js"></script>
@@ -44,49 +46,49 @@
 <%--             <c:set var="begin" value="1"/> --%>
 <%--             <c:set var="end" value="${page.totalPage}"/> --%>
 <%--         </c:when> --%>
-<%--         页数超过了6页 --%>
+<!--         页数超过了6页 -->
 <%--         <c:otherwise> --%>
 <%--             <c:set var="begin" value="${page.currentPage - 1}"/> --%>
 <%--             <c:set var="end" value="${page.currentPage + 3}"/> --%>
-<%--             如果begin减1后为0,设置起始页为1,最大页为6 --%>
+<!--             如果begin减1后为0,设置起始页为1,最大页为6 -->
 <%--             <c:if test="${begin -1 <= 0}"> --%>
 <%--                 <c:set var="begin" value="1"/> --%>
 <%--                 <c:set var="end" value="6"/> --%>
 <%--             </c:if> --%>
-<%--             如果end超过最大页,设置起始页=最大页-5 --%>
+<!--             如果end超过最大页,设置起始页=最大页-5 -->
 <%--             <c:if test="${end > page.totalPage}"> --%>
 <%--                 <c:set var="begin" value="${page.totalPage - 5}"/> --%>
 <%--                 <c:set var="end" value="${page.totalPage}"/> --%>
 <%--             </c:if> --%>
 <%--         </c:otherwise> --%>
 <%--     </c:choose> --%>
-<%--     遍历 --%>
+<!--     遍历 -->
 <%--     <c:forEach var="i" begin="${begin}" end="${end}"> --%>
-<%--         当前页,选中 --%>
+<!--         当前页,选中 -->
 <%--         <c:choose> --%>
 <%--             <c:when test="${i == page.currentPage}"> --%>
 <%--                 <li class="active"><a href="#">${i}</a></li> --%>
 <%--             </c:when> --%>
-<%--             不是当前页 --%>
+<!--             不是当前页 -->
 <%--             <c:otherwise> --%>
 <%--                 <li><a href="forumDetail?currentPage=${i}">${i}</a></li> --%>
 <%--             </c:otherwise> --%>
 <%--         </c:choose> --%>
 <%--  </c:forEach> --%>
 
-      <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/insertPicPage'/>">測試用</a></li>
-      <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/membercontrol/${user.id}'/>">會員中心</a></li>
-      <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/ForumView'/>">返回列表</a></li>
-      </ul>
-      </div>
+<%--       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/insertPicPage'/>">測試用</a></li> --%>
+<%--       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/membercontrol/${user.id}'/>">會員中心</a></li> --%>
+<%--       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/ForumView'/>">返回列表</a></li> --%>
+<!--       </ul> -->
+<!--       </div> -->
       
-<%--中间页--%>
-    <%--显示6页中间页[begin=起始页,end=最大页]--%>
-    <%--总页数没有6页--%>
+<!-- 中间页 -->
+<!--     显示6页中间页[begin=起始页,end=最大页] -->
+<!--     总页数没有6页 -->
   
 
-  </table>
-</div>
+<!--   </table> -->
+<!-- </div> -->
 
 	<form:form action="./ForumDetail/{fId}" modelAttribute="reply" method="GET">
 		<!--repaly content -->
@@ -134,10 +136,10 @@
 									${forum.datetime}</font></li>
 							<!--<li class="voted_counts"></li>-->
 							</ul>
-					</div>
+					</div> 
 					<div class="content_detail">
 						<div class="font_15">${forum.content}</div>					
-					</div>
+					</div> 
 					<!--装潢日记投票-->
 					<div style="text-align: center;">
 						<div style="width: 300px; margin: 0 auto; display: none;"
@@ -222,9 +224,9 @@
 <div class="button_line">
      <table width="100%" border="0">
 						<tr>
-							<td width="10%"><a class="rep-btn" href="#rep">回覆</a></td>
-							<td width="10%"><a class="pub-btn"
-								href="./f?action=publish&fid=25&sub_fid=25">發表</a></td>
+<!-- 							<td width="10%"><a class="rep-btn" href="#rep">回覆</a></td> -->
+<!-- 							<td width="10%"><a class="pub-btn" -->
+<!-- 								href="./f?action=publish&fid=25&sub_fid=25">發表</a></td> -->
 							<td width="80%" align="right">
 								<div class="pageBar">
 									<a href="<c:url value='/ForumView'/>"
@@ -260,5 +262,66 @@
 </div>
 
 					</form:form>
+					<!--editor start-->
+<a name="rep"></a>
+<div class="editor-replay-content"  >
+<form name="rep-info" method="post" action="./reply" modelAttribute="ForumBean" onSubmit="return chkPost();">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+						<td><span class="content_replay font_15" id="re_button">回覆文章</span><br />
+							<textarea id="mycontent" name="mycontent"
+								style="width: 583px; height: 243px;"></textarea>
+							<div id="parent_content"
+								style="padding-top: 10px; display: none; height: 21px;">
+								<span id="content_help" style="display: none"></span>
+							</div></td>
+						<td></td>
+					</tr>
+  <tr height="10"><td></td></tr>
+<!-- 					<tr> -->
+<!-- 						<td>請先登入會員，<a -->
+<!-- 							href="login/Login_plustar.jsp" -->
+<!-- 							data-stat="replay-userlogin" -->
+<!-- 							onclick="this.href=this.href+'&redirect='+escape(location.href)">登入</a> -->
+<!-- 							<a data-stat="replay-userreg" -->
+<%-- 							href="${pageContext.request.contextPath}/login/Registered_plustar">註冊</a><br /> --%>
+<!-- 					</a><br> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
+					<tr height="10"><td><span id="UploadStatus"></span></td></tr>
+  <tr>
+    <td>
+    <input type="submit" class="rep-sub" value="回覆文章"/>
+    <input name="fid" type="hidden" id="fid" value="25">
+            <input type="hidden" name="action" value="postReply">
+            <input type="hidden" name="${forumReply.Forum_Id}" value="25">
+            <input name="name" type="hidden" id="nickname" value="">
+            <input name="user_id" type="hidden" id="user_id" value="-1">
+            <input name="tid" type="hidden" id="tid" value="37381">
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+        	</td>
+  </tr>
+</table>
+<div class="editor-replay gray-replay">
+      <ul>
+        <li> 會員可針對591房屋交易網的所有標題與內容自由發表評論，本討論區上的主題與內容皆不代表591的立場。</li>
+        <li> 會員在發表文章之前，確認所發之內容（如圖片）未侵害到他人的著作權、商標、專利等權利。如因會員所發文章而產生的版權法律責任將由會員承擔。</li>
+        <li> 會員必須同意不在討論區發表任何具有偽造詐欺的、誹謗的、錯誤的、辱駡的、粗俗的、有害的、騷擾的，淫穢的，褻瀆的、性別導向的、威脅侵犯他人隱私的、或者違反任何法律法規等資訊。若遭檢舉發現，591有權將版主文章鎖帖或刪除，情節重大者將取消該會員之資格。</li>
+        <li> 討論區嚴禁灌水行為；禁止以任意形式發佈廣告內容；禁止發佈或回復與591房屋交易網主旨不相符的文章。若有發現，591有權自行刪除。</li>
+        <li> 發帖內容與版塊內容不符，管理員有權刪除文章或將文章移至合適的版塊。</li>
+        <li> 請勿留下身份證字號、住址等個人隱私資料，以免遭人盜用，591不負管理之責。</li>
+        <li> 所有會員皆須遵守以上原則，不同意者請勿在此發表言論。</li>
+      </ul>      
+    </div>
+</div>
+<!--editor end-->
+					
 </body>
 </html>
