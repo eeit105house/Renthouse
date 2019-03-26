@@ -15,7 +15,7 @@
   <tbody>
   <c:forEach var="mail" items="${allmail }">
     <tr>
-      <td>${mail.title }</td>
+      <td><a href="<spring:url value='/membercontrol/memberservice/memberservicedetail/${mail.id }'/>">${mail.title }</a></td>
       <td>${mail.type }</td>
       <td>${mail.datetime }</td>
       <td>${mail.status }</td>
