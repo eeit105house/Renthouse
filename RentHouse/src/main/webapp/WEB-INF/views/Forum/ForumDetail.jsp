@@ -17,7 +17,7 @@
 <title>租你幸福--討論區 租屋,房屋買賣,搬家,房屋討論</title>
 </head>
 <body>
-
+<%@include file="../login/narbar.jsp"%>
 <input type="hidden" id="hid_region" value="台北市">
 
 <script language="javascript" src="./include/javascript/newHeader/jsCookie.js"></script>

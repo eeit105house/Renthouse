@@ -90,7 +90,7 @@ public class ForumController {
 //		}
 	
 	@RequestMapping(value= "/ForumDetail/{fId}",method=RequestMethod.GET)
-		public String viewPost (Model model,@PathVariable Integer fId) {
+		public String viewPost (Model model,@PathVariable Integer fId) throws SQLException {
 		Forum ForumBean = service.findById(fId);
 		Member memberBean = ForumBean.getMemberBean();
 		List<ForumReply> list = service.getAllReplies();
@@ -119,17 +119,12 @@ public class ForumController {
 		} else {
 			model.addAttribute("titleList", "必須輸入標題");
 		}
-		try {
-			if(ForumBean.getContent()!=null || ForumBean.getContent().length()>0) {
-				String contentList = "";			
-					contentList =ForumBean.getContent().getSubString(1, (int) ForumBean.getContent().length());		
-				String aa = changeClob.ClobToString(ForumBean.getContent());
-				model.addAttribute("contentList", contentList);
-			} else {
-				model.addAttribute("contentList", "必須輸入內文");								
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		String contentList = changeClob.ClobToString(ForumBean.getContent());	
+		if(contentList==null|| contentList.length()==0)
+
+			model.addAttribute("contentList", contentList);
+		 else {
+			model.addAttribute("contentList", "必須輸入內文");								
 		}
 		if(ForumBean.getSort()!=null || ForumBean.getSort().length()>0) {
 			List<String> sort = Arrays.asList(ForumBean.getSort().split(";"));
@@ -177,12 +172,17 @@ public class ForumController {
 		Map<String, String> errorMsg = new HashMap<String, String>();	
 		HttpSession httpSession = request.getSession();
 		Member member = new Member(); 
-		member = (Member) httpSession.getAttribute("user");
-		httpSession.setAttribute("forumId", ForumBean.getId());
-		ForumBean.setMemberId(member.getId());//假定會員
+		httpSession.setAttribute("forumId", ForumBean.getId());	
 		ForumBean.setDatetime(new Timestamp(System.currentTimeMillis()));
 		ForumBean.setStatus("上架");
-		
+		member = (Member) httpSession.getAttribute("user");
+		if (member == null)
+			return "/ForumView";
+		ForumBean.setMemberId(member.getId());//假定會員
+		if (ForumBean.getMemberId() == null ||ForumBean.getMemberId().length()==0)
+		{errorMsg.put("memberE", "請先登入");
+		System.out.println("請先登入");
+		}
 //		ForumBean.setForumBeans(ForumBean);
 		if(ForumBean.getTitle()==null || ForumBean.getTitle().length()==0)
 			{errorMsg.put("titleE", "必須有標題");
@@ -191,7 +191,6 @@ public class ForumController {
 		{	errorMsg.put("SortE", "請選擇分類！");			
 		System.out.println("必須有分類");
 		}
-		service.savePost(ForumBean);	
 //		try {
 //			contentList =ForumBean.getContent().getSubString(1, (int) ForumBean.getContent().length());
 //		} catch (SQLException e) {
@@ -205,7 +204,9 @@ public class ForumController {
 	}
 		if (errorMsg.isEmpty()) {
 			 Clob strToClob = changeClob.stringToClob(aa);
-			 ForumBean.setContent(strToClob);			
+			 ForumBean.setContent(strToClob);	
+				service.savePost(ForumBean);	
+
 		return "redirect:/ForumView";
 		}else {
 		model.addAttribute("errorMsg", errorMsg);		

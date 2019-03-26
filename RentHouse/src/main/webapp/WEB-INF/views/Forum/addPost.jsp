@@ -69,6 +69,7 @@
 	onload="spawn();MM_preloadImages('/group/village/imgs/post-2.gif');var focuselt=document.getElementById('subject'); if (focuselt) focuselt.focus();">
 
 	<div class="forum">
+	<%@include file="../login/narbar.jsp"%>
 		<div class="crumbs">
 			發表文章
 		</div>

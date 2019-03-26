@@ -20,16 +20,11 @@
 <%-- 	href="${pageContext.request.contextPath}/Forum/css/common.css" --%>
 <!-- 	type="text/css" g="publish-css"> -->
 <link rel="stylesheet"
-	href="Forum/css/forumTest.css"
+	href="Forum/css/forumTest.css"4
 	type="text/css" >
 <!-- <link rel="stylesheet" -->
 <%-- 	href="${pageContext.request.contextPath}/Forum/css/bbs.css" --%>
 <!-- 	type="text/css" g="publish-css"> -->
-
-
-
-
-
 
 <title>租你幸福--討論區 租屋,房屋買賣,搬家,房屋討論</title>
 <style>
@@ -39,13 +34,15 @@
 </style>
 
 </head>
-<body>
-	<%-- <jsp:include page="login/narbar.jsp"/> --%>
-	<header class="masthead text-white text-center"
-		style="background: url(login/img/index.jpg) no-repeat center center;">
-		  <h2>租你幸福</h2>
-  <p>討論區 租屋,房屋買賣,搬家,房屋討論</p>
-		</header>
+<body style="background-color: #ffebd7;">
+	<div style="height: 75px;">
+		<%@include file="../login/narbar.jsp"%>
+	</div>
+<!-- 	<header class="masthead text-white text-center" -->
+<!-- 		style="background: url(login/img/index.jpg) no-repeat center center;"> -->
+<!-- 		  <h2>租你幸福</h2> -->
+<!--   <p>討論區 租屋,房屋買賣,搬家,房屋討論</p> -->
+<!-- 		</header> -->
 <!-- <!-- BEGIN TEMPLATE list_threads.tpl --> 
 <!-- <div class="nav" style="padding-left:50px"> -->
 	
@@ -82,6 +79,7 @@
 <%--     <td class="list_info" >${forum.datetime}</td> --%>
     
 <!--     </tr> -->
+	
     <div class="container">
 
   <table class="table">
@@ -112,23 +110,27 @@
         <button type="button" class="btn" data-dismiss="modal">取消</button>                  
               </div>
 </div>
+</div>
+</div>
+
+
   </table>
-  <table class="table">
-    <thead class="thead-light">
-      <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
+  </div>
+<!--   <table class="table"> -->
+<!--     <thead class="thead-light"> -->
+<!--       <tr> -->
+<!--         <th>Firstname</th> -->
+<!--         <th>Lastname</th> -->
+<!--         <th>Email</th> -->
+<!--       </tr> -->
+<!--     </thead> -->
+    
+<!--     <tbody> -->
    
       
-    </tbody>
+<!--     </tbody> -->
 
- </table>
+<!--  </table> -->
   
-	
-
 </body>
 </html>
