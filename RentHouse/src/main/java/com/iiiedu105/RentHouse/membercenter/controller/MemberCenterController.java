@@ -57,6 +57,7 @@ public class MemberCenterController {
 	public String memberServiceajax(Model model) {
 		EmployeeReport employeeReport = new EmployeeReport();
 		model.addAttribute("employeeReport",employeeReport);
+		
 		return "login/MemberService";	
 	}
 
@@ -87,6 +88,7 @@ public class MemberCenterController {
 		Member member = (Member)session.getAttribute("user");
 		List<EmployeeReport> list = memberService.getAllMail(member.getId());
 		model.addAttribute("allmail",list);
+		model.addAttribute("member", new Member());
 		return "login/MemberServiceReport";
 		}
 	}

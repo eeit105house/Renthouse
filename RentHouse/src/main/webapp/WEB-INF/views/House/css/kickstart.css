@@ -33,7 +33,8 @@ a{color:#4D99E0;outline:0;}
 a:active{color:inherit;}
 a:visited{}
 a:hover{}
-a img{border:0;}
+/* a img{border:0;} */
+a img.imgK{border:0;}
 a [class^="icon-"]{color:inherit;text-decoration:none;}
 strong,b{color:#000;font-weight:bold;}
 strike{}
@@ -395,7 +396,15 @@ font-size:0;
 	for img .style1, .style2, .style3
 	view js/kickstart.js Image Style Helpers
 */
-img{
+/* img{ */
+/* margin:0; */
+/* padding:0; */
+/* display:inline-block; */
+/* position:relative; */
+/* zoom:1; */
+/* vertical-align: bottom; */
+/* } */
+img.imgK{
 margin:0;
 padding:0;
 display:inline-block;
@@ -417,7 +426,14 @@ vertical-align: bottom;
 	height:auto;
 	}
 
-		div.caption img{
+/* 		div.caption img{ */
+/* 		display:block; */
+/* 		padding:0; */
+/* 		margin:0; */
+/* 		width:100%; */
+/* 		height:auto; */
+/* 		} */
+		div.caption img.imgK{
 		display:block;
 		padding:0;
 		margin:0;
@@ -447,7 +463,13 @@ vertical-align: bottom;
 		border-radius:5px;
 		}
 
-		.gallery a img{
+/* 		.gallery a img{ */
+/* 		display: block; */
+/* 		position: relative; */
+/* 		margin:0; */
+/* 		padding:0; */
+/* 		} */
+		.gallery a img,imgK{
 		display: block;
 		position: relative;
 		margin:0;
@@ -495,6 +517,7 @@ clear:both;
 		}
 
 			.slideshow img{vertical-align: bottom;}
+			.slideshow img.imgK{vertical-align: bottom;}
 
 	.slideshow-buttons{
 	text-align:right;

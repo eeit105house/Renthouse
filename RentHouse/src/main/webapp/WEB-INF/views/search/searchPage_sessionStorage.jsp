@@ -8,34 +8,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- bootStrap的css -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
 <!-- 自定義的css -->
 <link rel='stylesheet'	href='${pageContext.request.contextPath}/search/css/houselist.css'	type="text/css" />
-<!-- 縣市套件 -->
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
-<script	src="${pageContext.request.contextPath}/search/js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
 
 <title>Insert title here</title>
 </head>
-<body>
-<a href="${pageContext.request.contextPath}/search/searchByMap">地圖查詢</a>
+<body class="body">
+
+	<div style="height: 75px;">
+		<%@include file="../login/narbar.jsp"%>
+	</div>
+	
 <%-- <a href="${pageContext.request.contextPath}/deal/AllHouseDealForAMember">某一房子(houseid)---歷年房屋成交紀錄</a> --%>
-<a href="${pageContext.request.contextPath}/deal/MemberAllHouse">某一房子(houseid)---新增成交</a>
-<a href="${pageContext.request.contextPath}/deal/Test">某一房子(houseid)---新增成交</a>
 	<form method="get">
 		<div class="searchDiv">
 			<input class="searchText" type="text" placeholder="請輸入關鍵字(社區、街道等)" id="keyWord"/>
 			<button class="searchBut" onclick="getKeyWord()">
 				<img src='${pageContext.request.contextPath}/search/img/search.PNG' />
 			</button>
+		<a class = "mapImg" href="${pageContext.request.contextPath}/search/searchByMap"><img class="pinImg"src="${pageContext.request.contextPath}\search\img\Pin.png">地圖查詢</a>
 		</div>
 	</form>
 
 	<hr>
 	<div class="selectNumberScreen">
 		<div class="hasBeenSelected">
-			<span class="clearList_left">已選擇條件：</span>
+			<span class="clearList_left">篩選條件：</span>
 			<span class="clearList"></span>
 			<span class="eliminateCriteria">全部清除</span>
 		</div>
@@ -124,13 +124,21 @@
 		<div class = "start"></div>
 	<hr>
 
-
+<script>$("#zipcode2").twzipcode({
+	countySel: "縣市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
+	districtSel: "鄉鎮市區", // 地區預設值
+	zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區
+	css: ["city city-control", "town town-control"], // 自訂 "城市"、"地區" class 名稱 
+	countyName: "city", // 自訂城市 select 標籤的 name 值
+	districtName: "town" // 自訂地區 select 標籤的 name 值
+	});</script>
 <script>
 	function getKeyWord(){
 		var text = $("div.searchDiv input").val();
 		var id = "keyWord";
 		changeSpan(text,id);
 	};
+	
 	if(sessionStorage.getItem("clearList") != null){
 		if(sessionStorage.getItem("clearList") == "106 大安區"){
 			$(".clearList").empty();
@@ -182,15 +190,7 @@
 	}
 			
 			
-			$("#zipcode2").twzipcode({
-			countySel: "縣市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
-			districtSel: "鄉鎮市區", // 地區預設值
-			zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區
-			css: ["city city-control", "town town-control"], // 自訂 "城市"、"地區" class 名稱 
-			countyName: "city", // 自訂城市 select 標籤的 name 值
-			districtName: "town" // 自訂地區 select 標籤的 name 值
-			});
-
+		
 					
 		$(".titleDiv span ").click(function() {
 			var text = $(this).text();
@@ -434,8 +434,9 @@
 			});
 			
 		});
-	
-		$("#twzipcode").twzipcode();
+		
+
+		
 		$('.carousel').carousel({
 			  interval: 2000
 			});

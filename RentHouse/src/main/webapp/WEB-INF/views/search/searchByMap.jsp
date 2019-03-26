@@ -22,23 +22,26 @@
 	src="${pageContext.request.contextPath}/search/js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-<body>
 
-	<a href="${pageContext.request.contextPath}/search/searchPage_sessionStorage">條件查詢</a>
-<form method="get">
+</head>
+<body class="body">
+	<div style="height: 75px;">
+		<%@include file="../login/narbar.jsp"%>
+	</div>
+	
+	<form method="get">
 		<div class="searchDiv">
-			<input class="searchText" type="text" placeholder="請輸入關鍵字(社區、街道等)" />
-			<button class="searchBut">
+			<input class="searchText" type="text" placeholder="請輸入關鍵字(社區、街道等)" id="keyWord"/>
+			<button class="searchBut" onclick="getKeyWord()" value="">
 				<img src='${pageContext.request.contextPath}/search/img/search.PNG' />
 			</button>
+		<a  class = "mapImg" href="${pageContext.request.contextPath}/search/searchPage_sessionStorage"><img class="listImg"src="${pageContext.request.contextPath}\search\img\list.png">列表查詢</a>
 		</div>
 	</form>
 
-	<hr>
 	<div class="selectNumberScreen">
 		<div class="hasBeenSelected">
-			<span class="clearList_left">已選擇條件：</span>
+			<span class="clearList_left">篩選條件：</span>
 			<span class="clearList"></span>
 			<span class="eliminateCriteria">全部清除</span>
 		</div>
@@ -107,14 +110,18 @@
 			</div>
 		</div>
 	</div>
-	<hr>
-<div id="map"></div>
-	<hr>
-	
 
-<div class = "start"></div>
-	
-	
+	<div id="map"></div>
+	<div class = "start"></div>
+
+<script>$("#zipcode2").twzipcode({
+	countySel: "縣市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
+	districtSel: "鄉鎮市區", // 地區預設值
+	zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區
+	css: ["city city-control", "town town-control"], // 自訂 "城市"、"地區" class 名稱 
+	countyName: "city", // 自訂城市 select 標籤的 name 值
+	districtName: "town" // 自訂地區 select 標籤的 name 值
+	});</script>
 	<script>
 		var map;
 		var a = -1;
@@ -148,7 +155,7 @@
 				error:function(){alert("error");}
 			});
 			$.ajax({
-				url:"${pageContext.request.contextPath}/search/searchPage_start",
+				url:"${pageContext.request.contextPath}/search/searchPage_start_map",
 				type:"Get",
 				cache:"false",
 				success:function(data){
@@ -159,7 +166,7 @@
 		
 		function searchCriteriaJson(Searchcriteria){
 			$.ajax({
-				url:"${pageContext.request.contextPath}/search/searchPage_criteria",
+				url:"${pageContext.request.contextPath}/search/searchPage_criteria_map",
 				data:{Searchcriteria:$(".clearList").text()},
 				type:"Get",
 				cache:"false",
@@ -180,14 +187,14 @@
 			});
 		};
 		
-		$("#zipcode2").twzipcode({
-			countySel: "縣市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
-			districtSel: "鄉鎮市區", // 地區預設值
-			zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區
-			css: ["city city-control", "town town-control"], // 自訂 "城市"、"地區" class 名稱 
-			countyName: "city", // 自訂城市 select 標籤的 name 值
-			districtName: "town" // 自訂地區 select 標籤的 name 值
-			});
+// 		$("#zipcode2").twzipcode({
+// 			countySel: "縣市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
+// 			districtSel: "鄉鎮市區", // 地區預設值
+// 			zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區
+// 			css: ["city city-control", "town town-control"], // 自訂 "城市"、"地區" class 名稱 
+// 			countyName: "city", // 自訂城市 select 標籤的 name 值
+// 			districtName: "town" // 自訂地區 select 標籤的 name 值
+// 			});
 		
 		
 		
@@ -234,7 +241,7 @@
 							infowindow.open(map, marker);
 							
 							$.ajax({
-								url:"${pageContext.request.contextPath}/search/searchPage_Msg",
+								url:"${pageContext.request.contextPath}/search/searchPage_Msg_map",
 								data:{msg:msg},
 								type:"Get",
 								cache:"false",
@@ -306,7 +313,7 @@
 		});
 		
 		$.ajax({
-			url:"${pageContext.request.contextPath}/search/searchPage_criteria",
+			url:"${pageContext.request.contextPath}/search/searchPage_criteria_map",
 			data:{Searchcriteria:$(".clearList").text()},
 			type:"Get",
 			cache:"false",
@@ -324,7 +331,7 @@
 		$(".test").empty();
 
 		$.ajax({
-			url:"${pageContext.request.contextPath}/search/searchPage_start",
+			url:"${pageContext.request.contextPath}/search/searchPage_start_map",
 			type:"Get",
 			cache:"false",
 			success:function(data){

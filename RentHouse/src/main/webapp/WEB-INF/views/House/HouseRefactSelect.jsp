@@ -9,18 +9,24 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!--   <link rel="stylesheet" href="/resources/demos/style.css"> -->
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
-	<script src="${pageContext.request.contextPath}/HouseResorce/Formstone-master/js/site.js"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/Formstone-master/css/site.css"
-		media="all" />
+
+<%-- 	<script src="${pageContext.request.contextPath}/HouseResorce/Formstone-master/js/site.js"></script> --%>
+<%-- 	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/Formstone-master/css/site.css" --%>
+<!-- 		media="all" /> -->
 	<script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script> <!-- KICKSTART -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/css/kickstart.css" media="all" />
 <!-- 	KICKSTART -->
+
+<link href="${pageContext.request.contextPath}/login/css/bootstrap.css" rel="stylesheet">
+<!-- icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
+<!-- google fonts -->
+<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+<
 	<!-- house舊模板CSS	 -->
 <%-- 	<link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet" --%>
 <!-- 		type="text/css" /> -->
@@ -34,7 +40,7 @@
 		// 			});
 
 		// 		});
-		Formstone.Ready(function () {
+		$(document).ready(function () {
 			$("a[name='DontPost']").lightbox({
 			});
 		});
@@ -44,7 +50,8 @@
 
 <body style="background-color: #ffebd7;">
 	<div style="height: 75px;">
-		<%@include file="narbar.jsp"%>
+			<%@include file="../login/narbar.jsp"%>
+	
 	</div>
 	<div>
 		<h1 class="container">親愛的 ${user.name} 您好</h1>
@@ -73,12 +80,12 @@
 				</nav>
 				<!-- 		內容 -->
 				<div class="container-fluid" style="width: 800px;">
-					<h1 class="mt-4"></h1>
+					<h1 class="mt-4">您的房屋一覽</h1>
 					<table>
 						<thead>
 							<tr>
 								<th>
-									<h2>您的房屋一覽</h2>
+									<h2></h2>
 								</th>
 							</tr>
 							<tr>
@@ -92,14 +99,28 @@
 								<tr>
 									<td>${house.detailBean.title}</td>
 									<td>${house.status}</td>
+									<c:if test="${house.status == '上架' || house.status == '審核' || house.status == '下架'}">
+									
+										<td><a class="button orange"
+												href='<c:url value="/houseView/${house.id}" />'>檢視</a></td>
+										<td><a class="button orange"
+												href='<c:url value="/membercontrol/houseRefactDet/${house.id}" />'>修改詳細</a>
+										</td>
+										<td><a class="button orange"
+												href='<c:url value="/membercontrol/houseRefactPic/${house.id}" />'>修改圖片</a>
+										</td>
+									</c:if>
+									<c:if test="${house.status == '填寫中'}">
+									
+									<td><a class="button "
+											href='<c:url value="" />'>檢視</a></td>
 									<td><a class="button orange"
-											href='<c:url value="/houseView/${house.detailBean.id}" />'>檢視</a></td>
-									<td><a class="button orange"
-											href='<c:url value="/membercontrol/houseRefactDet/${house.detailBean.id}" />'>修改詳細</a>
+											href='<c:url value="/membercontrol/houseRefactDet/${house.id}" />'>填寫詳細</a>
 									</td>
 									<td><a class="button orange"
-											href='<c:url value="/membercontrol/houseRefactPic/${house.detailBean.id}" />'>修改圖片</a>
+											href='<c:url value="/membercontrol/houseRefactPic/${house.id}" />'>上傳圖片</a>
 									</td>
+									</c:if>
 									<td>
 										<c:if test="${house.status == '上架' || house.status == '審核'}">
 											<!-- <input type="button" id="Down" class="button red" value="主動下架">
@@ -109,7 +130,7 @@
 
 											<a name="DontPost" class="button red" href="#hidden_content_dontpost${house.id}">主動下架</a>
 											<div id="hidden_content_dontpost${house.id}" style="display: none;">
-												<div class="inline_content" style="width: 350px; height: 200px;">
+												<div class="inline_content" style="width: 350px; height: 200px; background-color: #ffebd7;">
 													<h4>請確認是否確定下架?</h4>
 													<p>*手動下架並不會退還刊登費*</p>
 													<a class="button red"
@@ -120,7 +141,7 @@
 												</div>
 											</div>
 										</c:if>
-										<c:if test="${house.status == '下架'}">
+										<c:if test="${house.status == '下架' }">
 											<a id="RePost" class="button green"
 												href='<c:url value="/membercontrol/houseRePost/${house.id}" />'>付款上架</a>
 										</c:if>
@@ -156,7 +177,7 @@
       <div class="modal-body">
           <div class="form-group">
             <label for="from" class="col-form-label">成交日期</label>
-            <input type="text" class="form-control" id="from" name="from"/>
+            <input type="text" class="form-control" id="from" name="from" readonly="readonly" placeholder="請點擊選擇日期" />
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">每月租金</label>
@@ -164,7 +185,7 @@
           </div>
            <div class="form-group">
             <label for="to" class="col-form-label">租約到期日</label>
-            <input type="text" class="form-control" id="to" name="to"/>
+            <input type="text" class="form-control" id="to" name="to" readonly="readonly" placeholder="請點擊選擇日期" />
           </div>
           <input type = "file" value = "上傳租賃契約" multiple="multiple" name="file" />
       </div>          
@@ -177,8 +198,8 @@
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> -->
 <script>
 	$('#exampleModal').on('show.bs.modal', function (event) {		
 		  var button = $(event.relatedTarget) // Button that triggered the modal
@@ -187,9 +208,9 @@
 		  modal.find('.modal-title').text('請新增房屋編號:'+id+'的資訊')
 		  var action = "${pageContext.request.contextPath}/deal/insertPage/"+id
 		  modal.find('.modal-content form').attr("action",action);
-	})
+	});
 
-	 $( function() {
+	 $("*").ready( function() {
     var dateFormat = "mm/dd/yy",
       from = $( "#from" )
         .datepicker({
@@ -208,6 +229,8 @@
       .on( "change", function() {
         from.datepicker( "option", "maxDate", getDate( this ) );
       });
+
+
  
     function getDate( element ) {
       var date;
@@ -221,5 +244,7 @@
     }
   } );
 </script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		
 </body>
 </html>

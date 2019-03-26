@@ -98,6 +98,8 @@
 </div><!--    ajax1 -->
   </div>
   </div>
+
+  <input type="hidden" id="herenow" value="customer"/> 
   
   <script type="text/javascript">
 $("#servicereport").click(function(){

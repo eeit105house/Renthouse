@@ -15,7 +15,7 @@
   <tbody>
   <c:forEach var="mail" items="${allmail }">
     <tr>
-      <td class="text-nowrap"><a href="<spring:url value='/membercontrol/memberservice/memberservicedetail/${mail.id }'/>" class="clickajax">${mail.title }</a></td>
+      <td>${mail.title }</td>
       <td>${mail.type }</td>
       <td>${mail.datetime }</td>
       <td>${mail.status }</td>
@@ -23,3 +23,6 @@
    </c:forEach>
   </tbody>
 </table>
+    <input type="hidden" id="herenow" value="customer"/> 
+</body>
+</html>

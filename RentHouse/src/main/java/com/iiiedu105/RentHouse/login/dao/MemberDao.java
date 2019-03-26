@@ -42,4 +42,7 @@ public interface MemberDao {
 	
 	void updateAllMsgById(String mid);
 
+	Member findMemberByEmail(String email);
+
+
 }
