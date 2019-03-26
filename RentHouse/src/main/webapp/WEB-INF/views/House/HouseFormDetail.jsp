@@ -15,8 +15,7 @@
 
 
 	<!--   <link rel="stylesheet" href="jqueryui/style.css"> -->
-	<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<!-- 	<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script> -->
 	<script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script>
 	<!-- KICKSTART -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/css/kickstart.css" media="all" />
@@ -101,7 +100,7 @@
 
 <body style="background-color: #ffebd7;">
     <div style="height: 75px;">
-            <%@include file="narbar.jsp"%>
+            <%@include file="../login/narbar.jsp"%>
     
     </div>
     <div>
@@ -273,6 +272,8 @@
 
         </div>
     </div>
+    	<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    
 </body>
 
 

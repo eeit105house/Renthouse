@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/css/kickstart.css" media="all" />
     <!-- KICKSTART -->
       	<!-- house模板CSS	 -->
-	<link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet" type="text/css" />
+<%-- 	<link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet" type="text/css" /> --%>
 
     <script>
         $("*").ready(function () {
@@ -30,20 +30,40 @@
     </script>
 </head>
 
-<body>
-
-
-    <div id="header">
-
+<body style="background-color: #ffebd7;">
+    <div style="height: 75px;">
+        <%@include file="../login/narbar.jsp"%>
     </div>
-    <!-- end #header -->
-    <div id="menu">
+    <div>
+        <h1 class="container">親愛的 ${user.name} 您好</h1>
+        <div class="d-flex container" id="wrapper">
+            <!-- Sidebar -->
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading list-group-item bg-warning">會員中心</div>
+                <div class="list-group list-group-flush">
+                    <a href="<c:url value='/membercontrol/${user.id}'/>"
+                        class="list-group-item list-group-item-action bg-light">&gt;&gt;會員資料修改</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+                </div>
+            </div>
+            <!-- /#sidebar-wrapper -->
 
-    </div>
-    <!-- end #menu -->
-    <div id="content">
-        <div>
-            <div class="post">
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    </div>
+                </nav>
+                <!-- 		內容 -->
+                <div class="container-fluid" style="width: 800px;">
+                    <h1 class="mt-4"></h1>
+
+ <div class="post">
                 <form:form method="post" enctype="multipart/form-data">
                     <fieldset>
                         <legend>第1張圖片</legend>
@@ -78,22 +98,13 @@
                     </form:form>
                 </c:forEach>
 
+            </div>                    
+                </div>
             </div>
-        </div>
-        <!-- end #posts -->
-        <div id="links">
+            <!-- /#page-content-wrapper -->
 
         </div>
-        <!-- end #links -->
-        <div style="clear: both;">&nbsp;</div>
     </div>
-    <!-- end #content -->
-    <div id="footer">
-        <!-- <p id="legal">Copyright &copy; Logistix. Designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>
-				</p> -->
-    </div>
-    <!-- end #footer -->
-
 </body>
 
 </html>

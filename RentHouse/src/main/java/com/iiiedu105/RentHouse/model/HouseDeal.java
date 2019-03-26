@@ -24,7 +24,6 @@ public class HouseDeal {
 	private Integer dealPrice;
 	private Blob pdf;
 	private String fileName;
-	
 	private House houseBean;
 
 	public HouseDeal() {

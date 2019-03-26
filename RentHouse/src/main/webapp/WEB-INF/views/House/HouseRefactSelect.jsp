@@ -13,12 +13,10 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
-<!-- 		  <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-<!--   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-		
-	<script src="${pageContext.request.contextPath}/HouseResorce/Formstone-master/js/site.js"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/Formstone-master/css/site.css"
-		media="all" />
+
+<%-- 	<script src="${pageContext.request.contextPath}/HouseResorce/Formstone-master/js/site.js"></script> --%>
+<%-- 	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/Formstone-master/css/site.css" --%>
+<!-- 		media="all" /> -->
 	<script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script> <!-- KICKSTART -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/css/kickstart.css" media="all" />
 <!-- 	KICKSTART -->
@@ -52,7 +50,7 @@
 
 <body style="background-color: #ffebd7;">
 	<div style="height: 75px;">
-			<%@include file="narbar.jsp"%>
+			<%@include file="../login/narbar.jsp"%>
 	
 	</div>
 	<div>
@@ -179,7 +177,7 @@
       <div class="modal-body">
           <div class="form-group">
             <label for="from" class="col-form-label">成交日期</label>
-            <input type="text" class="form-control" id="from" name="from"/>
+            <input type="text" class="form-control" id="from" name="from" readonly="readonly" placeholder="請點擊選擇日期" />
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">每月租金</label>
@@ -187,7 +185,7 @@
           </div>
            <div class="form-group">
             <label for="to" class="col-form-label">租約到期日</label>
-            <input type="text" class="form-control" id="to" name="to"/>
+            <input type="text" class="form-control" id="to" name="to" readonly="readonly" placeholder="請點擊選擇日期" />
           </div>
           <input type = "file" value = "上傳租賃契約" multiple="multiple" name="file" />
       </div>          
@@ -200,8 +198,8 @@
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> -->
 <script>
 	$('#exampleModal').on('show.bs.modal', function (event) {		
 		  var button = $(event.relatedTarget) // Button that triggered the modal
@@ -210,7 +208,7 @@
 		  modal.find('.modal-title').text('請新增房屋編號:'+id+'的資訊')
 		  var action = "${pageContext.request.contextPath}/deal/insertPage/"+id
 		  modal.find('.modal-content form').attr("action",action);
-	})
+	});
 
 	 $("*").ready( function() {
     var dateFormat = "mm/dd/yy",
@@ -231,6 +229,8 @@
       .on( "change", function() {
         from.datepicker( "option", "maxDate", getDate( this ) );
       });
+
+
  
     function getDate( element ) {
       var date;
@@ -244,5 +244,7 @@
     }
   } );
 </script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		
 </body>
 </html>

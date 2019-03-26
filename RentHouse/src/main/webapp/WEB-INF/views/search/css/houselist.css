@@ -1,6 +1,18 @@
-* {
-	padding: 0px;
-	margin: 0px;
+.body {
+	margin: 0;
+	padding: 0;
+	background: #ffebd7;
+}
+.pinImg{
+	whidth:30px;
+	height:30px;
+}
+.mapImg{
+	margin-right:100px;
+	float:right;
+	margin-top: 30px;
+	width:100px;
+	height: 40px;
 }
 .carousel-inner{
 	
@@ -97,19 +109,21 @@
 }
 
 .searchDiv {
-	margin-left: 100px;
+/* 	margin-left: 100px; */
 	background-color: #F2FFF2;
 	height: 80px;
+	background: #ffebd7;
 }
 
 .searchBut {
-	margin-top: 20px;
+	margin-top: 30px;
 	width: 90px;
 	height: 40px;
 }
 
 .searchText {
-	margin-top: 20px;
+	margin-left:100px;
+	margin-top: 30px;
 	width: 400px;
 	height: 40px;
 }

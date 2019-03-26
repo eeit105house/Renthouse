@@ -16,8 +16,6 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
 <!-- google fonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-<!-- 日期用 -->
-<script src="${pageContext.request.contextPath}/login/js/date.js"></script>
 <!-- 登入彈跳視窗 -->
 <script src="${pageContext.request.contextPath}/login/js/bootstrap.bundle.min.js"></script>
 <!-- 彈跳錯誤視窗 與地址有衝突-->
@@ -26,7 +24,9 @@
 <!--地址用 擺後面-->
 <script src="${pageContext.request.contextPath}/login/js/Address.js"></script>
 <script src="//cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.js"></script>
-
+<!-- 註冊登入 -->
+<script src="${pageContext.request.contextPath}/login/js/Registered_check.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/login/js/Login_check.js" type="text/javascript"></script>
 <style>
 
  		.alarm {
@@ -88,6 +88,9 @@ $(document).ready(function(){
 	if("${create.signin}"!=""){
 		$("#errormsg").text("${create.signin}");
 		$('.lightbox').click();};
+	if("${activeOk.active}"!=""){
+		$("#errormsg").text("${activeOk.active}");
+		$('.lightbox').click();};
 });
 //參考：https://developers.google.com/identity/sign-in/web/disconnect
 function GoogleSignOut() {
@@ -106,7 +109,7 @@ console.log('User disconnect.');
       <a class="navbar-brand"  href="${pageContext.request.contextPath}"><img style="height: 60px" alt="租你幸福" src="<c:url value='/login/img/logo.png'/>"></a>
       <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-       <li class="nav-item"><a class="btn btn-nav-primary" href="search/searchPage_sessionStorage">想要租屋</a></li>
+       <li class="nav-item"><a class="btn btn-nav-primary" href="${pageContext.request.contextPath}/search/searchPage_sessionStorage">想要租屋</a></li>
       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/insertPicPage'/>">測試用</a></li>
       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/membercontrol/${user.id}'/>">會員中心</a></li>
       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/ForumView'/>">討論區</a></li>
@@ -135,10 +138,15 @@ console.log('User disconnect.');
 	<a href="<c:url value='/membercontrol/${user.id}'/>">${user.name}</a>
 	
     </nav>
+
+<c:if test="${user==null}">
+<!-- 日期用 -->
+<script src="${pageContext.request.contextPath}/login/js/date.js"></script>
 <!--   登入 -->
 <%@include file="Login_plustar.jsp" %>
  <!-- 註冊 --> 
-<%-- <%@include file="Registered_plustar.jsp" %> --%>
+<%@include file="Registered_plustar.jsp" %>
+</c:if>
 
 <a href="#hidden_content" class="lightbox" ></a>
 

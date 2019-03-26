@@ -41,4 +41,7 @@ public interface MemberService {
 
 	void updateAllMsgById(String mid);
 
+	Member loginByEmail(String email);
+
+
 }

@@ -23,11 +23,8 @@ public class ReviewHouseController {
 	OTShelfService oservice;
 	@Autowired
 	RWritingsService rservice;
-	@Autowired
-	HouseService houseService;
-	@Autowired
-	HouseController houseController;
 	
+	//get房屋文章審核數量
 	@ModelAttribute("hlist")
 	public List<House> getHouseList(){
 		List<House> list = oservice.getAllHouse();
@@ -39,15 +36,18 @@ public class ReviewHouseController {
 		return list;
 	}
 	
+	//房屋審核畫面
 	@RequestMapping(value="/houseReview")
 	public String products(Model model) {
 		return "backstage/houseReview";		
 	}
+	//通過審核
 	@RequestMapping(value="/update/{id}")
 	public String updateHouse(@PathVariable("id") Integer id) {
 		oservice.updateHouseStatus(id);
 		return "redirect:/backstage/houseReview";		
 		}
+	//房屋下架
 	@RequestMapping(value="/delete/{id}")
 	public String deleteHouse(@PathVariable("id") Integer id) {
 		oservice.deleteHouse(id);

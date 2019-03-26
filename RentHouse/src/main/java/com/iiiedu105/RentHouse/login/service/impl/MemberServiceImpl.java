@@ -45,6 +45,7 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> checkByEmail(String email) {
 		return memberDao.checkMemberByEmail(email);
 	}
+
 	@Override
 	public Member login(String id,String pwd) {
 		Member bean = memberDao.findMemberById(id);
@@ -56,6 +57,14 @@ public class MemberServiceImpl implements MemberService {
 					return bean;
 				}
 			}
+		}
+		return null;
+	}
+	@Override
+	public Member loginByEmail(String id) {
+		Member bean = memberDao.findMemberByEmail(id);
+		if(bean!=null) {
+		return bean;
 		}
 		return null;
 	}

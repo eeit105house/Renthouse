@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>registered</title>
-<script src="${pageContext.request.contextPath}/login/js/Registered_check.js" type="text/javascript"></script>
 </head>
 <body>
 <!-- Modal -->
@@ -112,8 +111,7 @@
     <input type="submit"  class="btn btn-primary btn-block" id="create" value="建立新會員"/>
     <input type="submit"  class="btn btn-primary btn-block" id="notyet" disabled="disabled" value="尚有資料未填寫"/>
     </div>    
-<%--     <form:input type="hidden" id="active" name="active" path='active' value="未開通" />   --%>
-<%--     <form:input type="hidden" id="pic" name="pic" path='pic' />   --%>
+    <form:input type="hidden" id="active" name="active" path='active' value="未驗證" />  
 <%--     <form:input type="hidden" id="score" name="score" path='score' />   --%>
 <%--     <form:input type="hidden" id="report" name="report" path='report' />   --%>
             </form:form>

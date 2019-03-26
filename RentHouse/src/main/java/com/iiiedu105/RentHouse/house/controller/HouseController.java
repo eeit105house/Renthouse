@@ -248,7 +248,7 @@ public class HouseController {
 	}
 	
 	
-	//====View House=======
+	//====檢視 House=======
 	@RequestMapping(value="/houseView/{shId}")
 	public String viewHousePage(Model model,@PathVariable Integer shId) {
 		House houseBean = houseService.findById(shId);
@@ -257,6 +257,7 @@ public class HouseController {
 		List<Integer> picIds = houseService.getPicIdsByHouse(houseBean);
 		model.addAttribute("houseBean", houseBean);
 		model.addAttribute("memberBean", memberBean);
+		model.addAttribute("member", new Member());//註冊用
 		model.addAttribute("detailBean", detailBean);
 		model.addAttribute("picIds", picIds);
 		String cStr = "";
