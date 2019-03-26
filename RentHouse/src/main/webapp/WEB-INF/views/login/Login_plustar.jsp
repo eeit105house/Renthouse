@@ -99,6 +99,33 @@
               </form>
               <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit" onclick="GoogleSignIn();"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
               <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+          		<hr/>
+          		<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <a href="#" onclick="signOut();">Sign out</a>
+    
+    <script>
+      function onSignIn(googleUser) {
+        // 客戶端如果有需要的話可以通過profile來獲取使用者資訊
+        var profile = googleUser.getBasicProfile();
+        // 傳回後臺驗證，並獲取userid
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost:8080/RentHouse/googleVerify');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+          console.log('Signed in as: ' + xhr.responseText);
+        };
+        xhr.send('idtokenstr=' + id_token);
+      };
+      
+      function signOut() {
+    	    var auth2 = gapi.auth2.getAuthInstance();
+    	    auth2.signOut().then(function () {
+    	      console.log('User signed out.');
+    	    });
+    	  }
+    </script>
           </div>
         </div>
       </div>

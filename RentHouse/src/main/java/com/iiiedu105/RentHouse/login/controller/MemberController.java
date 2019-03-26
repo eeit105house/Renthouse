@@ -5,11 +5,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.GeneralSecurityException;
 import java.sql.Blob;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +45,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
 import com.iiiedu105.RentHouse.ChangeClob;
 import com.iiiedu105.RentHouse.login.SmtpAuthenticator;
 import com.iiiedu105.RentHouse.login.service.MemberService;
@@ -177,13 +184,13 @@ public class MemberController {
 		
 		
 		
-		return "forward:/return_index";
+		return "forward:/";
 		}
 	}
 	}
 	if(!errorMsg.isEmpty()) 
 		model.addAttribute("errorMsg", errorMsg);
-		return "forward:/return_index";
+		return "forward:/";
 	}
 
 @SuppressWarnings("unchecked")
@@ -225,11 +232,11 @@ public String activeMember(HttpServletRequest request ,HttpSession session,@Path
 		model.addAttribute("errorMsg", errorMsg);
 	}
 	if(!errorMsg.isEmpty()) {
-		return "forward:/return_index";
+		return "forward:/";
 	}
 	create.put("signin", "租你幸福，祝你幸福");
 	model.addAttribute("create", create);
-		return "forward:/return_index";
+		return "forward:/";
 	}
 
 
@@ -416,7 +423,7 @@ public String addMemberPic(Model model, @RequestParam(value = "pic0") MultipartF
 	memberService.updateMember(member);
 
 	}
-	return "redirect: return_index";
+	return "redirect:/return_index";
 }
 
 
@@ -513,6 +520,56 @@ public ResponseEntity<byte[]> getPicture(HttpServletResponse response,HttpServle
 			new ResponseEntity<>(media,headers,HttpStatus.OK);
 	
 	return responseEntity;
+}
+
+private static String client_id = "825814170132-9r69bbro6bbtg1ahvhsp5jeu07f52sd0.apps.googleusercontent.com";
+private static String client_secret = "9ZZ9y8bm1Tysm3schyquOyD7";
+private static String scope = "https://www.googleapis.com/auth/drive.metadata.readonly";
+private static String redirect_url = "http://gntina.iok.la/GoogleUserInfo";
+private static String code_url = "https://accounts.google.com/o/oauth2/v2/auth";
+private static String token_url = "https://www.googleapis.com/oauth2/v4/token";
+private static String user_url = "https://www.googleapis.com/oauth2/v2/userinfo";
+private static String verify_url = "https://www.googleapis.com/oauth2/v3/tokeninfo";
+
+@RequestMapping(value = "/googleVerify", method = RequestMethod.POST)
+public String verifyToken(String idtokenstr,Model model) {
+	model.addAttribute("member", new Member());
+	System.out.println(idtokenstr);
+	GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(
+			new NetHttpTransport(), JacksonFactory.getDefaultInstance())
+			.setAudience(Collections.singletonList(client_id)).build();
+	GoogleIdToken idToken = null;
+	try {
+		idToken = verifier.verify(idtokenstr);
+	} catch (GeneralSecurityException e) {
+		System.out.println("驗證時出現GeneralSecurityException異常");
+	} catch (IOException e) {
+		System.out.println("驗證時出現IOException異常");
+	}
+	if (idToken != null) {
+		System.out.println("驗證成功.");
+		Payload payload = idToken.getPayload();
+		String userId = payload.getSubject();
+		String email = payload.getEmail();
+//		boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
+		String name = (String) payload.get("name");
+		String pictureUrl = (String) payload.get("picture");
+		String locale = (String) payload.get("locale");
+		String familyName = (String) payload.get("family_name");
+		String givenName = (String) payload.get("given_name");
+		System.out.println("User ID: " + userId);
+		System.out.println("email: " + email);
+		System.out.println("name: " + name);
+		System.out.println("pictureUrl: " + pictureUrl);
+		System.out.println("locale: " + locale);
+		System.out.println("familyName: " + familyName);
+		System.out.println("givenName: " + givenName);
+	
+	
+	} else {
+		System.out.println("Invalid ID token.");
+	}
+	return "/login/Test1234";
 }
 
 
