@@ -134,7 +134,7 @@
                     <div class="post">
 				<form:form method='POST' modelAttribute="detailBean">
 					<fieldset>
-						<legend>詳細資訊</legend>
+						<legend class="legendK">詳細資訊</legend>
 						<div>
 							標題
 							<form:input path="title" />
@@ -142,7 +142,8 @@
 						</div>
 						<div>
 							簡介
-							<textarea name="infoN" id="infoN" cols="30" rows="10"></textarea><br>
+							<textarea name="infoN" id="infoN" cols="30" rows="10"></textarea>
+							<p></p>
 							<!-- <form:textarea path="info" /> -->
 						</div>
 						<div>
@@ -153,10 +154,12 @@
 						<div>
 							押金
 							<form:input path="deposit" value="0" />
+							<p></p>
 						</div>
 						<div>
 							管理費
 							<form:input path="hoaFee" value="0" />
+							<p></p>
 						</div>
 						<div>
 							可遷入日<input id="datepickerA" name="movingInN" readonly="readonly" placeholder="請選擇日期" />

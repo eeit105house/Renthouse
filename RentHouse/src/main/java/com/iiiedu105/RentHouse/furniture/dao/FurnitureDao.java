@@ -11,4 +11,6 @@ public interface FurnitureDao {
 	public void updateFurniture(Furniture fuurnitureBean);
 	public Member getMemberById(String id);
 	public List<Furniture> getFurnituresByMemberId(String id);
+	public List<Furniture> getFurnituresOrderbyId();
+	public List<Furniture> getFurnituresOrderbyType(String type);
 }

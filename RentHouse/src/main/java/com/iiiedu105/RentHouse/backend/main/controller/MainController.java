@@ -28,10 +28,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iiiedu105.RentHouse.ChangeClob;
+import com.iiiedu105.RentHouse.backend.customerservice.service.CSService;
 import com.iiiedu105.RentHouse.backend.main.service.LoginService;
 import com.iiiedu105.RentHouse.backend.review.house.service.OTShelfService;
 import com.iiiedu105.RentHouse.backend.review.writings.Service.RWritingsService;
 import com.iiiedu105.RentHouse.model.Employee;
+import com.iiiedu105.RentHouse.model.EmployeeReport;
 import com.iiiedu105.RentHouse.model.ForumReport;
 import com.iiiedu105.RentHouse.model.House;
 
@@ -44,19 +46,27 @@ public class MainController {
 	@Autowired
 	LoginService loginService;
 	@Autowired
+	CSService cservice;
+	@Autowired
 	ChangeClob changefile;
-	//取得審核房屋通知
-	@ModelAttribute("hlist")
-	public List<House> getHouseList(){
-		List<House> list = oservice.getAllHouse();
-		return list;
-	}
-	//取得檢舉文章通知
-	@ModelAttribute("wlist")
-	public List<ForumReport> getWriteList(){
-		List<ForumReport> list = rservice.getAllWritings();
-		return list;
-	}	
+	//get房屋審核數量
+		@ModelAttribute("hlist")
+		public List<House> getHouseList(){
+			List<House> list = oservice.getAllHouse();
+			return list;
+		}
+		//get文章審核數量
+		@ModelAttribute("wlist")
+		public List<ForumReport> getWriteList(){
+			List<ForumReport> list = rservice.getAllWritings();
+			return list;
+		}
+		//get客服信件數量
+		@ModelAttribute("maillist")
+		public List<EmployeeReport> getAllMail(){
+			List<EmployeeReport> list = cservice.getAllMail();
+			return list;
+		}
 	//取得員工頭像
 	@RequestMapping(value="/backstage/getEmployeePic/{eid}")
 	public ResponseEntity<byte[]> getEmployeePicture(HttpServletResponse response,@PathVariable("eid") String eid){
@@ -102,7 +112,7 @@ public class MainController {
 			for(Employee employee: list) {
 				session.setAttribute("employee", employee);	
 			}		
-			str = "redirect:/backstage/backindex";
+			str = "redirect:/backstage";
 		}else {
 			errorMsg.put("error", "帳號或密碼錯誤");
 			model.addAttribute("errorMsg",errorMsg);
@@ -110,7 +120,7 @@ public class MainController {
 		}
 		return str;		
 	}
-	//後台首頁
+	//後台測試首頁
 	@RequestMapping(value="/backstage/backindex")
 	public String backindex() {
 		return "backstage/bsindex";

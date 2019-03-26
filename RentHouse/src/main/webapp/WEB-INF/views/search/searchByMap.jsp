@@ -237,9 +237,7 @@
 					function() {
 						a = a * -1;
 						if (a > 0) {
-							
-							infowindow.open(map, marker);
-							
+							infowindow.open(map, marker);							
 							$.ajax({
 								url:"${pageContext.request.contextPath}/search/searchPage_Msg_map",
 								data:{msg:msg},

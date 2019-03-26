@@ -34,6 +34,7 @@ public class SearchHouseByConditionServiceImpl implements SearchHouseByCondition
 	@Override
 	public List<Object[]> getHouseByMsg(String msg) {	
 		msg = " and h.addr = '"+msg+"' ";
+		System.out.println(msg);
 		return dao.getHouseByMsg(msg);
 	}
 	

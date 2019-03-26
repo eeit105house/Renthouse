@@ -76,7 +76,6 @@ public class HomeController {
 	@RequestMapping("/search/searchPage_carousel")
 	public String searchPageCarouselData(Model model) {
 		List<Object[]> Objectlist = service.getAllVipHouse();
-		
 		int totalList = Objectlist.size(); //全部vip
 		double carPage = Math.ceil(totalList/5.0);	//算共幾頁輪播
 		model.addAttribute("carPage",carPage);
@@ -103,10 +102,10 @@ public class HomeController {
 	@RequestMapping("/search/searchPage_start")
 	public String searchPageStartData(Model model) {
 		List<Object[]> Objectlist = service.getAllhouse();	
+		model.addAttribute("number",Objectlist.size());
 		int totalList = Objectlist.size();
-		int pageListNum = 5;
+		double pageListNum = 5.0;
 		double biggestPage =Math.ceil(totalList/pageListNum);
-		
 		model.addAttribute("pageListNum", pageListNum);
 		model.addAttribute("biggestPage", biggestPage);
 		model.addAttribute("totalList", totalList);
@@ -118,8 +117,9 @@ public class HomeController {
 		@RequestMapping("/search/searchPage_start_map")
 		public String searchPageStartDataMap(Model model) {
 			List<Object[]> Objectlist = service.getAllhouse();	
+			model.addAttribute("number",Objectlist.size());
 			int totalList = Objectlist.size();
-			int pageListNum = 5;
+			double pageListNum = 5.0;
 			double biggestPage =Math.ceil(totalList/pageListNum);
 			
 			model.addAttribute("pageListNum", pageListNum);
@@ -137,15 +137,17 @@ public class HomeController {
 		int minNum = (page-1)*5;
 		int maxNum = page*5;
 		for(int i = minNum;i<maxNum;i++) {
+			if(i >= Objectlist.size())break;
 			NewList.add(Objectlist.get(i));
 		}	
 		int totalList = Objectlist.size();
-		int pageListNum = 5;
+		double pageListNum = 5.0;
 		double biggestPage =Math.ceil(totalList/pageListNum);
 		model.addAttribute("pageListNum", pageListNum);
 		model.addAttribute("biggestPage", biggestPage);
 		model.addAttribute("totalList", totalList);
 		model.addAttribute("NewList", NewList);
+		model.addAttribute("number",Objectlist.size());
 		return "search/searchPage_start_page";
 	}
 	
@@ -157,15 +159,17 @@ public class HomeController {
 			int minNum = (page-1)*5;
 			int maxNum = page*5;
 			for(int i = minNum;i<maxNum;i++) {
+				if(i >= Objectlist.size())break;
 				NewList.add(Objectlist.get(i));
 			}	
 			int totalList = Objectlist.size();
-			int pageListNum = 5;
+			double pageListNum = 5.0;
 			double biggestPage =Math.ceil(totalList/pageListNum);
 			model.addAttribute("pageListNum", pageListNum);
 			model.addAttribute("biggestPage", biggestPage);
 			model.addAttribute("totalList", totalList);
 			model.addAttribute("NewList", NewList);
+			model.addAttribute("number",Objectlist.size());
 			return "search/searchPage_start_page_map";
 		}
 	// 條件分頁1
@@ -173,13 +177,14 @@ public class HomeController {
 	public String searchPageByCriteria(Model model, @RequestParam("Searchcriteria") String Searchcriteria) {
 		List<Object[]> Objectlist = service.getHouseByCriteria(Searchcriteria);
 		int totalList = Objectlist.size();
-		int pageListNum = 5;
+		double pageListNum = 5.0;
 		double biggestPage =Math.ceil(totalList/pageListNum);
 		
 		model.addAttribute("pageListNum", pageListNum);
 		model.addAttribute("biggestPage", biggestPage);
 		model.addAttribute("totalList", totalList);
 		model.addAttribute("Objectlists", Objectlist);
+		model.addAttribute("number",Objectlist.size());
 		return "search/searchPage_start";
 	}
 	
@@ -188,13 +193,14 @@ public class HomeController {
 		public String searchPageByCriteriaMap(Model model, @RequestParam("Searchcriteria") String Searchcriteria) {
 			List<Object[]> Objectlist = service.getHouseByCriteria(Searchcriteria);
 			int totalList = Objectlist.size();
-			int pageListNum = 5;
+			double pageListNum = 5.0;
 			double biggestPage =Math.ceil(totalList/pageListNum);
 			
 			model.addAttribute("pageListNum", pageListNum);
 			model.addAttribute("biggestPage", biggestPage);
 			model.addAttribute("totalList", totalList);
 			model.addAttribute("Objectlists", Objectlist);
+			model.addAttribute("number",Objectlist.size());
 			return "search/searchPage_start_map";
 		}
 		
@@ -206,15 +212,17 @@ public class HomeController {
 		int minNum = (page-1)*5;
 		int maxNum = page*5;
 		for(int i = minNum;i<maxNum;i++) {
+			if(i >= Objectlist.size())break;
 			NewList.add(Objectlist.get(i));
 		}	
 		int totalList = Objectlist.size();
-		int pageListNum = 5;
+		double pageListNum = 5.0;
 		double biggestPage =Math.ceil(totalList/pageListNum);
 		model.addAttribute("pageListNum", pageListNum);
 		model.addAttribute("biggestPage", biggestPage);
 		model.addAttribute("totalList", totalList);
 		model.addAttribute("NewList", NewList);
+		model.addAttribute("number",Objectlist.size());
 		return "search/searchPage_start_page";
 	}
 	
@@ -226,15 +234,17 @@ public class HomeController {
 			int minNum = (page-1)*5;
 			int maxNum = page*5;
 			for(int i = minNum;i<maxNum;i++) {
+				if(i >= Objectlist.size())break;
 				NewList.add(Objectlist.get(i));
 			}	
 			int totalList = Objectlist.size();
-			int pageListNum = 5;
+			double pageListNum = 5.0;
 			double biggestPage =Math.ceil(totalList/pageListNum);
 			model.addAttribute("pageListNum", pageListNum);
 			model.addAttribute("biggestPage", biggestPage);
 			model.addAttribute("totalList", totalList);
 			model.addAttribute("NewList", NewList);
+			model.addAttribute("number",Objectlist.size());
 			return "search/searchPage_start_page_map";
 		}
 	
@@ -242,20 +252,23 @@ public class HomeController {
 	@RequestMapping("/search/searchPage_Msg")
 	public String searchPageByMsg(Model model, @RequestParam("msg") String msg) {
 		List<Object[]> Objectlist = service.getHouseByMsg(msg);
+		model.addAttribute("number",Objectlist.size());
 		model.addAttribute("Objectlists", Objectlist);
 		return "search/searchPage_start";
 	}
 
 //	關鍵字查詢--Map
-	@RequestMapping("/search/searchPage_Msg_mag")
+	@RequestMapping("/search/searchPage_Msg_map")
 	public String searchPageByMsgMap(Model model, @RequestParam("msg") String msg) {
 		List<Object[]> Objectlist = service.getHouseByMsg(msg);
+		model.addAttribute("number",Objectlist.size());
 		model.addAttribute("Objectlists", Objectlist);
 		return "search/searchPage_start_map";
 	}
+	
 	@RequestMapping(value = "/getPicture/{id}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer id) {
-		String filePath = "/images/NoImage.jpg";
+		String filePath = "/NoImage.jpg";
 		byte[] media = null;
 		HttpHeaders headers = new HttpHeaders();
 		String filename = "";
@@ -266,7 +279,7 @@ public class HomeController {
 			Blob blob = bean.getPic();
 			filename = "\\images\\HousePic0.jpg";
 			if (blob != null) {
-
+ 
 				try {
 					len = (int) blob.length();
 					media = blob.getBytes(1, len); // blob.getBytes(1, len): 是 1 開頭。Jdbc相關的類別都是1 開頭。

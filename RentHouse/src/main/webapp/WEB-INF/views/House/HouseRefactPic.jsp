@@ -38,18 +38,20 @@
         <h1 class="container">親愛的 ${user.name} 您好</h1>
         <div class="d-flex container" id="wrapper">
             <!-- Sidebar -->
-            <div class="bg-light border-right" id="sidebar-wrapper">
-                <div class="sidebar-heading list-group-item bg-warning">會員中心</div>
-                <div class="list-group list-group-flush">
-                    <a href="<c:url value='/membercontrol/${user.id}'/>"
-                        class="list-group-item list-group-item-action bg-light">&gt;&gt;會員資料修改</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-                </div>
-            </div>
+            			    <%@include file="../login/membermenu.jsp"%>
+            
+<!--             <div class="bg-light border-right" id="sidebar-wrapper"> -->
+<!--                 <div class="sidebar-heading list-group-item bg-warning">會員中心</div> -->
+<!--                 <div class="list-group list-group-flush"> -->
+<%--                     <a href="<c:url value='/membercontrol/${user.id}'/>" --%>
+<!--                         class="list-group-item list-group-item-action bg-light">&gt;&gt;會員資料修改</a> -->
+<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a> -->
+<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a> -->
+<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Events</a> -->
+<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a> -->
+<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Status</a> -->
+<!--                 </div> -->
+<!--             </div> -->
             <!-- /#sidebar-wrapper -->
 
             <!-- Page Content -->
@@ -61,14 +63,14 @@
                 </nav>
                 <!-- 		內容 -->
                 <div class="container-fluid" style="width: 800px;">
-                    <h1 class="mt-4"></h1>
+                    <h1 class="mt-4">請使用JPEG檔</h1>
+<!--                             <p>請使用JPEG檔</p> -->
 
  <div class="post">
                 <form:form method="post" enctype="multipart/form-data">
                     <fieldset>
-                        <legend>第1張圖片</legend>
+                        <legend class="legendK">第1張圖片</legend>
                         <div>
-                            <p>請使用JPEG檔</p>
                             <p>${errorMsg.typeE}</p>
                         </div>
                         <div>
@@ -85,7 +87,7 @@
                 <c:forEach var="i" begin="1" end="9">
                     <form:form method="post" enctype="multipart/form-data">
                         <fieldset>
-                            <legend>第${i+1}張圖片</legend>
+                            <legend class="legendK">第${i+1}張圖片</legend>
                             <div>
                                 <img src="<c:url value='/houseView/hPic/${picIds[i]}'/>" accept="image/jpeg" width="150" alt="未上傳圖片" />
                                 <label for="${i}">上傳圖片：</label>

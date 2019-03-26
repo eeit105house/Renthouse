@@ -1,0 +1,54 @@
+
+body { font-family:Verdana,Arial,Helvetica,"Sans Serif"; background:#fff; font-size:12px; color:#333; text-align:center; }
+table, td, tr, th { font-size:12px; }
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, div, /* structural elements 蝯鞉�见��蝝� */
+dl, dt, dd, ul, ol, li, /* list elements ��𡑒”��蝝� */
+pre, /* text formatting elements ���𧋦�聢撘誩��蝝� */
+form, fieldset, legend, button, input, textarea, /* form elements 銵典鱓��蝝� */
+th, td /* table elements 銵典鱓��蝝� */ { margin:0; padding:0; }
+/* 撠��𣈯�娍黇甇� */
+address, cite, dfn, em, var { font-style:normal; }
+/** ��滨蔭��𡑒”��蝝� **/
+ul, ol { list-style:none; }
+/** ��滨蔭銵典�訫��蝝� **/
+legend { color:#000; } /* for ie6 */
+fieldset, img { border:0; } /* img �𨰹頠𠺪�朞�㯄��𦻖鋆讐� img �⊿�𦠜� */
+button, input, select, textarea { font-size:100%; } /* 雿踹�𡑒”�鱓��蝝惩銁 ie 銝贝�賜匱�㗁摮烾�𥪜之撠� */
+/** 閮剔蔭暺䁅�漤��𦻖 **/
+a:link { color:#0044DD; text-decoration:none; }
+a:visited { color:#0044DD; text-decoration:none; }
+a:hover { color:#f60; text-decoration:underline; }
+a:active { color:#ba2636; }
+/** 暺䁅�漤＊蝷粹黸��� **/
+.dis{ display:block; }
+.undis{	display:none; }
+/** 皜��膄瘚桀�� **/
+.clear { clear:both; display:block; height:0; overflow:hidden; }
+.clearH5 { clear:both; display:block; height:5px; overflow:hidden; }
+.clearH6 { clear:both; display:block; height:6px; overflow:hidden; }
+.clearH9 { clear:both; display:block; height:9px; overflow:hidden; }
+.clearH10 { clear:both; display:block; height:10px; overflow:hidden; }
+.clearH13 { clear:both;	display:block; height:13px; overflow:hidden; }
+/** 皜��膄瘚桀�� New **/
+.clearfix:after{content:".";clear:both;height:0;visibility:hidden;display:block;}
+.clearfix{*zoom:1;}
+/** �砍�望見撘� **/
+.datalazyload {	border:none; width:1px;	height:1px;	overflow:hidden; }
+.center{ text-align:center; margin-left:auto; margin-right:auto; }
+.hidden{ display:none;}
+.fs12{ font-size:12px;}
+.f13, .fs13{ font-size:13px; }
+.fs15{ font-size:15px; }
+.fc-gry{ color:#666666; }
+.fc-org{ color:#FF6600; }
+.fc-red{ color:#FF0000; }
+.fc-gre{ color:#56A236; }
+.ft-lt{ float:left;}
+.ft-rt{ float:right;}
+.ft-wn{ font-weight:400;}
+.ft-wb{ font-weight:700;}
+.ft-fm-Ar{ font-family:Arial, Helvetica, sans-serif; }
+.ft-fm-Vd{ font-family:Verdana, Arial, Helvetica; }
+.loading { text-align:center; width:100%; padding:20px 0; }
+.baidu_adv{ width:1000px; margin-left:auto; margin-right:auto; }

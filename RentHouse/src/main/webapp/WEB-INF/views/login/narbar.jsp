@@ -108,9 +108,10 @@ function GoogleSignOut() {
       <a class="navbar-brand"  href="${pageContext.request.contextPath}"><img style="height: 60px" alt="租你幸福" src="<c:url value='/login/img/logo.png'/>"></a>
       <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-       <li class="nav-item"><a class="btn btn-nav-primary" href="${pageContext.request.contextPath}/search/searchPage_sessionStorage">想要租屋</a></li>
-      <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/insertPicPage'/>">測試用</a></li>
+       <li class="nav-item"><a class="btn btn-nav-primary" href="search/searchPage_sessionStorage">想要租屋</a></li>
+      <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/newHouse/house'/>">我要出租</a></li>
       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/membercontrol/${user.id}'/>">會員中心</a></li>
+      <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/ForumView'/>">討論區</a></li>
       </ul>
       </div>
       <div>

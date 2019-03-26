@@ -38,19 +38,41 @@
 	</script>
 </head>
 
-<body>
+<body style="background-color: #ffebd7;">
+    <div style="height: 75px;">
+        <%@include file="../login/narbar.jsp"%>
+    </div>
+    <div>
+        <h1 class="container">親愛的 ${user.name} 您好</h1>
+        <div class="d-flex container" id="wrapper">
+            <!-- Sidebar -->
+            <%@include file="../login/membermenu.jsp"%>
 
-	<div id="header">
-	</div>
-	<!-- end #header -->
-	<div id="menu">
+            <!-- <div class="bg-light border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading list-group-item bg-warning">會員中心</div>
+                <div class="list-group list-group-flush">
+                    <a href="<c:url value='/membercontrol/${user.id}'/>"
+                        class="list-group-item list-group-item-action bg-light">&gt;&gt;會員資料修改</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+                </div>
+            </div> -->
+            <!-- /#sidebar-wrapper -->
 
-	</div>
-	<!-- end #menu -->
-	<div id="content">
-		<div>
-			<div class="post">
-				<table>
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    </div>
+                </nav>
+                <!-- 		內容 -->
+                <div class="container-fluid" style="width: 800px;">
+                    <h1 class="mt-4"></h1>
+                    <table>
 					<thead>
 						<tr>
 							<th>
@@ -59,7 +81,6 @@
 						</tr>
 						<tr>
 							<th>標題</th>
-							<th>狀態</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -71,7 +92,7 @@
 								<td><a class="button orange"
 										href='<c:url value="/furnitureView/${furniture.id}" />'>檢視</a></td>
 								<td><a class="button orange"
-										href='<c:url value="/furnitureRefact/${furniture.id}" />'>修改詳細</a></td>
+										href='<c:url value="/membercontrol/furnitureRefact/${furniture.id}" />'>修改詳細</a></td>
 								<td>
 									<c:if test="${furniture.status == '上架' || furniture.status == '審核'}">
 										<!-- <input type="button" id="Down" class="button red" value="主動下架">
@@ -95,20 +116,14 @@
 						</c:forEach>
 					</tbody>
 				</table>
-			</div>
-		</div>
-		<!-- end #posts -->
-		<div id="links">
-		</div>
-		<!-- end #links -->
-		<div style="clear: both;">&nbsp;</div>
-	</div>
-	<!-- end #content -->
-	<div id="footer">
-		<!-- <p id="legal">Copyright &copy; Logistix. Designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>
-				</p> -->
-	</div>
-	<!-- end #footer -->
+                </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+
+        </div>
+    </div>
+    		<input type="hidden" id="herenow" value="fuSelect">
+    
 </body>
 
 </html>
