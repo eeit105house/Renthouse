@@ -14,21 +14,23 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h4>共找到${number}間房屋</h4>
 	<c:forEach var='newList' varStatus="check" items="${NewList}">
-		<div class="sitebody" id="${newList[13]}" onclick='window.open("${pageContext.request.contextPath}/houseView/${newList[13]}")'>
-			<div class="sidebar_left">
+				<div class="sitebody" id="${newList[13]}" onclick='window.open("${pageContext.request.contextPath}/houseView/${newList[13]}")'
+			style="line-height:10px;border-bottom: 0.5px solid #9d9d9d;border-top: 0.5px solid #9d9d9d;width: 100%">
+			<div class="sidebar_left" style="width: 120px;height: 80px;text-align: left;line-height: 20px;float: left;">
 				<img id="img" src="<c:url value='/getPicture/${newList[0]}' />" />
 			</div>
-			<div id="sidebar_right">
+			<div id="sidebar_right" style="width: 120px;height: 80px;text-align: right;line-height: 150px;float: right;">
 				<span class="font-25R">&nbsp;${newList[9]}&nbsp;元&nbsp;/&nbsp;月</span>
 			</div>
-			<div id="content">
+			<div id="content" style="width:300px;margin-left:10px;margin-top:10px;height: 80px;text-align: left;line-height: 20px;">
 				<span class="font-22B">${newList[1]}</span><br> <span
 					class="font-16B">${newList[2]}&nbsp;&nbsp;|&nbsp;&nbsp;${newList[3]}坪&nbsp;&nbsp;|&nbsp;&nbsp;樓層:${newList[4]}/${newList[5]}</span><br>
 				<span class="font-16B">${newList[6]}&nbsp;-&nbsp;${newList[7]}</span>
 			</div>
 
-		</div>
+		</div>	
 	</c:forEach>
 	<hr>
 <nav aria-label="Page navigation example">

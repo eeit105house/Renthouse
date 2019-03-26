@@ -110,7 +110,7 @@ console.log('User disconnect.');
       <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
        <li class="nav-item"><a class="btn btn-nav-primary" href="search/searchPage_sessionStorage">想要租屋</a></li>
-      <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/insertPicPage'/>">測試用</a></li>
+      <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/newHouse/house'/>">我要出租</a></li>
       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/membercontrol/${user.id}'/>">會員中心</a></li>
       </ul>
       </div>

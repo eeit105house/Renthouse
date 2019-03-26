@@ -3,7 +3,8 @@
     <%@ taglib prefix='form' uri="http://www.springframework.org/tags/form"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<table class="table table-striped">
+<script src="${pageContext.request.contextPath}/login/js/jquery-tablepage-1.0.js"></script>
+<table class="table table-striped" id="tbl">
   <thead>
     <tr>
       <th scope="col">標題</th>
@@ -15,7 +16,7 @@
   <tbody>
   <c:forEach var="mail" items="${allmail }">
     <tr>
-      <td>${mail.title }</td>
+      <td><a href="<spring:url value='/membercontrol/memberservice/memberservicedetail/${mail.id }'/>">${mail.title }</a></td>
       <td>${mail.type }</td>
       <td>${mail.datetime }</td>
       <td>${mail.status }</td>
@@ -23,6 +24,7 @@
    </c:forEach>
   </tbody>
 </table>
-    <input type="hidden" id="herenow" value="customer"/> 
+    <span id='table_page'></span>
+    <script>$("#tbl").tablepage($("#table_page"), 10);</script>
 </body>
 </html>

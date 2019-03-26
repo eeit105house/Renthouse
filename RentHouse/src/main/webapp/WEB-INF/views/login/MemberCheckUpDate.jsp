@@ -76,6 +76,6 @@
 	 };
   });
   </script>
-  <input type="hidden" id="herenow" value="updata"/> 
+  <input type="hidden" id="herenow" value="reservationCheck"/> 
 </body>
 </html>
