@@ -258,7 +258,7 @@ public class HomeController {
 	}
 
 //	關鍵字查詢--Map
-	@RequestMapping("/search/searchPage_Msg_mag")
+	@RequestMapping("/search/searchPage_Msg_map")
 	public String searchPageByMsgMap(Model model, @RequestParam("msg") String msg) {
 		List<Object[]> Objectlist = service.getHouseByMsg(msg);
 		model.addAttribute("number",Objectlist.size());
