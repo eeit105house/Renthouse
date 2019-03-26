@@ -42,6 +42,16 @@ public class ForumReport {
 		this.forumBean = forumBean;
 		this.memberBean = memberBean;
 	}
+	public ForumReport(Integer id, Integer forumId, String type, Clob content, Timestamp datetime, String status) {
+		super();
+		this.id = id;
+		this.forumId = forumId;
+		this.type = type;
+		this.content = content;
+		this.datetime = datetime;
+		this.status = status;
+
+	}
 
 
 

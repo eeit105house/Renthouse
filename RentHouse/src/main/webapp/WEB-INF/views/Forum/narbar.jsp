@@ -109,8 +109,8 @@ console.log('User disconnect.');
       <a class="navbar-brand"  href="${pageContext.request.contextPath}"><img style="height: 60px" alt="租你幸福" src="<c:url value='/login/img/logo.png'/>"></a>
       <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-       <li class="nav-item"><a class="btn btn-nav-primary" href="search/searchPage_sessionStorage">想要租屋</a></li>
-      <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/newHouse/house'/>">我要出租</a></li>
+       <li class="nav-item"><a class="btn btn-nav-primary" href="${pageContext.request.contextPath}/search/searchPage_sessionStorage">想要租屋</a></li>
+      <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/insertPicPage'/>">測試用</a></li>
       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/membercontrol/${user.id}'/>">會員中心</a></li>
       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/ForumView'/>">討論區</a></li>
       </ul>
@@ -143,9 +143,9 @@ console.log('User disconnect.');
 <!-- 日期用 -->
 <script src="${pageContext.request.contextPath}/login/js/date.js"></script>
 <!--   登入 -->
-<%@include file="Login_plustar.jsp" %>
- <!-- 註冊 --> 
-<%@include file="Registered_plustar.jsp" %>
+<%-- <%@include file="Login_plustar.jsp" %> --%>
+<!--  <!-- 註冊 -->  -->
+<%-- <%@include file="Registered_plustar.jsp" %> --%>
 </c:if>
 
 <a href="#hidden_content" class="lightbox" ></a>
