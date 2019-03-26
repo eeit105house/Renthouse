@@ -104,9 +104,8 @@ public class HomeController {
 		List<Object[]> Objectlist = service.getAllhouse();	
 		model.addAttribute("number",Objectlist.size());
 		int totalList = Objectlist.size();
-		int pageListNum = 5;
+		double pageListNum = 5.0;
 		double biggestPage =Math.ceil(totalList/pageListNum);
-		
 		model.addAttribute("pageListNum", pageListNum);
 		model.addAttribute("biggestPage", biggestPage);
 		model.addAttribute("totalList", totalList);
@@ -120,7 +119,7 @@ public class HomeController {
 			List<Object[]> Objectlist = service.getAllhouse();	
 			model.addAttribute("number",Objectlist.size());
 			int totalList = Objectlist.size();
-			int pageListNum = 5;
+			double pageListNum = 5.0;
 			double biggestPage =Math.ceil(totalList/pageListNum);
 			
 			model.addAttribute("pageListNum", pageListNum);
@@ -138,10 +137,11 @@ public class HomeController {
 		int minNum = (page-1)*5;
 		int maxNum = page*5;
 		for(int i = minNum;i<maxNum;i++) {
+			if(i >= Objectlist.size())break;
 			NewList.add(Objectlist.get(i));
 		}	
 		int totalList = Objectlist.size();
-		int pageListNum = 5;
+		double pageListNum = 5.0;
 		double biggestPage =Math.ceil(totalList/pageListNum);
 		model.addAttribute("pageListNum", pageListNum);
 		model.addAttribute("biggestPage", biggestPage);
@@ -159,10 +159,11 @@ public class HomeController {
 			int minNum = (page-1)*5;
 			int maxNum = page*5;
 			for(int i = minNum;i<maxNum;i++) {
+				if(i >= Objectlist.size())break;
 				NewList.add(Objectlist.get(i));
 			}	
 			int totalList = Objectlist.size();
-			int pageListNum = 5;
+			double pageListNum = 5.0;
 			double biggestPage =Math.ceil(totalList/pageListNum);
 			model.addAttribute("pageListNum", pageListNum);
 			model.addAttribute("biggestPage", biggestPage);
@@ -176,7 +177,7 @@ public class HomeController {
 	public String searchPageByCriteria(Model model, @RequestParam("Searchcriteria") String Searchcriteria) {
 		List<Object[]> Objectlist = service.getHouseByCriteria(Searchcriteria);
 		int totalList = Objectlist.size();
-		int pageListNum = 5;
+		double pageListNum = 5.0;
 		double biggestPage =Math.ceil(totalList/pageListNum);
 		
 		model.addAttribute("pageListNum", pageListNum);
@@ -192,7 +193,7 @@ public class HomeController {
 		public String searchPageByCriteriaMap(Model model, @RequestParam("Searchcriteria") String Searchcriteria) {
 			List<Object[]> Objectlist = service.getHouseByCriteria(Searchcriteria);
 			int totalList = Objectlist.size();
-			int pageListNum = 5;
+			double pageListNum = 5.0;
 			double biggestPage =Math.ceil(totalList/pageListNum);
 			
 			model.addAttribute("pageListNum", pageListNum);
@@ -211,10 +212,11 @@ public class HomeController {
 		int minNum = (page-1)*5;
 		int maxNum = page*5;
 		for(int i = minNum;i<maxNum;i++) {
+			if(i >= Objectlist.size())break;
 			NewList.add(Objectlist.get(i));
 		}	
 		int totalList = Objectlist.size();
-		int pageListNum = 5;
+		double pageListNum = 5.0;
 		double biggestPage =Math.ceil(totalList/pageListNum);
 		model.addAttribute("pageListNum", pageListNum);
 		model.addAttribute("biggestPage", biggestPage);
@@ -232,10 +234,11 @@ public class HomeController {
 			int minNum = (page-1)*5;
 			int maxNum = page*5;
 			for(int i = minNum;i<maxNum;i++) {
+				if(i >= Objectlist.size())break;
 				NewList.add(Objectlist.get(i));
 			}	
 			int totalList = Objectlist.size();
-			int pageListNum = 5;
+			double pageListNum = 5.0;
 			double biggestPage =Math.ceil(totalList/pageListNum);
 			model.addAttribute("pageListNum", pageListNum);
 			model.addAttribute("biggestPage", biggestPage);
