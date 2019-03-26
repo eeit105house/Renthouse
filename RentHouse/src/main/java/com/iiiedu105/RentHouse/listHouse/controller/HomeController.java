@@ -278,7 +278,7 @@ public class HomeController {
 			Blob blob = bean.getPic();
 			filename = "\\images\\HousePic0.jpg";
 			if (blob != null) {
-
+ 
 				try {
 					len = (int) blob.length();
 					media = blob.getBytes(1, len); // blob.getBytes(1, len): 是 1 開頭。Jdbc相關的類別都是1 開頭。
