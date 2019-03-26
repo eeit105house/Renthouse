@@ -1,5 +1,6 @@
 package com.iiiedu105.RentHouse.backend.review.writings.controller;
 
+import java.sql.Clob;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.iiiedu105.RentHouse.ChangeClob;
 import com.iiiedu105.RentHouse.backend.customerservice.service.CSService;
 import com.iiiedu105.RentHouse.backend.review.house.service.OTShelfService;
 import com.iiiedu105.RentHouse.backend.review.writings.Service.RWritingsService;
@@ -25,6 +27,8 @@ public class ReviewWritingsController {
 	OTShelfService oservice;
 	@Autowired
 	CSService cservice;
+	@Autowired
+	ChangeClob changeclob;
 	//get房屋審核數量
 	@ModelAttribute("hlist")
 	public List<House> getHouseList(){
@@ -64,6 +68,8 @@ public class ReviewWritingsController {
 	@RequestMapping(value="/Details/{id}")
 	public String details(@PathVariable("id") Integer id,Model model) {
 		Object[] list = rservice.getAllDetailWritingsById(id);
+		list[2] = changeclob.ClobToString((Clob)list[2] );
+		list[5] = changeclob.ClobToString((Clob)list[5]);
 		model.addAttribute("olist", list);
 		return "backstage/writingsDetails";		
 	}
