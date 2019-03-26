@@ -49,7 +49,7 @@
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fas fa-fingerprint"></i> </span>
 		 </div>
-        <label>${user.active}</label><span id="acti" style="padding-left: 60px;"><a class="btn btn-primary" href="reActive">重新發送驗證信</a></span>
+        <label id="actistate">${user.active}</label><span id="acti" style="padding-left: 60px;"><a class="btn btn-primary" href="reActive">重新發送驗證信</a></span>
     </div>
 <!--帳號 -->
 	<div class="form-group input-group">
@@ -59,24 +59,24 @@
         <label>${user.id}</label>
     </div>
 <!--密碼 --> 
-    <div class="form-group input-group">
+    <div id="googlehide" class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i id="Pwd_i2" class="fa fa-lock"></i> </span></div>
-        <form:input path="pwd" name="Pwd" id="Pwd2" class="form-control" required="required" placeholder="密碼*混合英數 8-12字" type="password" />
+        <form:input path="pwd" name="Pwd" id="Pwd2" class="form-control" placeholder="密碼*混合英數 8-12字" type="text" />
     </div> 
 <!--會員姓名   --> 
         <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i class="fas fa-grin-alt" id="inputname_i2"></i></span>
 		</div>
-        <form:input path="name" name="inputname" id="inputname2" class="form-control" required="required" placeholder="您的大名/Name" type="text"/>
+        <form:input path="name" name="inputname" id="inputname2" class="form-control"  placeholder="您的大名/Name" type="text"/>
     </div>      
     <!--電話 --> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i class="fa fa-phone" id="phone_i2"></i> </span>
 		</div>
-    	<form:input path="phone" name="phone" id="phone2" class="form-control" required="required" placeholder="市話/手機" type="text"/>
+    	<form:input path="phone" name="phone" id="phone2" class="form-control"  placeholder="市話/手機" type="text"/>
     </div>           
     <div class="form-group">
     <input type="submit"  class="btn btn-primary btn-block" id="create2" value="確定修改資料"/>
@@ -100,10 +100,73 @@
 	 }else{
 		 $("#acti").show();
 	 };
-	 var myTextSubstr = "${user.id}".substr(1,6);
-	 if(myTextSubstr=="Google"){
-		 $("#pwd2").attr({"disabled":"disabled"});
-	 }
+	 var myTextSubstr = "${user.id}";
+	 if(myTextSubstr.substr(0,6)=="Google"){
+		 $("#actistate").append("(Google 登入)")
+		 $("#googlehide").hide();
+	 };
+	 
+	 var pwd_ok2,name_ok2,phone_ok2 = false;
+	 $('#pic2').on('change',function(){
+			var file = this.files[0];
+			if(file!=null){
+				var reader = new FileReader();
+				reader.onload = function(e){
+					$('#showImg2').attr('src',e.target.result);
+
+				}
+				reader.readAsDataURL(file);
+			}else{
+				$('#showImg2').attr('src',"<c:url value='/login/img/PresetMember.png'/>");
+
+			}
+		});
+	 $('#Pwd2').on('keydown keyup keypress change focus blur',function(){
+			var re = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,16}$/;
+			var check = $(this).val();
+			  if(re.test(check)){
+			    $("#Pwd_i2").css({"color": "green"});
+				  pwd_ok2 = true;
+			  }else{
+				$("#Pwd_i2").css({"color": "red"});
+				pwd_ok2 = false;
+				}
+	 });
+	 $('#inputname2').on('keydown keyup keypress change focus blur',function(){
+			var re_zh = /^[\u4e00-\u9fa5]{2,}$/;
+			var re_en = /^[a-zA-Z]{3,}$/;
+			var check = $(this).val();
+			  if(re_zh.test(check)){
+			    $("#inputname_i2").css({"color": "green"});
+				  name_ok2 = true;
+			  }else if(re_en.test(check)){
+				$("#inputname_i2").css({"color": "green"});
+				  name_ok2 = true;
+			  }else{
+				$("#inputname_i2").css({"color": "red"});
+				  name_ok2 = false;
+				  }
+			});
+		$('#phone2').on('keydown keyup keypress change focus blur',function(){
+			var re = /^([0]+)([1-9]+)([0-9]{8,})$/
+			var check = $(this).val();
+			  if(re.test(check)){
+			    $("#phone_i2").css({"color": "green"});
+				  phone_ok2 = true;
+			  }else{
+			    $("#phone_i2").css({"color": "red"});
+				  phone_ok2 = false;
+			  }
+			});
+		$('.form-control').on('keydown keyup keypress change focus blur',function(){
+			if(true==name_ok2 || true==phone_ok2 || true==pwd_ok2){
+				$("#create2").show();
+				$("#notyet2").hide();
+			}else{
+				$("#create2").hide();
+				$("#notyet2").show();
+			}
+			});
   });
   </script>
   <input type="hidden" id="herenow" value="updata"/> 

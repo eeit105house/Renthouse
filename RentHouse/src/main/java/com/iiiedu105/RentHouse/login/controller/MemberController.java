@@ -75,15 +75,7 @@ public class MemberController {
 
 // URL為 /members, 搭配 POST方法可以新增一筆紀錄
 // 儲存瀏覽器送來的Member資料
-<<<<<<< HEAD
-	@RequestMapping(value = "insertMemberOk", method = RequestMethod.POST)
-	public String saveMember(Member member, @RequestParam(value = "memberimg") MultipartFile file0,
-			HttpServletRequest request, Model model) throws SerialException, SQLException {
-		Map<String, String> errorMsg = new HashMap<String, String>();
-		Map<String, String> create = new HashMap<String, String>();
-		// 預設圖片
-		String noImg = "/WEB-INF/views/login/img/PresetMember.png";
-=======
+
 @RequestMapping(value = "/insertMemberOk", method = RequestMethod.POST)
 	public String saveMember(Member member,@RequestParam(value = "memberimg") MultipartFile file0 , 
 			HttpServletRequest request , Model model) throws SerialException, SQLException {
@@ -91,7 +83,6 @@ public class MemberController {
 	Map<String, String> create = new HashMap<String, String>();
 	//	預設圖片
 	String noImg = "/WEB-INF/views/login/img/PresetMember.png";
->>>>>>> branch 'master' of https://github.com/eeit105house/Renthouse.git
 //	轉blob
 		Blob P_Img = new SerialBlob(toByteArray(noImg));
 //	取 id 驗證是否重複
@@ -214,29 +205,6 @@ public class MemberController {
 	}
 
 //會員登入
-<<<<<<< HEAD
-	@RequestMapping(value = "/loginMember", method = RequestMethod.POST)
-	public String checkMember(HttpServletRequest request, Model model) {
-		Map<String, String> errorMsg = new HashMap<String, String>();
-		Map<String, String> create = new HashMap<String, String>();
-		Member member = memberService.login(request.getParameter("inputAccount"),
-				request.getParameter("inputPassword"));
-		if (member != null) {
-			List<Object[]> list = memberService.getAllMsg(member.getId());
-			HttpSession session = request.getSession();
-			session.setAttribute("user", member);
-			session.setAttribute("allmsg", list);
-		} else {
-			errorMsg.put("errorAccPwd", "帳號或密碼錯誤");
-			model.addAttribute("errorMsg", errorMsg);
-		}
-		if (!errorMsg.isEmpty()) {
-
-			return "forward:/";
-		}
-		create.put("signin", "租你幸福，祝你幸福");
-		model.addAttribute("create", create);
-=======
 @RequestMapping(value = "/loginMember", method = RequestMethod.POST)
 	public String checkMember(HttpServletRequest request , Model model) {
 	Map<String, String> errorMsg = new HashMap<String, String>();
@@ -256,7 +224,6 @@ public class MemberController {
 	}
 	create.put("signin", "租你幸福，祝你幸福");
 	model.addAttribute("create", create);
->>>>>>> branch 'master' of https://github.com/eeit105house/Renthouse.git
 		return "forward:/";
 	}
 
@@ -586,6 +553,7 @@ public class MemberController {
 			member.setPwd(userId);
 			member.setPic(P_Img);
 			member.setEmail(email);
+			member.setName(name);
 			Member user = memberService.login(member.getId(), member.getPwd());
 			System.out.println("user: " + user);
 			if (user != null) {
