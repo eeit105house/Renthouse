@@ -258,13 +258,14 @@ public class HomeController {
 	}
 
 //	關鍵字查詢--Map
-	@RequestMapping("/search/searchPage_Msg_mag")
+	@RequestMapping("/search/searchPage_Msg_map")
 	public String searchPageByMsgMap(Model model, @RequestParam("msg") String msg) {
 		List<Object[]> Objectlist = service.getHouseByMsg(msg);
 		model.addAttribute("number",Objectlist.size());
 		model.addAttribute("Objectlists", Objectlist);
 		return "search/searchPage_start_map";
 	}
+	
 	@RequestMapping(value = "/getPicture/{id}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer id) {
 		String filePath = "/NoImage.jpg";

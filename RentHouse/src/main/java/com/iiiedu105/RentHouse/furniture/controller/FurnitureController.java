@@ -2,6 +2,7 @@ package com.iiiedu105.RentHouse.furniture.controller;
 
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -21,6 +22,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -137,11 +139,33 @@ public class FurnitureController {
 //		model.addAttribute("furnitureBean", furnitureBean);
 		return "Furniture/FurnitureRefactForm";
 	}
+	
+	@ModelAttribute(name="typeList")
+	public List<String> typeList(){
+		List<String> typeList = new ArrayList<>();
+		typeList.add("電器");
+		typeList.add("桌椅");
+		typeList.add("櫃子");
+		typeList.add("床具");
+		typeList.add("其它");
+		return typeList;
+	}
 	// ====檢視=======
-	@RequestMapping(value = "/furnitureView/")
-	public String viewAllFurniturePage(Model model) {
-		model.addAttribute("member", new Member());;
-		return "";
+	@RequestMapping(value = "/furnitureViewAll")
+	public String viewAllFurniturePages(Model model) {
+		model.addAttribute("member", new Member());
+		model.addAttribute("furnitureList", furnitureServise.getFurnituresOrderbyId());
+		return "Furniture/FurnitureSelectList";
+	}
+	@RequestMapping(value = "/furnitureViewByType")
+	public String viewTypeFurniturePages(Model model,@RequestParam String types) {
+		model.addAttribute("member", new Member());
+		model.addAttribute("furnitureMap", furnitureServise.getFurnituresOrderbyTypes(types));
+//		for(String ty:typeList()) {
+//			for(Furniture typeList:furnitureServise.getFurnituresOrderbyTypes(types).get(ty))
+//			System.out.println(typeList.getTitle()  + typeList.getType());
+//		}
+		return "Furniture/FurnitureSelectList";
 	}
 	@RequestMapping(value = "/furnitureView/{fuId}")
 	public String viewFurniturePage(Model model, @PathVariable Integer fuId) {

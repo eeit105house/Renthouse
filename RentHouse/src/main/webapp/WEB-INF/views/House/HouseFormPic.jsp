@@ -65,7 +65,7 @@
                     <div class="post">
                     <form:form method="post" enctype="multipart/form-data">
                     <fieldset>
-                        <legend>上傳圖片</legend>
+                        <legend class="legendK">上傳圖片</legend>
                         <div>
                             <p>請使用JPEG檔</p>
                             <p>${errorMsg.typeE}</p>

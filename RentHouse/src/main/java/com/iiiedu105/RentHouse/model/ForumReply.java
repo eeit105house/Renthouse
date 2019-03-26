@@ -39,6 +39,9 @@ public class ForumReply {
 		this.memberId = memberId;
 		this.frId = frId;
 	}
+	public ForumReply() {
+		// TODO Auto-generated constructor stub
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
