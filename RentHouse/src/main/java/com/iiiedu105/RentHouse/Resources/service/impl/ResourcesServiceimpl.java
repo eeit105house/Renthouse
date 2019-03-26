@@ -45,5 +45,10 @@ public class ResourcesServiceimpl implements ResourcesService{
 		// TODO Auto-generated method stub
 		return dao.findByHId(memberId);
 	}
+	@Override
+	public List<Reservation> getReservationMember(String memberId) {
+		// TODO Auto-generated method stub
+		return dao.getReservationMember(memberId);
+	}
 	
 }
