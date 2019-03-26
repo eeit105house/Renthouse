@@ -178,17 +178,6 @@ $(document).ready(function() {
 				  pwd_ok = false;
 			  }
 			});
-		$('#rePwd2').on('keydown keyup keypress change focus blur',function(){
-			var re = $("#Pwd").val();
-			var check = $(this).val();
-			  if(re==check){
-			    $("#rePwd_i2").css({"color": "green"});
-				  repwd_ok = true;
-			  }else{
-			    $("#rePwd_i2").css({"color": "red"});
-				  repwd_ok = false;
-			  }
-			});
 		$('#inputname2').on('keydown keyup keypress change focus blur',function(){
 			var re_zh = /^[\u4e00-\u9fa5]{2,}$/;
 			var re_en = /^[a-zA-Z]{3,}$/;

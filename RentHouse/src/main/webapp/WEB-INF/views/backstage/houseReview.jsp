@@ -90,7 +90,7 @@
 										<td class="center">${house.addr }</td>
 										<td class="center">${house.city }</td>
 										<td class="center">${house.launched }</td>
-										<td class="center"><a class="btn btn-info" href="<spring:url value='/backstage/houseView/${house.id }' />">
+										<td class="center"><a class="btn btn-info" href="<spring:url value='/houseView/${house.id }' />">
 												<i class=" icon-eye-open"></i>
 										</a>   
 										<!-- Button trigger modal -->

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
     pageEncoding="UTF-8"%> 
+       <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,54 +12,6 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};HandleGoogleApiLibrary()"
         onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
-<script type="text/javascript">
-//google signin
-//進入 https://console.developers.google.com/，找「憑證」頁籤(記得先選對專案)，即可找到用戶端ID
-	let Google_appId = "825814170132-9r69bbro6bbtg1ahvhsp5jeu07f52sd0.apps.googleusercontent.com";
-//參考文章：http://usefulangle.com/post/55/google-login-javascript-api
-// Called when Google Javascript API Javascript is loaded
-    function HandleGoogleApiLibrary() {
-        // Load "client" & "auth2" libraries
-        gapi.load('client:auth2', {
-            callback: function () {
-                // Initialize client & auth libraries
-                gapi.client.init({
-                    clientId: Google_appId,
-                    scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me'
-                }).then(
-                    function (success) {
-                        // Google Libraries are initialized successfully
-                        // You can now make API calls 
-                        console.log("Google Libraries are initialized successfully");
-                    },
-                    function (error) {
-                        // Error occurred
-                        console.log(error);// to find the reason 
-                    }
-                );
-            },
-            onerror: function () {
-                // Failed to load libraries
-                console.log("Failed to load libraries");
-            }
-        });
-    }
-		function GoogleSignIn() {
-		// API call for Google login  
-        gapi.auth2.getAuthInstance().signIn().then(
-            function (success) {
-                // Login API call is successful 
-                console.log(success);
-                let Google_ID = success["El"];  
-            },
-            function (error) {
-                // Error occurred
-                // console.log(error) to find the reason
-                console.log(error);
-            }
-        );
-	}
- </script> 
 
 </head>
 <body>
@@ -80,7 +33,7 @@
         <div class="card card-signin my-6">
           <div class="card-body">
             <h5 class="card-title text-center">登入</h5>
-            <form class="form-signin" action="loginMember" method="POST">
+            <form class="form-signin" action="<spring:url value='/loginMember'/>" method="POST">
               <div class="form-label-group">
                 <input  type="text" name="inputAccount" id="inputAccount" class="form-control" placeholder="輸入帳號" required="required"/>
                 <label for="inputAccount"><i class="fa fa-user"></i>　帳號</label>
@@ -97,34 +50,31 @@
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="Login_check">登入</button>
               <hr class="my-4">
               </form>
-              <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit" onclick="GoogleSignIn();"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
-              <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+ 
+<!--               <button class="btn btn-lg btn-google btn-block text-uppercase" id="googlesign" onclick="GoogleSignIn();"><i class='fab fa-google mr-2'></i>Sign in with Google</button> -->
+<!--               <button type="submit" class="btn btn-lg btn-facebook btn-block text-uppercase"><i class="fab fa-facebook-f mr-2"></i>Sign in with Facebook</button> -->
+          		<div class="g-signin2" data-onsuccess="GoogleSignIn" data-theme="dark"></div>
           		<hr/>
-          		<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-    <a href="#" onclick="signOut();">Sign out</a>
-    
+<!--           		<button class="btn btn-lg btn-google btn-block text-uppercase g-signin2"><i class='fab fa-google mr-2' data-onsuccess="GoogleSignIn"></i>Sign in with Google</button> -->
+<!--           		<input type="text" id="hiddengoogle" name="hiddengoogle"/> -->
+
+
     <script>
-      function onSignIn(googleUser) {
-        // 客戶端如果有需要的話可以通過profile來獲取使用者資訊
-        var profile = googleUser.getBasicProfile();
-        // 傳回後臺驗證，並獲取userid
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:8080/RentHouse/googleVerify');
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
-          console.log('Signed in as: ' + xhr.responseText);
+      function GoogleSignIn(googleUser) {
+    	// 客戶端如果有需要的話可以通過profile來獲取使用者資訊
+          var profile = googleUser.getBasicProfile();
+          // 傳回後臺驗證，並獲取userid
+          var id_token = googleUser.getAuthResponse().id_token;
+          console.log("ID Token: " + id_token);
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', 'http://localhost:8080/RentHouse/googleVerify');
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          xhr.onload = function() {
+            console.log('Signed in as: ' + xhr.responseText);
+          };
+          xhr.send('idtokenstr=' + id_token);
+          window.location.reload();
         };
-        xhr.send('idtokenstr=' + id_token);
-      };
-      
-      function signOut() {
-    	    var auth2 = gapi.auth2.getAuthInstance();
-    	    auth2.signOut().then(function () {
-    	      console.log('User signed out.');
-    	    });
-    	  }
     </script>
           </div>
         </div>

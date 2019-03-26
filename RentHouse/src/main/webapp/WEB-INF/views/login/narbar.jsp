@@ -94,12 +94,11 @@ $(document).ready(function(){
 });
 //參考：https://developers.google.com/identity/sign-in/web/disconnect
 function GoogleSignOut() {
-var auth12 = gapi.auth2.getAuthInstance();
-auth12.disconnect().then(function () {
-console.log('User disconnect.'); 
-	});
-	session.invalidate();
-}
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
 </script>
 <title>導覽</title>
 </head>
@@ -109,7 +108,7 @@ console.log('User disconnect.');
       <a class="navbar-brand"  href="${pageContext.request.contextPath}"><img style="height: 60px" alt="租你幸福" src="<c:url value='/login/img/logo.png'/>"></a>
       <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-       <li class="nav-item"><a class="btn btn-nav-primary" href="search/searchPage_sessionStorage">想要租屋</a></li>
+       <li class="nav-item"><a class="btn btn-nav-primary" href="${pageContext.request.contextPath}/search/searchPage_sessionStorage">想要租屋</a></li>
       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/insertPicPage'/>">測試用</a></li>
       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/membercontrol/${user.id}'/>">會員中心</a></li>
       </ul>
@@ -146,6 +145,7 @@ console.log('User disconnect.');
  <!-- 註冊 --> 
 <%@include file="Registered_plustar.jsp" %>
 </c:if>
+
 <a href="#hidden_content" class="lightbox" ></a>
 
 <div id="hidden_content" style="display: none ;">

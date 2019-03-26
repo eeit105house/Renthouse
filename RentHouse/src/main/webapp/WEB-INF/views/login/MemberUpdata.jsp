@@ -62,14 +62,7 @@
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i id="Pwd_i2" class="fa fa-lock"></i> </span></div>
-        <form:input path="pwd" name="Pwd" id="Pwd2" class="form-control" required="required" placeholder="密碼*混合英數 8-12字" type="password"/>
-    </div> 
-<!--重複密碼 --> 
-    <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"><i class="fas fa-key" id="rePwd_i2"></i></span>
-		</div>
-        <input name="rePwd" id="rePwd2" class="form-control" required="required" placeholder="重複確定密碼" type="password">
+        <form:input path="pwd" name="Pwd" id="Pwd2" class="form-control" required="required" placeholder="密碼*混合英數 8-12字" type="password" />
     </div> 
 <!--會員姓名   --> 
         <div class="form-group input-group">
@@ -107,6 +100,10 @@
 	 }else{
 		 $("#acti").show();
 	 };
+	 var myTextSubstr = "${user.id}".substr(1,6);
+	 if(myTextSubstr=="Google"){
+		 $("#pwd2").attr({"disabled":"disabled"});
+	 }
   });
   </script>
   <input type="hidden" id="herenow" value="updata"/> 

@@ -127,7 +127,10 @@ public class MainController {
 	//後台統計圖表
 	@RequestMapping(value="/backstage/chart")
 	public String chart(Model model) {
-
+		List<int[]> month2018 = loginService.getAllHouseDeal();
+		Map<String,Integer> map = loginService.getHouseDealInfo();
+		model.addAttribute("month2018",month2018);
+		model.addAttribute("map",map);
 		return "backstage/chart";		
 	}
 	//員工資料修改畫面
@@ -165,6 +168,7 @@ public class MainController {
 		loginService.updateEmployee(employee.getId(), employee.getName(), pic, employee.getPwd());
 		return "redirect:/backstage/jump";		
 	}
+	//跳轉頁面
 	@RequestMapping("/backstage/jump")
 	public String jumpPage() {
 		return "backstage/jump";
