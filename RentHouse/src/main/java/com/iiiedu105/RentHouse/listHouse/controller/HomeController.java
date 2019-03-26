@@ -265,6 +265,7 @@ public class HomeController {
 		model.addAttribute("Objectlists", Objectlist);
 		return "search/searchPage_start_map";
 	}
+	
 	@RequestMapping(value = "/getPicture/{id}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer id) {
 		String filePath = "/NoImage.jpg";
