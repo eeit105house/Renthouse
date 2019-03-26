@@ -136,10 +136,10 @@
 									${forum.datetime}</font></li>
 							<!--<li class="voted_counts"></li>-->
 							</ul>
-					</div>
+					</div> 
 					<div class="content_detail">
 						<div class="font_15">${forum.content}</div>					
-					</div>
+					</div> 
 					<!--装潢日记投票-->
 					<div style="text-align: center;">
 						<div style="width: 300px; margin: 0 auto; display: none;"
