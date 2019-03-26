@@ -40,6 +40,7 @@ public class CSController {
 	@Autowired
 	ChangeClob changeType;
 	
+	//房屋文章審核數量
 	@ModelAttribute("hlist")
 	public List<House> getHouseList(){
 		List<House> list = oservice.getAllHouse();
@@ -55,11 +56,13 @@ public class CSController {
 		List<EmployeeReport> list = cservice.getAllMail();
 		return list;
 	}
+	//客服回覆首頁
 	@RequestMapping(value="/customerservicemail")
 	public String customerservice() {
 		return "backstage/customerservicemail";		
 
 	}
+	//客服
 	@RequestMapping(value="/getmail/{id}", method=RequestMethod.GET)
 	public String getOneMailForm(@PathVariable("id") Integer id, Model model) {	
 		EmployeeReport employeeReport = new EmployeeReport();
@@ -73,6 +76,7 @@ public class CSController {
 				
 		return "backstage/customerservicemail";		
 	}
+	//客服回覆
 	@RequestMapping(value="/getmail/{id}", method=RequestMethod.POST)
 	public String processForm(@PathVariable("id") Integer id,HttpServletRequest request) {			
 		Clob content = changeType.stringToClob(request.getParameter("content"));
