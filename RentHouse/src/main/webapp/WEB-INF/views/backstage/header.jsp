@@ -19,7 +19,7 @@
 				</a>
 				<a id="main-menu-toggle" class="hidden-phone open"><i class="icon-reorder"></i></a>		
 				<div class="row-fluid">
-				<a class="brand span2" href='<spring:url value="/backstage/backindex" />'><span>RentHouse</span></a>
+				<a class="brand span2" href='<spring:url value="/backstage" />'><span>RentHouse</span></a>
 				</div>		
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">

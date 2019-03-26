@@ -14,16 +14,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:if test="${number != 0}">
+<h4>共找到${number}間房屋</h4>
 	<c:forEach var='objectlist' varStatus="check" items="${Objectlists}">
 		<c:if test="${check.count<6}">
-		<div class="sitebody" id = "${objectlist[13]}" onclick='window.open("${pageContext.request.contextPath}/houseView/${objectlist[13]}")'>
-			<div id="sidebar_left">
+		<div class="sitebody" id = "${objectlist[13]}" onclick='window.open("${pageContext.request.contextPath}/houseView/${objectlist[13]}")' 
+		style="line-height: 40px;border-bottom: 0.5px solid #9d9d9d;width: 900px;margin: 20px;margin-left: 100px;font-size: 13px;">
+			<div id="sidebar_left" style="width: 250px;height: 170px;text-align: left;line-height: 20px;float: left;">
 				<img id="img" src="<c:url value='/getPicture/${objectlist[0]}' />" />
 			</div>
-			<div id="sidebar_right">
+			<div id="sidebar_right" style="width: 170px;height: 170px;text-align: right;line-height: 150px;float: right;">
 				<span class="font-25R">&nbsp;${objectlist[9]}&nbsp;元&nbsp;/&nbsp;月</span>
 			</div>
-			<div id="content">
+			<div id="content" style="margin-left: 60px;margin-right: 60px;height: 170px;text-align: left;line-height: 40px;">
 				<span class="font-22B">${objectlist[1]}</span><br> <span
 					class="font-16B">${objectlist[2]}&nbsp;&nbsp;|&nbsp;&nbsp;${objectlist[3]}坪&nbsp;&nbsp;|&nbsp;&nbsp;樓層:${objectlist[4]}/${objectlist[5]}</span><br>
 				<span class="font-16B">${objectlist[6]}&nbsp;-&nbsp;${objectlist[7]}</span>
@@ -31,9 +34,11 @@
 			</div>
 
 		</div>
-</c:if>
+
+	</c:if>
 	</c:forEach>
-<nav aria-label="Page navigation example">
+	<c:if test="${number > 6}">
+	<nav aria-label="Page navigation example">
 	  <ul class="pagination">
 	    <li class="page-item">
 	      <a class="page-link" href="#" aria-label="Previous">
@@ -50,41 +55,47 @@
 	    </li>
 	  </ul>
 	</nav>
+	</c:if>
+	</c:if>
+	
+<c:if test="${number == 0}">
+<img  class = "searchToMuch" style="width:200px ;height:150px ; float:left" src="<c:url value='/search/img/searchToMuch.png' />">
+<div class = "searchToMuch" style="float:left ;margin-top: 30px;">
+<h3>很抱歉，您篩選的條件太多，我們沒有為您找到合適的物件！</h3><h5>建議您：嘗試去掉一些篩選條件~~</h5>
+</div>
+</c:if>
+
 	<hr>
 
 <script>
+$("div.sitebody").mouseenter(function() {
+	$(this).css("background-color","#F0FFF0")
+});
+$("div.sitebody").mouseleave(function() {
+	$(this).css("background-color","#ffebd7")
+});
+			
 $("div span.page-link").click(function(){
 	var page= $(this).attr("id");
 	$(".start").empty();
 	if(page == 1){
-		if(sessionStorage.getItem("clearList") != null){
-			
-		}else{
-			$.ajax({
-				url:"${pageContext.request.contextPath}/search/searchPage_start",
-				type:"Get",
-				cache:"false",
-				success:function(data){
-						$(".start").html(data);
-				}
-			});
-		}
-		
-	}else{
-		if(sessionStorage.getItem("clearList") != null){{
-			
-			}
-		}else{
-			$.ajax({
-				url:"${pageContext.request.contextPath}/search/searchPage_start_page",
-				type:"Get",
-				data:{"page":page},
-				success:function(data){
+		$.ajax({
+			url:"${pageContext.request.contextPath}/search/searchPage_start",
+			type:"Get",
+			cache:"false",
+			success:function(data){
 					$(".start").html(data);
-				}
-			});
-		}
-		
+			}
+		});
+	}else{
+		$.ajax({
+			url:"${pageContext.request.contextPath}/search/searchPage_start_page",
+			type:"Get",
+			data:{"page":page},
+			success:function(data){
+				$(".start").html(data);
+			}
+		});
 	}			
 	
 });

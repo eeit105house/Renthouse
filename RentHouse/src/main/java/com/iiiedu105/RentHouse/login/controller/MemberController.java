@@ -64,7 +64,7 @@ public class MemberController {
 	ChangeClob changeClob;
 // URL為 /members, 搭配 POST方法可以新增一筆紀錄
 // 儲存瀏覽器送來的Member資料
-@RequestMapping(value = "insertMemberOk", method = RequestMethod.POST)
+@RequestMapping(value = "/insertMemberOk", method = RequestMethod.POST)
 	public String saveMember(Member member,@RequestParam(value = "memberimg") MultipartFile file0 , 
 			HttpServletRequest request , Model model) throws SerialException, SQLException {
 	Map<String, String> errorMsg = new HashMap<String, String>();
@@ -225,11 +225,11 @@ public String activeMember(HttpServletRequest request ,HttpSession session,@Path
 		model.addAttribute("errorMsg", errorMsg);
 	}
 	if(!errorMsg.isEmpty()) {
-		return "redirect:/return_index";
+		return "forward:/";
 	}
 	create.put("signin", "租你幸福，祝你幸福");
 	model.addAttribute("create", create);
-		return "redirect:/return_index";
+		return "forward:/";
 	}
 
 
