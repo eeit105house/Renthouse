@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%> 
+
 <!--
 Design by TEMPLATED
 http://templated.co
@@ -20,6 +23,7 @@ Released for free under the Creative Commons Attribution License
 	<link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet"
 		type="text/css" />
 	<script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script>
+<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">		
 
 	<!-- 幻燈片 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css" />
@@ -29,13 +33,84 @@ Released for free under the Creative Commons Attribution License
 		});
 	</script>
 </head>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
 
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
 <body style="background-color: #ffebd7;">
 	<div style="height: 75px;">
 		<%@include file="../login/narbar.jsp"%>
 	</div>
 	<div>
-		        <h1 class="container">親愛的 ${user.name} 您好</h1>
+<%-- 		        <h1 class="container">親愛的 ${user.name} 您好</h1> --%>
 		        <div class="d-flex container" id="wrapper">
 		<!--             Sidebar -->
 		<!--             <div class="bg-light border-right" id="sidebar-wrapper"> -->
@@ -173,8 +248,27 @@ Released for free under the Creative Commons Attribution License
 									<li>
 										<h1>租金： ${detailBean.price}元 /月</h1>
 									</li>
+
 									<h2>租金包含：</h2>
 									<p>${includeList}</p>
+									<c:if test="${user!=null}">
+											<button class="open-button" onclick="openForm()">點我預約</button>
+												    <div class="form-popup" id="myForm">
+														  <form:form method='POST'  class='form-container'>
+																<div>
+																	<label for="time">預約時間</label>
+																	<div>
+																		<input id="time" name="time" type="datetime-local"/>
+																	</div>
+																</div>
+<%-- 																<form:input path="status" id="status" type="hidden" value="未看"/> --%>
+<%-- 																<form:input path="confirm" id="confirm" type="hidden" value="待確認"/>	 --%>
+<%-- 																<form:input path="readStatus" id="readStatus" type="hidden" value="未讀"/>		 --%>
+																<button type="submit" class="btn">reservation</button>
+														    	<button type="button" class="btn cancel" onclick="closeForm()">close</button>
+															</form:form>
+														</div>
+									</c:if>
 									<%-- 						<c:forEach var='include' items='${includeList}'> --%>
 									<%-- 								<td>${include}</td> --%>
 									<%-- 						</c:forEach> --%>
@@ -240,8 +334,20 @@ Released for free under the Creative Commons Attribution License
 
 	</div>
 	    </div>
-	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	    
+	    
 
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
 </body>
 
 <!-- <body> -->
