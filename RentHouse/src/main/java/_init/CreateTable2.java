@@ -17,7 +17,7 @@ import com.iiiedu105.RentHouse.model.Member;
 import com.iiiedu105.RentHouse.model.Reservation;
 
 import _init.util.HibernateUtils;
- 
+  
 public class CreateTable2 {
 	SessionFactory factory =null ;
 	Session session =null; 

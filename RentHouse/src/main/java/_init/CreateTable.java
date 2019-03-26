@@ -26,7 +26,7 @@ import com.iiiedu105.RentHouse.model.Reservation;
 import _init.util.SystemUtils;
 public class CreateTable {
  
-	
+	 
 	public static void main(String[] args) throws ParseException {
 		Blob blob=null;
 		SimpleDateFormat sDF = new SimpleDateFormat("yyyy-MM-dd");
