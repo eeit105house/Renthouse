@@ -71,6 +71,9 @@ public class ReviewWritingsController {
 		list[2] = changeclob.ClobToString((Clob)list[2] );
 		list[5] = changeclob.ClobToString((Clob)list[5]);
 		model.addAttribute("olist", list);
+		list[2] = changeclob.ClobToString((Clob)list[2] );
+		list[5] = changeclob.ClobToString((Clob)list[5]);
+		
 		return "backstage/writingsDetails";		
 	}
 	}
