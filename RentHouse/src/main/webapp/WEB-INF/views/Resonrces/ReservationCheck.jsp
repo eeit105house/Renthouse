@@ -10,15 +10,27 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table width="300" border="1">
+<table width="300" border="1">
 　<tr>
 　	<td>房屋編號</td>
-　	<td>房屋標題</td>
  	<td>預約時間</td>
  	<td>預約人</td>
  	<td>預約狀態</td>
+ 	<td>審核</td>
 　</tr>
+<tbody>
+<c:forEach var="res" items="${reservations }">
+	<c:forEach var="house" items="${res.value }">
+<tr>
+	<td>${house.id }</td>
+	<td>${house.datetime }</td>
+	<td >${house.memberBean.id }</td>
+	<td>${house.confirm }</td>
+	<td><a href="<spring:url value='/ReservationCheck/${memberId }' />"></a>
+	<button ><a href='/ReservationCheck/update/${house.id }/${memberId }' />確認</a></button>
+	</c:forEach>
+	</c:forEach>
+</tbody>
 </table>
-
 </body>
 </html>

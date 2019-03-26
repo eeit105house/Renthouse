@@ -9,8 +9,8 @@ public interface ResourcesService {
 	public House findById(Integer houseId);
 	public Member getMemberById(String id);
 	public void addResources(Reservation product);
-	public List<Reservation>getReservation(Integer houseId);
-	public void updateReservation(Reservation readStatus);
-	public List<House>findByHId(String memberId);
+	public List<Reservation>getReservation(Integer house);
+	public void updateReservation(Integer id);
+	public List<Integer>findByHId(String memberId);
 	
 }

@@ -37,21 +37,23 @@ public class ResourcesDaoImpl implements ResourcesDao{
 	@Override
 	public List<Reservation> getReservation(Integer houseId) {
 		Session session = factory.getCurrentSession();
-		String hql ="SELECT * FROM  Reservation rt WHERW rt.houseId= :hid";
+		String hql ="FROM Reservation rt WHERE houseBean.id= :hid";
 		List<Reservation> gRt = new ArrayList<Reservation>();
 		gRt = session.createQuery(hql).setParameter("hid", houseId).getResultList();
 		return gRt;
 	}//利用房屋ID查詢預約資料
 	@Override
-	public void updateReservation(Reservation readStatus) {
+	public void updateReservation(Integer id) {
 		Session session =factory.getCurrentSession();
-		session.update(readStatus);
+		String hql ="UPDATE Reservation rt SET rt.confirm='同意' where rt.id = :hid ";
+		session.createQuery(hql).setParameter("hid", id).executeUpdate();
 	}
 	@Override
-	public List<House> findByHId(String memberId) {
+	public List<Integer> findByHId(String memberId) {
 		Session session = factory.getCurrentSession();
-		String hql ="SELECT h.id FROM  House h WHERE h.memberId = :mId";
-		List<House>hId=session.createQuery(hql).setParameter("mID", memberId).getResultList();
+		String hql ="SELECT h.id FROM  House h WHERE memberBean.id= :mid";
+		List<Integer>hId= new ArrayList<Integer>();
+		hId= session.createQuery(hql).setParameter("mid", memberId).getResultList();
 		return hId;
 	}//查詢房東的物件
 

@@ -35,13 +35,13 @@ public class ResourcesServiceimpl implements ResourcesService{
 		return dao.getReservation(houseId);
 	}
 	@Override
-	public void updateReservation(Reservation readStatus) {
+	public void updateReservation(Integer id) {
 		
-		dao.updateReservation(readStatus);
+		dao.updateReservation(id);
 		
 	}
 	@Override
-	public List<House> findByHId(String memberId) {
+	public List<Integer> findByHId(String memberId) {
 		// TODO Auto-generated method stub
 		return dao.findByHId(memberId);
 	}

@@ -97,7 +97,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
 			</div>
 		</div>
 		<form:input path="status" id="status" type="hidden" value="未看"/>
-		<form:input path="check" id="check" type="hidden" value="待確認"/>		
+		<form:input path="confirm" id="confirm" type="hidden" value="待確認"/>	
+		<form:input path="readStatus" id="readStatus" type="hidden" value="未讀"/>		
 		<button type="submit" class="btn">reservation</button>
     	<button type="button" class="btn cancel" onclick="closeForm()">close</button>
 	</form:form>

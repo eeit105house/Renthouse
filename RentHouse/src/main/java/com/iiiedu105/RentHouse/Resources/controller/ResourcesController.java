@@ -54,19 +54,6 @@ public class ResourcesController {
 		service.addResources(bb);
 		return "Resonrces/ReservationButton";
 	}//新增一筆預約資訊
-	
-	@RequestMapping("/ReservationCheck/{memberId}")
-	public String ReservationCheck(@PathVariable("memberId") String memberId, Model model) {
-		 List<House> houses = service.findByHId(memberId);
-		 Map<Integer,List<Reservation>> reservations = new HashMap<Integer, List<Reservation>>();
-		 for(House house:houses) {
-			 List<Reservation> beans = service.getReservation(house.getId());
-			 reservations.put(house.getId(), beans);
-		 }
-		 model.addAttribute("reservations", reservations);
-		return "ReservationCheck";
-	}
-	
 	private Timestamp getStringBySqlDate(String ddMMYYYY) throws ParseException{
 		SimpleDateFormat sDF = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 		sDF.setLenient(false);

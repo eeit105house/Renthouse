@@ -22,7 +22,7 @@ public class Reservation {
 	private Integer houseId;
 	private Integer score;
 	private String readStatus;
-	private String check;
+	private String confirm;
 	
 	private Member memberBean;
 	private House houseBean;
@@ -32,7 +32,7 @@ public class Reservation {
 	
 	
 	public Reservation(Integer id, Timestamp datetime, String status, String memberId, Integer houseId, Integer score,
-			String readStatus, Member memberBean, House houseBean) {
+			String readStatus, Member memberBean, House houseBean,String confirm) {
 		super();
 		this.id = id;
 		this.datetime = datetime;
@@ -43,6 +43,7 @@ public class Reservation {
 		this.readStatus = readStatus;
 		this.memberBean = memberBean;
 		this.houseBean = houseBean;
+		this.confirm = confirm;
 	}
 
 
@@ -106,15 +107,6 @@ public class Reservation {
 		this.readStatus = readStatus;
 	}
 	
-	public String getCheck() {
-		return check;
-	}
-
-
-	public void setCheck(String check) {
-		this.check = check;
-	}
-
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="Member_Id")
@@ -134,6 +126,16 @@ public class Reservation {
 
 	public void setHouseBean(House houseBean) {
 		this.houseBean = houseBean;
+	}
+
+
+	public String getConfirm() {
+		return confirm;
+	}
+
+
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
 	}
 	
 }
