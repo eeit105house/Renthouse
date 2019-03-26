@@ -267,7 +267,7 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/getPicture/{id}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer id) {
-		String filePath = "/images/NoImage.jpg";
+		String filePath = "/NoImage.jpg";
 		byte[] media = null;
 		HttpHeaders headers = new HttpHeaders();
 		String filename = "";
