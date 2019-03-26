@@ -63,17 +63,17 @@ public class ForumController {
 	public String viewForum(Model model) {
 		List<Forum> list = service.getAllPosts();
 		model.addAttribute("flist", list);
-		
+		model.addAttribute("member", new Member());
 		return "Forum/ForumView";		
 	}
 			
-	@RequestMapping(value="/update/{fid}")
+	@RequestMapping(value="/forumUpdate/{fid}")
 	public String updatForum(Model model) {
 		Forum forum = new Forum();
 		service.updatePost(forum);	
 		return "redirect:/Forumview";		
 		}
-	@RequestMapping(value="/delete/{fid}")
+	@RequestMapping(value="/forumDelete/{fid}")
 	public String deleteForum(@PathVariable("fid") Integer fid) {
 		Forum ForumBean = new Forum();
 		ForumBean.setStatus("下架");
@@ -220,16 +220,27 @@ public class ForumController {
 		return "Forum/ForumPost";
 	}
 	@RequestMapping(value = "/Forum/reply", method = RequestMethod.POST)
-	public String getAddNewReply(Model model,@ModelAttribute("Reply")ForumReply reply, 
+	public String getAddNewReply(Model model,@ModelAttribute("Reply")Forum ForumBean, 
 			HttpServletRequest request) throws ParseException {	
-		Map<String, String> errorMsg = new HashMap<String, String>();		
-		reply.setMemberId(fakeM);
+		ForumReply reply = new ForumReply();
+		Map<String, String> errorMsg = new HashMap<String, String>();
+		HttpSession httpSession = request.getSession();
+		Member member = new Member(); 
+		httpSession.setAttribute("forumId", ForumBean.getId());	
+		ForumBean.setDatetime(new Timestamp(System.currentTimeMillis()));
+		ForumBean.setStatus("上架");
+		member = (Member) httpSession.getAttribute("user");
+		if (member == null)
+			return "/ForumView";
+		ForumBean.setMemberId(member.getId());//假定會員
+		if (ForumBean.getMemberId() == null ||ForumBean.getMemberId().length()==0)
+		{errorMsg.put("memberE", "請先登入");
+		System.out.println("請先登入");
+		}
 		reply.setDatetime(new Timestamp(System.currentTimeMillis()));
 		reply.setStatus("上架");
 //		Forum.setForumReply(reply);
-		if(reply.getTitle()==null || reply.getTitle().length()==0)
-			{errorMsg.put("titleE", "必須有標題");
-			System.out.println("必須有標題");}
+		reply.setTitle(ForumBean.getTitle());
 		
 		String aa = changeClob.ClobToString(reply.getContent());
 		aa=request.getParameter("article");
