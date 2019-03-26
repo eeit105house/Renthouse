@@ -76,7 +76,6 @@ public class HomeController {
 	@RequestMapping("/search/searchPage_carousel")
 	public String searchPageCarouselData(Model model) {
 		List<Object[]> Objectlist = service.getAllVipHouse();
-		
 		int totalList = Objectlist.size(); //全部vip
 		double carPage = Math.ceil(totalList/5.0);	//算共幾頁輪播
 		model.addAttribute("carPage",carPage);
@@ -103,6 +102,7 @@ public class HomeController {
 	@RequestMapping("/search/searchPage_start")
 	public String searchPageStartData(Model model) {
 		List<Object[]> Objectlist = service.getAllhouse();	
+		model.addAttribute("number",Objectlist.size());
 		int totalList = Objectlist.size();
 		int pageListNum = 5;
 		double biggestPage =Math.ceil(totalList/pageListNum);
@@ -118,6 +118,7 @@ public class HomeController {
 		@RequestMapping("/search/searchPage_start_map")
 		public String searchPageStartDataMap(Model model) {
 			List<Object[]> Objectlist = service.getAllhouse();	
+			model.addAttribute("number",Objectlist.size());
 			int totalList = Objectlist.size();
 			int pageListNum = 5;
 			double biggestPage =Math.ceil(totalList/pageListNum);
@@ -146,6 +147,7 @@ public class HomeController {
 		model.addAttribute("biggestPage", biggestPage);
 		model.addAttribute("totalList", totalList);
 		model.addAttribute("NewList", NewList);
+		model.addAttribute("number",Objectlist.size());
 		return "search/searchPage_start_page";
 	}
 	
@@ -166,6 +168,7 @@ public class HomeController {
 			model.addAttribute("biggestPage", biggestPage);
 			model.addAttribute("totalList", totalList);
 			model.addAttribute("NewList", NewList);
+			model.addAttribute("number",Objectlist.size());
 			return "search/searchPage_start_page_map";
 		}
 	// 條件分頁1
@@ -180,6 +183,7 @@ public class HomeController {
 		model.addAttribute("biggestPage", biggestPage);
 		model.addAttribute("totalList", totalList);
 		model.addAttribute("Objectlists", Objectlist);
+		model.addAttribute("number",Objectlist.size());
 		return "search/searchPage_start";
 	}
 	
@@ -195,6 +199,7 @@ public class HomeController {
 			model.addAttribute("biggestPage", biggestPage);
 			model.addAttribute("totalList", totalList);
 			model.addAttribute("Objectlists", Objectlist);
+			model.addAttribute("number",Objectlist.size());
 			return "search/searchPage_start_map";
 		}
 		
@@ -215,6 +220,7 @@ public class HomeController {
 		model.addAttribute("biggestPage", biggestPage);
 		model.addAttribute("totalList", totalList);
 		model.addAttribute("NewList", NewList);
+		model.addAttribute("number",Objectlist.size());
 		return "search/searchPage_start_page";
 	}
 	
@@ -235,6 +241,7 @@ public class HomeController {
 			model.addAttribute("biggestPage", biggestPage);
 			model.addAttribute("totalList", totalList);
 			model.addAttribute("NewList", NewList);
+			model.addAttribute("number",Objectlist.size());
 			return "search/searchPage_start_page_map";
 		}
 	
@@ -242,6 +249,7 @@ public class HomeController {
 	@RequestMapping("/search/searchPage_Msg")
 	public String searchPageByMsg(Model model, @RequestParam("msg") String msg) {
 		List<Object[]> Objectlist = service.getHouseByMsg(msg);
+		model.addAttribute("number",Objectlist.size());
 		model.addAttribute("Objectlists", Objectlist);
 		return "search/searchPage_start";
 	}
@@ -250,6 +258,7 @@ public class HomeController {
 	@RequestMapping("/search/searchPage_Msg_mag")
 	public String searchPageByMsgMap(Model model, @RequestParam("msg") String msg) {
 		List<Object[]> Objectlist = service.getHouseByMsg(msg);
+		model.addAttribute("number",Objectlist.size());
 		model.addAttribute("Objectlists", Objectlist);
 		return "search/searchPage_start_map";
 	}
