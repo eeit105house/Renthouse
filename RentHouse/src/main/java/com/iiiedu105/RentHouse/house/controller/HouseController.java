@@ -317,7 +317,7 @@ public class HouseController {
 	//Get Picture
 	@RequestMapping(value="/houseView/hPic/{picId}", method=RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse response, @PathVariable Integer picId) {
-		String filePath = "/WEB-INF/views/images/NoImage.jpg";
+		String filePath = "/NoImage.jpg";
 		HousePic housePicBean = houseService.getPicById(picId);
 	    byte[] media = null;
 	    HttpHeaders headers = new HttpHeaders();
