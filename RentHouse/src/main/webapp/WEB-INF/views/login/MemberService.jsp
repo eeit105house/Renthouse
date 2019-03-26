@@ -114,16 +114,6 @@ $("#servicereport").click(function(){
 		}
 	});
 });
-// $(".clickajax").click(function(){
-// 	$(".ajax1").val("");
-// 	$.ajax({
-// 		url: "<spring:url value='/membercontrol/memberservice/memberservicedetail'/>",
-// 		type: "GET",
-// 		success: function(data){
-// 			$(".ajax1").html(data);
-// 		}
-// 	});
-// });
 </script>
 </body>
 </html>

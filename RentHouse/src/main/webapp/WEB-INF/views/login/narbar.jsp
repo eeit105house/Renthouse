@@ -146,6 +146,7 @@ console.log('User disconnect.');
  <!-- 註冊 --> 
 <%@include file="Registered_plustar.jsp" %>
 </c:if>
+
 <a href="#hidden_content" class="lightbox" ></a>
 
 <div id="hidden_content" style="display: none ;">

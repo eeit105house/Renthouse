@@ -1,14 +1,33 @@
-* {
-	padding: 0px;
-	margin: 0px;
+.body {
+	margin: 0;
+	padding: 0;
+	background: #ffebd7;
 }
-
+.start{
+	float:right;
+	width:35%;
+}
 #map {
+	
+	float:left;
+	margin-top:40px;
 	width: 63%;
-	height: 400px;
+	height: 500px;
+}
+.listImg{
+	whidth:30px;
+	height:30px;
+}
+.mapImg{
+	margin-right:100px;
+	float:right;
+	margin-top: 30px;
+	width:100px;
+	height: 40px;
 }
 
-.onlyIndexList ,.start, .zipcodeForCss{
+
+.onlyIndexList , .zipcodeForCss{
 	clear:left;
 }
 
@@ -72,79 +91,47 @@
 /* 	width:100px; */
 /* } */
 .searchDiv {
-	margin-left: 100px;
+/* 	margin-left: 100px; */
 	background-color: #F2FFF2;
 	height: 80px;
+	background: #ffebd7;
 }
 
 .searchBut {
-	margin-top: 20px;
+	margin-top: 30px;
 	width: 90px;
 	height: 40px;
 }
 
 .searchText {
-	margin-top: 20px;
+	margin-left:100px;
+	margin-top: 30px;
 	width: 400px;
 	height: 40px;
 }
 
-#sitebody {
-	line-height: 40px;
-	border-bottom: 0.5px solid #9d9d9d;
-	width: 900px;
-	margin: 20px;
-	margin-left: 100px;
-	font-size: 13px;
-	/* 	background-color: #F2FFF2; */
-}
-
-#sidebar_left {
-	width: 250px;
-	height: 170px;
-	text-align: left;
-	line-height: 20px;
-	float: left;
-}
-
 #img {
-	width: 200px;
-	height: 150px;
+	width: 120px;
+	height: 80px;
 	margin-top: 10px;
 }
 
-#sidebar_right {
-	width: 170px;
-	height: 170px;
-	text-align: right;
-	line-height: 150px;
-	float: right;
-}
-
-#content {
-	margin-left: 60px;
-	margin-right: 60px;
-	height: 170px;
-	/* 	background-color: #F2FFF2; */
-	text-align: left;
-	line-height: 40px;
-}
 
 .font-16B {
 	font-family: Microsoft JhengHei;
-	font-size: 16px;
+	font-size: 13px;
 }
 
 .font-22B {
 	font-weight: bold;
 	font-family: Microsoft JhengHei;
-	font-size: 22px;
+	font-size: 16px;
 }
 
 .font-25R {
 	font-weight: bold;
 	font-family: Microsoft JhengHei;
-	font-size: 25px;
+	font-size: 19px;
 	color: red;
 }
 

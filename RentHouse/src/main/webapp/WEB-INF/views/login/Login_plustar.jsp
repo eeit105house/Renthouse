@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
     pageEncoding="UTF-8"%> 
+       <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,7 +81,7 @@
         <div class="card card-signin my-6">
           <div class="card-body">
             <h5 class="card-title text-center">登入</h5>
-            <form class="form-signin" action="loginMember" method="POST">
+            <form class="form-signin" action="<spring:url value='/loginMember'/>" method="POST">
               <div class="form-label-group">
                 <input  type="text" name="inputAccount" id="inputAccount" class="form-control" placeholder="輸入帳號" required="required"/>
                 <label for="inputAccount"><i class="fa fa-user"></i>　帳號</label>

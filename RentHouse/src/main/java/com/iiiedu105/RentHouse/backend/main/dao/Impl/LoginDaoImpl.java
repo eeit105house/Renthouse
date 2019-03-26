@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.iiiedu105.RentHouse.backend.main.dao.LoginDao;
 import com.iiiedu105.RentHouse.model.Employee;
+import com.iiiedu105.RentHouse.model.HouseDeal;
 
 @Repository
 public class LoginDaoImpl implements LoginDao {
@@ -43,6 +44,15 @@ public class LoginDaoImpl implements LoginDao {
 		String hql = "FROM Employee where id =:employeeid";
 		Employee employee = (Employee) session.createQuery(hql).setParameter("employeeid",mid).getSingleResult();
 		return employee;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<HouseDeal> getAllHouseDeal() {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM HouseDeal";
+		List<HouseDeal> list = session.createQuery(hql).getResultList();
+		return list;
 	}
 	
 	
