@@ -121,7 +121,7 @@ console.log('User disconnect.');
       <a class="btn btn-primary" onclick="GoogleSignOut();" id="signOut" href="<c:url value='/signOut'/>" >登出</a>
 
       <a class="btn btn-primary" id="Registered" data-toggle="modal" data-target="#registered" href="#">註冊</a>
-      
+         
     </div>
     </div>
 
