@@ -40,22 +40,24 @@ public class CSController {
 	@Autowired
 	ChangeClob changeType;
 	
-	//房屋文章審核數量
-	@ModelAttribute("hlist")
-	public List<House> getHouseList(){
-		List<House> list = oservice.getAllHouse();
-		return list;
-	}
-	@ModelAttribute("wlist")
-	public List<ForumReport> getWriteList(){
-		List<ForumReport> list = rservice.getAllWritings();
-		return list;
-	}
-	@ModelAttribute("maillist")
-	public List<EmployeeReport> getAllMail(){
-		List<EmployeeReport> list = cservice.getAllMail();
-		return list;
-	}
+	//get房屋審核數量
+		@ModelAttribute("hlist")
+		public List<House> getHouseList(){
+			List<House> list = oservice.getAllHouse();
+			return list;
+		}
+		//get文章審核數量
+		@ModelAttribute("wlist")
+		public List<ForumReport> getWriteList(){
+			List<ForumReport> list = rservice.getAllWritings();
+			return list;
+		}
+		//get客服信件數量
+		@ModelAttribute("maillist")
+		public List<EmployeeReport> getAllMail(){
+			List<EmployeeReport> list = cservice.getAllMail();
+			return list;
+		}
 	//客服回覆首頁
 	@RequestMapping(value="/customerservicemail")
 	public String customerservice() {
