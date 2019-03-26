@@ -117,9 +117,9 @@
 		</div>
 	</div>
 	<br>
-	<div class="titleDiv">精選推薦</div>
+	<div class="titleDiv" style="margin-left:50px;float:left;">精選推薦</div>
 	<hr>
-		<div class = "carousel"></div>
+		<div class = "carousel" style="margin-left:100px;float:left;"></div>
 	<hr>
 		<div class = "start"></div>
 	<hr>

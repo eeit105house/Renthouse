@@ -52,6 +52,12 @@
 	</nav>
 
 	<script>
+	$("div.sitebody").mouseenter(function() {
+		$(this).css("background-color","#F0FFF0")
+	});
+	$("div.sitebody").mouseleave(function() {
+		$(this).css("background-color","#ffebd7")
+	});
 $("div span.page-link").click(function(){
 	var page= $(this).attr("id");
 	$(".start").empty();
