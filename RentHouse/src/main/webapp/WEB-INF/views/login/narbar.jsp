@@ -64,11 +64,13 @@ $(document).ready(function(){
 		$("#signIn").show();
 		$("#signOut").hide();
 		$("#Registered").show();
+		$("#Forgetindex").show();
 	}else{
 		$("#hello").show();
 		$("#signIn").hide();
 		$("#signOut").show();
 		$("#Registered").hide();
+		$("#Forgetindex").hide();
 	};
 	if("${errorMsg.errorAccPwd}"!=""){
 		$("#errormsg").text("${errorMsg.errorAccPwd}");
@@ -91,14 +93,19 @@ $(document).ready(function(){
 	if("${activeOk.active}"!=""){
 		$("#errormsg").text("${activeOk.active}");
 		$('.lightbox').click();};
+	if("${create.reactive}"!=""){
+		$("#errormsg").text("${create.reactive}");
+		$('.lightbox').click();};
 });
+
+$("#signOut").click(
 //參考：https://developers.google.com/identity/sign-in/web/disconnect
-function GoogleSignOut() {
+function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
-  }
+  });
 </script>
 <title>導覽</title>
 </head>
@@ -117,9 +124,11 @@ function GoogleSignOut() {
       <div>
       <a class="btn btn-primary"  data-toggle="modal" data-target="#exampleModalCenter" id="signIn" href="#">登入</a>
  
-      <a class="btn btn-primary" onclick="GoogleSignOut();" id="signOut" href="<c:url value='/signOut'/>" >登出</a>
+      <a class="btn btn-primary" onclick="signOut();" id="signOut" href="<c:url value='/signOut'/>" >登出</a>
 
       <a class="btn btn-primary" id="Registered" data-toggle="modal" data-target="#registered" href="#">註冊</a>
+     
+      <a class="btn btn-primary" id="Forgetindex" data-toggle="modal" data-target="#Forgetindex_windows" href="#">忘記密碼</a>
       
     </div>
     </div>
@@ -144,7 +153,9 @@ function GoogleSignOut() {
 <!--   登入 -->
 <%@include file="Login_plustar.jsp" %>
  <!-- 註冊 --> 
-<%@include file="Registered_plustar.jsp" %>
+<%@include file="Registered_plustar.jsp" %> 
+<!-- 忘記密碼 --> 
+<%@include file="Forget_plustar.jsp" %>
 </c:if>
 
 <a href="#hidden_content" class="lightbox" ></a>
