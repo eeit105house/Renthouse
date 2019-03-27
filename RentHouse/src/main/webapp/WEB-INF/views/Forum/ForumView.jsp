@@ -86,7 +86,7 @@
   <table class="table">
     <thead class="thead-dark">
 					<tr align="center">
-						<td class="list_title">　標題</td>
+						<th width="60%">標題</th>
 						<th>發表</th>
 						<th>分類</th>
 						<th>發表時間</th>

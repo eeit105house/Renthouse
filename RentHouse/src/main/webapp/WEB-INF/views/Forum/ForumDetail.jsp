@@ -133,12 +133,12 @@
 					<div class="content_floor" style="height: 20px">
 						<ul>
 							<li style="float: left;"><font class="orange">&nbsp;&nbsp;發表於
-									${forum.datetime}</font></li>
+									${ForumBean.datetime}</font></li>
 							<!--<li class="voted_counts"></li>-->
 							</ul>
 					</div> 
 					<div class="content_detail">
-						<div class="font_15">${forum.content}</div>					
+						<div class="font_15">${ForumBean.content}</div>					
 					</div> 
 					<!--装潢日记投票-->
 					<div style="text-align: center;">
@@ -160,7 +160,7 @@
 								<td width="26%" align="right"><a href="#re_button"
 									onClick="reply_content('${reply.member.id}');">回覆</a>&nbsp;<font
 									class="vertical_line">|</font> <a href="#re_button"
-									onClick="quote_content('${furum.id}','./${contentList}')">引用</a>&nbsp;<font
+									onClick="quote_content('${ForumBean.id}','./${contentList}')">引用</a>&nbsp;<font
 									class="vertical_line">|</font> <a href="#"><img
 										src="//images.591.com.tw/index/forum/top_icon.gif" width="13" /></a>
 								</td> 	 	
@@ -265,11 +265,11 @@
 					<!--editor start-->
 <a name="rep"></a>
 <div class="editor-replay-content"  >
-<form name="rep-info" method="post" action="./reply" modelAttribute="ForumBean" onSubmit="return chkPost();">
+<form name="rep-info" method="post" action="../Forum/reply" modelAttribute="ForumBean" onSubmit="return chkPost();">
   <table width="100%" border="0" cellspacing="0" cellpadding="0" >
   <tr>
 						<td><span class="content_replay font_15" id="re_button">回覆文章</span><br />
-							<textarea id="mycontent" name="mycontent"
+							<textarea id="article" name="article"
 								style="width: 583px; height: 243px;"></textarea>
 							<div id="parent_content"
 								style="padding-top: 10px; display: none; height: 21px;">
@@ -292,9 +292,9 @@
   <tr>
     <td>
     <input type="submit" class="rep-sub" value="回覆文章"/>
-    <input name="fid" type="hidden" id="fid" value="25">
+    <input name="fid" type="hidden" id="fid" value="${ForumBean.id}">
             <input type="hidden" name="action" value="postReply">
-            <input type="hidden" name="${forumReply.Forum_Id}" value="25">
+            <input type="hidden" name="${forumReply.Id}" value="${forumReply.Id}">
             <input name="name" type="hidden" id="nickname" value="">
             <input name="user_id" type="hidden" id="user_id" value="-1">
             <input name="tid" type="hidden" id="tid" value="37381">
