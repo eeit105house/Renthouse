@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.iiiedu105.RentHouse.ChangeClob;
+import com.iiiedu105.RentHouse.backend.customerservice.service.CSService;
+import com.iiiedu105.RentHouse.login.service.MemberService;
 import com.iiiedu105.RentHouse.membercenter.service.MemberCenterService;
 import com.iiiedu105.RentHouse.model.EmployeeReport;
 import com.iiiedu105.RentHouse.model.Member;
@@ -33,6 +35,8 @@ public class MemberCenterController {
 	ServletContext context;
 	@Autowired
 	ChangeClob changeClob;
+	@Autowired
+	MemberService mService;
 	//=========會員中心===================	
 	
 	//客服與預約通知
@@ -100,6 +104,7 @@ public class MemberCenterController {
 				return "redirect:/";
 			}else {
 			EmployeeReport employeeReport = memberService.getMailById(id);
+			memberService.updateServicereport(id);
 			String content = changeClob.ClobToString(employeeReport.getContent());
 			String reply = changeClob.ClobToString(employeeReport.getReply());
 			Map<String,String> map = new HashMap<>();

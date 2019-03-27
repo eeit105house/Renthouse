@@ -15,7 +15,9 @@ public interface ResourcesDao {
 	public List<Reservation>getReservation(Integer houseId);
 	public List<Reservation>getReservationMember(String memberId);
 	public void updateReservation(Integer id);
+	public void updateReservationstatus(Integer id);
 	public List<Integer>findByHId(String memberId);
+	public void updateScore(Integer id,String score);
 	
 	
 	
