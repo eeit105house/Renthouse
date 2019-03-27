@@ -33,6 +33,7 @@ import com.iiiedu105.RentHouse.ChangeClob;
 import com.iiiedu105.RentHouse.forum.service.ForumService;
 import com.iiiedu105.RentHouse.model.Forum;
 import com.iiiedu105.RentHouse.model.ForumReply;
+import com.iiiedu105.RentHouse.model.ForumReport;
 import com.iiiedu105.RentHouse.model.House;
 import com.iiiedu105.RentHouse.model.Member;
 
@@ -94,10 +95,14 @@ public class ForumController {
 		Forum ForumBean = service.findById(fId);
 		Member memberBean = ForumBean.getMemberBean();
 		List<ForumReply> list = service.getAllReplies();
+		ForumReport forumReport = new ForumReport();
+		
 	
 //	    String datetimeStr = null;	  
 //		String replyTime =getStringByTime  (ForumReply.getDatetime(), datetimeStr);
 
+		model.addAttribute("forumReport",forumReport);
+		
 		model.addAttribute("ForumBean", ForumBean);
 		model.addAttribute("memberBean", memberBean);
 //		model.addAttribute("replyTime", replyTime);
@@ -213,12 +218,12 @@ public class ForumController {
 		return "forward:/Forum/addE";
 	}
 	}
-	@RequestMapping(value = "/Forum/report", method = RequestMethod.GET)
-	public String getAddNewReport(Model model) {
-		Forum ForumBean = new Forum();
-		model.addAttribute("ForumBean", ForumBean);
-		return "Forum/ForumPost";
-	}
+//	@RequestMapping(value = "/Forum/report", method = RequestMethod.GET)
+//	public String getAddNewReport(Model model) {
+//		Forum ForumBean = new Forum();
+//		model.addAttribute("ForumBean", ForumBean);
+//		return "Forum/ForumPost";
+//	}
 	@RequestMapping(value = "/Forum/reply", method = RequestMethod.POST)
 	public String getAddNewReply(Model model,@ModelAttribute("Reply")Forum ForumBean, 
 			HttpServletRequest request) throws ParseException {	
@@ -259,6 +264,23 @@ public class ForumController {
 	}
 			
 }
+	
+	//處理檢舉文章
+	@RequestMapping(value = "/ForumDetail/processReport", method = RequestMethod.POST)
+	public String processReport(@ModelAttribute("forumReport") ForumReport forumReport,HttpServletRequest req) {
+		HttpSession sesion = req.getSession();
+		Clob content = changeClob.stringToClob(req.getParameter("con"));
+		String fid = req.getParameter("forumid");
+		forumReport.setContent(content);
+		forumReport.setStatus("待審");
+		forumReport.setMemberBean((Member)sesion.getAttribute("user"));
+		forumReport.setForumBean(service.findById(Integer.parseInt(fid)));
+		Timestamp time = new Timestamp(new java.util.Date().getTime());
+		forumReport.setDatetime(time);
+//		 Integer id = forumReport.getForumBean().getId();
+		 service.savefReport(forumReport);
+		return "redirect:/ForumView";
+	}
 	
 //	@RequestMapping(value = "/ForumView", method = RequestMethod.POST)
 //	public String addNewForum(Model model, @ModelAttribute("ForumBean") Forum ForumBean, BindingResult br) {
