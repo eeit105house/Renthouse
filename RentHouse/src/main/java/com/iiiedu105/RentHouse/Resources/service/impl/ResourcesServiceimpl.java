@@ -50,5 +50,15 @@ public class ResourcesServiceimpl implements ResourcesService{
 		// TODO Auto-generated method stub
 		return dao.getReservationMember(memberId);
 	}
+	@Override
+	public void updateScore(Integer id, String score) {
+		dao.updateScore(id, score);
+		
+	}
+	@Override
+	public void updateReservationstatus(Integer id) {
+		dao.updateReservationstatus(id);
+		
+	}
 	
 }
