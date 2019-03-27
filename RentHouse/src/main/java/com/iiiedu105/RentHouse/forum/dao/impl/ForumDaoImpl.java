@@ -136,6 +136,12 @@ public void saveReport(ForumReport report) {
 	
 }
 
+@Override
+public void savefReport(ForumReport forumReport) {
+	Session session = factory.getCurrentSession();
+	session.save(forumReport);
+}
+
 
 }
 

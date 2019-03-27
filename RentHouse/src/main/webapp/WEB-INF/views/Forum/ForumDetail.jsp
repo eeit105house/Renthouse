@@ -1,8 +1,8 @@
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix='form' uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -136,7 +136,7 @@
 									${forum.datetime}</font></li>
 							<!--<li class="voted_counts"></li>-->
 							</ul>
-					</div> 
+
 					<div class="content_detail">
 						<div class="font_15">${forum.content}</div>					
 					</div> 
@@ -263,6 +263,44 @@
 
 					</form:form>
 					<!--editor start-->
+					<!-- 				============檢舉按鈕開始================			 -->
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#writeReport" data-whatever="@mdo">檢舉</button>
+	<div class="modal fade" id="writeReport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">檢舉文章</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form:form  method="POST" action="/RentHouse/ForumDetail/processReport" modelAttribute="forumReport" onsubmit="alert('檢舉成功!!')">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">檢舉類型:</label>
+            <form:select path="type">
+            <form:option value="不當言論">不當言論</form:option>
+            <form:option value="廣告行為">廣告行為</form:option>
+            <form:option value="主題不符">主題不符</form:option>
+            <form:option value="騷擾言論">騷擾言論</form:option>
+            <form:option value="煽動性言論">煽動性言論</form:option>
+            <form:option value="其他">其他</form:option>
+            </form:select>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">內容:</label>
+            <textarea name="con" class="form-control" id="message-text" required="true"></textarea>
+          </div>
+        <input type="submit" class="btn btn-primary" value="送出"/>
+		<input type="hidden" name="forumid" value="${ForumBean.id }"/>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+      </form:form>
+    </div>
+  </div>
+</div>
+					</div> 
+<!-- 		================檢舉按鈕結束=======================			 -->
+					
 <a name="rep"></a>
 <div class="editor-replay-content"  >
 <form name="rep-info" method="post" action="./reply" modelAttribute="ForumBean" onSubmit="return chkPost();">
