@@ -50,7 +50,7 @@
 		<div class="row-fluid">
 				<div class="row-fluid">            				
 				<div class="well" style="text-align:center">
-		<h1 class="text"></h1>								 
+		<h1 class="text">更新資料成功，系統將於10秒後返回登入畫面，<a href='<spring:url value='/backlogin/login'/>' style="color:blue;">或按這裡</a>將直接進行跳轉</h1>								 
 				</div>
 			  </div>
 		  </div><!--/row --> 
@@ -58,7 +58,6 @@
 	<!-- start: JavaScript-->
 	<script type="text/javascript">
 	$(document).ready(function() {
-		$(".text").html("更新資料成功，系統將於10秒後返回登入畫面，如果不跳轉，請<a href='<spring:url value='/backlogin/login'/>'>點選這裡</a>將直接進行跳轉")
 		setTimeout(function() {					
 			window.location.replace("<spring:url value='/backlogin/login'/>")},10000);
 		});
