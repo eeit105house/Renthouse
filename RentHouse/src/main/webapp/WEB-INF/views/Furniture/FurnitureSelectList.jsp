@@ -8,6 +8,10 @@
 <head>
     <meta charset="UTF-8">
     <title>家具一覽</title>
+    <!-- jquery -->
+<script src="//code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
     	<script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script>
 	<!-- KICKSTART -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/css/kickstart.css" media="all" />
@@ -42,10 +46,10 @@
             <!-- Page Content -->
             <div id="page-content-wrapper">
 
-                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    </div>
-                </nav>
+<!--                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom"> -->
+<!--                     <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+<!--                     </div> -->
+<!--                 </nav> -->
                 <!-- 		內容 -->
                 <div class="container-fluid" style="width: 800px;">
                     <h1 class="mt-4"></h1>
@@ -56,7 +60,7 @@
                     	</c:forEach>
                     	<input type="hidden" name="types" id="types">
                     	
-                    	<input type="submit" value="查詢">
+                    	<input type="submit" class="button " value="查詢">
                     </form> 
                     <table>
                         <thead>

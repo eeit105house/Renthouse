@@ -67,6 +67,7 @@
 			    	      </fieldset>
 			  	        <input type="submit" class="large green button" value="前往付款">
 			        	  <a class="button orange medium" href='<c:url value="/membercontrol/houseRefactSelect"/>'>稍後付款</a>
+			        	  <a class="button blue medium" href='<c:url value="/onPost"/>'>開發人員一鍵上架</a>
 			    	    </form:form>
 				   </div>
                 </div>
