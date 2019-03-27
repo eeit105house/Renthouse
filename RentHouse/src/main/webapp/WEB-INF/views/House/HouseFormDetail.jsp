@@ -177,7 +177,7 @@
 							<p>${errorMsg.shortestE}</p>
 						</div>
 						<div>
-							設備：
+							<p>設備：</p>
 							<form:hidden path="appliance" />
 							<input type="checkbox" name="applianceN" id="appliance1" value="電視"
 								onclick="getCBValue('appliance')"> <label for="appliance1">電視</label>
@@ -197,7 +197,7 @@
 								onclick="getCBValue('appliance')"><label for="appliance8">瓦斯</label>
 						</div>
 						<div>
-							家具：
+							<p>家具：</p>
 							<form:hidden path="furniture" />
 							<input type="checkbox" name="furnitureN" id="furniture1" value="床"
 								onclick="getCBValue('furniture')"><label for="furniture1">床</label>
@@ -211,7 +211,7 @@
 								onclick="getCBValue('furniture')"><label for="furniture5">椅子</label>
 						</div>
 						<div>
-							租金包含：
+							<p>租金包含：</p>
 							<form:hidden path="include" />
 							<input type="checkbox" name="includeN" id="include1" value="管理費"
 								onclick="getCBValue('include')"><label for="include1">管理費</label>
@@ -229,7 +229,7 @@
 								onclick="getCBValue('include')"><label for="include7">電費</label>
 						</div>
 						<div>
-							生活機能：
+							<p>生活機能：</p>
 							<form:hidden path="le" />
 							<input type="checkbox" name="leN" id="le1" value="學校" onclick="getCBValue('le')"><label
 								for="le1">學校</label>
@@ -251,7 +251,7 @@
 								for="le9">火車站</label>
 						</div>
 						<div>
-							身分限制：
+							<p>身分限制：</p>
 							<form:hidden path="indetity" />
 							<input type="checkbox" name="indetityN" id="indetity1" value="學生"
 								onclick="getCBValue('indetity')"><label for="indetity1">學生</label>

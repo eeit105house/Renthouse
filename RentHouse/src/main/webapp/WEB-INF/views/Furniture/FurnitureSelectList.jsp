@@ -12,8 +12,7 @@
 <script src="//code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
-    	<script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script>
-	<!-- KICKSTART -->
+
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/css/kickstart.css" media="all" />
 	<!-- KICKSTART -->
     <style type="text/css">
@@ -53,15 +52,18 @@
                 <!-- 		內容 -->
                 <div class="container-fluid" style="width: 800px;">
                     <h1 class="mt-4"></h1>
-                    <form method="post" action="${pageContext.request.contextPath}/furnitureViewByType">
-                    	<c:forEach var="type" items="${typeList}">
-                    		<input type="checkbox" name="typesN" id="${type}" value="${type}" onclick="getCBValue('types')">
-                    		<label for="${type}">${type}</label>
-                    	</c:forEach>
-                    	<input type="hidden" name="types" id="types">
-                    	
-                    	<input type="submit" class="button " value="查詢">
-                    </form> 
+                    <div>
+                      <form method="post" action="${pageContext.request.contextPath}/furnitureViewByType">
+	                    	<c:forEach var="type" items="${typeList}">
+	                    		<input class="a" type="checkbox" name="typesN" id="${type}" value="${type}" onclick="getCBValue('types')" display="none">
+	                    		<label for="${type}">${type}</label>
+	                    	</c:forEach>
+	                    	<input type="hidden" name="types" id="types">
+	                    	
+	                    	<input type="submit" class="button " value="查詢">
+	                    </form> 
+                    </div>
+
                     <table>
                         <thead>
                             <tr>
@@ -103,7 +105,8 @@
 
         </div>
     </div>
-    
+        	<script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script>
+	<!-- KICKSTART -->
 <script>
 	
 	function getCBValue(cbName) {

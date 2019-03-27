@@ -77,15 +77,15 @@ public class FurnitureController {
 		return "Furniture/FurnitureRefactSelect";
 	}
 
-	@RequestMapping(value="/membercontrol/furnitureRefact/{fuId}",method=RequestMethod.GET)
-	public String houseRefactDetailFormGet(Model model,HttpServletRequest request,@PathVariable Integer fuId) {
+	@RequestMapping(value = "/membercontrol/furnitureRefact/{fuId}", method = RequestMethod.GET)
+	public String houseRefactDetailFormGet(Model model, HttpServletRequest request, @PathVariable Integer fuId) {
 		HttpSession httpSession = request.getSession();
 		Member member = (Member) httpSession.getAttribute("user");
-		if(member == null)
+		if (member == null)
 			return "redirect:/";
 
 		Furniture furnitureBean = furnitureServise.findById(fuId);
-		if(!(furnitureBean.getMemberBean().getId().equals(member.getId())))
+		if (!(furnitureBean.getMemberBean().getId().equals(member.getId())))
 			return "redirect:/";
 		model.addAttribute("furnitureBean", furnitureBean);
 		String cStr = "";
@@ -99,9 +99,10 @@ public class FurnitureController {
 		model.addAttribute("furnitureInfo", cStr);
 		return "Furniture/FurnitureRefactForm";
 	}
+
 	@RequestMapping(value = "/membercontrol/furnitureRefact/{fuId}", method = RequestMethod.POST)
 	public String houseRefactDetailFormPost(Model model, @ModelAttribute("furnitureBean") Furniture furnitureBean,
-			HttpServletRequest request, @RequestParam(value = "pic") MultipartFile file,@PathVariable Integer fuId) {
+			HttpServletRequest request, @RequestParam(value = "pic") MultipartFile file, @PathVariable Integer fuId) {
 		Map<String, String> errorMsgFu = new HashMap<String, String>();
 		if (furnitureBean.getTitle() == null || furnitureBean.getTitle().trim().length() == 0)
 			errorMsgFu.put("titleE", "請輸入標題");
@@ -116,32 +117,36 @@ public class FurnitureController {
 //			errorMsgFu.put("picNone", "必須有照片");
 
 		if (errorMsgFu.isEmpty()) {
+			Furniture furnitureBeanNow = furnitureServise.findById(fuId);
+
 			String infoN = "";
 			if (request.getParameter("infoN") != null && request.getParameter("infoN").trim().length() > 0)
 				infoN = request.getParameter("infoN");
 			furnitureBean.setInfo(changeClob.stringToClob(infoN));
 			if (!file.isEmpty())
 				furnitureBean.setPhoto(getImageBlob(file));
-
-			HttpSession httpSession = request.getSession();
-			Member memberbean = (Member) httpSession.getAttribute("user");
-			furnitureBean.setMemberBean(memberbean);
+			else
+				furnitureBean.setPhoto(furnitureBeanNow.getPhoto());
+//			HttpSession httpSession = request.getSession();
+//			Member memberbean = (Member) httpSession.getAttribute("user");
+			furnitureBean.setMemberBean(furnitureBeanNow.getMemberBean());
+			furnitureBean.setId(fuId);
 			furnitureServise.updateFurniture(furnitureBean);
-			return "redirect:/furnitureRefactSelects";
+			return "redirect:/membercontrol/furnitureRefactSelect";
 		}
 		model.addAttribute("errorMsgFu", errorMsgFu);
 		return "forward:/membercontrol/furnitureRefactE";
 	}
-	
+
 	@RequestMapping(value = "/membercontrol/furnitureRefactE")
 	public String addFurnitureRefactFormGetE(Model model) {
 //		Furniture furnitureBean = new Furniture();
 //		model.addAttribute("furnitureBean", furnitureBean);
 		return "Furniture/FurnitureRefactForm";
 	}
-	
-	@ModelAttribute(name="typeList")
-	public List<String> typeList(){
+
+	@ModelAttribute(name = "typeList")
+	public List<String> typeList() {
 		List<String> typeList = new ArrayList<>();
 		typeList.add("電器");
 		typeList.add("桌椅");
@@ -150,6 +155,7 @@ public class FurnitureController {
 		typeList.add("其它");
 		return typeList;
 	}
+
 	// ====檢視=======
 	@RequestMapping(value = "/furnitureViewAll")
 	public String viewAllFurniturePages(Model model) {
@@ -157,8 +163,9 @@ public class FurnitureController {
 		model.addAttribute("furnitureList", furnitureServise.getFurnituresOrderbyId());
 		return "Furniture/FurnitureSelectList";
 	}
+
 	@RequestMapping(value = "/furnitureViewByType")
-	public String viewTypeFurniturePages(Model model,@RequestParam String types) {
+	public String viewTypeFurniturePages(Model model, @RequestParam String types) {
 		model.addAttribute("member", new Member());
 		model.addAttribute("furnitureMap", furnitureServise.getFurnituresOrderbyTypes(types));
 //		for(String ty:typeList()) {
@@ -167,6 +174,7 @@ public class FurnitureController {
 //		}
 		return "Furniture/FurnitureSelectList";
 	}
+
 	@RequestMapping(value = "/furnitureView/{fuId}")
 	public String viewFurniturePage(Model model, @PathVariable Integer fuId) {
 		Furniture furnitureBean = furnitureServise.findById(fuId);

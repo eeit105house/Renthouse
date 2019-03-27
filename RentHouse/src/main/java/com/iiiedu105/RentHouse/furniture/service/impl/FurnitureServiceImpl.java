@@ -30,6 +30,7 @@ public class FurnitureServiceImpl implements FurnitureServise {
 	}
 	@Override
 	public void updateFurniture(Furniture fuurnitureBean) {
+		
 		dao.updateFurniture(fuurnitureBean);
 	}
 	@Override

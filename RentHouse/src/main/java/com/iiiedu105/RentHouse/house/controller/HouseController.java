@@ -65,8 +65,8 @@ public class HouseController {
 	ChangeClob changeClob;
 //	private Integer houseId = null;
 	private String  returnURL = "http://211.23.128.214:5000";
-	private String orderResultURL = "http://localhost:8080/RentHouse/orderFinished/";
-//	private String orderResultURL = "http://eeitdemo10519.southeastasia.cloudapp.azure.com:8080/RentHouse/orderFinished/";
+//	private String orderResultURL = "http://localhost:8080/RentHouse/orderFinished/";
+	private String orderResultURL = "http://eeit105house.southeastasia.cloudapp.azure.com:8080/RentHouse/orderFinished/";
 	private List<Map<String,String>> vipProjects = theVipProject();
 
 
@@ -104,7 +104,7 @@ public class HouseController {
 	public String houseRePost(Model model,@PathVariable Integer hId,HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
 		httpSession.setAttribute("houseId", hId);
-		return "forward:/newHouse/houseOrder";
+		return "redirect:/newHouse/houseOrder";
 	}
 	//下架房屋
 	@RequestMapping(value="/membercontrol/houseDontPost/{hId}")
@@ -568,6 +568,15 @@ public class HouseController {
 	public String getAddNewHouseOrderFormE(Model model) {
 		return "House/HouseFormOrder";
 	}
+	@RequestMapping(value = "/oneClickPost/{pay}")
+	public String oneClickPost(Model model,HttpServletRequest request,@PathVariable Integer pay) {
+		HttpSession httpSession = request.getSession();
+		Integer houseId = (Integer) httpSession.getAttribute("houseId");
+		houseService.orderFinishied(houseId, new Timestamp(new java.util.Date().getTime()), pay);
+		return "redirect:/membercontrol/houseRefactSelect";
+	}
+	
+	
 	@RequestMapping(value = "/newHouse/houseOrderSelect/{vip}",produces="text/html;charset=UTF-8")
 	public @ResponseBody String toAllPay(Model model, @PathVariable String vip) {
 		AioCheckOutOneTime aio = new AioCheckOutOneTime();
