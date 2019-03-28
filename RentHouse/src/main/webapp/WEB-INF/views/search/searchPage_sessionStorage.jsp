@@ -13,10 +13,10 @@
 <link rel='stylesheet'	href='${pageContext.request.contextPath}/search/css/houselist.css'	type="text/css" />
 
 
-<title>Insert title here</title>
+<title>尋找幸福~*</title>
 </head>
 <body class="body">
-
+<!-- <div class = "includeAllDiv"> -->
 	<div style="height: 75px;">
 		<%@include file="../login/narbar.jsp"%>
 	</div>
@@ -124,7 +124,7 @@
 	<div class = "carouselDiv" ></div>
 <!-- 	插入房屋物件 -->
 	<div class = "start"></div>
-	
+<!-- </div>	 -->
 
 <script>$("#zipcode2").twzipcode({
 	countySel: "縣市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料

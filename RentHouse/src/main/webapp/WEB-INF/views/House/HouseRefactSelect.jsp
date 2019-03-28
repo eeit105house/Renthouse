@@ -93,6 +93,7 @@
 								</th>
 							</tr>
 							<tr>
+								<th>編號</th>
 								<th>標題</th>
 								<th>狀態</th>
 								<th></th>
@@ -101,6 +102,7 @@
 						<tbody>
 							<c:forEach var='house' items='${houseList}'>
 								<tr>
+									<td>${house.id}</td>
 									<td>${house.detailBean.title}</td>
 									<td>${house.status}</td>
 									<c:if test="${house.status == '上架' || house.status == '審核' || house.status == '下架'}">
@@ -191,7 +193,7 @@
             <label for="to" class="col-form-label">租約到期日</label>
             <input type="text" class="form-control" id="to" name="to" readonly="readonly" placeholder="請點擊選擇日期" />
           </div>
-          <input type = "file" value = "上傳租賃契約" multiple="multiple" name="file" />
+          <input type = "file" value = "上傳租賃契約" multiple="multiple" accept="application/pdf" name="file" />
       </div>          
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>

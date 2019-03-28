@@ -1,8 +1,12 @@
 .body {
 	margin: 0;
 	padding: 0;
-	background: #F8F8FF;
+/* 	background: #ffebd7;橘色 */
+	background: #F8F8FF; /*白色*/
 }
+/* .includeAll{ */
+/* 	background: #F8F8FF;白色 */
+/* } */
 #carouselExampleControls{
 	border:1px solid #DCDCDC; 
 	border-top:3px solid #FF4500; 
