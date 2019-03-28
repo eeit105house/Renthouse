@@ -73,7 +73,11 @@ public void saveReport(ForumReport Report) {
 	
 }
 @Override
-public List<ForumReply> getAllReplies(){
-	return dao.getAllReplies();
+public List<ForumReply> getAllReplies(Integer id){
+	return dao.getAllReplies(id);
+}
+@Override
+public void savefReport(ForumReport forumReport) {
+	dao.savefReport(forumReport);
 }
 }

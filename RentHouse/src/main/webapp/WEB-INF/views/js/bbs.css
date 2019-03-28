@@ -18,7 +18,6 @@ table, td, tr, th {
 	text-align:left;
 }
 .crumbs{
-	background:url(../../../images/index/forum/nav_tip.png) no-repeat;
 	height:20px;
 	padding:10px 0px 5px 16px;
 	color:#FFF;
@@ -40,7 +39,7 @@ table, td, tr, th {
 	text-align:right;
 }
 .button_line .rep-btn, .button_line .pub-btn, .title_detail b, .title_detail .hot, .title_detail .essence, .title_detail #img, .title_detail #essence, .title_detail #new, .editor-replay-content .rep-sub, .publish_content .pub{
-	background:url(../../../images/index/forum/forum-bg.png) no-repeat;
+	
 }
 .button_line a.rep-btn{
 	background-position:-16px -618px;
@@ -85,7 +84,6 @@ table, td, tr, th {
 	height:25px;
 	padding:5px 20px 3px 20px;
 	line-height:25px;
-	background:url(../../../images/index/forum/bg_title.gif) repeat-x;
 	}
 .title_detail{
 	width:630px;
@@ -256,7 +254,6 @@ table, td, tr, th {
 	line-height:25px;
 }
 .editor-replay li{
-	list-style-image:url(../../../images/index/forum/li-red.png);
 	margin-left:15px;
 	font-size:13px;
 }
@@ -338,8 +335,7 @@ table, td, tr, th {
     float: left;
     margin-top: -10px;
 }
-.bg_vote{background: url("../../../images/index/forum/v_t.png") no-repeat scroll 0 7px  transparent;
-        padding: 0 10px 0 27px;
+.bg_vote{padding: 0 10px 0 27px;
         color:#ff6600;
         font-weight: 800;
         font-size: 20px;}
@@ -355,9 +351,6 @@ table, td, tr, th {
         color:#ff6600;
         font-weight: 800;
         font-size: 18px;}
-.f_b_v{background: url("../../../images/index/forum/design-support.png") no-repeat scroll 0 2px  transparent;}
-.f_a_v{background: url("../../../images/index/forum/voted_logo.png") no-repeat scroll 0 2px  transparent;}
-.f_g_v{background: url("../../../images/index/forum/good_1.jpg") no-repeat scroll 0 2px  transparent;}
 .article_nums{color:#999999;
               height: 19px;
               padding-top: 5px;
@@ -371,7 +364,7 @@ table, td, tr, th {
 .vote_btm_l_a {
     width: 110px;
     height:40px;
-    background: url("../../../images/index/forum/btm_b_vote.png");
+/*     background: url("../../../images/index/forum/btm_b_vote.png"); */
     margin:0 auto;
     display: block;    
 }
@@ -381,21 +374,7 @@ table, td, tr, th {
     margin:0 auto; 
     display: block;
 }
-.vote_btm_l_b {
-    background: url("../../../images/index/forum/btm_a_vote.png");
-}
-.vote_btm_l_a:hover{
-    background: url("../../../images/index/forum/btm_add_1.png");
-}
+.
 .vote_btm_r img{
     cursor:pointer;
-}
-.article_btm{
-   background: url("../../../images/index/forum/blog_article.png"); 
-}
-.design_blog_over{
-	background: url("../../../images/index/forum/active_over_b.png");
-}
-.design_blog_over_r{
-	background: url("../../../images/index/forum/active_over_r.png");
 }

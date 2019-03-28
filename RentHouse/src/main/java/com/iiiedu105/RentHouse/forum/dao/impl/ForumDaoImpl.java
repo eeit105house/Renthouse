@@ -83,12 +83,12 @@ public class ForumDaoImpl implements ForumDao {
 		return list;		
 	}
 	@Override
-	public List<ForumReply> getAllReplies() {
-		String hql = "FROM ForumReply";		
+	public List<ForumReply> getAllReplies(Integer id) {
+		String hql = "FROM ForumReply WHERE forumBean.id = :id ORDER BY id";		
 		Session session = null;
 		List<ForumReply> list = null;
 		session = factory.getCurrentSession();
-		list = session.createQuery(hql).getResultList();		
+		list = session.createQuery(hql).setParameter("id", id).getResultList();		
 		return list;		
 	}
 //	@Override
@@ -126,7 +126,8 @@ public void insertReply(ForumReply reply) {
 //	Forum fb = findById(post.findMemberById());
 //	post.setForumBeans(fb);
 	List<ForumReply> list = null;
-	session.saveOrUpdate(reply);
+	System.out.println(reply.getId());
+	session.save(reply);
 }
 
 @Override
@@ -134,6 +135,12 @@ public void saveReport(ForumReport report) {
 	Session session = factory.getCurrentSession();
 	session.saveOrUpdate(report);
 	
+}
+
+@Override
+public void savefReport(ForumReport forumReport) {
+	Session session = factory.getCurrentSession();
+	session.save(forumReport);
 }
 
 
