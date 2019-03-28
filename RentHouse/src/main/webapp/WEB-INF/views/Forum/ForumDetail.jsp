@@ -264,6 +264,7 @@
 					</form:form>
 					<!--editor start-->
 					<!-- 				============檢舉按鈕開始================			 -->
+	<c:if test="${ForumBean.status=='上架' }">
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#writeReport" data-whatever="@mdo">檢舉</button>
 	<div class="modal fade" id="writeReport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -299,6 +300,7 @@
   </div>
 </div>
 					</div> 
+					</c:if>
 <!-- 		================檢舉按鈕結束=======================			 -->
 					
 <a name="rep"></a>

@@ -137,9 +137,11 @@ public void saveReport(ForumReport report) {
 }
 
 @Override
-public void savefReport(ForumReport forumReport) {
+public void savefReportUpdateForum(ForumReport forumReport) {
 	Session session = factory.getCurrentSession();
 	session.save(forumReport);
+	String hql = "UPDATE Forum SET status = '審核' WHERE id = :fid";
+	session.createQuery(hql).setParameter("fid", forumReport.getForumBean().getId()).executeUpdate();
 }
 
 

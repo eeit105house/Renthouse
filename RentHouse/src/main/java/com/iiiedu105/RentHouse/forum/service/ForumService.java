@@ -24,5 +24,5 @@ public interface ForumService  {
 	List<Forum> getAllPosts();
 	List<ForumReply> getAllReplies();
 	
-	void savefReport(ForumReport forumReport);
+	void savefReportUpdateForum(ForumReport forumReport);
 }
