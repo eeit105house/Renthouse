@@ -99,7 +99,7 @@
 		$(this).css("background-color","#DCDCDC")
 	});
 	$("div.perDivIncarousel").mouseleave(function() {
-		$(this).css("background-color","#F8F8FF")
+		$(this).css("background-color","#ffebd7")
 	});
  </script>
 
