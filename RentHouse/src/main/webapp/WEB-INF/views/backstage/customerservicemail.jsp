@@ -86,7 +86,7 @@
 							<fieldset>
 							<input type="hidden" name="id" value="${omail.id }"/>
 							<span>員工ID:</span><input type="text" name="ename" readonly="true" value="${employee.id }" />
-								<textarea tabindex="3" class="input-xlarge span12" id="message" name="content" rows="12" placeholder="Click here to reply"></textarea>
+								<textarea tabindex="3" class="input-xlarge span12" id="message" name="content" rows="12" placeholder="Click here to reply" required="true"></textarea>
 
 								<div class="actions">
 									
