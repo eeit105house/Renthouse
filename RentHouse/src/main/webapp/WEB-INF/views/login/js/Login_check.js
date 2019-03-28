@@ -16,15 +16,15 @@ $(document).ready(function() {
 		}
 	});
 	$("#housemaster").click(function(){
-		$("#inputAccount").val("RentMaster29");
+		$("#inputAccount").val("RENTMASTER22");
 		$("#inputPassword").val("password1234");
 		});
 	$("#housecustomer").click(function(){
-    	$("#inputAccount").val("customer123");
+    	$("#inputAccount").val("CUSTOMER123");
     	$("#inputPassword").val("password1234");
     	});
 	$("#forgetpwd").click(function(){
-		$("#forgetpwdacc").val("customer123");
+		$("#forgetpwdacc").val("CUSTOMER123");
 		$("#forgetpwdemail").val("password1234");
 	});
 });

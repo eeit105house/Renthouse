@@ -80,7 +80,8 @@
         function googlesigntest (){
         	countt = countt+1;
         	var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://localhost:8080/RentHouse/googleVerify');
+            xhr.open('POST', 'http://eeit105house.southeastasia.cloudapp.azure.com:8080/RentHouse/googleVerify');
+//             xhr.open('POST', 'http://localhost:8080/RentHouse/googleVerify');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = function() {
               console.log('Signed in as: ' + xhr.responseText);

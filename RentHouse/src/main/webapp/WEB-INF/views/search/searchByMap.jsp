@@ -24,16 +24,16 @@
 <title>地圖搜尋~*</title>
 
 </head>
-<body class="body">
+<body class="body" style="background-color: #ffebd7;">
 	<div style="height: 75px;">
 		<%@include file="../login/narbar.jsp"%>
 	</div>
 	
 	<form method="get">
-		<div class="searchDiv">
+		<div class="searchDiv" style="background-color: #ffebd7;">
 			<input class="searchText" type="text" placeholder="請輸入關鍵字(社區、街道等)" id="keyWord"/>		
 				<img onclick="getKeyWord()" src='${pageContext.request.contextPath}/search/img/search.PNG' />
-		<a  class = "mapImg" href="${pageContext.request.contextPath}/search/searchPage_sessionStorage"><img class="listImg"src="${pageContext.request.contextPath}\search\img\list.png">列表查詢</a>
+		<a  class = "mapImg btn btn-primary" style="width:120px;" href="${pageContext.request.contextPath}/search/searchPage_sessionStorage"><img class="listImg"src="${pageContext.request.contextPath}\search\img\list.png">列表查詢</a>
 		</div>
 	</form>
 

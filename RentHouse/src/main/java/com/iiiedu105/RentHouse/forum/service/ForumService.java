@@ -22,7 +22,7 @@ public interface ForumService  {
 	void deletePost(int id);
 	List<Forum> getAllSorts();
 	List<Forum> getAllPosts();
-	List<ForumReply> getAllReplies();
+	List<ForumReply> getAllReplies(Integer id);
 	
 	void savefReportUpdateForum(ForumReport forumReport);
 }

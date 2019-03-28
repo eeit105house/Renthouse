@@ -1,0 +1,405 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{ padding:0;margin:0px; font-size:12px; /*font-family:"新細明體";*/
+	}
+img{
+	max-width: 100%;
+	vertical-align:middle;
+	border:none;
+	}
+table, td, tr, th {
+    font-size: 13px;
+}
+.forum{
+	width:950px;
+	height:auto;
+	margin:10px auto;
+	text-align:left;
+}
+.crumbs{
+	background:url(../../../images/index/forum/nav_tip.png) no-repeat;
+	height:20px;
+	padding:10px 0px 5px 16px;
+	color:#FFF;
+	font-size:13px;
+	}
+.crumbs a{
+	color:#FFFFFF;
+}
+.crumbs a:visited{
+	color:#FFFFFF;
+}
+.crumbs a:hover{
+	text-decoration:underline;
+}
+.button_line{
+	margin: 10px 0px;
+	}
+.button_line span{
+	text-align:right;
+}
+.button_line .rep-btn, .button_line .pub-btn, .title_detail b, .title_detail .hot, .title_detail .essence, .title_detail #img, .title_detail #essence, .title_detail #new, .editor-replay-content .rep-sub, .publish_content .pub{
+	
+}
+.button_line a.rep-btn{
+	background-position:-16px -618px;
+	border:0;
+	color:#d84700;
+	font-size:15px;
+	font-weight:700;
+	width:47px;
+	height:24px;
+	padding:6px 0 0 38px;
+	*padding-top:8px;
+	float:left;
+}
+.button_line a.rep-btn:hover{
+	text-decoration:none;
+}
+.button_line a.pub-btn{
+	background-position:right -618px;
+	border:0;
+	color:#d84700;
+	font-size:15px;
+	font-weight:700;
+	width:52px;
+	height:24px;
+	padding:6px 0 0 38px;
+	*padding-top:8px;
+	float:left;
+}
+.button_line a.pub-btn:hover{
+	text-decoration:none;
+}
+.content_box{
+	margin-right:10px;
+	padding-left:10px;
+	border:1px solid #d9d9d9;
+	}
+.content{
+	margin-right:10px;
+	padding-left:10px;
+	background-color: #ffebd7;
+	height:100%;
+	}
+.articleTitle{
+	color:#4d4d4d;
+	border-bottom:1px solid #c5c5c5;
+	height:25px;
+	padding:5px 20px 3px 20px;
+	line-height:25px;
+	background:url(../../../images/index/forum/bg_title.gif) repeat-x;
+	}
+.title_detail{
+	width:950px;
+	float:left;
+	}
+.title_detail b{
+	background-position:right -560px;
+	width:15px;
+	height:20px;
+	float:left;
+}
+.title_detail .hot{
+	background-position:-184px -588px;
+}
+.title_detail #img{
+	background-position:left -559px;
+	width:16px;
+	height:20px;
+	margin-left:8px;
+	float:left;
+}
+.title_detail #essence{
+	background-position:left -601px;
+	width:15px;
+	height:20px;
+	margin-left:8px;
+	float:left;
+}
+.title_detail #new{
+	background-position:left -146px;
+	width:16px;
+	height:10px;
+	margin-left:8px;
+	margin-top:8px;
+	float:left;
+}
+
+.title_view{
+	width:270px;
+	float:right;
+	text-align:right;
+	}
+.title_view .org{
+	color:#FF5B00;
+	}
+.title_detail span{
+	font-size:15px;
+	font-weight:bold;
+	padding-left:7px;
+	float:left;
+	}
+.title_detail img{
+	vertical-align:middle;
+	margin-top:-5px;
+	}
+.leftSideBar{
+	float:left;
+	width:150px;	
+	padding-top:18px;
+	}
+.leftSideBar td{
+	height:23px;
+	line-height:23px;
+	font-size:12px;
+	color:#4d4d4d;
+	}
+.leftSideBar img{margin:2px;}
+.leftSideBar .date{
+	font-size:11px;
+}
+.rightSideBar{
+	float:left;
+	width:777px;
+	padding:18px 10px 0 10px;
+	border-left:1px solid #c5c5c5;
+	background-color:#FFF;
+	}
+.rightSideBar .content_detail{
+	 padding:10px 5px;
+	 color:#333333;
+	 min-height:30%;
+	 _height:30%;
+	 font-size:15px;
+	 word-wrap:break-word;
+	 line-height:1.8em;
+	 /*overflow:hidden;*/ 
+	 }
+.content_quote{
+	background:#f9f9f9;
+	padding:8px 15px;
+	color:4d4d4d;
+	line-height:21px;
+	color:#333333;
+	word-wrap:break-word; 
+	overflow:hidden; 
+}
+.content_quote_nickName{
+    font-style:italic; 
+	font-size:13px;
+	font-style: italic;
+    font-weight: inherit;
+}
+.content_floor{
+	color:#676666;
+	border-bottom:1px dashed #CCC;
+	padding:3px 0px;
+	font-size:12px;
+	}
+.content_Time{
+	color:#c3c3c3;
+	border-top:1px solid #dbdbdb;
+	margin:50px 0;
+	font-size:12px;
+	padding-right:10px;
+	float:left;
+	}
+.content_replay{
+	font-weight:bold;
+	font-size:14px;
+	color:#4d4d4d;
+	padding-bottom:10px;
+}
+.content_replay_lz{
+	border-top:1px solid #cccccc;
+	font-size:14px;
+	margin:30px 0 0 15px;
+	padding:5px 10px 20px 10px;
+	width:80%;
+}
+.content_replay_lz .title{
+	color:#FF0000;
+	font-weight:700;
+	font-size:13px;
+	display:block;
+}
+.content_replay_lz .title b{
+	font-weight:400;
+}
+.content_replay_lz .content{
+	background:none;
+	padding-top:10px;
+	font-size:15px;
+	float:left;
+}
+.rightSideBar .content_share{
+	clear:left;
+	padding:0 10px 10px 10px;
+	}
+.rightSideBar .content_share td{
+	font-size:12px;
+	line-height:15px;
+}
+.vertical_line{color:#CCC;padding:0 5px;}
+.editor{
+	line-height:25px;
+	color:#333333;
+	padding:2px 0;
+}
+.editor ul{
+	float:left;
+}
+.editor li{
+	list-style:square;
+	padding-bottom:10px;
+	margin-left:15px;
+}
+.editor-replay{
+	line-height:25px;
+}
+.editor-replay li{
+	list-style-image:url(../../../images/index/forum/li-red.png);
+	margin-left:15px;
+	font-size:13px;
+}
+.editor-replay-content{
+	margin-top:30px;
+	line-height: 25px;
+}
+.editor-replay-content .vali-code{
+	border:1px solid #a5d0e0;
+	height:20px;
+	width:90px;
+}
+.editor-replay-content img{
+	padding-left:5px;
+}
+.editor-replay-content a{
+	text-decoration:underline;
+}
+.editor-replay-content .rep-sub{
+	background-position:right -396px;
+	border:0;
+	color:#FFFFFF;
+	font-size:13px;
+	font-weight:700;
+	width:98px;
+	height:28px;
+	cursor:pointer;
+	line-height:30px;
+}
+.publish_content #img{
+	height:23px;
+}
+
+/* 编辑页面*/
+.pubish_box{ background-color:#f2f2f2; padding:10px;}
+.publish_content{ 
+       border:1px solid #d9d9d9;
+	   background-color:#FFF;
+	   padding:10px 20px;}
+.publish_title{color:#404040;font-weight:bold;font-size:13px;}
+.publish_content td{height:15px;padding:7px 5px;}
+.publish_content .pub{
+	background-position:left -396px;
+	border:0;
+	color:#333333;
+	text-indent:20px;
+	font-size:13px;
+	width:100px;
+	cursor:pointer;
+	height:27px;
+	float:left;
+}
+/* form css*/
+.input{width:465px; border:1px solid #7f9db9; height:20px;}
+.uplaod{width:300px;background:#ebebe4;border:solid 1px #7f9db9;}
+.select{border:1px #7f9db9 solid ; font-size:13px;}
+.blue_border{border:1px solid #7f9db9;}
+/*字体定义*/
+.font_13{font-size:13px;}
+.font_14{font-size:14px;}
+.font_15{font-size:15px;}
+.font_italic{font-style:italic;}
+.font_weight{font-weight:700}
+.line_height_20{line-height:20px;}
+.orange{color:#FF5500; padding-right:5px;}
+.gray-bbs{color:#9d9999; margin-top:25px;}
+.gray-replay{margin-top:10px;}
+.float_left{ float:left;}
+.pagePrev .back{background-position: 5px -30px;color: #333333;cursor: default;outline: medium none;}
+.pageBar { float:right;}
+.clear{ clear:both;}
+
+.voted_counts{float: right;
+             font-size:15px;
+             color: #A40000;
+             font-weight: 900;}
+.first_f_r{
+    line-height: 30px;
+    float: left;
+    margin-top: -10px;
+}
+.bg_vote{background: url("../../../images/index/forum/v_t.png") no-repeat scroll 0 7px  transparent;
+        padding: 0 10px 0 27px;
+        color:#ff6600;
+        font-weight: 800;
+        font-size: 20px;}
+.first_f_r img{
+    cursor:pointer;
+}
+.vote_ti{padding-left: 23px}
+.f_r_vote{width:62px; 
+        height:32px;
+        margin-bottom:10px;
+        cursor:pointer;
+        padding:50px 0 0 18px;
+        color:#ff6600;
+        font-weight: 800;
+        font-size: 18px;}
+.f_b_v{background: url("../../../images/index/forum/design-support.png") no-repeat scroll 0 2px  transparent;}
+.f_a_v{background: url("../../../images/index/forum/voted_logo.png") no-repeat scroll 0 2px  transparent;}
+.f_g_v{background: url("../../../images/index/forum/good_1.jpg") no-repeat scroll 0 2px  transparent;}
+.article_nums{color:#999999;
+              height: 19px;
+              padding-top: 5px;
+}
+
+.vote_btm_l,.vote_btm_r{
+    width: 150px;
+    height:70px;
+    float: left;
+}
+.vote_btm_l_a {
+    width: 110px;
+    height:40px;
+    background: url("../../../images/index/forum/btm_b_vote.png");
+    margin:0 auto;
+    display: block;    
+}
+.vote_btm_l a, .vote_btm_r a{
+    width: 110px;
+    height:40px;
+    margin:0 auto; 
+    display: block;
+}
+.vote_btm_l_b {
+    background: url("../../../images/index/forum/btm_a_vote.png");
+}
+.vote_btm_l_a:hover{
+    background: url("../../../images/index/forum/btm_add_1.png");
+}
+.vote_btm_r img{
+    cursor:pointer;
+}
+.article_btm{
+   background: url("../../../images/index/forum/blog_article.png"); 
+}
+.design_blog_over{
+	background: url("../../../images/index/forum/active_over_b.png");
+}
+.design_blog_over_r{
+	background: url("../../../images/index/forum/active_over_r.png");
+}

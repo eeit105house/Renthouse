@@ -15,7 +15,7 @@ public interface ForumDao  {
 	public Member findMemberById(String Mid);
 	List<Forum> getAllPosts();
 	List<Forum> getAllSorts();
-	List<ForumReply> getAllReplies();
+	List<ForumReply> getAllReplies(Integer id);
 	void savePost(Forum forum);
 	
 	void updatePost(Forum forum);
