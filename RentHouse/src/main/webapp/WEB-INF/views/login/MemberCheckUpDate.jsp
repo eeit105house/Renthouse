@@ -9,6 +9,22 @@
 <meta charset="UTF-8">
 <title>修改個人</title>
 <style type="text/css">
+	table{
+		
+		border-Width:7px 2px;
+		border-style:solid;
+		border-corol:#99ccff;
+		text-align:center;
+	}
+	td{
+		border:1px dotted #696969;
+		
+	}
+	th{
+		border-Width:7px 5px;
+		
+	}
+
 </style>
 </head>
 <body style="background-color: #ffebd7;">
@@ -32,15 +48,15 @@
 <!-- 		內容 -->
       <div class="container-fluid" style="width: 800px;">
         <h1 class="mt-4">預約資訊審核(房東)</h1>
-        <table width="300" border="1">
+        <table width="800" border="1">
 　			<tr>
-　				<td>預約編號</td>
-				<td>房屋編號</td>
- 				<td>預約時間</td>
- 				<td>預約人</td>
- 				<td>預約狀態</td>
- 				<td>審核</td>
- 				<td>出席</td>
+　				<th>預約編號</th>
+				<th>房屋編號</th>
+ 				<th>預約時間</th>
+ 				<th>預約人</th>
+ 				<th>預約狀態</th>
+ 				<th>審核</th>
+ 				<th>出席</th>
 　			</tr>
 		<tbody>
 			<c:forEach var="res" items="${reservations }">
@@ -56,11 +72,11 @@
 				<form:form method='POST' >
 					<input  id="houseid" name="houseid" type="hidden" value="${house.id }"/>
 					<input  id="memberId" name="memberId" type="hidden" value="${memberId }"/>	
-					<button type="submit" class="btn">預約確認</button>
+					<button type="submit" >預約確認</button>
 				</form:form>
 				</td>
 				<td>
-				<a href="<spring:url value='/MemberCheckUpDate/lookedHouse/${house.id }/${memberId }' />">出席確認</a>
+				<button><a href="<spring:url value='/MemberCheckUpDate/lookedHouse/${house.id }/${memberId }' />">出席確認</a></button>
 				</td>
 			</tr>
 			</c:forEach>

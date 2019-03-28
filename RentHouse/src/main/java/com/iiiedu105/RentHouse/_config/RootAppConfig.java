@@ -36,6 +36,7 @@ public class RootAppConfig {
 		}
 //		ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=RentHouseDB");
 		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit105house.database.windows.net:1433;database=RentHouseDB");
+
 		ds.setInitialPoolSize(4);
 		ds.setMaxPoolSize(8);
 		return ds;
