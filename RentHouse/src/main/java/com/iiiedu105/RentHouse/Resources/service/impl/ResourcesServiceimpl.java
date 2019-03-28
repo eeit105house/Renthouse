@@ -51,8 +51,8 @@ public class ResourcesServiceimpl implements ResourcesService{
 		return dao.getReservationMember(memberId);
 	}
 	@Override
-	public void updateScore(Integer id, String score) {
-		dao.updateScore(id, score);
+	public void updateScore(Integer id, Integer score) {
+		dao.updateScore(id,score);
 		
 	}
 	@Override
