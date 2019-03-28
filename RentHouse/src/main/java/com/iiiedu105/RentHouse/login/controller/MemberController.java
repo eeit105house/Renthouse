@@ -417,7 +417,8 @@ public class MemberController {
 	    	      }
 	    }
 	    String registerId = A;
-	    String url = "http://localhost:8080/RentHouse/forgetPwd/" + registerId;
+//	    String url = "http://localhost:8080/RentHouse/forgetPwd/" + registerId;
+	    String url = "http://eeit105house.southeastasia.cloudapp.azure.com:8080/RentHouse/forgetPwd/" + registerId;
 	    
 		HttpSession httpSession = request.getSession();
 		httpSession.setMaxInactiveInterval(60*10);
