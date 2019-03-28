@@ -14,8 +14,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div id="carouselExampleControls" class="carousel slide" style="padding-left: 60px;width:1263px;" data-ride="carousel">
-  <div class="carousel-inner"style="width:1150px;">
+<div id="carouselExampleControls" class="carousel slide" style="padding-left: 60px;" data-ride="carousel">
+  <div class="carousel-inner">
   <div>
     <div class="carousel-item active" data-interval="1000" >
      <c:forEach var="list" items="${Newlist0}">
