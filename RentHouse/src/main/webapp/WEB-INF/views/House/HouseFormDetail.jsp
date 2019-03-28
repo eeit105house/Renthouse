@@ -104,7 +104,7 @@
     
     </div>
     <div>
-        <h1 class="container">親愛的 ${user.name} 您好</h1>
+<%--         <h1 class="container">親愛的 ${user.name} 您好</h1> --%>
         <div class="d-flex container" id="wrapper">
             <!-- Sidebar -->
 <!--             <div class="bg-light border-right" id="sidebar-wrapper"> -->

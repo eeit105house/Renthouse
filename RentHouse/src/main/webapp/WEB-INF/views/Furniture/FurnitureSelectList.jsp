@@ -54,6 +54,7 @@
                     <h1 class="mt-4"></h1>
                     <div>
                       <form method="post" action="${pageContext.request.contextPath}/furnitureViewByType">
+	                    	<span>分類查詢：</span>
 	                    	<c:forEach var="type" items="${typeList}">
 	                    		<input class="a" type="checkbox" name="typesN" id="${type}" value="${type}" onclick="getCBValue('types')" display="none">
 	                    		<label for="${type}">${type}</label>

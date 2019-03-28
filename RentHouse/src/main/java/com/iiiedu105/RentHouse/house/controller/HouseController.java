@@ -272,12 +272,16 @@ public class HouseController {
 		String movingInStr = getStringBySqlDate(detailBean.getMovingIn(),"YYYY年MM月dd日");
 		model.addAttribute("movingInStr", movingInStr);
 		String fakeName = memberBean.getName().substring(0, 1);
-		if(memberBean.getSex().equalsIgnoreCase("MALE"))
-			fakeName += "先生";
-		else if(memberBean.getSex().equalsIgnoreCase("FEMALE"))
-			fakeName += "小姐";
-		else
+		if(memberBean.getSex()==null)
 			fakeName += "**";
+		else {
+			if(memberBean.getSex().equalsIgnoreCase("MALE"))
+				fakeName += "先生";
+			else if(memberBean.getSex().equalsIgnoreCase("FEMALE"))
+				fakeName += "小姐";
+			else
+				fakeName += "**";			
+		}
 		model.addAttribute("fakeName", fakeName);
 		if(detailBean.getAppliance()!=null && detailBean.getAppliance().trim().length()>0) {
 			List<String> appliance = Arrays.asList(detailBean.getAppliance().split(";"));

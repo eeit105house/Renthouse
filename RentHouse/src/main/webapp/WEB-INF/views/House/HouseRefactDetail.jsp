@@ -164,6 +164,7 @@
 						<div>
 							簡介
 							<textarea name="infoN" id="infoN" cols="30" rows="10">${houseInfo}</textarea>
+							<p></p>
 							<!-- <form:textarea path="info" value="${detailBean.info}" /> -->
 						</div>
 						<div>
