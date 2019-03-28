@@ -67,44 +67,53 @@
 <!--                             <p>請使用JPEG檔</p> -->
 
  <div class="post">
-                <form:form method="post" enctype="multipart/form-data">
-                    <fieldset>
-                        <legend class="legendK">第1張圖片</legend>
-                        <div>
-                            <p>${errorMsg.typeE}</p>
-                        </div>
-                        <div>
-                            <img src="<c:url value='/houseView/hPic/${picId0}'/>" accept="image/jpeg" width="150" />
-                            <label for="0">上傳圖片：</label>
-                            <input type="file" class="file" accept="image/jpeg" name="pic"
-                                id="0">${errorMsg.pic0None}*將作為封面
-                            <input type="hidden" name="picNo" value="0">
-                        </div>
-                        ${errorMsg.typeE}
-                        <input type="submit" class="medium green" value="上傳">
-                    </fieldset>
-                </form:form>
+ 				<div style="width: 750px; margin-bottom: 20px">
+	                <form:form method="post" enctype="multipart/form-data">
+	                    <fieldset>
+	                        <legend class="legendK">第1張圖片</legend>
+	                        <div>
+	                            <p>${errorMsg.typeE}</p>
+	                        </div>
+	                        <div>
+	                        	<div style="height: 150px ; width: 150px; float: left;" >	                        	
+	                            	<img src="<c:url value='/houseView/hPic/${picId0}'/>" style="max-height: 150px; max-width: 150px" />
+	                            	<p>*將作為封面</p>
+	                            </div>
+	                            <label for="0">上傳圖片：</label>
+	                            <input type="file" class="file" accept="image/jpeg" name="pic" accept="image/jpeg" id="0">${errorMsg.pic0None}
+	                            <input type="hidden" name="picNo" value="0">
+	                            <input type="submit" class="medium green button" value="上傳">
+	                        </div>
+	                        ${errorMsg.typeE}
+	                    </fieldset>
+	                </form:form>
+ 				</div>
                 <c:forEach var="i" begin="1" end="9">
-                    <form:form method="post" enctype="multipart/form-data">
-                        <fieldset>
-                            <legend class="legendK">第${i+1}張圖片</legend>
-                            <div>
-                                <img src="<c:url value='/houseView/hPic/${picIds[i]}'/>" accept="image/jpeg" width="150" alt="未上傳圖片" />
-                                <label for="${i}">上傳圖片：</label>
-                                <input type="file" name="pic" class="file" id="${i}">
-                                <input type="hidden" name="picNo" value="${i}">
-                            </div>
-                            ${errorMsg.typeE}
-                            <input type="submit" class="medium green" value="上傳">
-                        </fieldset>
-                    </form:form>
+                	<div style="float: left; width: 250px; margin-bottom: 10px; height: 306px">
+	                    <form:form method="post" enctype="multipart/form-data">
+	                        <fieldset>
+	                            <legend class="legendK">第${i+1}張圖片</legend>
+	                            <div>
+	                            	<div style="height: 100px ; width: 100px;">
+	                            		<img src="<c:url value='/houseView/hPic/${picIds[i]}'/>" style="max-width: 100px; max-height: 100px;" alt="未上傳圖片" />
+	                            	</div>
+	                                
+	                                <label for="${i}">上傳圖片：</label>
+	                                <p >
+		                                <input type="file" name="pic" class="file" id="${i}" style="font-size: 0.8em;" accept="image/jpeg">
+		                                <input type="hidden" name="picNo" value="${i}">
+	                                </p>
+	                            </div>
+	                            ${errorMsg.typeE}
+	                            <input type="submit" class="medium green button" value="上傳">
+	                        </fieldset>
+	                    </form:form>
+                	</div>
                 </c:forEach>
-
             </div>                    
                 </div>
             </div>
             <!-- /#page-content-wrapper -->
-
         </div>
     </div>
 </body>

@@ -62,7 +62,7 @@
     <div id="googlehide" class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i id="Pwd_i2" class="fa fa-lock"></i> </span></div>
-        <form:input path="pwd" name="Pwd" id="Pwd2" class="form-control" placeholder="密碼*混合英數 8-12字" type="text" />
+        <form:input path="pwd" name="Pwd" id="Pwd2" class="form-control" placeholder="密碼*混合英數 8-12字" type="password" />
     </div> 
 <!--會員姓名   --> 
         <div class="form-group input-group">

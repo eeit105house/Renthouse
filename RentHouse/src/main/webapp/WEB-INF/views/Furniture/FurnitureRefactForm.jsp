@@ -69,22 +69,44 @@
 	</script>
 </head>
 
-<body>
+<body style="background-color: #ffebd7;">
+    <div style="height: 75px;">
+        <%@include file="../login/narbar.jsp"%>
+    </div>
+    <div>
+        <h1 class="container">親愛的 ${user.name} 您好</h1>
+        <div class="d-flex container" id="wrapper">
+            <!-- Sidebar -->
+            <%@include file="../login/membermenu.jsp"%>
 
-	<div id="header">
+            <!-- <div class="bg-light border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading list-group-item bg-warning">會員中心</div>
+                <div class="list-group list-group-flush">
+                    <a href="<c:url value='/membercontrol/${user.id}'/>"
+                        class="list-group-item list-group-item-action bg-light">&gt;&gt;會員資料修改</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+                </div>
+            </div> -->
+            <!-- /#sidebar-wrapper -->
 
-	</div>
-	<!-- end #header -->
-	<div id="menu">
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
 
-	</div>
-	<!-- end #menu -->
-	<div id="content">
-		<div>
-			<div class="post">
-				<form:form modelAttribute="furnitureBean" enctype="multipart/form-data">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    </div>
+                </nav>
+                <!-- 		內容 -->
+                <div class="container-fluid" style="width: 800px;">
+                    <h1 class="mt-4"></h1>
+                    <div class="post">
+				<form:form modelAttribute="furnitureBean" method="post" enctype="multipart/form-data">
 					<fieldset>
-						<legend>二手家具刊登</legend>
+						<legend class="legendK">二手家具修改</legend>
 						<div>
 							<label for="title">標題：</label>
 							<form:input path="title"/>
@@ -105,7 +127,7 @@
 								<form:option value="床具">床具</form:option>
 								<form:option value="其它">其它</form:option>
 							</form:select>
-							<input type="text" id="typeN" name="typeN" value="${furnitureBean.type}">
+<%-- 							<input type="text" id="typeN" name="typeN" value="${furnitureBean.type}"> --%>
 							<p>${errorMsgFu.typeE}</p>
 						</div>
 						<div>
@@ -124,7 +146,7 @@
 							<p>${errorMsgFu.delveryE}</p>
 						</div>
 						<div>
-							<img alt="" src="<c:url value='/furnitureView/fuPic/${furnitureBean.id}'/>" />
+							<img alt="" src="<c:url value='/furnitureView/fuPic/${furnitureBean.id}'/>" height="100px"/>
 							<label for="pic">上傳照片：</label>
 							<input type="file" name="pic" id="pic" accept="image/jpeg">
 							<p>*請使用jpeg檔</p>
@@ -134,21 +156,15 @@
 					</fieldset>
 				</form:form>
 			</div>
-		</div>
-		<!-- end #posts -->
-		<div id="links">
+                </div>
+            </div>
+            <!-- /#page-content-wrapper -->
 
-		</div>
-		<!-- end #links -->
-		<div style="clear: both;">&nbsp;</div>
-	</div>
-	<!-- end #content -->
-	<div id="footer">
-		<!-- <p id="legal">Copyright &copy; Logistix. Designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>
-				</p> -->
-	</div>
-	<!-- end #footer -->
-
+        </div>
+    </div>
 </body>
+
+
+
 
 </html>

@@ -58,7 +58,7 @@
 			    	        <p>${errorMsg.orderE}</p>
 				            <c:forEach var="VipProject" items="${VipProjects}">
 			            	  <div style="background-color: white;">
-			        	        <input type="radio" name="vip" id="${VipProject.pNumber}" value="${VipProject.pNumber}">
+			        	        <input type="radio" name="vip" id="${VipProject.pNumber}" value="${VipProject.pNumber}" checked="checked">
 			    	            <label for="${VipProject.pNumber}">${VipProject.pName}</label>
 				                <p>${VipProject.pInfo}</p>
 			                	<p>${VipProject.pPrice}元</p>
@@ -67,6 +67,9 @@
 			    	      </fieldset>
 			  	        <input type="submit" class="large green button" value="前往付款">
 			        	  <a class="button orange medium" href='<c:url value="/membercontrol/houseRefactSelect"/>'>稍後付款</a>
+			        	  <a class="button blue medium" href='<c:url value="/oneClickPost/0"/>'>開發人員一鍵上架_0</a>
+			        	  <a class="button blue medium" href='<c:url value="/oneClickPost/1"/>'>開發人員一鍵上架_1</a>
+			        	  <a class="button blue medium" href='<c:url value="/oneClickPost/2"/>'>開發人員一鍵上架_2</a>
 			    	    </form:form>
 				   </div>
                 </div>

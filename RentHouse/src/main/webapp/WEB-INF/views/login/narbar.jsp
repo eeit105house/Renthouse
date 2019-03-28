@@ -119,6 +119,7 @@ function signOut() {
       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/newHouse/house'/>">我要出租</a></li>
       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/membercontrol/${user.id}'/>">會員中心</a></li>
       <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/ForumView'/>">討論區</a></li>
+      <li class="nav-item"><a class="btn btn-nav-primary" href="<c:url value='/furnitureViewAll'/>">二手家具</a></li>
       </ul>
       </div>
       <div>

@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix='form' uri="http://www.springframework.org/tags/form"%>
-        <%@include file="../login/narbar.jsp"%>
 
 <!DOCTYPE html>
 <html>
@@ -138,6 +137,8 @@
 
 <body style="background-color: #ffebd7;">
     <div style="height: 75px;">
+            <%@include file="../login/narbar.jsp"%>
+    
         	<script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
         
     </div>
