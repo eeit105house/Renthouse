@@ -14,6 +14,6 @@ public interface ResourcesService {
 	public void updateReservation(Integer id);
 	public void updateReservationstatus(Integer id);
 	public List<Integer>findByHId(String memberId);
-	public void updateScore(Integer id,String score);
+	public void updateScore(Integer id,Integer score);
 	
 }

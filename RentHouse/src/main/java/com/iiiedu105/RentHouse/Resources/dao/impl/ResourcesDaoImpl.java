@@ -67,18 +67,18 @@ public class ResourcesDaoImpl implements ResourcesDao{
 	@Override
 	public List<Reservation> getReservationMember(String memberId) {
 		Session session = factory.getCurrentSession();
-		String hql ="FROM Reservation rt WHERE memberBean.id= :mid AND rt.datetime <= :tIm";
+		String hql ="FROM Reservation rt WHERE memberBean.id= :mid AND rt.score = NULL ";
 		List<Reservation> gRtm = new ArrayList<Reservation>();
 		Date tme=new Date();
 		Timestamp nTm= new Timestamp(tme.getTime());
-		gRtm = session.createQuery(hql).setParameter("mid", memberId).setParameter("tIm", nTm).getResultList();
+		gRtm = session.createQuery(hql).setParameter("mid", memberId).getResultList();
 		return gRtm;
 	}//利用房客ID查詢預約資料
 	@Override
-	public void updateScore(Integer id, String score) {
+	public void updateScore(Integer id, Integer score) {
 		Session session =factory.getCurrentSession();
 		String hql ="UPDATE Reservation rt SET rt.score= :sCe WHERE rt.id = :rId";
-		session.createQuery(hql).setParameter("sCe",score).setParameter("rid", id).executeUpdate();
+		session.createQuery(hql).setParameter("sCe",score).setParameter("rId", id).executeUpdate();
 		// 評分系統1~5分
 		
 	}

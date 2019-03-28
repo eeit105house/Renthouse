@@ -278,7 +278,7 @@ public class ForumController {
 		Timestamp time = new Timestamp(new java.util.Date().getTime());
 		forumReport.setDatetime(time);
 //		 Integer id = forumReport.getForumBean().getId();
-		 service.savefReport(forumReport);
+		 service.savefReportUpdateForum(forumReport);
 		return "redirect:/ForumView";
 	}
 	

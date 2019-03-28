@@ -78,10 +78,12 @@
 							<th>
 								<h2>您的家具一覽</h2>
 							</th>
+							<th>
+								
+							</th>
 						</tr>
 						<tr>
 							<th>標題</th>
-							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -114,6 +116,9 @@
 								</td>
 							</tr>
 						</c:forEach>
+						<tr>
+							<td><a class="button orange" href='<c:url value="/newFurniture" />'>點我新增</a></td>
+						</tr>
 					</tbody>
 				</table>
                 </div>
