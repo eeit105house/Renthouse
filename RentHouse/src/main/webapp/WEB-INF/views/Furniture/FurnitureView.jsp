@@ -68,7 +68,7 @@ Released for free under the Creative Commons Attribution License
 								<h1 class="title">${furnitureBean.title}</h1>
 								<div class="story">
 									<ul class="slider">
-										<li><img src="<c:url value='fuPic/${furnitureBean.id}'/>" /></li>
+										<li><div style="height:450px; width: 450px;"><img style="max-height: 450px; max-width: 450px" src="<c:url value='fuPic/${furnitureBean.id}'/>" /></div></li>
 									</ul>
 								</div>
 							</div>

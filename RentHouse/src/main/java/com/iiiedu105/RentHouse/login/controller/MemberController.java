@@ -116,7 +116,8 @@ public class MemberController {
 					String registerName = request.getParameter("name");
 					String registerIdAcc = request.getParameter("id");
 					String registerId = "" + (int) (Math.random() * Math.random() * 100000000);
-					String url = "http://localhost:8080/RentHouse/MailBackServlet/" + registerId;
+//					String url = "http://localhost:8080/RentHouse/MailBackServlet/" + registerId;
+					String url = "http://eeit105house.southeastasia.cloudapp.azure.com:8080/RentHouse/MailBackServlet/" + registerId;
 
 					HttpSession httpSession = request.getSession();
 					httpSession.setAttribute(registerId, registerIdAcc);
@@ -316,7 +317,8 @@ public class MemberController {
 		String registerName = users.getName();
 		String registerIdAcc = users.getId();
 		String registerId = "" + (int) (Math.random() * Math.random() * 100000000);
-		String url = "http://localhost:8080/RentHouse/MailBackServlet/" + registerId;
+//		String url = "http://localhost:8080/RentHouse/MailBackServlet/" + registerId;
+		String url = "http://eeit105house.southeastasia.cloudapp.azure.com:8080/RentHouse/MailBackServlet/" + registerId;
 
 		HttpSession httpSession = request.getSession();
 		httpSession.setMaxInactiveInterval(60 * 10);

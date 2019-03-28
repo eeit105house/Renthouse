@@ -155,7 +155,7 @@
                     <div class="post">
 				<form:form method='POST' modelAttribute="detailBean">
 					<fieldset>
-						<legend class="legendK">詳細資訊</legend>
+						<legend class="legendK">修改詳細資訊</legend>
 						<div>
 							標題
 							<form:input path="title" value="${detailBean.title}" />
@@ -164,6 +164,7 @@
 						<div>
 							簡介
 							<textarea name="infoN" id="infoN" cols="30" rows="10">${houseInfo}</textarea>
+							<p></p>
 							<!-- <form:textarea path="info" value="${detailBean.info}" /> -->
 						</div>
 						<div>
@@ -285,7 +286,7 @@
 								onclick="getCBValue('indetity')"><label for="indetity5">自由業</label>
 						</div>
 
-						<input type="submit" class="medium green" value="送出">
+						<input type="submit" class="medium green button" value="送出">
 					</fieldset>
 				</form:form>
 			</div>

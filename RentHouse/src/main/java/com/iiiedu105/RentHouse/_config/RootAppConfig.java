@@ -25,6 +25,8 @@ public class RootAppConfig {
 	@Bean
 	public DataSource dataSource() {
 		ComboPooledDataSource ds = new ComboPooledDataSource();
+//		ds.setUser("sa");
+//		ds.setPassword("passw0rd");
 		ds.setUser("eeit105house");
 		ds.setPassword("!!!eeit!o5");
 		try {
@@ -32,7 +34,9 @@ public class RootAppConfig {
 		} catch (PropertyVetoException e) {
 			e.printStackTrace();
 		}
-		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit105house.database.windows.net:1433;databaseName=RentHouseDB");
+//		ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=RentHouseDB");
+		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit105house.database.windows.net:1433;database=RentHouseDB");
+
 		ds.setInitialPoolSize(4);
 		ds.setMaxPoolSize(8);
 		return ds;
