@@ -36,7 +36,7 @@ public class SearchHouseByConditionDaoImpl implements SearchHouseByConditionDao 
 				"from House h,HouseDetail hd,Member m ,HousePic hp " + 
 				"where h.memberBean = m.id " + 
 				"	  and h.status = '上架' " + 
-				"	  and hp.picNo = 1 " + 
+				"	  and hp.picNo = 0 " + 
 				"	  and h.id = hd.houseBean " + 
 				"	  and h.id = hp.houseBean " + 
 				"order by h.pay";
@@ -50,7 +50,7 @@ public class SearchHouseByConditionDaoImpl implements SearchHouseByConditionDao 
 				"from House h,HouseDetail hd,Member m ,HousePic hp " + 
 				"where h.memberBean = m.id " + 
 				"	  and h.status = '上架' " + 
-				"	  and hp.picNo = 1 " + 
+				"	  and hp.picNo = 0 " + 
 				"	  and h.pay = 2 " + 
 				"	  and h.id = hd.houseBean " + 
 				"	  and h.id = hp.houseBean " + 
@@ -99,7 +99,7 @@ public class SearchHouseByConditionDaoImpl implements SearchHouseByConditionDao 
 				"from House h,HouseDetail hd,Member m ,HousePic hp " + 
 				"where h.memberBean = m.id " + 
 				"	  and h.status = '上架' " + 
-				"	  and hp.picNo = 1 " + 
+				"	  and hp.picNo = 0 " + 
 				"	  and h.id = hd.houseBean " + 
 				"	  and h.id = hp.houseBean " + 
 				Searchcriteria + 
@@ -116,7 +116,7 @@ public class SearchHouseByConditionDaoImpl implements SearchHouseByConditionDao 
 				"from House h,HouseDetail hd,Member m ,HousePic hp " + 
 				"where h.memberBean = m.id " + 
 				"	  and h.status = '上架' " + 
-				"	  and hp.picNo = 1 " + 
+				"	  and hp.picNo = 0 " + 
 				"	  and h.id = hd.houseBean " + 
 				"	  and h.id = hp.houseBean " + 
 				msg + 
