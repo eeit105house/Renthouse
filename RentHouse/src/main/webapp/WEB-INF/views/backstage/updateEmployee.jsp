@@ -36,7 +36,7 @@
 	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-72-precomposed.png" />
 <link rel="apple-touch-icon-precomposed"
 	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-57-precomposed.png" />
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/RHstaticresource/ico/favicon.png" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/RHstaticresource/ico/housse.jpg" />
 <!-- end: Favicon and Touch Icons -->
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -96,7 +96,7 @@
 							<div class="control-group">
 							  <label class="control-label" for="fileInput">更改大頭貼:</label>
 							  <div class="controls">
-								<input class="input-file uniform_on" id="fileInput" type="file" name="eimg" />
+								<input class="input-file uniform_on" id="fileInput" type="file" accept="image/jpeg" name="eimg" />
 							   	<p class="help-block text-danger">${error.fileerror }</p>							 
 							  </div>
 							</div>          

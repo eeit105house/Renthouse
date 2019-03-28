@@ -39,15 +39,21 @@ public class ResourcesDaoImpl implements ResourcesDao{
 	@Override
 	public List<Reservation> getReservation(Integer houseId) {
 		Session session = factory.getCurrentSession();
-		String hql ="FROM Reservation rt WHERE houseBean.id= :hid AND rt.confirm = :cf";
+		String hql ="FROM Reservation rt WHERE houseBean.id= :hid AND rt.status = :st";
 		List<Reservation> gRt = new ArrayList<Reservation>();
-		gRt = session.createQuery(hql).setParameter("hid", houseId).setParameter("cf", "待確認").getResultList();
+		gRt = session.createQuery(hql).setParameter("hid", houseId).setParameter("st","未看").getResultList();
 		return gRt;
 	}//利用房屋ID查詢預約資料
 	@Override
 	public void updateReservation(Integer id) {
 		Session session =factory.getCurrentSession();
 		String hql ="UPDATE Reservation rt SET rt.confirm='同意' where rt.id = :hid";
+		session.createQuery(hql).setParameter("hid", id).executeUpdate();
+	}
+	@Override
+	public void updateReservationstatus(Integer id) {
+		Session session =factory.getCurrentSession();
+		String hql ="UPDATE Reservation rt SET rt.status='已看' where rt.id = :hid";
 		session.createQuery(hql).setParameter("hid", id).executeUpdate();
 	}
 	@Override
@@ -68,5 +74,14 @@ public class ResourcesDaoImpl implements ResourcesDao{
 		gRtm = session.createQuery(hql).setParameter("mid", memberId).setParameter("tIm", nTm).getResultList();
 		return gRtm;
 	}//利用房客ID查詢預約資料
+	@Override
+	public void updateScore(Integer id, String score) {
+		Session session =factory.getCurrentSession();
+		String hql ="UPDATE Reservation rt SET rt.score= :sCe WHERE rt.id = :rId";
+		session.createQuery(hql).setParameter("sCe",score).setParameter("rid", id).executeUpdate();
+		// 評分系統1~5分
+		
+	}
+	
 
 }

@@ -31,10 +31,8 @@
 	
 	<form method="get">
 		<div class="searchDiv">
-			<input class="searchText" type="text" placeholder="請輸入關鍵字(社區、街道等)" id="keyWord"/>
-			<button class="searchBut" onclick="getKeyWord()" value="">
-				<img src='${pageContext.request.contextPath}/search/img/search.PNG' />
-			</button>
+			<input class="searchText" type="text" placeholder="請輸入關鍵字(社區、街道等)" id="keyWord"/>		
+				<img onclick="getKeyWord()" src='${pageContext.request.contextPath}/search/img/search.PNG' />
 		<a  class = "mapImg" href="${pageContext.request.contextPath}/search/searchPage_sessionStorage"><img class="listImg"src="${pageContext.request.contextPath}\search\img\list.png">列表查詢</a>
 		</div>
 	</form>
@@ -114,7 +112,14 @@
 	<div id="map"></div>
 	<div class = "start"></div>
 
-<script>$("#zipcode2").twzipcode({
+<script>
+function getKeyWord(){
+	var text = $("div.searchDiv input").val();
+	var id = "keyWord";
+	changeSelect(text,id);
+};
+
+$("#zipcode2").twzipcode({
 	countySel: "縣市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
 	districtSel: "鄉鎮市區", // 地區預設值
 	zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區

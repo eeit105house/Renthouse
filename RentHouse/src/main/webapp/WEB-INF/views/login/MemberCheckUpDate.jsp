@@ -40,6 +40,7 @@
  				<td>預約人</td>
  				<td>預約狀態</td>
  				<td>審核</td>
+ 				<td>出席</td>
 　			</tr>
 		<tbody>
 			<c:forEach var="res" items="${reservations }">
@@ -50,14 +51,18 @@
 				<td>${house.datetime }</td>
 				<td >${house.memberBean.id }</td>
 				<td>${house.confirm }</td>
-				<td><a href="<spring:url value='/MemberCheckUpDate/${memberId }' />"></a>
+				<td>
 				
 				<form:form method='POST' >
 					<input  id="houseid" name="houseid" type="hidden" value="${house.id }"/>
 					<input  id="memberId" name="memberId" type="hidden" value="${memberId }"/>	
-					<button type="submit" class="btn">確認</button>
+					<button type="submit" class="btn">預約確認</button>
 				</form:form>
-				
+				</td>
+				<td>
+				<a href="<spring:url value='/MemberCheckUpDate/lookedHouse/${house.id }/${memberId }' />">出席確認</a>
+				</td>
+			</tr>
 			</c:forEach>
 			</c:forEach>
 </tbody>

@@ -10,8 +10,6 @@
 <meta name="google-signin-scope" content="profile email">
 <meta name="google-signin-client_id" content="825814170132-9r69bbro6bbtg1ahvhsp5jeu07f52sd0.apps.googleusercontent.com">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};HandleGoogleApiLibrary()"
-        onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
 
 </head>
 <body>
@@ -21,6 +19,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">登入</h5>
+        <div class="row" style="width: 240px; margin-left: 60px;">
+              <div class="btn btn-primary col-md-5" id="housemaster">房東帳號</div>
+          	  <div class="btn btn-primary col-md-5" id="housecustomer"style="margin-left: 10px;">房客帳號</div>
+ 				</div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -50,31 +52,49 @@
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="Login_check">登入</button>
               <hr class="my-4">
               </form>
- 
 <!--               <button class="btn btn-lg btn-google btn-block text-uppercase" id="googlesign" onclick="GoogleSignIn();"><i class='fab fa-google mr-2'></i>Sign in with Google</button> -->
 <!--               <button type="submit" class="btn btn-lg btn-facebook btn-block text-uppercase"><i class="fab fa-facebook-f mr-2"></i>Sign in with Facebook</button> -->
-          		<div class="g-signin2" data-onsuccess="GoogleSignIn" data-theme="dark"></div>
+
+          		<div class="g-signin2" data-onsuccess="GoogleSignIn" data-theme="dark" onclick="googlesigntest();" id="googlesigntest"></div>
+
           		<hr/>
 <!--           		<button class="btn btn-lg btn-google btn-block text-uppercase g-signin2"><i class='fab fa-google mr-2' data-onsuccess="GoogleSignIn"></i>Sign in with Google</button> -->
 <!--           		<input type="text" id="hiddengoogle" name="hiddengoogle"/> -->
 
 
     <script>
+    var profile,id_token;
+	var countt=0;
       function GoogleSignIn(googleUser) {
     	// 客戶端如果有需要的話可以通過profile來獲取使用者資訊
-          var profile = googleUser.getBasicProfile();
+           profile = googleUser.getBasicProfile();
           // 傳回後臺驗證，並獲取userid
-          var id_token = googleUser.getAuthResponse().id_token;
+           id_token = googleUser.getAuthResponse().id_token;
           console.log("ID Token: " + id_token);
-          var xhr = new XMLHttpRequest();
-          xhr.open('POST', 'http://localhost:8080/RentHouse/googleVerify');
-          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-          xhr.onload = function() {
-            console.log('Signed in as: ' + xhr.responseText);
+
+          if(countt==1){
+        	  $("#googlesigntest").click();
+        	  window.location.reload();
           };
-          xhr.send('idtokenstr=' + id_token);
-          window.location.reload();
         };
+        function googlesigntest (){
+        	countt = countt+1;
+        	var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://localhost:8080/RentHouse/googleVerify');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+              console.log('Signed in as: ' + xhr.responseText);
+            };
+            xhr.send('idtokenstr=' + id_token);
+            if(countt==2){
+            	window.location.reload();
+            }
+        };
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	
+    });
     </script>
           </div>
         </div>

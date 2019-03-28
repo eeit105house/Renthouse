@@ -46,7 +46,7 @@ public class CSDaoImpl implements CSDao {
 	@Override
 	public void updateMail(String eid,Clob content,Integer id) {
 		Session session = factory.getCurrentSession();
-		String hql = "UPDATE EmployeeReport SET status='會員未讀', employeeBean.id = :eid, content = :content where id = :id";
+		String hql = "UPDATE EmployeeReport SET status='會員未讀', employeeBean.id = :eid, reply = :content where id = :id";
 		session.createQuery(hql).setParameter("eid", eid)
 								.setParameter("content", content)
 								.setParameter("id", id)

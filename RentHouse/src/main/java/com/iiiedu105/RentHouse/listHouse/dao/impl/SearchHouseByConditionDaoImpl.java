@@ -43,6 +43,7 @@ public class SearchHouseByConditionDaoImpl implements SearchHouseByConditionDao 
 		return reObjectMethod(hql);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object[]> getAllVipHouse() {
 		String hql = "select hp.id,hd.title,h.type,h.sqft,h.floor,h.topFloor,h.boroughs,h.addr,m.name,hd.price ,h.launched ,h.lat, h.lon,h.id " + 
@@ -53,8 +54,11 @@ public class SearchHouseByConditionDaoImpl implements SearchHouseByConditionDao 
 				"	  and h.pay = 2 " + 
 				"	  and h.id = hd.houseBean " + 
 				"	  and h.id = hp.houseBean " + 
-				"order by h.pay";
-		return reObjectMethod(hql);
+				"order by h.launched DESC";
+		List<Object[]> list = new ArrayList<>();		
+		Session session = factory.getCurrentSession();
+		list = session.createQuery(hql).setMaxResults(20).list();
+		return list;
 	}
 	
 	@SuppressWarnings("unchecked")
