@@ -41,7 +41,7 @@
 
 		
 		
-		<div id="selectList" class="screenBox" style="width:1300px;">
+		<div id="selectList" class="screenBox">
 		
 			<div class="titleDiv">位置：</div><div id="zipcode2" class="zipcodeForCss"></div>
 
