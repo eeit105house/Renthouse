@@ -178,11 +178,8 @@
 <%-- 					</form:form> --%>
 					<!--editor start-->
 					<!-- 				============檢舉按鈕開始================			 -->
-<<<<<<< HEAD
 					<div style="padding-left:10px">
-=======
 	<c:if test="${ForumBean.status=='上架' }">
->>>>>>> branch 'master' of https://github.com/eeit105house/Renthouse.git
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#writeReport" data-whatever="@mdo">檢舉</button>
 	<div class="modal fade" id="writeReport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -218,11 +215,8 @@
   </div>
 </div>
 					</div> 
-<<<<<<< HEAD
 					</div>
-=======
 					</c:if>
->>>>>>> branch 'master' of https://github.com/eeit105house/Renthouse.git
 <!-- 		================檢舉按鈕結束=======================			 -->
 					
 <a name="rep"></a>
