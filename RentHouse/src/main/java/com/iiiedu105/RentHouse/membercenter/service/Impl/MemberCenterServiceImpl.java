@@ -53,4 +53,8 @@ public class MemberCenterServiceImpl implements MemberCenterService {
 	public EmployeeReport getMailById(Integer id) {
 		return memberDao.getMailById(id);
 	}
+	@Override
+	public void updateServicereport(Integer id) {
+		memberDao.updateServicereport(id);
+	}
 }

@@ -22,6 +22,8 @@ public interface ForumDao  {
 
 	void deletePost(int id);
 	
+	void savefReport(ForumReport forumReport);
+	
 
 }
 

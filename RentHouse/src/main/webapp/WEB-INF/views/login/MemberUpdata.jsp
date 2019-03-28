@@ -49,7 +49,7 @@
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fas fa-fingerprint"></i> </span>
 		 </div>
-        <label>${user.active}</label><span id="acti" style="padding-left: 60px;"><a class="btn btn-primary" href="reActive">重新發送驗證信</a></span>
+        <label id="actistate">${user.active}</label><span id="acti" style="padding-left: 60px;"><a class="btn btn-primary" href="reActive">重新發送驗證信</a></span>
     </div>
 <!--帳號 -->
 	<div class="form-group input-group">
@@ -59,31 +59,24 @@
         <label>${user.id}</label>
     </div>
 <!--密碼 --> 
-    <div class="form-group input-group">
+    <div id="googlehide" class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i id="Pwd_i2" class="fa fa-lock"></i> </span></div>
-        <form:input path="pwd" name="Pwd" id="Pwd2" class="form-control" required="required" placeholder="密碼*混合英數 8-12字" type="password"/>
-    </div> 
-<!--重複密碼 --> 
-    <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"><i class="fas fa-key" id="rePwd_i2"></i></span>
-		</div>
-        <input name="rePwd" id="rePwd2" class="form-control" required="required" placeholder="重複確定密碼" type="password">
+        <form:input path="pwd" name="Pwd" id="Pwd2" class="form-control" placeholder="密碼*混合英數 8-12字" type="text" />
     </div> 
 <!--會員姓名   --> 
         <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i class="fas fa-grin-alt" id="inputname_i2"></i></span>
 		</div>
-        <form:input path="name" name="inputname" id="inputname2" class="form-control" required="required" placeholder="您的大名/Name" type="text"/>
+        <form:input path="name" name="inputname" id="inputname2" class="form-control"  placeholder="您的大名/Name" type="text"/>
     </div>      
     <!--電話 --> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i class="fa fa-phone" id="phone_i2"></i> </span>
 		</div>
-    	<form:input path="phone" name="phone" id="phone2" class="form-control" required="required" placeholder="市話/手機" type="text"/>
+    	<form:input path="phone" name="phone" id="phone2" class="form-control"  placeholder="市話/手機" type="text"/>
     </div>           
     <div class="form-group">
     <input type="submit"  class="btn btn-primary btn-block" id="create2" value="確定修改資料"/>
@@ -107,7 +100,14 @@
 	 }else{
 		 $("#acti").show();
 	 };
-  });
+	 var myTextSubstr = "${user.id}";
+	 if(myTextSubstr.substr(0,6)=="Google"){
+		 $("#actistate").append("(Google 登入)")
+		 $("#googlehide").hide();
+	 };
+	 
+		});
+
   </script>
   <input type="hidden" id="herenow" value="updata"/> 
 </body>

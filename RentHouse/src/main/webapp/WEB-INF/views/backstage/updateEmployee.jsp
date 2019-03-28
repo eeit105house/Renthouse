@@ -36,7 +36,7 @@
 	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-72-precomposed.png" />
 <link rel="apple-touch-icon-precomposed"
 	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-57-precomposed.png" />
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/RHstaticresource/ico/favicon.png" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/RHstaticresource/ico/housse.jpg" />
 <!-- end: Favicon and Touch Icons -->
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -58,7 +58,7 @@
 						</div>
 					</div>
 					<div class="box-content">
-						<form:form class="form-horizontal" enctype="multipart/form-data" modelAttribute="upemployee">
+						<form:form class="form-horizontal" enctype="multipart/form-data" modelAttribute="upemployee" onsubmit="return checkform()">
 						  <fieldset>
 <!-- 						  <div class="control-group"> -->
 <!-- 								<label class="control-label" for="disabledInput">員工帳號:</label> -->
@@ -81,16 +81,22 @@
 							</div>
 <!-- 							密碼未驗證 -->
 							<div class="control-group">
-							  <label class="control-label" for="typeahead">密碼: </label>
+							  <label class="control-label" for="pwd">密碼: </label>
 							  <div class="controls">
-								<form:input path="pwd" type="password" class="span6 typeahead" id="typeahead" required="true"/>								
-							  	<p class="help-block text-danger">須中英混和且至少6位數</p>
+								<form:input path="pwd" type="password"  class="span6 typeahead" id="pwd" value="${param.pwd}" required="true"/>								
+							  	<p class="help-block text-danger" id="checkpwdup" ></p>
+							  </div>  
+							</div><div class="control-group">
+							  <label class="control-label" for="pwdcheck">密碼確認: </label>
+							  <div class="controls">
+								<input type="password" name="pwdck" class="span6 typeahead" id="pwdcheck" value="${param.pwdck}" required="true"/>								
+							  	<p class="help-block text-warning" id="checkpwdspan"></p>
 							  </div>  
 							</div>
 							<div class="control-group">
 							  <label class="control-label" for="fileInput">更改大頭貼:</label>
 							  <div class="controls">
-								<input class="input-file uniform_on" id="fileInput" type="file" name="eimg" />
+								<input class="input-file uniform_on" id="fileInput" type="file" accept="image/jpeg" name="eimg" />
 							   	<p class="help-block text-danger">${error.fileerror }</p>							 
 							  </div>
 							</div>          
@@ -111,6 +117,22 @@
 			<%@ include file="footer.jsp" %>
 			</div><!--/.fluid-container-->
 
+<script type="text/javascript">
+function checkform(){
+	$("#checkpwdup").html("");
+	$("#checkpwdspan").html("");	
+	var patrn = /^(?=.*[A-Za-z])(?=.*\d)[a-zA-Z0-9]{6,16}$/;
+	if(!patrn.test($("#pwd").val())){
+		$("#checkpwdup").html("須中英混和6-16位數");
+		return false;
+	}
+	else if($("#pwd").val()!=$("#pwdcheck").val()){
+		$("#checkpwdspan").html("密碼需相同");	
+		return false;
+	}
+	
+}
+</script>
 
 	<!-- start: JavaScript-->
 		<script src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-1.10.2.min.js"></script>

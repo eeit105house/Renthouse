@@ -15,6 +15,7 @@ $(document).ready(function() {
 	$("#create").hide();
 	$("#notyet").show();
 	var acc_ok,pwd_ok,repwd_ok,name_ok,email_ok,phone_ok,id_ok,gender_ok = false;
+	var pwd_ok2,name_ok2,phone_ok2 = false;
 	$('#Acc').on('keydown keyup keypress change focus blur',function(){
 		var re = /^([A-Z]+)(?=.*[a-zA-Z])(?=.*[0-9]).{7,16}$/;
 		var check = $(this).val();
@@ -126,15 +127,7 @@ $(document).ready(function() {
 			$("#notyet").show();
 		}
 		});
-	$('.custom-select').on('keydown keyup keypress change focus blur',function(){
-		if(true==gender_ok){
-			$("#create").show();
-			$("#notyet").hide();
-		}else{
-			$("#create").hide();
-			$("#notyet").show();
-		}
-		});
+
 	$('.custom-select').on('keydown keyup keypress change focus blur',function(){
 		
 		var Year = $("#birth_Year").val();
@@ -162,33 +155,6 @@ $(document).ready(function() {
 		});
 		$("#create2").hide();
 		$("#notyet2").show();
-		$('#Pwd2').on('keydown keyup keypress change focus blur',function(){
-			var re = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,16}$/;
-			var check = $(this).val();
-			var repwd = $("#rePwd").val();
-			  if(re.test(check)){
-			    $("#Pwd_i2").css({"color": "green"});
-				  pwd_ok = true;
-				if(check!=repwd){
-					 $("#rePwd_i2").css({"color": "red"});
-					 repwd_ok = false;
-				}
-			  }else{
-			    $("#Pwd_i2").css({"color": "red"});
-				  pwd_ok = false;
-			  }
-			});
-		$('#rePwd2').on('keydown keyup keypress change focus blur',function(){
-			var re = $("#Pwd").val();
-			var check = $(this).val();
-			  if(re==check){
-			    $("#rePwd_i2").css({"color": "green"});
-				  repwd_ok = true;
-			  }else{
-			    $("#rePwd_i2").css({"color": "red"});
-				  repwd_ok = false;
-			  }
-			});
 		$('#inputname2').on('keydown keyup keypress change focus blur',function(){
 			var re_zh = /^[\u4e00-\u9fa5]{2,}$/;
 			var re_en = /^[a-zA-Z]{3,}$/;
@@ -215,9 +181,19 @@ $(document).ready(function() {
 				  phone_ok = false;
 			  }
 			});
+		$('#Pwd2').on('keydown keyup keypress change focus blur',function(){
+			var re = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,16}$/;
+			var check = $(this).val();
+			  if(re.test(check)){
+			    $("#Pwd_i2").css({"color": "green"});
+				  pwd_ok2 = true;
+			  }else{
+				$("#Pwd_i2").css({"color": "red"});
+				pwd_ok2 = false;
+				}
+	 });
 		$('.form-control').on('keydown keyup keypress change focus blur',function(){
-			if(true==pwd_ok && true==repwd_ok &&
-			   true==name_ok && true==phone_ok ){
+			if(true==name_ok || true==phone_ok || true==pwd_ok2){
 				$("#create2").show();
 				$("#notyet2").hide();
 			}else{
@@ -225,6 +201,21 @@ $(document).ready(function() {
 				$("#notyet2").show();
 			}
 			});
+		$("#onepass").click(function(){
+    		$("#Acc").val("customer123");
+    		$("#Pwd").val("password1234");
+    		$("#rePwd").val("password1234");
+    		$("#inputname").val("張學友");
+    		$("#email").val("iiieeit10598@gmail.com");
+    		$("#phone").val("0958957957");
+    		$("#identity").val("A125865252");
+    		$("#birth_Year").val("1998");
+    		$("#birth_Month").val("5");
+    		$("#birth_Date").val("20");
+    		$("#gender").val("male");
+    		$("#create").show();
+			$("#notyet").hide();
+    		});
 });
 //^\w+：@ 之前必須以一個以上的文字&數字開頭，例如 abc
 //((-\w+)：@ 之前可以出現 1 個以上的文字、數字或「-」的組合，例如 -abc-

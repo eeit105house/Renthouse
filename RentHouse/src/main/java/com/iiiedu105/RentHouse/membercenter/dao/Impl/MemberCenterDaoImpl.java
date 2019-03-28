@@ -77,7 +77,7 @@ public class MemberCenterDaoImpl implements MemberCenterDao  {
 		Session session = null;
 		session = factory.getCurrentSession();
 		List<EmployeeReport> list = null;
-		String hql = "FROM EmployeeReport where status in ('未讀','已讀') and memberBean.id=:mid";
+		String hql = "FROM EmployeeReport where memberBean.id=:mid";
 		list = session.createQuery(hql).setParameter("mid", mid).getResultList();
 		return list;
 	}
@@ -89,5 +89,12 @@ public class MemberCenterDaoImpl implements MemberCenterDao  {
 		String hql = "FROM EmployeeReport er where er.id=:rid";
 		employeeReport = (EmployeeReport) session.createQuery(hql).setParameter("rid", id).getSingleResult();
 		return employeeReport;
+	}
+	@Override
+	public void updateServicereport(Integer id) {
+		Session session = null;
+		session = factory.getCurrentSession();
+		String hql = "UPDATE EmployeeReport er SET status='已讀' where er.id=:rid";
+		session.createQuery(hql).setParameter("rid", id).executeUpdate();
 	}
 }

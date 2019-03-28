@@ -1,7 +1,9 @@
 package com.iiiedu105.RentHouse.Resources.dao.impl;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -37,15 +39,21 @@ public class ResourcesDaoImpl implements ResourcesDao{
 	@Override
 	public List<Reservation> getReservation(Integer houseId) {
 		Session session = factory.getCurrentSession();
-		String hql ="FROM Reservation rt WHERE houseBean.id= :hid";
+		String hql ="FROM Reservation rt WHERE houseBean.id= :hid AND rt.status = :st";
 		List<Reservation> gRt = new ArrayList<Reservation>();
-		gRt = session.createQuery(hql).setParameter("hid", houseId).getResultList();
+		gRt = session.createQuery(hql).setParameter("hid", houseId).setParameter("st","未看").getResultList();
 		return gRt;
 	}//利用房屋ID查詢預約資料
 	@Override
 	public void updateReservation(Integer id) {
 		Session session =factory.getCurrentSession();
-		String hql ="UPDATE Reservation rt SET rt.confirm='同意' where rt.id = :hid ";
+		String hql ="UPDATE Reservation rt SET rt.confirm='同意' where rt.id = :hid";
+		session.createQuery(hql).setParameter("hid", id).executeUpdate();
+	}
+	@Override
+	public void updateReservationstatus(Integer id) {
+		Session session =factory.getCurrentSession();
+		String hql ="UPDATE Reservation rt SET rt.status='已看' where rt.id = :hid";
 		session.createQuery(hql).setParameter("hid", id).executeUpdate();
 	}
 	@Override
@@ -59,10 +67,21 @@ public class ResourcesDaoImpl implements ResourcesDao{
 	@Override
 	public List<Reservation> getReservationMember(String memberId) {
 		Session session = factory.getCurrentSession();
-		String hql ="FROM Reservation rt WHERE memberBean.id= :mid";
+		String hql ="FROM Reservation rt WHERE memberBean.id= :mid AND rt.datetime <= :tIm";
 		List<Reservation> gRtm = new ArrayList<Reservation>();
-		gRtm = session.createQuery(hql).setParameter("mid", memberId).getResultList();
+		Date tme=new Date();
+		Timestamp nTm= new Timestamp(tme.getTime());
+		gRtm = session.createQuery(hql).setParameter("mid", memberId).setParameter("tIm", nTm).getResultList();
 		return gRtm;
 	}//利用房客ID查詢預約資料
+	@Override
+	public void updateScore(Integer id, String score) {
+		Session session =factory.getCurrentSession();
+		String hql ="UPDATE Reservation rt SET rt.score= :sCe WHERE rt.id = :rId";
+		session.createQuery(hql).setParameter("sCe",score).setParameter("rid", id).executeUpdate();
+		// 評分系統1~5分
+		
+	}
+	
 
 }
