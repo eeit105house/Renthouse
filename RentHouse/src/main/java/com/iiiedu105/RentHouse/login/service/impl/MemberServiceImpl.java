@@ -50,6 +50,9 @@ public class MemberServiceImpl implements MemberService {
 	public Member login(String id,String pwd) {
 		Member bean = memberDao.findMemberById(id);
 		if(bean!=null) {
+			String inId = id.toUpperCase();
+			String dbId = bean.getId().toUpperCase();
+			if(inId.equals(dbId)) {
 			if(pwd!=null && pwd.length()!=0) {
 				String inPWD = pwd;
 				String dbPWD = bean.getPwd();
@@ -57,6 +60,7 @@ public class MemberServiceImpl implements MemberService {
 					return bean;
 				}
 			}
+		}
 		}
 		return null;
 	}

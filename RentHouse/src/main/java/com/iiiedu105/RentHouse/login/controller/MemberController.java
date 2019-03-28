@@ -109,12 +109,15 @@ public class MemberController {
 						blob = getImageBlob(file0);
 						member.setPic(blob);
 					}
+					String registerIdAcc = request.getParameter("id");
+					String upperCase = registerIdAcc.toUpperCase();
+					member.setId(upperCase);
 					memberService.saveMember(member);
 					create.put("createOk", "註冊成功，請到信箱驗證帳號");
 					model.addAttribute("create", create);
 					String memberEmail = request.getParameter("email");
 					String registerName = request.getParameter("name");
-					String registerIdAcc = request.getParameter("id");
+					registerIdAcc = request.getParameter("id");
 					String registerId = "" + (int) (Math.random() * Math.random() * 100000000);
 					String url = "http://localhost:8080/RentHouse/MailBackServlet/" + registerId;
 
@@ -247,6 +250,7 @@ public class MemberController {
 	public String checkMember(HttpServletRequest request , Model model) {
 	Map<String, String> errorMsg = new HashMap<String, String>();
 	Map<String, String> create = new HashMap<String, String>();
+	
 	Member member = memberService.login(request.getParameter("inputAccount"), request.getParameter("inputPassword"));	
 	if(member!=null) {
 		List<Object[]> list = memberService.getAllMsg(member.getId());

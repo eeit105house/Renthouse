@@ -17,7 +17,8 @@ $(document).ready(function() {
 	var acc_ok,pwd_ok,repwd_ok,name_ok,email_ok,phone_ok,id_ok,gender_ok = false;
 	var pwd_ok2,name_ok2,phone_ok2 = false;
 	$('#Acc').on('keydown keyup keypress change focus blur',function(){
-		var re = /^([A-Z]+)(?=.*[a-zA-Z])(?=.*[0-9]).{7,16}$/;
+//		var re = /^([A-Z]+)(?=.*[a-zA-Z])(?=.*[0-9]).{7,16}$/;
+		var re = /^(?=.*[a-zA-Z]+)(?=.*[a-zA-Z])(?=.*[0-9]).{7,12}$/;
 		var check = $(this).val();
 			if(re.test(check)){
 				$("#Acc_i").css({"color": "green"});
@@ -127,7 +128,18 @@ $(document).ready(function() {
 			$("#notyet").show();
 		}
 		});
-
+	
+	$('.custom-select').on('keydown keyup keypress change focus blur',function(){
+		if(true==acc_ok && true==pwd_ok && true==repwd_ok &&
+		   true==name_ok && true==email_ok && true==phone_ok && 
+		   true==id_ok && true==gender_ok){
+			$("#create").show();
+			$("#notyet").hide();
+		}else{
+			$("#create").hide();
+			$("#notyet").show();
+		}
+		});
 	$('.custom-select').on('keydown keyup keypress change focus blur',function(){
 		
 		var Year = $("#birth_Year").val();

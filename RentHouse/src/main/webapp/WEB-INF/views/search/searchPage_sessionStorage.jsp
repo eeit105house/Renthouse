@@ -15,7 +15,7 @@
 
 <title>Insert title here</title>
 </head>
-<body class="body">
+<body class="body" style="background-color: #ffebd7;">
 
 	<div style="height: 75px;">
 		<%@include file="../login/narbar.jsp"%>
@@ -23,12 +23,12 @@
 	
 <%-- <a href="${pageContext.request.contextPath}/deal/AllHouseDealForAMember">某一房子(houseid)---歷年房屋成交紀錄</a> --%>
 	<form method="get">
-		<div class="searchDiv">
+		<div class="searchDiv" style="background-color: #ffebd7;">
 			<input class="searchText" type="text" placeholder="請輸入關鍵字(社區、街道等)" id="keyWord"/>
 			
 				<img onclick="getKeyWord()" src='${pageContext.request.contextPath}/search/img/search.PNG' />
 			
-		<a class = "mapImg" href="${pageContext.request.contextPath}/search/searchByMap"><img class="pinImg"src="${pageContext.request.contextPath}\search\img\Pin.png">地圖查詢</a>
+		<a class = "mapImg btn btn-primary" style="width:120px;" href="${pageContext.request.contextPath}/search/searchByMap"><img class="pinImg"src="${pageContext.request.contextPath}\search\img\Pin.png">地圖查詢</a>
 		</div>
 	</form>
 
@@ -42,7 +42,7 @@
 
 		
 		
-		<div id="selectList" class="screenBox">
+		<div id="selectList" class="screenBox" style="width:1300px;">
 		
 			<div class="titleDiv">位置：</div><div id="zipcode2" class="zipcodeForCss"></div>
 
