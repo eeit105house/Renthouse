@@ -28,8 +28,7 @@ public class SearchHouseByConditionDaoImpl implements SearchHouseByConditionDao 
 	
 		return list;
 	}
-	
-	
+		
 	@Override
 	public List<Object[]> getAllhouse() {
 				String hql = "select hp.id,hd.title,h.type,h.sqft,h.floor,h.topFloor,h.boroughs,h.addr,m.name,hd.price ,h.launched ,h.lat, h.lon,h.id " + 
@@ -79,7 +78,6 @@ public class SearchHouseByConditionDaoImpl implements SearchHouseByConditionDao 
 		housePic = session.get(HousePic.class,id);
 		return housePic;
 	}
-
 
 	@SuppressWarnings("unchecked")
 	@Override

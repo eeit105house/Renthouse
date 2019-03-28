@@ -10,7 +10,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
-
 <title>Insert title here</title>
 </head>
 <body>
@@ -100,7 +99,7 @@
 		$(this).css("background-color","#DCDCDC")
 	});
 	$("div.perDivIncarousel").mouseleave(function() {
-		$(this).css("background-color","#F8F8FF")
+		$(this).css("background-color","#ffebd7")
 	});
  </script>
 

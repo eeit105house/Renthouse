@@ -10,7 +10,7 @@
 <link href="${pageContext.request.contextPath}/login/css/landing-page.css" rel="stylesheet">
 <title>租你幸福~*</title>
 </head>
-<body class="bg-light">
+<body style="background-color:#ffebd7;">
 <!-- header -->
 <div style="height: 75px;">
 <%@include file="login/narbar.jsp"%>
