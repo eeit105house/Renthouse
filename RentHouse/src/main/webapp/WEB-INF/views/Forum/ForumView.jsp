@@ -39,6 +39,7 @@
 	<div style="height: 75px;">
 		<%@include file="../login/narbar.jsp"%>
 	</div>
+	
 <!-- 	<header class="masthead text-white text-center" -->
 <!-- 		style="background: url(login/img/index.jpg) no-repeat center center;"> -->
 <!-- 		  <h2>租你幸福</h2> -->
@@ -86,7 +87,7 @@
   <table class="table">
     <thead class="thead-dark">
 					<tr align="center">
-						<td class="list_title">　標題</td>
+						<th width="60%">標題</th>
 						<th>發表</th>
 						<th>分類</th>
 						<th>發表時間</th>
@@ -95,8 +96,8 @@
     <tbody>
       <c:forEach var="forum" items="${flist}">
       <tr align="center">
-        <td><a href='<c:url value="/ForumDetail/${forum.id}" />'>${forum.title}</a></td>
-        <td><a href='<c:url value="" />'>${forum.memberBean.id}</td>
+        <td><a href='<c:url value="/Forum/ForumDetail/${forum.id}" />'>${forum.title}</a></td>
+        <td><a href='<c:url value="/membercontrol/${forum.memberBean.id}" />'>${forum.memberBean.id}</td>
         <td>${forum.sort}</td>
        <td> ${forum.datetime}</td> 
       </tr>
@@ -113,8 +114,6 @@
 </div>
 </div>
 </div>
-
-
   </table>
   </div>
 <!--   <table class="table"> -->

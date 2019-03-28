@@ -27,7 +27,7 @@
 <title>發表文章</title>
 </head>
 <body style="background-color: #ffebd7;">
-	<link href="/group/village/mepocc.css" rel="stylesheet" type="text/css" />
+
 
 	<script type="text/javascript">
 		function spawn() {
@@ -58,7 +58,7 @@
 				}
 			}
 		}
-	</script>
+	</script>DE
 
 	<script type="text/javascript">
 		
@@ -79,11 +79,9 @@
 		<div class="pubish_box">
 			<div class="publish_content">
 
-
-
 				<form:form action="./add" modelAttribute="ForumBean" method="POST"
 					name="form1" id="form1"
-					onsubmit="return chkPost();checkBbsCate();return checkForumPost();"
+					onsubmit="return chkPost();checkBbsCate();return checkForumPost();alert('發表成功!!')"
 					class='form-horizontal' enctype="multipart/form-data">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
@@ -95,11 +93,12 @@
 							<td width="92%" colspan="2"><form:select path="sort"
 									name="cateTitle" id="cateTitle"
 									onchange="changeCateTitle(this,0);checkBbsCate();changeSubTitle(1);">
-									<option value="">請選擇分類</option>
+									<option>請選擇分類</option>
 									<option value="心情抒發">心情抒發</option>
 									<option value="租屋交流">租屋交流</option>
 									<option value="知識問答">知識問答</option>
 									<option value="房價討論">房價討論</option>
+									<option value="其他">其他</option>
 								</form:select> <span id="cate_id_box"></span> <span id="parent_cate_id"
 								style="padding-top: 10px; display: none; height: 21px;">
 									<span id="cate_id_help" style="display: none"></span>
@@ -119,7 +118,6 @@
 						<!-- 					</div> -->
 						<tr>
 							<td>文章標題:</td>
-
 							<td><form:input path="title" name="title" id="title"
 									type="text" class="input" onblur="checkBbsTitle();" value="" />
 								<%-- 								<p>${errorMsg.titleList}</p> --%>
@@ -187,7 +185,7 @@ function checkForumPost()
 
 function changeCateTitle(obj,fid){
 	var cateid = obj.value;
-	var url = "index.php";
+	var url = "Forum/ForumView";
 	var postStr = "module=index&action=getCateType&cateid="+ myencode(cateid)+'&fid='+myencode(fid);
 	Http_Post_Request(url, postStr, callBack);	
 	return false;
@@ -217,13 +215,11 @@ $jq(function(){
 
 })
 function check_blog_type(){
-    var _is_admin = jQuery("#is_admin").val();
+
     var _type = jQuery("#cateTitle option:selected").val();
     /*普通用户*/
     if(_type == ""){
-        if(_is_admin == '1' ){
-            jQuery("#fid").val("101");
-            
+
         }else{
             jQuery("#cate_id_help").html("沒有選擇版名，請選擇您要發表的版名。");
             jQuery("#cate_id_help").addClass("caution_prompt");
@@ -282,4 +278,3 @@ return true;
 		
 </body>
 </html>
-<!-- END TEMPLATE footer.tpl -->
