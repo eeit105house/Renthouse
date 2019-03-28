@@ -83,7 +83,7 @@ public class HouseController {
 			return "redirect:/";
 //		Member memberBean = houseService.getMemberById(member.getId());
 		List<House> houseList = houseService.getHousesByMemberId(member.getId());
-
+		System.out.println(member.getId()+"/mid");
 		Collections.sort(houseList, new Comparator<House>() {   
             @Override 
             public int compare(House arg0,House arg1) { 

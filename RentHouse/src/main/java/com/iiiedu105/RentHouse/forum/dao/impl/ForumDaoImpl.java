@@ -75,7 +75,7 @@ public class ForumDaoImpl implements ForumDao {
 	}
 	@Override
 	public List<Forum> getAllPosts() {
-		String hql = "FROM Forum";		
+		String hql = "FROM Forum ORDER BY datetime DESC";		
 		Session session = null;
 		List<Forum> list = null;
 		session = factory.getCurrentSession();

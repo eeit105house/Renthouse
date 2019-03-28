@@ -81,12 +81,16 @@ public class ForumController {
 		Forum ForumBean = new Forum();
 		ForumBean.setStatus("下架");
 		service.deletePost(fid);
-		return "redirect:/Forumview";
+		return "redirect:/ForumView";
 	}
 
 
 	@RequestMapping(value = "/Forum/ForumDetail/{fId}", method = RequestMethod.GET)
-	public String viewPost(Model model, @PathVariable Integer fId) throws SQLException {
+	public String viewPost(Model model, @PathVariable Integer fId,HttpServletRequest request) throws SQLException {
+		HttpSession httpSession = request.getSession();
+		Member user =  (Member) httpSession.getAttribute("user");
+		if(user == null)
+			return "redirect:/ForumView";
 		Forum ForumBean = service.findById(fId);
 		Member memberBean = ForumBean.getMemberBean();
 		List<ForumReply> list = service.getAllReplies(fId);

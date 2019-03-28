@@ -93,7 +93,7 @@
 								height="80" /></td>
 						</tr>
 						<tr>
-							<td colspan="2" align="center" style="font-weight: 700">${user.name}</td>
+							<td colspan="2" align="center" style="font-weight: 700">${ForumBean.memberBean.id}</td>
 						</tr>
 					 </tbody></table>
 				</div>
@@ -133,9 +133,10 @@
 							
 						</tr>
 					</table>
-</div>
+</div>		
+	<div class="content">
+
   <c:forEach var="reply" items="${replyList}">
-			<div class="content">
 				<div class="leftSideBar">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
@@ -145,7 +146,7 @@
 						</tr>
 						<tr>
 							<td colspan="2" align="center" style="font-weight: 700">
-								${memberBean.id}</td>
+								${reply[0].memberBean.id}</td>
 						</tr>
 						<!--   <tr><td width='42%' align='right'>註冊：</td><td width='58%' valign='top'>2012-07-19</td></tr><tr><td align='right'>文章：</td><td valign='top'>44</td></tr><tr><td align='right'>回覆：</td><td valign='top'>422</td></tr> -->
 					</table>
@@ -164,7 +165,7 @@
 					</div>
 					<!--装潢日记投票-->
 				
-</div></div></c:forEach>
+</div></c:forEach></div>
 <div class="button_line">
      <table width="100%" border="0">
 						<tr>
@@ -301,7 +302,7 @@
       <ul>
         <li> 會員可針對租你幸福的所有標題與內容自由發表評論，本討論區上的主題與內容皆不代表租你幸福的立場。</li>
         <li> 會員在發表文章之前，確認所發之內容（如圖片）未侵害到他人的著作權、商標、專利等權利。如因會員所發文章而產生的版權法律責任將由會員承擔。</li>
-        <li> 會員必須同意不在討論區發表任何具有偽造詐欺的、誹謗的、錯誤的、辱駡的、粗俗的、有害的、騷擾的，淫穢的，褻瀆的、性別導向的、威脅侵犯他人隱私的、或者違反任何法律法規等資訊。若遭檢舉發現，591有權將版主文章鎖帖或刪除，情節重大者將取消該會員之資格。</li>
+        <li> 會員必須同意不在討論區發表任何具有偽造詐欺的、誹謗的、錯誤的、辱駡的、粗俗的、有害的、騷擾的，淫穢的，褻瀆的、性別導向的、威脅侵犯他人隱私的、或者違反任何法律法規等資訊。若遭檢舉發現，租你幸福有權將版主文章鎖帖或刪除，情節重大者將取消該會員之資格。</li>
         <li> 討論區嚴禁灌水行為；禁止以任意形式發佈廣告內容；禁止發佈或回復與租你幸福主旨不相符的文章。若有發現，租你幸福有權自行刪除。</li>
         <li> 發帖內容與版塊內容不符，管理員有權刪除文章或將文章移至合適的版塊。</li>
         <li> 請勿留下身份證字號、住址等個人隱私資料，以免遭人盜用，租你幸福不負管理之責。</li>
