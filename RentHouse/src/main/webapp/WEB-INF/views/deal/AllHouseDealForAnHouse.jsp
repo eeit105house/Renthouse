@@ -10,7 +10,6 @@
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!--   <link rel="stylesheet" href="/resources/demos/style.css"> -->
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -49,18 +48,19 @@
 		<h1 class="container">親愛的 ${user.name} 您好</h1>
 		<div class="d-flex container" id="wrapper">
 			<!-- Sidebar -->
-			<div class="bg-light border-right" id="sidebar-wrapper">
-				<div class="sidebar-heading list-group-item bg-warning">會員中心</div>
-				<div class="list-group list-group-flush">
-					<a href="<c:url value='/membercontrol/${user.id}'/>"
-						class="list-group-item list-group-item-action bg-light">會員資料修改</a>
-					<a href="<c:url value='/membercontrol/houseRefactSelect'/>" class="list-group-item list-group-item-action bg-light">&gt;&gt;房屋管理</a>
-					<a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-					<a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-					<a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-					<a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-				</div>
-			</div>
+			 <%@include file="../login/membermenu.jsp"%>
+<!-- 			<div class="bg-light border-right" id="sidebar-wrapper"> -->
+<!-- 				<div class="sidebar-heading list-group-item bg-warning">會員中心</div> -->
+<!-- 				<div class="list-group list-group-flush"> -->
+<%-- 					<a href="<c:url value='/membercontrol/${user.id}'/>" --%>
+<!-- 						class="list-group-item list-group-item-action bg-light">會員資料修改</a> -->
+<%-- 					<a href="<c:url value='/membercontrol/houseRefactSelect'/>" class="list-group-item list-group-item-action bg-light">&gt;&gt;房屋管理</a> --%>
+<!-- 					<a href="#" class="list-group-item list-group-item-action bg-light">Overview</a> -->
+<!-- 					<a href="#" class="list-group-item list-group-item-action bg-light">Events</a> -->
+<!-- 					<a href="#" class="list-group-item list-group-item-action bg-light">Profile</a> -->
+<!-- 					<a href="#" class="list-group-item list-group-item-action bg-light">Status</a> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<!-- /#sidebar-wrapper -->
 
 			<!-- Page Content -->
@@ -150,6 +150,8 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
 $('#exampleModal').on('show.bs.modal', function (event) {
 	

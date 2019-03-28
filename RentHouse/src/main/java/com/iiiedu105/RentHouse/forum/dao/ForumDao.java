@@ -22,7 +22,7 @@ public interface ForumDao  {
 
 	void deletePost(int id);
 	
-	void savefReport(ForumReport forumReport);
+	void savefReportUpdateForum(ForumReport forumReport);
 	
 
 }

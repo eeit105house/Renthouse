@@ -15,10 +15,10 @@
       <div class="list-group list-group-flush">
         <a id="aaa" href="<c:url value='/membercontrol/${user.id}'/>" class="list-group-item list-group-item-action bg-light">會員資料修改</a>
         <a id="bbb" href="<spring:url value='/membercontrol/memberservice/serviceform' />" class="list-group-item list-group-item-action bg-light">客服中心</a>
-        <a id="ccc" href="<c:url value='/membercontrol/houseRefactSelect'/>" class="list-group-item list-group-item-action bg-light">我的房屋一覽</a>
+        <a id="ccc" href="<c:url value='/membercontrol/houseRefactSelect'/>" class="list-group-item list-group-item-action bg-light">我的房屋管理</a>
         <a id="ddd" href="<c:url value='/MemberCheckUpDate/${user.id}'/>" class="list-group-item list-group-item-action bg-light">房東預約審核</a>        
-        <a id="eee" href="<c:url value='/membercontrol/furnitureRefactSelect'/>" class="list-group-item list-group-item-action bg-light">二手家具一覽</a>
         <a id="fff" href="<c:url value='/MemberCheckReservation/${user.id}'/>" class="list-group-item list-group-item-action bg-light">房客預約查詢</a>
+        <a id="eee" href="<c:url value='/membercontrol/furnitureRefactSelect'/>" class="list-group-item list-group-item-action bg-light">二手家具管理</a>
       </div>
     </div>
     <script type="text/javascript">

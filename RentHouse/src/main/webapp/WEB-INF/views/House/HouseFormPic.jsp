@@ -64,28 +64,27 @@
                     <h1 class="mt-4"></h1>
                     <div class="post">
                     <form:form method="post" enctype="multipart/form-data">
-                    <fieldset>
-                        <legend class="legendK">上傳圖片</legend>
-                        <div>
-                            <p>請使用JPEG檔</p>
-                            <p>${errorMsg.typeE}</p>
-        
-                        </div>
-        
-                        <div>
-                            <label for="0">第1張圖片：</label>
-                            <input type="file" class="file" accept="image/jpeg" name="pic0" id="0">${errorMsg.pic0None}*將作為封面<br>
-        				</div>
-                            <c:forEach var="i" begin="2" end="10">
-                    			<div>                       
-                             	   <label for="${i}">第${i}張圖片：</label>
-                                	<input type="file" name="pics" class="file" accept="image/jpeg"  id="${i}">
-                                </div>                                
-                            </c:forEach>
-                        <input type="submit" class="medium green button" value="上傳">
-                    </fieldset>
-                </form:form>
-            </div>
+                    	<fieldset>
+                        	<legend class="legendK">上傳圖片</legend>
+                        	<div>
+	                            <p>請使用JPEG檔</p>
+	                            <p>${errorMsg.typeE}</p>
+	                        </div>
+	                        <div style="margin-bottom: 20px;">
+	                            <label for="0">第1張圖片：</label>
+	                            <input type="file" class="file" accept="image/jpeg" name="pic0" id="0">*將作為封面
+	                            <p>${errorMsg.pic0None}</p>
+	        				</div>
+	                            <c:forEach var="i" begin="2" end="10">
+	                    		   <div style="margin-bottom: 20px;">                       
+		                               <label for="${i}">第${i}張圖片：</label>
+		                        	   <input type="file" name="pics" class="file" accept="image/jpeg"  id="${i}">
+	                               </div>                                
+	                            </c:forEach>
+	                    	<input type="submit" class="medium green button" value="上傳">
+                	    </fieldset>
+            	    </form:form>
+           		 </div>
                 </div>
             </div>
             <!-- /#page-content-wrapper -->

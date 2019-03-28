@@ -15,6 +15,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">註冊</h5>
+        <div class="btn btn-primary " id="onepass" style="margin-left: 20px;">一鍵帶入</div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -42,7 +43,7 @@
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i id="Acc_i" class="fa fa-user"></i> </span>
 		 </div>
-        <form:input path="id" name="Acc" id="Acc" class="form-control" required="required" placeholder="帳號 *第一個字大寫英文 混合英數 8-12字" type="text"/>
+        <form:input path="id" name="Acc" id="Acc" class="form-control" required="required" placeholder="帳號 *英文開頭 混和英數 8-12字" type="text"/>
     </div>
 <!--密碼 --> 
     <div class="form-group input-group">
@@ -124,5 +125,21 @@
 </div>
 </div>
 </div>
+<script type="text/javascript">
+$("#onepass").click(function(){
+	$("#Acc").val("customer123");
+	$("#Pwd").val("password1234");
+	$("#rePwd").val("password1234");
+	$("#inputname").val("張學友");
+	$("#email").val("iiieeit10598@gmail.com");
+	$("#phone").val("0958957957");
+	$("#identity").val("A125865252");
+	$("#birth_Year").val("1998");
+	$("#birth_Month").val("5");
+	$("#birth_Date").val("20");
+	$("#gender").val("male");
+	$("#create").show();
+	$("#notyet").hide();
+	});</script>
 </body>
 </html>

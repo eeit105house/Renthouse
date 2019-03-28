@@ -22,10 +22,13 @@ import java.util.Properties;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -75,7 +78,7 @@ public class MemberController {
 
 // URL為 /members, 搭配 POST方法可以新增一筆紀錄
 // 儲存瀏覽器送來的Member資料
-
+//新增會員
 @RequestMapping(value = "/insertMemberOk", method = RequestMethod.POST)
 	public String saveMember(Member member,@RequestParam(value = "memberimg") MultipartFile file0 , 
 			HttpServletRequest request , Model model) throws SerialException, SQLException {
@@ -106,14 +109,18 @@ public class MemberController {
 						blob = getImageBlob(file0);
 						member.setPic(blob);
 					}
+					String registerIdAcc = request.getParameter("id");
+					String upperCase = registerIdAcc.toUpperCase();
+					member.setId(upperCase);
 					memberService.saveMember(member);
 					create.put("createOk", "註冊成功，請到信箱驗證帳號");
 					model.addAttribute("create", create);
 					String memberEmail = request.getParameter("email");
 					String registerName = request.getParameter("name");
-					String registerIdAcc = request.getParameter("id");
+					registerIdAcc = request.getParameter("id");
 					String registerId = "" + (int) (Math.random() * Math.random() * 100000000);
-					String url = "http://localhost:8080/RentHouse/MailBackServlet/" + registerId;
+//					String url = "http://localhost:8080/RentHouse/MailBackServlet/" + registerId;
+					String url = "http://eeit105house.southeastasia.cloudapp.azure.com:8080/RentHouse/MailBackServlet/" + registerId;
 
 					HttpSession httpSession = request.getSession();
 					httpSession.setAttribute(registerId, registerIdAcc);
@@ -133,9 +140,12 @@ public class MemberController {
 					// 主旨
 					String subject = "租你幸福，開通帳號驗證信";
 					// 內文
-					String body = registerName + "(" + memberEmail + "),您好" + "" + "感謝您註冊成為  租你幸福網站 會員 !" + ""
-							+ "驗證您的會員帳號" + "" + "請點擊以下連結開通會員帳號" + "" + "<a href='" + url + "'>開通我的會員帳號</a>"
-							+ "如果你不能點取連結，亦可以複製下列網址前往驗證。" + "" + url + "" + "如果您認為這是垃圾信件，請忽略此信件。;";
+					String body = registerName + "(" + memberEmail + "),您好" + "<br/>" 
+							+ "感謝您註冊成為  租你幸福網站 會員 !"  + "請驗證您的會員帳號<br/>"
+							+ "請點擊以下連結開通會員帳號<br/>" + "<a href='"+url +"'>點此開通</a><br/> "
+							+ "如果你不能點取連結，亦可以複製下列網址前往驗證。<br/>" 
+							+ ""+url+"<br/>"
+							+ "如果您認為這是垃圾信件，請忽略此信件。<br/>";
 					// 建立一個Properties來設定Properties
 					Properties properties = System.getProperties();
 					// 設定傳輸協定為smtp
@@ -156,6 +166,13 @@ public class MemberController {
 					try {
 						// 建立一個 MimeMessage object.
 						MimeMessage message = new MimeMessage(mailSession);
+						
+						Multipart mp=new MimeMultipart();
+						MimeBodyPart mbp=new MimeBodyPart();
+						mbp.setContent(body,"text/html;charset=UTF-8");
+						mp.addBodyPart(mbp);
+						message.setContent(mp);
+						
 						// 設定寄件人
 						message.setFrom(new InternetAddress(from));
 						// 設定收件人
@@ -163,7 +180,7 @@ public class MemberController {
 						// 設定主旨
 						message.setSubject(subject);
 						// 設定內文
-						message.setText(body);
+//						message.setText(body);
 						Transport transport = mailSession.getTransport();
 						// 傳送信件
 						transport.send(message);
@@ -180,7 +197,7 @@ public class MemberController {
 			model.addAttribute("errorMsg", errorMsg);
 		return "forward:/";
 	}
-
+//信箱驗證導入
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/MailBackServlet/{registerId}")
 	public String activeMember(HttpServletRequest request, HttpSession session, @PathVariable String registerId,
@@ -192,23 +209,49 @@ public class MemberController {
 		String registeridAcc = (String) request.getSession().getAttribute(registerId);
 		System.out.println("開通時=" + registeridAcc);
 		if (registeridAcc == null || registeridAcc.equals("")) {
-			return "redirect:/";
+			activeOk.put("active", "時效已過，請重新發出請求");
+			model.addAttribute("activeOk", activeOk);
+			return "forward:/";
 		}
-		request.setAttribute("registeridAcc", registeridAcc);
+//		request.setAttribute("registeridAcc", registeridAcc);
 		Member member = memberService.findMemberById(registeridAcc);
 		System.out.println("member=" + member);
 		member.setActive("已驗證");
 		memberService.updateMember(member);
-		activeOk.put("active", "帳號開通成功");
+		activeOk.put("active", "帳號開通成功，請重新登入");
 		model.addAttribute("activeOk", activeOk);
 		return "forward:/";
 	}
+	//密碼驗證導入
+		@SuppressWarnings("unchecked")
+		@RequestMapping(value = "/forgetPwd/{registerId}")
+		public String forgetMember(HttpServletRequest request, HttpSession session, @PathVariable String registerId,
+				Model model) {
+			Map<String, String> activeOk = new HashMap<String, String>();
+			if (registerId == null || registerId=="") {
+				return "redirect:/";
+			}
+			String registeridAcc = (String) request.getSession().getAttribute(registerId);
+			System.out.println("開通時=" + registeridAcc);
+			if (registeridAcc == null || registeridAcc=="") {
+				activeOk.put("active", "時效已過，請重新發出請求");
+				model.addAttribute("activeOk", activeOk);
+				return "forward:/";
+			}
+//			request.setAttribute("registeridAcc", registeridAcc);
+			Member member = memberService.findMemberById(registeridAcc);
+			session.setAttribute("user", member);
+			activeOk.put("active", "請將您的密碼修改完成");
+			model.addAttribute("activeOk", activeOk);
+			return "redirect:/membercontrol/" + registeridAcc;
+		}
 
 //會員登入
 @RequestMapping(value = "/loginMember", method = RequestMethod.POST)
 	public String checkMember(HttpServletRequest request , Model model) {
 	Map<String, String> errorMsg = new HashMap<String, String>();
 	Map<String, String> create = new HashMap<String, String>();
+	
 	Member member = memberService.login(request.getParameter("inputAccount"), request.getParameter("inputPassword"));	
 	if(member!=null) {
 		List<Object[]> list = memberService.getAllMsg(member.getId());
@@ -246,11 +289,12 @@ public class MemberController {
 		model.addAttribute("member", new Member());
 		return "/login/insertPic";
 	}
-
+//會員中心
 	@RequestMapping(value = "/membercontrol/{id}")
 	public String membercontrol(Model model, HttpServletRequest request, @PathVariable String id, Member member) {
 		HttpSession session = request.getSession();
 		member = (Member) session.getAttribute("user");
+		if(member!=null) {
 		model.addAttribute("member", member);
 		memberService.updateAllMsgById(id);
 		List<Object[]> list = memberService.getAllMsg(member.getId());
@@ -258,8 +302,13 @@ public class MemberController {
 		Member users = memberService.findMemberById(member.getId());
 		session.setAttribute("user", users);
 		return "login/MemberUpdata";
+		}else {
+		model.addAttribute("member",new Member());
+		return "redirect:/";
+		}
+		
 	}
-
+//重新發送驗證信
 	@RequestMapping(value = "/membercontrol/reActive")
 	public String reActive(Model model, HttpServletRequest request, @ModelAttribute("member") Member member)
 			throws SerialException, SQLException {
@@ -272,11 +321,12 @@ public class MemberController {
 		String registerName = users.getName();
 		String registerIdAcc = users.getId();
 		String registerId = "" + (int) (Math.random() * Math.random() * 100000000);
-		String url = "http://localhost:8080/RentHouse/MailBackServlet/" + registerId;
+//		String url = "http://localhost:8080/RentHouse/MailBackServlet/" + registerId;
+		String url = "http://eeit105house.southeastasia.cloudapp.azure.com:8080/RentHouse/MailBackServlet/" + registerId;
 
 		HttpSession httpSession = request.getSession();
-		httpSession.setAttribute(registerId, registerIdAcc);
 		httpSession.setMaxInactiveInterval(60 * 10);
+		httpSession.setAttribute(registerId, registerIdAcc);
 		System.out.println("registerId=" + registerId);
 //	信箱
 		// user
@@ -292,9 +342,12 @@ public class MemberController {
 		// 主旨
 		String subject = "租你幸福，開通帳號驗證信";
 		// 內文
-		String body = registerName + "(" + memberEmail + "),您好" + "" + "感謝您註冊成為  租你幸福網站 會員 !" + "" + "驗證您的會員帳號" + ""
-				+ "請點擊以下連結開通會員帳號" + "" + "<a href='" + url + "'>開通我的會員帳號</a>" + "如果你不能點取連結，亦可以複製下列網址前往驗證。" + "" + url
-				+ "" + "如果您認為這是垃圾信件，請忽略此信件。;";
+		String body = registerName + "(" + memberEmail + "),您好" + "<br/>" 
+				+ "感謝您註冊成為  租你幸福網站 會員 !"  + "請驗證您的會員帳號<br/>"
+				+ "請點擊以下連結開通會員帳號<br/>" + "<a href='"+url +"'>點此開通</a><br/> "
+				+ "如果你不能點取連結，亦可以複製下列網址前往驗證。<br/>" 
+				+ ""+url+"<br/>"
+				+ "如果您認為這是垃圾信件，請忽略此信件。<br/>";
 		// 建立一個Properties來設定Properties
 		Properties properties = System.getProperties();
 		// 設定傳輸協定為smtp
@@ -311,10 +364,18 @@ public class MemberController {
 		// 帳號，密碼
 		SmtpAuthenticator authentication = new SmtpAuthenticator(user, pwd);
 		// 建立一個Session物件，並把properties傳進去
+		
 		Session mailSession = Session.getDefaultInstance(properties, authentication);
 		try {
 			// 建立一個 MimeMessage object.
 			MimeMessage message = new MimeMessage(mailSession);
+			
+			Multipart mp=new MimeMultipart();
+			MimeBodyPart mbp=new MimeBodyPart();
+			mbp.setContent(body,"text/html;charset=UTF-8");
+			mp.addBodyPart(mbp);
+			message.setContent(mp);
+			
 			// 設定寄件人
 			message.setFrom(new InternetAddress(from));
 			// 設定收件人
@@ -322,7 +383,8 @@ public class MemberController {
 			// 設定主旨
 			message.setSubject(subject);
 			// 設定內文
-			message.setText(body);
+//			message.setText(body);
+			
 			Transport transport = mailSession.getTransport();
 			// 傳送信件
 			transport.send(message);
@@ -334,7 +396,106 @@ public class MemberController {
 		model.addAttribute("create", create);
 		return "forward:/membercontrol/" + users.getId();
 	}
-
+//忘記密碼記EMAIL
+	@RequestMapping(value = "/forgetpwd")
+	public String forgetpwd(Model model, HttpServletRequest request)
+			throws SerialException, SQLException {
+		Map<String, String> create = new HashMap<String, String>();
+		String f_acc = request.getParameter("forgetpwdacc");
+		String f_email = request.getParameter("forgetpwdemail");
+		
+		int i,z;
+	    String A = "";
+	    for(i = 0; i < 8; i++){
+	    	      z = (int) ((Math.random() * 7) % 3);
+	    	      if (z == 1) { // 放數字
+	    	        A = A + ((int) ((Math.random() * 10) + 48));
+	    	      } else if (z == 2) { // 放大寫英文
+	    	    	  A = A + ((char) (((Math.random() * 26) + 65)));
+	    	      } else {// 放小寫英文
+	    	    	  A = A + (((char) ((Math.random() * 26) + 97)));
+	    	      }
+	    }
+	    String registerId = A;
+//	    String url = "http://localhost:8080/RentHouse/forgetPwd/" + registerId;
+	    String url = "http://eeit105house.southeastasia.cloudapp.azure.com:8080/RentHouse/forgetPwd/" + registerId;
+	    
+		HttpSession httpSession = request.getSession();
+		httpSession.setMaxInactiveInterval(60*10);
+		httpSession.setAttribute(registerId, f_acc);
+		System.out.println("registerId=" + registerId);
+//	信箱
+		// user
+		String user = "iiieeit105";
+		// password
+		String pwd = "yqfuudsxzjrzbloh";
+		// 接收者的email.
+		String to = f_email;
+		// 寄件人的email
+		String from = "iiieeit105@gmail.com";
+		// 寄件的smtp伺服器
+		String host = "smtp.gmail.com";
+		// 主旨
+		String subject = "租你幸福，找回密碼通知";
+		// 內文
+		String body = "用戶"+f_acc + "(" + f_email + "),您好" + "<br/>" 
+				+ "以下為您的新密碼 !"  + "請使用這組密碼登入您的會員帳號<br/>"
+				+ "請點擊以下連結導入會員修改<br/>" + "<a href='"+url +"'>點此改密碼</a><br/> "
+				+ "如果你不能點取連結，亦可以複製下列網址前往驗證。<br/>" 
+				+ ""+url+"<br/>"
+				+ "如果您認為這是垃圾信件，請忽略此信件。<br/>";
+		// 建立一個Properties來設定Properties
+		Properties properties = System.getProperties();
+		// 設定傳輸協定為smtp
+		properties.setProperty("mail.transport.protocol", "smtp");
+		// 設定mail Server
+		properties.setProperty("mail.smtp.host", host);
+		properties.setProperty("mail.smtp.port", "465");
+		// 需要驗證帳號密碼
+		properties.put("mail.smtp.auth", "true");
+		// Bypass the SSL authentication
+		properties.put("mail.smtp.ssl.enable", false);
+//    properties.put("mail.smtp.starttls.enable", false);
+		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		// 帳號，密碼
+		SmtpAuthenticator authentication = new SmtpAuthenticator(user, pwd);
+		// 建立一個Session物件，並把properties傳進去
+		
+		Session mailSession = Session.getDefaultInstance(properties, authentication);
+		try {
+			// 建立一個 MimeMessage object.
+			MimeMessage message = new MimeMessage(mailSession);
+			
+			Multipart mp=new MimeMultipart();
+			MimeBodyPart mbp=new MimeBodyPart();
+			mbp.setContent(body,"text/html;charset=UTF-8");
+			mp.addBodyPart(mbp);
+			message.setContent(mp);
+			
+			// 設定寄件人
+			message.setFrom(new InternetAddress(from));
+			// 設定收件人
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			// 設定主旨
+			message.setSubject(subject);
+			// 設定內文
+//			message.setText(body);
+			
+			Transport transport = mailSession.getTransport();
+			// 傳送信件
+			transport.send(message);
+			System.out.println("發送成功");
+		} catch (MessagingException mex) {
+			mex.printStackTrace();
+		}
+		create.put("reactive", "新密碼已發出，請查證信箱");
+		model.addAttribute("create", create);
+		Member member = memberService.findMemberById(f_acc);
+		member.setPwd(A);
+		memberService.updateMember(member);
+		return "forward:/";
+	}
+	//修改會員資料
 	@RequestMapping(value = "/membercontrol/updataMember", method = RequestMethod.POST)
 	public String updataMember(Model model, @RequestParam(value = "memberimg") MultipartFile file0,
 			HttpServletRequest request, @ModelAttribute("member") Member member) throws SerialException, SQLException {

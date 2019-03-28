@@ -12,6 +12,8 @@ public interface ResourcesService {
 	public List<Reservation>getReservation(Integer house);
 	public List<Reservation>getReservationMember(String memberId);
 	public void updateReservation(Integer id);
+	public void updateReservationstatus(Integer id);
 	public List<Integer>findByHId(String memberId);
+	public void updateScore(Integer id,Integer score);
 	
 }

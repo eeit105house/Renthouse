@@ -1,17 +1,55 @@
 .body {
 	margin: 0;
 	padding: 0;
-	background: #ffebd7;
+	background: #F8F8FF;
+}
+#carouselExampleControls{
+	border:1px solid #DCDCDC; 
+	border-top:3px solid #FF4500; 
+
+}
+.searchDiv {
+	margin-left:80px;
+	background-color: #F2FFF2;
+	height: 80px;
+	background: #F8F8FF;
 }
 .hasBeenSelected{
-	margin-left:50px;
+	padding-top:15px;
+	margin-top:10px;
+	border-top:3px solid #FF4500; 
+	margin-left:80px;
 }
-.screenBox{
-	margin-left:50px;
+
+#selectList{
+	height:270px;
+	background-color:#DCDCDC;
+	margin-top:10px;
+	margin-bottom:10px;
 }
-.start{
-	margin-left:100px;
+
+.carousel-item{
+	width:1100px;
+	text-align: left;
+}
+.carouselDiv{
+	
+	margin-bottom:60px;
+/* 	width:1263px; */
 	text-align: center;
+	margin-left:80px;
+	float:left;	
+}
+
+.screenBox{
+	margin-left:80px;
+}
+.start{	
+	margin-left:80px;
+	text-align: left;
+}
+.titleDiv {
+	float:left;
 }
 .pinImg{
 	whidth:30px;
@@ -24,19 +62,18 @@
 	width:100px;
 	height: 40px;
 }
-.carousel-inner{
-	
-}
+
 .perDivIncarousel{
 	margin:10px;
-	width:200px;
+	width:210px;
 	float:left;
 	clear:right;
 }
 .perImgIncarousel{
+	margin-left:5px;
+	margin-top:5px;
 	width: 200px;
 	height: 150px;
-
 }
 .perSpanIncarousel{
 	
@@ -54,7 +91,7 @@
 	clear:left;
 }
 .text {
-	width: 100px;
+	width: 60px;
 }
 
 .textDiv{
@@ -116,12 +153,7 @@
 /* 	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; */
 }
 
-.searchDiv {
-	margin-left:50px;
-	background-color: #F2FFF2;
-	height: 80px;
-	background: #ffebd7;
-}
+
 
 .searchBut {
 	margin-top: 30px;
@@ -130,7 +162,7 @@
 }
 
 .searchText {
-	margin-left:100px;
+/* 	margin-left:80px; */
 	margin-top: 30px;
 	width: 400px;
 	height: 40px;
@@ -165,4 +197,19 @@
 .eliminateCriteria {
 	DISPLAY: none;
 	float: right;
+	font-weight: bold;
+	font-family: Microsoft JhengHei;
+	font-size: 18px;
+	
+}
+.clearList_left{
+	font-weight: bold;
+	font-family: Microsoft JhengHei;
+	font-size: 18px;
+}
+.clearList{
+	color: red;
+	font-weight: bold;
+	font-family: Microsoft JhengHei;
+	font-size: 18px;
 }

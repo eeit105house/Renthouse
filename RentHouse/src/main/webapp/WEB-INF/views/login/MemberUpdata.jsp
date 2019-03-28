@@ -62,7 +62,7 @@
     <div id="googlehide" class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"><i id="Pwd_i2" class="fa fa-lock"></i> </span></div>
-        <form:input path="pwd" name="Pwd" id="Pwd2" class="form-control" placeholder="密碼*混合英數 8-12字" type="text" />
+        <form:input path="pwd" name="Pwd" id="Pwd2" class="form-control" placeholder="密碼*混合英數 8-12字" type="password" />
     </div> 
 <!--會員姓名   --> 
         <div class="form-group input-group">
@@ -106,68 +106,8 @@
 		 $("#googlehide").hide();
 	 };
 	 
-	 var pwd_ok2,name_ok2,phone_ok2 = false;
-	 $('#pic2').on('change',function(){
-			var file = this.files[0];
-			if(file!=null){
-				var reader = new FileReader();
-				reader.onload = function(e){
-					$('#showImg2').attr('src',e.target.result);
-
-				}
-				reader.readAsDataURL(file);
-			}else{
-				$('#showImg2').attr('src',"<c:url value='/login/img/PresetMember.png'/>");
-
-			}
 		});
-	 $('#Pwd2').on('keydown keyup keypress change focus blur',function(){
-			var re = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,16}$/;
-			var check = $(this).val();
-			  if(re.test(check)){
-			    $("#Pwd_i2").css({"color": "green"});
-				  pwd_ok2 = true;
-			  }else{
-				$("#Pwd_i2").css({"color": "red"});
-				pwd_ok2 = false;
-				}
-	 });
-	 $('#inputname2').on('keydown keyup keypress change focus blur',function(){
-			var re_zh = /^[\u4e00-\u9fa5]{2,}$/;
-			var re_en = /^[a-zA-Z]{3,}$/;
-			var check = $(this).val();
-			  if(re_zh.test(check)){
-			    $("#inputname_i2").css({"color": "green"});
-				  name_ok2 = true;
-			  }else if(re_en.test(check)){
-				$("#inputname_i2").css({"color": "green"});
-				  name_ok2 = true;
-			  }else{
-				$("#inputname_i2").css({"color": "red"});
-				  name_ok2 = false;
-				  }
-			});
-		$('#phone2').on('keydown keyup keypress change focus blur',function(){
-			var re = /^([0]+)([1-9]+)([0-9]{8,})$/
-			var check = $(this).val();
-			  if(re.test(check)){
-			    $("#phone_i2").css({"color": "green"});
-				  phone_ok2 = true;
-			  }else{
-			    $("#phone_i2").css({"color": "red"});
-				  phone_ok2 = false;
-			  }
-			});
-		$('.form-control').on('keydown keyup keypress change focus blur',function(){
-			if(true==name_ok2 || true==phone_ok2 || true==pwd_ok2){
-				$("#create2").show();
-				$("#notyet2").hide();
-			}else{
-				$("#create2").hide();
-				$("#notyet2").show();
-			}
-			});
-  });
+
   </script>
   <input type="hidden" id="herenow" value="updata"/> 
 </body>

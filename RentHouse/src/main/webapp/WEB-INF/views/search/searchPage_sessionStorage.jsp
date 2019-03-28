@@ -15,7 +15,7 @@
 
 <title>Insert title here</title>
 </head>
-<body class="body">
+<body class="body" style="background-color: #ffebd7;">
 
 	<div style="height: 75px;">
 		<%@include file="../login/narbar.jsp"%>
@@ -23,16 +23,16 @@
 	
 <%-- <a href="${pageContext.request.contextPath}/deal/AllHouseDealForAMember">某一房子(houseid)---歷年房屋成交紀錄</a> --%>
 	<form method="get">
-		<div class="searchDiv">
+		<div class="searchDiv" style="background-color: #ffebd7;">
 			<input class="searchText" type="text" placeholder="請輸入關鍵字(社區、街道等)" id="keyWord"/>
-			<button class="searchBut" onclick="getKeyWord()">
-				<img src='${pageContext.request.contextPath}/search/img/search.PNG' />
-			</button>
-		<a class = "mapImg" href="${pageContext.request.contextPath}/search/searchByMap"><img class="pinImg"src="${pageContext.request.contextPath}\search\img\Pin.png">地圖查詢</a>
+			
+				<img onclick="getKeyWord()" src='${pageContext.request.contextPath}/search/img/search.PNG' />
+			
+		<a class = "mapImg btn btn-primary" style="width:120px;" href="${pageContext.request.contextPath}/search/searchByMap"><img class="pinImg"src="${pageContext.request.contextPath}\search\img\Pin.png">地圖查詢</a>
 		</div>
 	</form>
 
-	<hr>
+	
 	<div class="selectNumberScreen">
 		<div class="hasBeenSelected">
 			<span class="clearList_left">篩選條件：</span>
@@ -40,30 +40,30 @@
 			<span class="eliminateCriteria">全部清除</span>
 		</div>
 
-		<hr>
 		
-		<div id="selectList" class="screenBox screenBackground">
+		
+		<div id="selectList" class="screenBox" style="width:1300px;">
 		
 			<div class="titleDiv">位置：</div><div id="zipcode2" class="zipcodeForCss"></div>
 
 
 			<p class="onlyIndexList" id="selectTypeId" />
 				<div class="titleDiv">類型：&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectType" id="type0">類型不限</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectType" id="type0">整層住家</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectType" id="type0">獨立套房</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectType" id="type0">分租套房</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectType" id="type0">雅房</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectType" id="type0">其他類型</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectType" id="type0" name="整層住家">整層住家</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectType" id="type0" name="獨立套房">獨立套房</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectType" id="type0" name="分租套房">分租套房</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectType" id="type0" name="雅房">雅房</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectType" id="type0" name="其他類型">其他類型</span>
 			</div>
 			
 			<p class="onlyIndexList" id="listIndexId" />
 				<div class="titleDiv">租金： &nbsp;&nbsp;|&nbsp;&nbsp;<span id="price0">租金不限</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span id="price0">5000元以下</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span id="price0">5000-10000元</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span id="price0">10000-20000元</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span id="price0">20000-30000元</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span id="price0">30000-40000元</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span id="price0">40000元以上</span>			
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectPrice" id="price0" name="5000元以下">5000元以下</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectPrice" id="price0" name="5000-10000元">5000-10000元</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectPrice" id="price0" name="10000-20000元">10000-20000元</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectPrice" id="price0" name="20000-30000元">20000-30000元</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectPrice" id="price0" name="30000-40000元">30000-40000元</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectPrice" id="price0" name="40000元以上">40000元以上</span>			
 				&nbsp;&nbsp;|&nbsp;&nbsp;
 				<div class="textDiv">
 				<input class="text" type="text"	id="minprice">&nbsp;-&nbsp;
@@ -73,12 +73,12 @@
 			
 			<p class="onlyIndexList" id="selectSqftId" />
 				<div class="titleDiv">坪數： &nbsp;&nbsp;|&nbsp;&nbsp;<span id="Sqft0">坪數不限</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span id="Sqft0">10坪以下</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span id="Sqft0">10-20坪</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span id="Sqft0">20-30坪</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span id="Sqft0">30-40坪</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span id="Sqft0">40-50坪</span>
-				&nbsp;&nbsp;|&nbsp;&nbsp;<span id="Sqft0">50坪以上</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectSqft" id="Sqft0" name="10坪以下">10坪以下</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectSqft" id="Sqft0" name="10-20坪">10-20坪</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectSqft" id="Sqft0" name="20-30坪">20-30坪</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectSqft" id="Sqft0" name="30-40坪">30-40坪</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectSqft" id="Sqft0" name="40-50坪">40-50坪</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectSqft" id="Sqft0" name="50坪以上">50坪以上</span>
 				&nbsp;&nbsp;|&nbsp;&nbsp; &nbsp;&nbsp;			
 				<div class="textDiv"><input class="text" type="text" id="minsqft">&nbsp;-&nbsp;
 				<input	class="text" type="text" id="maxsqft">&nbsp;坪
@@ -87,42 +87,44 @@
 
 			<p class="onlyIndexList" id="selectBuildId" />
 				<div class="titleDiv">房屋型態：  &nbsp;&nbsp;|&nbsp;&nbsp;
-				<input type="checkbox" name="build"	value="公寓" id="build0">公寓 &nbsp;&nbsp;|&nbsp;&nbsp;
-				<input	type="checkbox" name="build" value="電梯大樓" id="build1">電梯大樓&nbsp;&nbsp;|&nbsp;&nbsp;
-				<input type="checkbox" name="build"	value="透天厝" id="build2">透天厝 &nbsp;&nbsp;|&nbsp;&nbsp;
-				<input	type="checkbox" name="build" value="別墅" id="build3">別墅
+				<input type="checkbox" name="公寓"	value="公寓" id="build0">公寓 &nbsp;&nbsp;|&nbsp;&nbsp;
+				<input	type="checkbox" name="電梯大樓" value="電梯大樓" id="build1">電梯大樓&nbsp;&nbsp;|&nbsp;&nbsp;
+				<input type="checkbox" name="透天厝""	value="透天厝" id="build2">透天厝 &nbsp;&nbsp;|&nbsp;&nbsp;
+				<input	type="checkbox" name="別墅" value="別墅" id="build3">別墅
 			</div>
 
+
 			<p class="onlyIndexList" id="selectFloorId" />
-				<div class="titleDiv">樓層：   </div><select  class="floor" name="floor">
+				<div class="titleDiv">樓層：  
+				<select  class="floor" name="floor">
 					<option value="0" id="floor0" style="display:none">請選擇樓層</option>
 					<option value="1" id="floor0">1樓</option>
 					<option value="2" id="floor0">2-3樓</option>
 					<option value="3" id="floor0">4樓以上</option>
 				</select>
+			 </div>
 		
-
 			<p class="onlyIndexList" id="selectMoreId" />
 				<div class="titleDiv">更多條件： &nbsp;&nbsp;|&nbsp;&nbsp; 
-				<input type="checkbox"	name="appliance" value="電視" id="more0">有電視 &nbsp;&nbsp;|&nbsp;&nbsp;
-				<input type="checkbox" name="appliance" value="冰箱" id="more1">有冰箱	&nbsp;&nbsp;|&nbsp;&nbsp;
-				<input type="checkbox" name="appliance"	value="洗衣機" id="more2">有洗衣機&nbsp;&nbsp;|&nbsp;&nbsp; 
-				<input type="checkbox" name="appliance" value="冷氣" id="more3">有冷氣&nbsp;&nbsp;|&nbsp;&nbsp;
-				<input type="checkbox" name="appliance" value="網路" id="more4">有網路	&nbsp;&nbsp;|&nbsp;&nbsp;
-				<input type="checkbox" name="appliance"	value="熱水器" id="more5">有熱水器&nbsp;&nbsp;|&nbsp;&nbsp; 
-				<input type="checkbox" name="appliance" value="第四台" id="more6">有第四台&nbsp;&nbsp;|&nbsp;&nbsp;
-				<input type="checkbox" name="appliance"	value="瓦斯" id="more7">有瓦斯
+				<input type="checkbox" name="電視" value="電視" id="more0">有電視 &nbsp;&nbsp;|&nbsp;&nbsp;
+				<input type="checkbox" name="冰箱" value="冰箱" id="more1">有冰箱	&nbsp;&nbsp;|&nbsp;&nbsp;
+				<input type="checkbox" name="洗衣機"	value="洗衣機" id="more2">有洗衣機&nbsp;&nbsp;|&nbsp;&nbsp; 
+				<input type="checkbox" name="冷氣" value="冷氣" id="more3">有冷氣&nbsp;&nbsp;|&nbsp;&nbsp;
+				<input type="checkbox" name="網路" value="網路" id="more4">有網路	&nbsp;&nbsp;|&nbsp;&nbsp;
+				<input type="checkbox" name="熱水器"	value="熱水器" id="more5">有熱水器&nbsp;&nbsp;|&nbsp;&nbsp; 
+				<input type="checkbox" name="第四台" value="第四台" id="more6">有第四台&nbsp;&nbsp;|&nbsp;&nbsp;
+				<input type="checkbox" name="瓦斯"	value="瓦斯" id="more7">有瓦斯
 			</div>
 
-		</div>
+	
 	</div>
-	<br>
-	<div class="titleDiv" style="margin-left:50px;float:left;">精選推薦</div>
-	<hr>
-		<div class = "carousel" style="margin-left:100px;float:left;"></div>
-	<hr>
-		<div class = "start"></div>
-	<hr>
+	</div>	
+	<div style="margin-left:100px;margin-top:30px;text-align:left;"><span class="font-22B">精選推薦</span></div>
+<!-- 	插入輪播牆 -->
+	<div class = "carouselDiv" ></div>
+<!-- 	插入房屋物件 -->
+	<div class = "start"></div>
+	
 
 <script>$("#zipcode2").twzipcode({
 	countySel: "縣市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
@@ -133,6 +135,23 @@
 	districtName: "town" // 自訂地區 select 標籤的 name 值
 	});</script>
 <script>
+$(":text").focus(function() {
+	$(this).css("background-color", "#cccccc")
+});
+$(":text").blur(function() {
+	$(this).css("background-color", "#ffffff");
+	var temp=/^\d+(\.\d+)?$/;	
+	if($(this).attr("id")!="keyWord"){
+		if(temp.test(this.value)==false){
+			if(this.value == ""){	
+			}else{
+				alert("輸入[" +this.value+"]，錯誤格式");
+			}		
+			$(this).val("0");
+		}
+	}
+	
+});
 	function getKeyWord(){
 		var text = $("div.searchDiv input").val();
 		var id = "keyWord";
@@ -153,7 +172,39 @@
 						$(".start").html(data);
 				}
 			});
+			$.ajax({
+				url:"${pageContext.request.contextPath}/search/searchPage_carousel",
+				type:"Get",
+				cache:"false",
+				success:function(data){
+						$(".carouselDiv").html(data);
+				}
+			});
 		}else{
+			if(sessionStorage.getItem("type0") != null){
+				var text = sessionStorage.getItem("type0");
+				var type = "[name~='"+text+"']"
+				$(type).css({"color":"black","background-color":"#FF4500"});
+			}	
+			if(sessionStorage.getItem("price0") != null){
+				var text = sessionStorage.getItem("price0");
+				var type = "[name~='"+text+"']"
+				$(type).css({"color":"black","background-color":"#FF4500"});
+			}	
+			if(sessionStorage.getItem("Sqft0") != null){
+				var text = sessionStorage.getItem("Sqft0");
+				var type = "[name~='"+text+"']"
+				$(type).css({"color":"black","background-color":"#FF4500"});
+			}
+			var ca = sessionStorage.getItem("clearList").split(',');
+			var len = ca.length;
+			for (var i = 0; i < ca.length; i++) {
+				var type = "[name~='"+ca[i]+"']";
+				$(type).prop("checked","true");
+				
+			}
+// 			$(this).css({"color":"black","background-color":"#FF4500"});
+			
 			$(".clearList").text(sessionStorage.getItem("clearList"));
 			$(".eliminateCriteria").show();
 			$(".start").empty();
@@ -167,6 +218,14 @@
 					
 				}
 			});
+			$.ajax({
+				url:"${pageContext.request.contextPath}/search/searchPage_carousel",
+				type:"Get",
+				cache:"false",
+				success:function(data){
+						$(".carouselDiv").html(data);
+				}
+			});
 		}
 		
 	}else{
@@ -175,7 +234,7 @@
 			type:"Get",
 			cache:"false",
 			success:function(data){
-					$(".carousel").html(data);
+					$(".carouselDiv").html(data);
 			}
 		});
 		
@@ -188,13 +247,42 @@
 			}
 		});
 	}
+	
+	$(".titleDiv span ").mouseenter(function() {
+		var id = $(this).attr("id");
+		var text = $(this).text();
+		if(sessionStorage.getItem(id)!=text){
+		$(this).css("color","#FF4500");
+		}
+	});
+	$(".titleDiv span ").mouseleave(function() {
+		var id = $(this).attr("id");
+		var text = $(this).text();
+		if(sessionStorage.getItem(id)!=text){
+		$(this).css("color","black");
+		}
+	});
 			
-			
-		
-					
+	
 		$(".titleDiv span ").click(function() {
+			
 			var text = $(this).text();
-			var id = $(this).attr("id");
+			var id = $(this).attr("id");	
+			if(sessionStorage.getItem(id)!=text){
+				if(id == "type0"){
+					$(".selectType").css({"color":"black","background-color":"#DCDCDC"});
+					$(this).css({"color":"black","background-color":"#FF4500"});
+				}
+				if(id == "price0"){
+					$(".selectPrice").css({"color":"black","background-color":"#DCDCDC"});
+					$(this).css({"color":"black","background-color":"#FF4500"});
+				}
+				if(id == "Sqft0"){
+					$(".selectSqft").css({"color":"black","background-color":"#DCDCDC"});
+					$(this).css({"color":"black","background-color":"#FF4500"});
+				}
+				
+			}
 			changeSpan(text,id);
 		});
 
@@ -337,6 +425,15 @@
 		function getSqft() {
 			var min = $("#minsqft").val();
 			var max = $("#maxsqft").val();
+			if(min>max){
+				var temp = 0;
+				temp = min;
+				min = max;
+				max = temp;
+				$("#minsqft").val(min);
+				$("#maxsqft").val(max);
+			}
+			
 			var text = min + "-" + max + "坪";
 			var id = "Sqft0";
 			$(".start").empty();
@@ -378,6 +475,14 @@
 		function getPrice() {
 			var min = $("#minprice").val();
 			var max = $("#maxprice").val();
+			if(min>max){
+				var temp = 0;
+				temp = min;
+				min = max;
+				max = temp;
+				$("#minprice").val(min);
+				$("#maxprice").val(max);
+			}
 			var text =  min + "-" + max + "元";
 			var id = "price0";
 			$(".start").empty();
@@ -418,7 +523,8 @@
 
 		
 		
-		$(".eliminateCriteria").click(function() {		
+		$(".eliminateCriteria").click(function() {	
+			$(".titleDiv > input ").prop("checked","true");
 			$(".clearList").empty();
 			$(this).hide();
 			sessionStorage.clear();
@@ -437,7 +543,7 @@
 		
 
 		
-		$('.carousel').carousel({
+		$('.carouselDiv').carousel({
 			  interval: 2000
 			});
 </script>

@@ -74,7 +74,12 @@ public class LoginServiceImpl implements LoginService {
 				
 			}
 		}
-		
+		if(total18==0) {
+			total18 = 1;
+		}
+		if(total19==0) {
+			total19 = 1;
+		}
 		for (int i = 0; i < ave18.length; i++) {
 			ave18[i] = (allmonth18[i] * 100) / total18;
 		}

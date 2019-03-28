@@ -48,8 +48,12 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member login(String id,String pwd) {
-		Member bean = memberDao.findMemberById(id);
+		String inId = id.toUpperCase();
+		Member bean = memberDao.findMemberById(inId);
 		if(bean!=null) {
+			inId = id.toUpperCase();
+			String dbId = bean.getId().toUpperCase();
+			if(inId.equals(dbId)) {
 			if(pwd!=null && pwd.length()!=0) {
 				String inPWD = pwd;
 				String dbPWD = bean.getPwd();
@@ -57,6 +61,7 @@ public class MemberServiceImpl implements MemberService {
 					return bean;
 				}
 			}
+		}
 		}
 		return null;
 	}

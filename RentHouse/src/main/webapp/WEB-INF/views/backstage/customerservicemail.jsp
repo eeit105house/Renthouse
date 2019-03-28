@@ -36,7 +36,7 @@
 	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-72-precomposed.png" />
 <link rel="apple-touch-icon-precomposed"
 	href="${pageContext.request.contextPath}/RHstaticresource/ico/apple-touch-icon-57-precomposed.png" />
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/RHstaticresource/ico/favicon.png" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/RHstaticresource/ico/housse.jpg" />
 <!-- end: Favicon and Touch Icons -->
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -85,8 +85,8 @@
 						<form class="replyForm" method="post" >
 							<fieldset>
 							<input type="hidden" name="id" value="${omail.id }"/>
-							<span>請輸入員工ID:</span><input type="text" name="ename" />
-								<textarea tabindex="3" class="input-xlarge span12" id="message" name="content" rows="12" placeholder="Click here to reply"></textarea>
+							<span>員工ID:</span><input type="text" name="ename" readonly="true" value="${employee.id }" />
+								<textarea tabindex="3" class="input-xlarge span12" id="message" name="content" rows="12" placeholder="Click here to reply" required="true"></textarea>
 
 								<div class="actions">
 									

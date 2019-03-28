@@ -42,6 +42,12 @@ public class CheckUpdateController {
 		service.updateReservation(houseid);
 		return "redirect:/MemberCheckUpDate/back/"+memberId;
 	}
+	@RequestMapping(value = "/MemberCheckUpDate/lookedHouse/{reservation}/{memberId}")
+	public String updateReservationForLooked(Model model,@PathVariable("reservation") Integer reservationId,@PathVariable("memberId") String memberId) {
+		
+		service.updateReservationstatus(reservationId);
+		return "redirect:/MemberCheckUpDate/"+memberId;
+	}
 	@RequestMapping(value = "/MemberCheckUpDate/back/{memberId}")
 	public String updateReservationBack(@PathVariable("memberId") String id) {
 		return "redirect:/MemberCheckUpDate/"+id;
