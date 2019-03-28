@@ -15,11 +15,11 @@
 </head>
 <body>
 <c:if test="${number != 0}">
-<h4>共找到${number}間房屋</h4>
+	<div style="text-align:left;border-top:3px solid #FF4500; "><span class="font-22B">共找到</span><span class="font-25R">${number}</span><span class="font-22B">間房屋</span></div>
 	<c:forEach var='objectlist' varStatus="check" items="${Objectlists}">
-		<c:if test="${check.count<6}">
+		<c:if test="${check.count < 6}">
 		<div class="sitebody" id = "${objectlist[13]}" onclick='window.open("${pageContext.request.contextPath}/houseView/${objectlist[13]}")' 
-		style="line-height: 40px;border-bottom: 0.5px solid #9d9d9d;width: 900px;margin: 20px;margin-left: 100px;font-size: 13px;">
+		style="line-height: 40px;border-bottom: 0.5px solid #9d9d9d;width: 900px;font-size: 13px;">
 			<div id="sidebar_left" style="width: 250px;height: 170px;text-align: left;line-height: 20px;float: left;">
 				<img id="img" src="<c:url value='/getPicture/${objectlist[0]}' />" />
 			</div>
@@ -37,7 +37,7 @@
 
 	</c:if>
 	</c:forEach>
-	<c:if test="${number > 6}">
+	<c:if test="${number > 5}">
 	<nav aria-label="Page navigation example">
 	  <ul class="pagination">
 	    <li class="page-item">
@@ -69,16 +69,28 @@
 
 <script>
 $("div.sitebody").mouseenter(function() {
-	$(this).css("background-color","#F0FFF0")
+	$(this).css("background-color","#DCDCDC")
 });
 $("div.sitebody").mouseleave(function() {
-	$(this).css("background-color","#ffebd7")
+	$(this).css("background-color","#F8F8FF")
 });
 			
 $("div span.page-link").click(function(){
 	var page= $(this).attr("id");
 	$(".start").empty();
 	if(page == 1){
+		if(sessionStorage.getItem("clearList") != null){
+			var Searchcriteria= sessionStorage.getItem("clearList");
+			$.ajax({
+				url:"${pageContext.request.contextPath}/search/searchPage_criteria",
+				data:{"Searchcriteria":Searchcriteria},
+				type:"Get",
+				cache:"false",
+				success:function(data){
+						$(".start").html(data);
+				}
+			});
+		}else{
 		$.ajax({
 			url:"${pageContext.request.contextPath}/search/searchPage_start",
 			type:"Get",
@@ -87,15 +99,29 @@ $("div span.page-link").click(function(){
 					$(".start").html(data);
 			}
 		});
+		}
 	}else{
-		$.ajax({
-			url:"${pageContext.request.contextPath}/search/searchPage_start_page",
-			type:"Get",
-			data:{"page":page},
-			success:function(data){
-				$(".start").html(data);
-			}
-		});
+		if(sessionStorage.getItem("clearList") != null){
+			var Searchcriteria= sessionStorage.getItem("clearList");
+			$.ajax({
+				url:"${pageContext.request.contextPath}/search/searchPage_criteria_page",
+				type:"Get",
+				data:{"page":page,"Searchcriteria":Searchcriteria},
+				success:function(data){
+					$(".start").html(data);
+				}
+			});
+		}else{
+			$.ajax({
+				url:"${pageContext.request.contextPath}/search/searchPage_start_page",
+				type:"Get",
+				data:{"page":page},
+				success:function(data){
+					$(".start").html(data);
+				}
+			});
+		}
+		
 	}			
 	
 });

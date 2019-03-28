@@ -14,7 +14,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h4>共找到${number}間房屋</h4>
 	<c:forEach var='newList' varStatus="check" items="${NewList}">
 				<div class="sitebody" id="${newList[13]}" onclick='window.open("${pageContext.request.contextPath}/houseView/${newList[13]}")'
 			style="line-height:10px;border-bottom: 0.5px solid #9d9d9d;border-top: 0.5px solid #9d9d9d;width: 100%">

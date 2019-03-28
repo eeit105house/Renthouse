@@ -1,0 +1,53 @@
+#carouselExampleControls{
+	border:1px solid #DCDCDC; 
+	border-top:3px solid #FF4500; 
+	border-bottom:3px solid #FF4500; 
+}
+.carousel-item{
+	width:1100px;
+	text-align: left;
+}
+.carouselDiv{
+	
+	margin-bottom:60px;
+/* 	width:1263px; */
+	text-align: center;
+	margin-left:80px;
+	float:left;	
+}
+.perDivIncarousel{
+	margin:10px;
+	width:210px;
+	float:left;
+	clear:right;
+}
+.perImgIncarousel{
+	margin-left:5px;
+	margin-top:5px;
+	width: 200px;
+	height: 150px;
+}
+.perSpanIncarousel{
+	
+}
+#carouselimg{
+	width: 50px;
+	height: 38px;
+}
+.font-16B {
+	font-family: Microsoft JhengHei;
+	font-size: 16px;
+}
+
+.font-22B {
+	font-weight: bold;
+	font-family: Microsoft JhengHei;
+	font-size: 22px;
+}
+
+.font-25R {
+	font-weight: bold;
+	font-family: Microsoft JhengHei;
+	font-size: 25px;
+	color: red;
+}
