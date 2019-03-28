@@ -56,7 +56,7 @@
 		$(this).css("background-color","#DCDCDC")
 	});
 	$("div.sitebody").mouseleave(function() {
-		$(this).css("background-color","#F8F8FF")
+		$(this).css("background-color","#ffebd7")
 	});
 $("div span.page-link").click(function(){
 	var page= $(this).attr("id");

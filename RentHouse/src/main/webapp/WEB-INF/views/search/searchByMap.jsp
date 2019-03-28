@@ -21,7 +21,7 @@
 <script
 	src="${pageContext.request.contextPath}/search/js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>地圖搜尋~*</title>
 
 </head>
 <body class="body" style="background-color: #ffebd7;">

@@ -13,10 +13,9 @@
 <link rel='stylesheet'	href='${pageContext.request.contextPath}/search/css/houselist.css'	type="text/css" />
 
 
-<title>Insert title here</title>
+<title>尋找幸福~*</title>
 </head>
 <body class="body" style="background-color: #ffebd7;">
-
 	<div style="height: 75px;">
 		<%@include file="../login/narbar.jsp"%>
 	</div>
@@ -42,7 +41,7 @@
 
 		
 		
-		<div id="selectList" class="screenBox" style="width:1300px;">
+		<div id="selectList" class="screenBox">
 		
 			<div class="titleDiv">位置：</div><div id="zipcode2" class="zipcodeForCss"></div>
 
@@ -66,8 +65,8 @@
 				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectPrice" id="price0" name="40000元以上">40000元以上</span>			
 				&nbsp;&nbsp;|&nbsp;&nbsp;
 				<div class="textDiv">
-				<input class="text" type="text"	id="minprice">&nbsp;-&nbsp;
-				<input class="text" type="text"	id="maxprice">&nbsp;元
+				<input class="text" type="text"	name="priceSqft" id="minprice">&nbsp;-&nbsp;
+				<input class="text" type="text"	name="priceSqft" id="maxprice">&nbsp;元
 				<input type="button" value="確定" onclick="getPrice()" id="price7"></div>			
 			</div>
 			
@@ -80,8 +79,8 @@
 				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectSqft" id="Sqft0" name="40-50坪">40-50坪</span>
 				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectSqft" id="Sqft0" name="50坪以上">50坪以上</span>
 				&nbsp;&nbsp;|&nbsp;&nbsp; &nbsp;&nbsp;			
-				<div class="textDiv"><input class="text" type="text" id="minsqft">&nbsp;-&nbsp;
-				<input	class="text" type="text" id="maxsqft">&nbsp;坪
+				<div class="textDiv"><input class="text" name="priceSqft" type="text" id="minsqft">&nbsp;-&nbsp;
+				<input	class="text" type="text" name="priceSqft" id="maxsqft">&nbsp;坪
 				<input	type="button" value="確定" onclick="getSqft()" id="Sqft6"></div>			
 			</div>
 
@@ -124,7 +123,7 @@
 	<div class = "carouselDiv" ></div>
 <!-- 	插入房屋物件 -->
 	<div class = "start"></div>
-	
+<!-- </div>	 -->
 
 <script>$("#zipcode2").twzipcode({
 	countySel: "縣市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
@@ -139,17 +138,21 @@ $(":text").focus(function() {
 	$(this).css("background-color", "#cccccc")
 });
 $(":text").blur(function() {
+	var textName = $(this).attr("name");
 	$(this).css("background-color", "#ffffff");
 	var temp=/^\d+(\.\d+)?$/;	
-	if($(this).attr("id")!="keyWord"){
-		if(temp.test(this.value)==false){
-			if(this.value == ""){	
-			}else{
-				alert("輸入[" +this.value+"]，錯誤格式");
-			}		
-			$(this).val("0");
+	if(textName == "priceSqft"){
+		if($(this).attr("id")!="keyWord"){
+			if(temp.test(this.value)==false){
+				if(this.value == ""){	
+				}else{
+					alert("輸入[" +this.value+"]，錯誤格式");
+				}		
+				$(this).val("0");
+			}
 		}
 	}
+	
 	
 });
 	function getKeyWord(){

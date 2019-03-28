@@ -34,6 +34,7 @@ public class RootAppConfig {
 		} catch (PropertyVetoException e) {
 			e.printStackTrace();
 		}
+
 //		ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=RentHouseDB");
 		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit105house.database.windows.net:1433;database=RentHouseDB");
 
