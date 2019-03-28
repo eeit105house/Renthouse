@@ -24,7 +24,7 @@ $(document).ready(function() {
     	$("#inputPassword").val("password1234");
     	});
 	$("#forgetpwd").click(function(){
-		$("#inputAccount").val("customer123");
-		$("#inputPassword").val("password1234");
+		$("#forgetpwdacc").val("customer123");
+		$("#forgetpwdemail").val("password1234");
 	});
 });
