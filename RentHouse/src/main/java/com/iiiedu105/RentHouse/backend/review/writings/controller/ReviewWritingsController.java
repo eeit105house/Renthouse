@@ -68,10 +68,9 @@ public class ReviewWritingsController {
 	@RequestMapping(value="/Details/{id}")
 	public String details(@PathVariable("id") Integer id,Model model) {
 		Object[] list = rservice.getAllDetailWritingsById(id);
-		model.addAttribute("olist", list);
 		list[2] = changeclob.ClobToString((Clob)list[2] );
 		list[5] = changeclob.ClobToString((Clob)list[5]);
-		
+		model.addAttribute("olist", list);	
 		return "backstage/writingsDetails";		
 	}
 	}

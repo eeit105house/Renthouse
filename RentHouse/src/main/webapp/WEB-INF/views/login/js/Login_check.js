@@ -15,4 +15,16 @@ $(document).ready(function() {
 			$("#Login_check").prop("disabled",true);
 		}
 	});
+	$("#housemaster").click(function(){
+		$("#inputAccount").val("RentMaster29");
+		$("#inputPassword").val("password1234");
+		});
+	$("#housecustomer").click(function(){
+    	$("#inputAccount").val("customer123");
+    	$("#inputPassword").val("password1234");
+    	});
+	$("#forgetpwd").click(function(){
+		$("#inputAccount").val("customer123");
+		$("#inputPassword").val("password1234");
+	});
 });

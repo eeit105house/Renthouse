@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- 首頁樣式 -->
-
+<link rel='stylesheet'	href='${pageContext.request.contextPath}/search/css/indexCarousel.css'	type="text/css" />
 <link href="${pageContext.request.contextPath}/login/css/landing-page.css" rel="stylesheet">
 <title>租你幸福~*</title>
 </head>
@@ -43,11 +43,13 @@
         </div>
       </div>
     </div>
+     
   </header>
-
+  	<div style="margin-left:100px;margin-top:30px;text-align:left;"><span class="font-22B">精選推薦</span></div>
+ <div class = "carouselDiv" ></div>
   <!-- Icons Grid -->
   <section class="features-icons bg-light text-center">
-  <div>輪播</div>
+<div>輪播</div>
     <div class="container">
       <div class="row">
         <div class="col-lg-4">
@@ -162,6 +164,14 @@
 	  sessionStorage.setItem(id,text);
 	  window.location.href="${pageContext.request.contextPath}/search/searchPage_sessionStorage";
   });
+  $.ajax({
+		url:"${pageContext.request.contextPath}/search/searchPage_carousel",
+		type:"Get",
+		cache:"false",
+		success:function(data){
+				$(".carouselDiv").html(data);
+		}
+	});
   </script>
 </body>
 </html>

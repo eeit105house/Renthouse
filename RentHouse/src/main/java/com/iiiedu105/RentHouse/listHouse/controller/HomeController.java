@@ -179,7 +179,8 @@ public class HomeController {
 		int totalList = Objectlist.size();
 		double pageListNum = 5.0;
 		double biggestPage =Math.ceil(totalList/pageListNum);
-		
+		System.out.println(biggestPage);
+		System.out.println(totalList);
 		model.addAttribute("pageListNum", pageListNum);
 		model.addAttribute("biggestPage", biggestPage);
 		model.addAttribute("totalList", totalList);
