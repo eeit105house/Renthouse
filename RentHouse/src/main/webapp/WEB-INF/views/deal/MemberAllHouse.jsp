@@ -12,7 +12,7 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>租你幸福~*</title>
 </head>
 <body>
 
@@ -54,7 +54,7 @@
             <label for="to" class="col-form-label">租約到期日</label>
             <input type="text" class="form-control" id="to" name="to"/>
           </div>
-          <input type = "file" value = "上傳租賃契約" multiple="multiple" name="file" />
+          <input type = "file" value = "上傳租賃契約" multiple="multiple" accept="application/pdf" name="file" />
       </div>          
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>

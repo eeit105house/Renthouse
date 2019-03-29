@@ -145,7 +145,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 							<div class="story">
 								<ul class="slider">
 									<c:forEach var='picId' items='${picIds}'>
-										<li><div style="height:450px; width: 450px;"><img style="max-height: 450px; max-width: 450px" src="<c:url value='hPic/${picId}'/>" /></div></li>
+										<li><div style="height:450px; width: 450px;"><img style="max-height: 450px; max-width: 450px;min-height: 450px; min-width: 450px" src="<c:url value='hPic/${picId}'/>" /></div></li>
 									</c:forEach>
 								</ul>
 							</div>

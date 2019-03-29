@@ -191,7 +191,7 @@
             <label for="to" class="col-form-label">租約到期日</label>
             <input type="text" class="form-control" id="to" name="to" readonly="readonly" placeholder="請點擊選擇日期" />
           </div>
-          <input type = "file" value = "上傳租賃契約" multiple="multiple" name="file" />
+          <input type = "file" value = "上傳租賃契約" multiple="multiple" accept="application/pdf" name="file" />
       </div>          
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>

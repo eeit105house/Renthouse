@@ -178,9 +178,7 @@
 <%-- 					</form:form> --%>
 					<!--editor start-->
 					<!-- 				============檢舉按鈕開始================			 -->
-
 					<div style="padding-left:10px">
-
 	<c:if test="${ForumBean.status=='上架' }">
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#writeReport" data-whatever="@mdo">檢舉</button>
 	<div class="modal fade" id="writeReport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -217,8 +215,20 @@
   </div>
 </div>
 					</div> 
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/eeit105house/Renthouse.git
 					</div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/eeit105house/Renthouse.git
 					</c:if>
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/eeit105house/Renthouse.git
 <!-- 		================檢舉按鈕結束=======================			 -->
 					
 <a name="rep"></a>
@@ -303,7 +313,7 @@
         <li> 會員必須同意不在討論區發表任何具有偽造詐欺的、誹謗的、錯誤的、辱駡的、粗俗的、有害的、騷擾的，淫穢的，褻瀆的、性別導向的、威脅侵犯他人隱私的、或者違反任何法律法規等資訊。若遭檢舉發現，591有權將版主文章鎖帖或刪除，情節重大者將取消該會員之資格。</li>
         <li> 討論區嚴禁灌水行為；禁止以任意形式發佈廣告內容；禁止發佈或回復與租你幸福主旨不相符的文章。若有發現，租你幸福有權自行刪除。</li>
         <li> 發帖內容與版塊內容不符，管理員有權刪除文章或將文章移至合適的版塊。</li>
-        <li> 請勿留下身份證字號、住址等個人隱私資料，以免遭人盜用，591不負管理之責。</li>
+        <li> 請勿留下身份證字號、住址等個人隱私資料，以免遭人盜用，租你幸福不負管理之責。</li>
         <li> 所有會員皆須遵守以上原則，不同意者請勿在此發表言論。</li>
       </ul>      
     </div>

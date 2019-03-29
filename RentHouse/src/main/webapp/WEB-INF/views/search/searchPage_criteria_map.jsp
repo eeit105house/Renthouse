@@ -11,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
 
-<title>Insert title here</title>
+<title>租你幸福~*</title>
 </head>
 <body>
 	<c:forEach var='objectlist' items="${Objectlists}">

@@ -10,7 +10,7 @@
 <link href="${pageContext.request.contextPath}/login/css/landing-page.css" rel="stylesheet">
 <title>租你幸福~*</title>
 </head>
-<body style="background-color:  peachpuff;">
+<body style="background-color:#ffebd7;">
 <!-- header -->
 <div style="height: 75px;">
 <%@include file="login/narbar.jsp"%>
@@ -45,23 +45,39 @@
     </div>
      
   </header>
+  <section style="height: 400px;">
   	<div style="margin-left:100px;margin-top:30px;text-align:left;"><span class="font-22B">精選推薦</span></div>
- <div class = "carouselDiv"  style="clear:both;"></div>
-  <!-- Icons Grid -->
-  <section class="features-icons bg-light text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-            </div>
-          </div>
+ <div class = "carouselDiv"></div>
+ </section>
+
+  <!-- Image Showcases -->
+  <section class="showcase" >
+    <div class="container-fluid p-0">
+      <div class="row no-gutters">
+
+        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url(https://upload.cc/i1/2019/03/28/05y8zG.jpg);"></div>
+        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+          <h2 style="text-align: center;font-family: 標楷體;">人生一半以上的時間?</h2>
+          <p class="lead mb-0" style="text-align: center;font-family: 標楷體;">人生有一半以上的時間都在家中渡過</p>
+          <p class="lead mb-0" style="text-align: center;font-family: 標楷體;">找一個理想的住家，絕對是人生中的大事</p>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-lg-6 text-white showcase-img" style="background-image: url(https://upload.cc/i1/2019/03/28/0kmMDj.jpg);"></div>
+        <div class="col-lg-6 my-auto showcase-text">
+          <h2 style="text-align: center;font-family: 標楷體;">在找理想中的新家嗎 ?</h2>
+          <p class="lead mb-0" style="text-align: center;font-family: 標楷體;">在這裡快速搜尋找好房</p>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url(https://upload.cc/i1/2019/03/28/srdcRJ.jpg);"></div>
+        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+          <h2 style="text-align: center;font-family: 標楷體;">馬上註冊，加入會員!!</h2>
+          <p class="lead mb-0" style="text-align: center;font-family: 標楷體;">加入會員立刻開始尋找理想的家。</p>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Image Showcases -->
 
   <!-- Footer -->
   <footer class="footer bg-light">
