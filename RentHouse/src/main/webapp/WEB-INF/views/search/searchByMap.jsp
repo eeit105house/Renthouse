@@ -266,14 +266,18 @@ $("#zipcode2").twzipcode({
 	});
 
 	$(".city-control").change(function() {			//選取城市後動作
-		var text = $(this).children('option:selected').text();
-		var id = $(this).children('option:selected').attr("id");
+		var thisText = $(this).children('option:selected').text();
+		var townText = $(".town-control").children('option:selected').text();
+		text = thisText + townText;
+		var id = "cityWithTown";
 		changeSelect(text,id);
 	});
 	
 	$(".town-control").change(function() {	//選取縣市後後動作
-		var text = $(this).children('option:selected').text();
-		var id = $(this).children('option:selected').attr("id");
+		var thisText = $(this).children('option:selected').text();
+		var cityText = $(".city-control").children('option:selected').text();
+		var text = cityText+thisText;
+		var id = "cityWithTown";
 		changeSelect(text,id);
 	});
 	
