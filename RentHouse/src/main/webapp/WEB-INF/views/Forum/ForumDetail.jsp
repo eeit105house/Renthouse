@@ -136,7 +136,7 @@
 </div>		
 	<div class="content">
 
-  <c:forEach var="reply" items="${replyList}">
+  	<c:forEach var="reply" items="${replyList}">
 				<div class="leftSideBar">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
@@ -165,7 +165,10 @@
 					</div>
 					<!--装潢日记投票-->
 				
-</div></c:forEach></div>
+				</div>
+	</c:forEach>
+
+</div>
 <div class="button_line">
      <table width="100%" border="0">
 						<tr>

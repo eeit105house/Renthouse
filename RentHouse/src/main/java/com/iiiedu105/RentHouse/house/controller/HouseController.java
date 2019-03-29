@@ -683,22 +683,22 @@ public class HouseController {
 	private List<Map<String,String>> theVipProject() {
 		List<Map<String,String>> vipProjects =new  LinkedList<Map<String,String>>();
 		Map<String,String> normal = new HashMap<>();
-		normal.put("pName", "普通刊登");
+		normal.put("pName", "銅牌刊登");
 		normal.put("pPrice", "500");
 		normal.put("pNumber", "0");
 		normal.put("pInfo", "普通刊登");
 		vipProjects.add(normal);
 		Map<String,String> vip = new HashMap<>();
-		vip.put("pName", "高級刊登");
+		vip.put("pName", "白銀刊登");
 		vip.put("pPrice", "1000");
 		vip.put("pNumber", "1");
 		vip.put("pInfo", "可享有優先搜尋");
 		vipProjects.add(vip);
 		Map<String,String> superVip = new HashMap<>();
-		superVip.put("pName", "超高級刊登");
+		superVip.put("pName", "黃金刊登");
 		superVip.put("pPrice", "2000");
 		superVip.put("pNumber", "2");
-		superVip.put("pInfo", "可享有優先搜尋及輪播牆");
+		superVip.put("pInfo", "可享有優先搜尋及登上精選推薦輪播牆");
 		vipProjects.add(superVip);
 		return vipProjects;
 	}
