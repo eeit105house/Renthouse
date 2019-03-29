@@ -215,20 +215,10 @@
   </div>
 </div>
 					</div> 
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/eeit105house/Renthouse.git
 					</div>
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/eeit105house/Renthouse.git
 					</c:if>
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/eeit105house/Renthouse.git
 <!-- 		================檢舉按鈕結束=======================			 -->
 					
 <a name="rep"></a>
