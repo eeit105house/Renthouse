@@ -63,18 +63,33 @@
 
 
     <script>
-    var profile,id_token;
-	var countt=0;
-      function GoogleSignIn(googleUser) {
+    $(document).ready(function(){
+    	$("#housemaster").click(function(){
+    		$("#inputAccount").val("RENTMASTER22");
+    		$("#inputPassword").val("password1234");
+    		});
+    	$("#housecustomer").click(function(){
+        	$("#inputAccount").val("CUSTOMER124");
+        	$("#inputPassword").val("password1234");
+        	});
+    	$("#forgetpwd").click(function(){
+    		$("#forgetpwdacc").val("CUSTOMER124");
+    		$("#forgetpwdemail").val("iiieeit10598@gmail.com");
+    	});
+    });
+	 var profile,id_token;
+		var countt=0;
+		
+    function GoogleSignIn(googleUser) {
+    	console.log("重整=="+countt);
     	// 客戶端如果有需要的話可以通過profile來獲取使用者資訊
            profile = googleUser.getBasicProfile();
           // 傳回後臺驗證，並獲取userid
            id_token = googleUser.getAuthResponse().id_token;
           console.log("ID Token: " + id_token);
-
           if(countt==1){
         	  $("#googlesigntest").click();
-        	  window.location.reload();
+   
           };
         };
         function googlesigntest (){
@@ -88,11 +103,11 @@
             };
             xhr.send('idtokenstr=' + id_token);
             if(countt==2){
-            	window.location.reload();
+            	$("#reflash").click();
             }
         };
     </script>
-
+<a href="#" id="reflash" style="position: absolute; top: -9999px;left: -9999px;"onclick="javascript:window.location.reload()">重新整理</a>
           </div>
         </div>
       </div>
