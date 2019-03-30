@@ -1000,7 +1000,7 @@ a.red-link:hover { color:#FF0000; text-decoration:underline; }
     background:url(../../../images/index/forum/design-login.gif) no-repeat;  
 }
 /*装潢日记右侧投票窗*/
-.forum-rel{position: relative}
+
 .voted_logo{background: url(../../../images/index/forum/voted_logo.png) no-repeat;}
 .unvoted_logo{background: url(../../../images/index/forum/design-support.png) no-repeat;}
 

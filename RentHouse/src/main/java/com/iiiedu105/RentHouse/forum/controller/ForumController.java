@@ -89,6 +89,7 @@ public class ForumController {
 	public String viewPost(Model model, @PathVariable Integer fId) throws SQLException {
 		Forum ForumBean = service.findById(fId);
 		Member memberBean = ForumBean.getMemberBean();
+		
 		List<ForumReply> list = service.getAllReplies(fId);
 		ForumReport forumReport = new ForumReport();
 		

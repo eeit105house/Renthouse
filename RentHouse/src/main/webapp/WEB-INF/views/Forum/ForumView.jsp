@@ -83,37 +83,39 @@
 <!--     </tr> -->
 	
     <div class="container">
-
+ 
   <table class="table">
     <thead class="thead-dark">
+
 					<tr align="center">
 						<th width="60%">標題</th>
 						<th>發表</th>
 						<th>分類</th>
 						<th>發表時間</th>
 					</tr>
+					
 				</thead>
     <tbody>
       <c:forEach var="forum" items="${flist}">
       <tr align="center">
         <td><a href='<c:url value="/Forum/ForumDetail/${forum.id}" />'>${forum.title}</a></td>
-        <td><a href='<c:url value="/membercontrol/${forum.memberBean.id}" />'>${forum.memberBean.id}</td>
+        <td><a href='<c:url value="/membercontrol/${forum.memberBean.id}" />'>${forum.memberBean.id}</a></td>
         <td>${forum.sort}</td>
        <td> ${forum.datetime}</td> 
       </tr>
      </c:forEach>	
     </tbody>
     
-    <div id="act-list">
-    	<div class="head">
+    	<div class="head" id="act-list">
             <div class="pub-btn"><a class="btn btn-primary" href="Forum/add">發表文章</a>     
              <div class="modal-footer">
-        <a href="<spring:url value='/delete/${forum.id }' />" class="btn btn-primary">確認</a>
-        <button type="button" class="btn" data-dismiss="modal">取消</button>                  
+        <a href="<spring:url value='/delete/${forum.id }' />" class="btn btn-primary">刪除文章</a>
+        <button type="button" class="btn">取消</button>                  
               </div>
+              
 </div>
 </div>
-</div>
+
   </table>
   </div>
 <!--   <table class="table"> -->
