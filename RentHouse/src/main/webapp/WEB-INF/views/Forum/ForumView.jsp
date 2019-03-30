@@ -27,7 +27,8 @@
 <%-- 	href="${pageContext.request.contextPath}/Forum/css/bbs.css" --%>
 <!-- 	type="text/css" g="publish-css"> -->
 
-<title>租你幸福--討論區 租屋,房屋買賣,搬家,房屋討論</title>
+<title>租你幸福 - 討論區 租屋,房屋買賣,搬家,房屋討論</title>
+<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
 <style>
 .well, .panel {
 	text-align: center;

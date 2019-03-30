@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-@WebFilter(urlPatterns= {"/membercontrol/","/insertPicPage"})
+@WebFilter(urlPatterns= {"/membercontrol/","/insertPicPage","/ForumView/"})
 public class SignFilter implements Filter {
 	HttpSession session;
 	

@@ -32,6 +32,7 @@
 <!-- 		type="text/css" /> -->
 	<meta charset="UTF-8">
 	<title>您的房屋</title>
+	<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
 <style type="text/css">
 
 </style>

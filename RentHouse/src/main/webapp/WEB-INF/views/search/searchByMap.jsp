@@ -21,8 +21,8 @@
 <script
 	src="${pageContext.request.contextPath}/search/js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
 <meta charset="UTF-8">
-<title>地圖搜尋~*</title>
-
+<title>租你幸福 - 地圖搜尋</title>
+<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
 </head>
 <body class="body" style="background-color: #ffebd7;">
 	<div style="height: 75px;">

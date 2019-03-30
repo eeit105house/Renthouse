@@ -96,6 +96,7 @@
 	</script>
 	<meta charset="UTF-8">
 	<title>詳細資訊</title>
+	<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
 </head>
 
 <body style="background-color: #ffebd7;">

@@ -23,6 +23,7 @@
 		type="text/css" />
 	<meta charset="UTF-8">
 	<title>您的家具</title>
+	<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
 
 	<script>
 // 		$(document).ready(function () {
