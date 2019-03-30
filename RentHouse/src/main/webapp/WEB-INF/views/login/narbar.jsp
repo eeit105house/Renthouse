@@ -27,6 +27,9 @@
 <!-- 註冊登入 -->
 <script src="${pageContext.request.contextPath}/login/js/Registered_check.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/login/js/Login_check.js" type="text/javascript"></script>
+
+<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
+
 <style>
 
  		.alarm {

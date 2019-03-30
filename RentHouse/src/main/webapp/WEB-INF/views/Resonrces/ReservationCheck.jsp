@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>租你幸福~*</title>
 </head>
 <body>
 <table width="300" border="1">

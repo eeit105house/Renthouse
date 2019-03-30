@@ -219,6 +219,7 @@ public class MemberController {
 		member.setActive("已驗證");
 		memberService.updateMember(member);
 		activeOk.put("active", "帳號開通成功，請重新登入");
+		session.removeAttribute("registerId");
 		model.addAttribute("activeOk", activeOk);
 		return "forward:/";
 	}
@@ -242,6 +243,7 @@ public class MemberController {
 			Member member = memberService.findMemberById(registeridAcc);
 			session.setAttribute("user", member);
 			activeOk.put("active", "請將您的密碼修改完成");
+			session.removeAttribute("registerId");
 			model.addAttribute("activeOk", activeOk);
 			return "redirect:/membercontrol/" + registeridAcc;
 		}

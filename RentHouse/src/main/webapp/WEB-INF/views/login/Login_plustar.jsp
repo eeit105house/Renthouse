@@ -9,7 +9,7 @@
 <!-- Google登入 -->
 <meta name="google-signin-scope" content="profile email">
 <meta name="google-signin-client_id" content="825814170132-9r69bbro6bbtg1ahvhsp5jeu07f52sd0.apps.googleusercontent.com">
-<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="//apis.google.com/js/platform.js" async defer></script>
 
 </head>
 <body>
@@ -63,21 +63,38 @@
 
 
     <script>
-    var profile,id_token;
-	var countt=0;
-      function GoogleSignIn(googleUser) {
+    $(document).ready(function(){
+    	$("#housemaster").click(function(){
+    		$("#inputAccount").val("RENTMASTER22");
+    		$("#inputPassword").val("password1234");
+    		});
+    	$("#housecustomer").click(function(){
+        	$("#inputAccount").val("CUSTOMER124");
+        	$("#inputPassword").val("password1234");
+        	});
+    	$("#forgetpwd").click(function(){
+    		$("#forgetpwdacc").val("CUSTOMER124");
+    		$("#forgetpwdemail").val("iiieeit10598@gmail.com");
+    	});
+    });
+	 var profile,id_token;
+		var countt=0;
+		
+    function GoogleSignIn(googleUser) {
+    	console.log("重整=="+countt);
     	// 客戶端如果有需要的話可以通過profile來獲取使用者資訊
            profile = googleUser.getBasicProfile();
           // 傳回後臺驗證，並獲取userid
            id_token = googleUser.getAuthResponse().id_token;
           console.log("ID Token: " + id_token);
-
           if(countt==1){
         	  $("#googlesigntest").click();
-        	  window.location.reload();
+   
           };
         };
         function googlesigntest (){
+//             alert("ab")
+
         	countt = countt+1;
         	var xhr = new XMLHttpRequest();
             xhr.open('POST', 'http://eeit105house.southeastasia.cloudapp.azure.com:8080/RentHouse/googleVerify');
@@ -86,13 +103,14 @@
             xhr.onload = function() {
               console.log('Signed in as: ' + xhr.responseText);
             };
+//             alert("aa")
             xhr.send('idtokenstr=' + id_token);
             if(countt==2){
-            	window.location.reload();
+            	$("#reflash").click();
             }
         };
     </script>
-
+<a href="#" id="reflash" style="position: absolute; top: -9999px;left: -9999px;"onclick="javascript:window.location.reload()">重新整理</a>
           </div>
         </div>
       </div>

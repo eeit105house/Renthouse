@@ -82,7 +82,7 @@
 						</blockquote>	
 						</div>
 						<hr>																					
-						<form class="replyForm" method="post" >
+						<form class="replyForm" method="post" onsubmit="return formcheck()">
 							<fieldset>
 							<input type="hidden" name="id" value="${omail.id }"/>
 							<span>員工ID:</span><input type="text" name="ename" readonly="true" value="${employee.id }" />
@@ -110,7 +110,16 @@
 <!-- 			end: Content -->
 				
 			</div><!--/fluid-row-->
-			<%@ include file="footer.jsp" %>			
+			<%@ include file="footer.jsp" %>		
+			<script>
+			function formcheck(){
+				if(confirm("確認送出?")){
+					return true;
+				}else{
+					return false;
+				}
+			}
+			</script>	
 	<!-- start: JavaScript-->
 		<script src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-1.10.2.min.js"></script>
 	<script src="${pageContext.request.contextPath}/RHstaticresource/js/jquery-migrate-1.2.1.min.js"></script>	
