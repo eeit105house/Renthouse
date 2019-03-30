@@ -55,6 +55,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 </script>
 <meta charset="UTF-8">
 <title>租你幸福~*</title>
+<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
 </head>
 <body>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">修改成交資訊</button>

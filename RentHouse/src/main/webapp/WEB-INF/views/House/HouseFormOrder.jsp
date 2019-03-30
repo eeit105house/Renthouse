@@ -18,6 +18,7 @@
   	<!-- house模板CSS	 -->
 <%-- 	<link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet" type="text/css" /> --%>
   <title>選擇刊登方案</title>
+  <link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
 </head>
 <body style="background-color: #ffebd7;">
     <div style="height: 75px;">

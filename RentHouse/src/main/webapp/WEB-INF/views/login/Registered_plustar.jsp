@@ -128,7 +128,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#onepass").click(function(){
-		$("#Acc").val("CUSTOMER124");
+		$("#Acc").val("CUSTOMER22");
 		$("#Pwd").val("password1234");
 		$("#rePwd").val("password1234");
 		$("#inputname").val("張學友");

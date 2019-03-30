@@ -8,7 +8,8 @@
 <!-- 首頁樣式 -->
 <link rel='stylesheet'	href='${pageContext.request.contextPath}/search/css/indexCarousel.css'	type="text/css" />
 <link href="${pageContext.request.contextPath}/login/css/landing-page.css" rel="stylesheet">
-<title>租你幸福~*</title>
+<title>租你幸福 - 首頁</title>
+<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
 </head>
 <body style="background-color:#ffebd7;">
 <!-- header -->

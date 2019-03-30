@@ -69,11 +69,11 @@
     		$("#inputPassword").val("password1234");
     		});
     	$("#housecustomer").click(function(){
-        	$("#inputAccount").val("CUSTOMER124");
+        	$("#inputAccount").val("CUSTOMER22");
         	$("#inputPassword").val("password1234");
         	});
     	$("#forgetpwd").click(function(){
-    		$("#forgetpwdacc").val("CUSTOMER124");
+    		$("#forgetpwdacc").val("CUSTOMER22");
     		$("#forgetpwdemail").val("iiieeit10598@gmail.com");
     	});
     });

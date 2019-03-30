@@ -15,7 +15,8 @@
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/Forum/css/bbs.css" type="text/css" > --%>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/Forum/js/jquery-3.3.1.js"></script>
-<title>租你幸福--討論區 租屋,房屋買賣,搬家,房屋討論</title>
+<title>租你幸福 - 討論區 租屋,房屋買賣,搬家,房屋討論</title>
+<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
 </head>
 <body style="background-color: #ffebd7;"><body>
 	<div style="height: 75px;">

@@ -7,7 +7,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>修改個人</title>
+<title>租你幸福 - 會員中心</title>
+<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
+
 <style type="text/css">
 </style>
 </head>
@@ -101,7 +103,7 @@
 		 $("#acti").show();
 	 };
 	 var myTextSubstr = "${user.id}";
-	 if(myTextSubstr.substr(0,6)=="Google"){
+	 if(myTextSubstr.substr(0,6)=="GOOGLE"){
 		 $("#actistate").append("(Google 登入)")
 		 $("#googlehide").hide();
 	 };
