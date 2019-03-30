@@ -28,15 +28,14 @@ public class SearchHouseByConditionDaoImpl implements SearchHouseByConditionDao 
 	
 		return list;
 	}
-	
-	
+		
 	@Override
 	public List<Object[]> getAllhouse() {
 				String hql = "select hp.id,hd.title,h.type,h.sqft,h.floor,h.topFloor,h.boroughs,h.addr,m.name,hd.price ,h.launched ,h.lat, h.lon,h.id " + 
 				"from House h,HouseDetail hd,Member m ,HousePic hp " + 
 				"where h.memberBean = m.id " + 
 				"	  and h.status = '上架' " + 
-				"	  and hp.picNo = 1 " + 
+				"	  and hp.picNo = 0 " + 
 				"	  and h.id = hd.houseBean " + 
 				"	  and h.id = hp.houseBean " + 
 				"order by h.pay";
@@ -50,7 +49,7 @@ public class SearchHouseByConditionDaoImpl implements SearchHouseByConditionDao 
 				"from House h,HouseDetail hd,Member m ,HousePic hp " + 
 				"where h.memberBean = m.id " + 
 				"	  and h.status = '上架' " + 
-				"	  and hp.picNo = 1 " + 
+				"	  and hp.picNo = 0 " + 
 				"	  and h.pay = 2 " + 
 				"	  and h.id = hd.houseBean " + 
 				"	  and h.id = hp.houseBean " + 
@@ -80,7 +79,6 @@ public class SearchHouseByConditionDaoImpl implements SearchHouseByConditionDao 
 		return housePic;
 	}
 
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<HousePic> getAllHousePic() {
@@ -99,7 +97,7 @@ public class SearchHouseByConditionDaoImpl implements SearchHouseByConditionDao 
 				"from House h,HouseDetail hd,Member m ,HousePic hp " + 
 				"where h.memberBean = m.id " + 
 				"	  and h.status = '上架' " + 
-				"	  and hp.picNo = 1 " + 
+				"	  and hp.picNo = 0 " + 
 				"	  and h.id = hd.houseBean " + 
 				"	  and h.id = hp.houseBean " + 
 				Searchcriteria + 
@@ -116,7 +114,7 @@ public class SearchHouseByConditionDaoImpl implements SearchHouseByConditionDao 
 				"from House h,HouseDetail hd,Member m ,HousePic hp " + 
 				"where h.memberBean = m.id " + 
 				"	  and h.status = '上架' " + 
-				"	  and hp.picNo = 1 " + 
+				"	  and hp.picNo = 0 " + 
 				"	  and h.id = hd.houseBean " + 
 				"	  and h.id = hp.houseBean " + 
 				msg + 

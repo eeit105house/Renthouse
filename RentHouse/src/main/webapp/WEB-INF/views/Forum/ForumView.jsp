@@ -27,7 +27,8 @@
 <%-- 	href="${pageContext.request.contextPath}/Forum/css/bbs.css" --%>
 <!-- 	type="text/css" g="publish-css"> -->
 
-<title>租你幸福--討論區 租屋,房屋買賣,搬家,房屋討論</title>
+<title>租你幸福 - 討論區 租屋,房屋買賣,搬家,房屋討論</title>
+<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
 <style>
 .well, .panel {
 	text-align: center;
@@ -99,7 +100,9 @@
       <c:forEach var="forum" items="${flist}">
       <tr align="center">
         <td><a href='<c:url value="/Forum/ForumDetail/${forum.id}" />'>${forum.title}</a></td>
+
         <td><a href='<c:url value="/membercontrol/${forum.memberBean.id}" />'>${forum.memberBean.id}</a></td>
+
         <td>${forum.sort}</td>
        <td> ${forum.datetime}</td> 
       </tr>
@@ -109,8 +112,8 @@
     	<div class="head" id="act-list">
             <div class="pub-btn"><a class="btn btn-primary" href="Forum/add">發表文章</a>     
              <div class="modal-footer">
-        <a href="<spring:url value='/delete/${forum.id }' />" class="btn btn-primary">刪除文章</a>
-        <button type="button" class="btn">取消</button>                  
+      
+
               </div>
               
 </div>

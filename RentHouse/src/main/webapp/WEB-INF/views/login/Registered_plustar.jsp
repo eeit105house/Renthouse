@@ -126,20 +126,23 @@
 </div>
 </div>
 <script type="text/javascript">
-$("#onepass").click(function(){
-	$("#Acc").val("customer123");
-	$("#Pwd").val("password1234");
-	$("#rePwd").val("password1234");
-	$("#inputname").val("張學友");
-	$("#email").val("iiieeit10598@gmail.com");
-	$("#phone").val("0958957957");
-	$("#identity").val("A125865252");
-	$("#birth_Year").val("1998");
-	$("#birth_Month").val("5");
-	$("#birth_Date").val("20");
-	$("#gender").val("male");
-	$("#create").show();
-	$("#notyet").hide();
-	});</script>
+$(document).ready(function(){
+	$("#onepass").click(function(){
+		$("#Acc").val("CUSTOMER22");
+		$("#Pwd").val("password1234");
+		$("#rePwd").val("password1234");
+		$("#inputname").val("張學友");
+		$("#email").val("iiieeit10598@gmail.com");
+		$("#phone").val("0958957957");
+		$("#identity").val("A125865252");
+		$("#birth_Year").val("1998");
+		$("#birth_Month").val("5");
+		$("#birth_Date").val("20");
+		$("#gender").val("male");
+		$("#create").show();
+		$("#notyet").hide();
+		});
+});
+	</script>
 </body>
 </html>

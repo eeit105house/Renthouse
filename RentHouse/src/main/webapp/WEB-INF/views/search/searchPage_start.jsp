@@ -11,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
 
-<title>Insert title here</title>
+<title>租你幸福~*</title>
 </head>
 <body>
 <c:if test="${number != 0}">
@@ -59,20 +59,19 @@
 	</c:if>
 	
 <c:if test="${number == 0}">
+<hr style = "border:0;background-color:#FF4500;height:3px;">
 <img  class = "searchToMuch" style="width:200px ;height:150px ; float:left" src="<c:url value='/search/img/searchToMuch.png' />">
 <div class = "searchToMuch" style="float:left ;margin-top: 30px;">
 <h3>很抱歉，您篩選的條件太多，我們沒有為您找到合適的物件！</h3><h5>建議您：嘗試去掉一些篩選條件~~</h5>
 </div>
 </c:if>
 
-	<hr>
-
 <script>
 $("div.sitebody").mouseenter(function() {
 	$(this).css("background-color","#DCDCDC")
 });
 $("div.sitebody").mouseleave(function() {
-	$(this).css("background-color","#F8F8FF")
+	$(this).css("background-color","#ffebd7")
 });
 			
 $("div span.page-link").click(function(){

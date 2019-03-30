@@ -8,6 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>上傳圖片</title>
+    <link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
     <script src="${pageContext.request.contextPath}/HouseResorce/js/kickstart.js"></script> <!-- KICKSTART -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/css/kickstart.css" media="all" />
     <!-- KICKSTART -->

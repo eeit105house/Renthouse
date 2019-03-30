@@ -212,7 +212,7 @@ public class MemberDaoImpl implements MemberDao  {
 		String hql =
 				"UPDATE Reservation r SET r.readStatus='已讀' WHERE r.memberBean.id = :id";
 				String hql2 =
-				"UPDATE  EmployeeReport e SET e.status='已讀' WHERE e.memberBean.id = :mid";
+				"UPDATE  EmployeeReport e SET e.status='已讀' WHERE e.memberBean.id = :mid and e.status='會員未讀'";
 		session.createQuery(hql).setParameter("id", mid).executeUpdate();
 		session.createQuery(hql2).setParameter("mid", mid).executeUpdate();
 	}

@@ -25,6 +25,7 @@
 <!-- 		type="text/css" /> -->
 	<meta charset="UTF-8">
 	<title>您的房屋</title>
+	<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
 
 	<script>
 		// 		$(document).ready(function () {
@@ -42,7 +43,7 @@
 
 <body style="background-color: #ffebd7;">
 	<div style="height: 75px;">
-		<%@include file="narbar.jsp"%>
+		<%@include file="../login/narbar.jsp"%>
 	</div>
 	<div>
 		<h1 class="container">親愛的 ${user.name} 您好</h1>
@@ -137,7 +138,7 @@
             <label for="to" class="col-form-label">租約到期日</label>
             <input type="text" class="form-control" id="to" name="to"/>
           </div>
-          <input type = "file" value = "如要修改才需上傳" multiple="multiple" name="file" />
+          <input type = "file" value = "如要修改才需上傳" multiple="multiple" accept="application/pdf" name="file" />
         
       </div>          
       <div class="modal-footer">

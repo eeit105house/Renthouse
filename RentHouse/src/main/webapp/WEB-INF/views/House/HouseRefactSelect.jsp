@@ -32,6 +32,7 @@
 <!-- 		type="text/css" /> -->
 	<meta charset="UTF-8">
 	<title>您的房屋</title>
+	<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
 <style type="text/css">
 
 </style>
@@ -83,7 +84,7 @@
 					</div>
 				</nav>
 				<!-- 		內容 -->
-				<div class="container-fluid" style="width: 800px;">
+				<div class="container-fluid" style="width: 1100px;">
 					<h1 class="mt-4">您的房屋一覽</h1>
 					<table>
 						<thead>
@@ -96,13 +97,18 @@
 								<th>標題</th>
 								<th>狀態</th>
 								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var='house' items='${houseList}'>
 								<tr>
 									<td>${house.detailBean.title}</td>
-									<td>${house.status}</td>
+									<td width="100px">${house.status}</td>
 									<c:if test="${house.status == '上架' || house.status == '審核' || house.status == '下架'}">
 									
 										<td><a class="button orange"
@@ -151,7 +157,7 @@
 										</c:if>
 									</td>
 									<td>
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" data-id="${house.id }">新增成交</button>
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" data-id="${house.id }" style="color: black;">新增成交</button>
 									</td>
 								<td>
 								<button type="button" onclick="location.href='${pageContext.request.contextPath}/deal/AllHouseDealForAnHouse/${house.id }'">歷年成交</button>
@@ -191,7 +197,7 @@
             <label for="to" class="col-form-label">租約到期日</label>
             <input type="text" class="form-control" id="to" name="to" readonly="readonly" placeholder="請點擊選擇日期" />
           </div>
-          <input type = "file" value = "上傳租賃契約" multiple="multiple" name="file" />
+          <input type = "file" value = "上傳租賃契約" multiple="multiple" accept="application/pdf" name="file" />
       </div>          
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>

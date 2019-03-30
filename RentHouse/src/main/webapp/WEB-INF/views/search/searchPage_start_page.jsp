@@ -11,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
 
-<title>Insert title here</title>
+<title>租你幸福~*</title>
 </head>
 <body>
 <div style="text-align:left;border-top:3px solid #FF4500; "><span class="font-22B">共找到</span><span class="font-25R">${number}</span><span class="font-22B">間房屋</span></div>
@@ -56,7 +56,7 @@
 		$(this).css("background-color","#DCDCDC")
 	});
 	$("div.sitebody").mouseleave(function() {
-		$(this).css("background-color","#F8F8FF")
+		$(this).css("background-color","#ffebd7")
 	});
 $("div span.page-link").click(function(){
 	var page= $(this).attr("id");

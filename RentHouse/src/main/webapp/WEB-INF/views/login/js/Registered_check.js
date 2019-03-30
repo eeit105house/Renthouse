@@ -213,21 +213,6 @@ $(document).ready(function() {
 				$("#notyet2").show();
 			}
 			});
-		$("#onepass").click(function(){
-    		$("#Acc").val("customer123");
-    		$("#Pwd").val("password1234");
-    		$("#rePwd").val("password1234");
-    		$("#inputname").val("張學友");
-    		$("#email").val("iiieeit10598@gmail.com");
-    		$("#phone").val("0958957957");
-    		$("#identity").val("A125865252");
-    		$("#birth_Year").val("1998");
-    		$("#birth_Month").val("5");
-    		$("#birth_Date").val("20");
-    		$("#gender").val("male");
-    		$("#create").show();
-			$("#notyet").hide();
-    		});
 });
 //^\w+：@ 之前必須以一個以上的文字&數字開頭，例如 abc
 //((-\w+)：@ 之前可以出現 1 個以上的文字、數字或「-」的組合，例如 -abc-

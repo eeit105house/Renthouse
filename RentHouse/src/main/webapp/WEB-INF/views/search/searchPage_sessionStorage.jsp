@@ -13,10 +13,10 @@
 <link rel='stylesheet'	href='${pageContext.request.contextPath}/search/css/houselist.css'	type="text/css" />
 
 
-<title>Insert title here</title>
+<title>租你幸福 - 尋找幸福</title>
+<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
 </head>
 <body class="body" style="background-color: #ffebd7;">
-
 	<div style="height: 75px;">
 		<%@include file="../login/narbar.jsp"%>
 	</div>
@@ -42,7 +42,7 @@
 
 		
 		
-		<div id="selectList" class="screenBox" style="width:1300px;">
+		<div id="selectList" class="screenBox">
 		
 			<div class="titleDiv">位置：</div><div id="zipcode2" class="zipcodeForCss"></div>
 
@@ -66,8 +66,8 @@
 				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectPrice" id="price0" name="40000元以上">40000元以上</span>			
 				&nbsp;&nbsp;|&nbsp;&nbsp;
 				<div class="textDiv">
-				<input class="text" type="text"	id="minprice">&nbsp;-&nbsp;
-				<input class="text" type="text"	id="maxprice">&nbsp;元
+				<input class="text" type="text"	name="priceSqft" id="minprice">&nbsp;-&nbsp;
+				<input class="text" type="text"	name="priceSqft" id="maxprice">&nbsp;元
 				<input type="button" value="確定" onclick="getPrice()" id="price7"></div>			
 			</div>
 			
@@ -80,8 +80,8 @@
 				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectSqft" id="Sqft0" name="40-50坪">40-50坪</span>
 				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectSqft" id="Sqft0" name="50坪以上">50坪以上</span>
 				&nbsp;&nbsp;|&nbsp;&nbsp; &nbsp;&nbsp;			
-				<div class="textDiv"><input class="text" type="text" id="minsqft">&nbsp;-&nbsp;
-				<input	class="text" type="text" id="maxsqft">&nbsp;坪
+				<div class="textDiv"><input class="text" name="priceSqft" type="text" id="minsqft">&nbsp;-&nbsp;
+				<input	class="text" type="text" name="priceSqft" id="maxsqft">&nbsp;坪
 				<input	type="button" value="確定" onclick="getSqft()" id="Sqft6"></div>			
 			</div>
 
@@ -121,10 +121,12 @@
 	</div>	
 	<div style="margin-left:100px;margin-top:30px;text-align:left;"><span class="font-22B">精選推薦</span></div>
 <!-- 	插入輪播牆 -->
-	<div class = "carouselDiv" ></div>
+<div id="carouselExampleControls" class="carousel slide" style="padding-left: 60px;margin-left:80px;width:95%;" data-ride="carousel">
+<!-- 	<div class = "carouselDiv" > -->
+	</div>
 <!-- 	插入房屋物件 -->
 	<div class = "start"></div>
-	
+<!-- </div>	 -->
 
 <script>$("#zipcode2").twzipcode({
 	countySel: "縣市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
@@ -135,22 +137,25 @@
 	districtName: "town" // 自訂地區 select 標籤的 name 值
 	});</script>
 <script>
+// $("carouselExampleControls").attr("data-ride","carousel");
 $(":text").focus(function() {
 	$(this).css("background-color", "#cccccc")
 });
 $(":text").blur(function() {
+	var textName = $(this).attr("name");
 	$(this).css("background-color", "#ffffff");
 	var temp=/^\d+(\.\d+)?$/;	
-	if($(this).attr("id")!="keyWord"){
-		if(temp.test(this.value)==false){
-			if(this.value == ""){	
-			}else{
-				alert("輸入[" +this.value+"]，錯誤格式");
-			}		
-			$(this).val("0");
+	if(textName == "priceSqft"){
+		if($(this).attr("id")!="keyWord"){
+			if(temp.test(this.value)==false){
+				if(this.value == ""){	
+				}else{
+					alert("輸入[" +this.value+"]，錯誤格式");
+				}		
+				$(this).val("0");
+			}
 		}
 	}
-	
 });
 	function getKeyWord(){
 		var text = $("div.searchDiv input").val();
@@ -177,7 +182,7 @@ $(":text").blur(function() {
 				type:"Get",
 				cache:"false",
 				success:function(data){
-						$(".carouselDiv").html(data);
+						$(".carousel").html(data);
 				}
 			});
 		}else{
@@ -223,7 +228,7 @@ $(":text").blur(function() {
 				type:"Get",
 				cache:"false",
 				success:function(data){
-						$(".carouselDiv").html(data);
+						$(".carousel").html(data);
 				}
 			});
 		}
@@ -234,7 +239,7 @@ $(":text").blur(function() {
 			type:"Get",
 			cache:"false",
 			success:function(data){
-					$(".carouselDiv").html(data);
+					$(".carousel").html(data);
 			}
 		});
 		
@@ -336,14 +341,18 @@ $(":text").blur(function() {
 		});
 
 		$(".city-control").change(function() {			//選取城市後動作
-			var text = $(this).children('option:selected').text();
-			var id = $(this).children('option:selected').attr("id");
+			var thisText = $(this).children('option:selected').text();
+			var townText = $(".town-control").children('option:selected').text();
+			text = thisText + townText;
+			var id = "cityWithTown";
 			changeSelect(text,id);
 		});
 		
 		$(".town-control").change(function() {	//選取縣市後後動作
-			var text = $(this).children('option:selected').text();
-			var id = $(this).children('option:selected').attr("id");
+			var thisText = $(this).children('option:selected').text();
+			var cityText = $(".city-control").children('option:selected').text();
+			var text = cityText+thisText;
+			var id = "cityWithTown";
 			changeSelect(text,id);
 		});
 		
@@ -423,8 +432,8 @@ $(":text").blur(function() {
 	};
 		
 		function getSqft() {
-			var min = $("#minsqft").val();
-			var max = $("#maxsqft").val();
+			var min = parseInt($("#minsqft").val());
+			var max = parseInt($("#maxsqft").val());
 			if(min>max){
 				var temp = 0;
 				temp = min;
@@ -473,8 +482,8 @@ $(":text").blur(function() {
 		}
 
 		function getPrice() {
-			var min = $("#minprice").val();
-			var max = $("#maxprice").val();
+			var min = parseInt($("#minprice").val());
+			var max = parseInt($("#maxprice").val());
 			if(min>max){
 				var temp = 0;
 				temp = min;
@@ -543,7 +552,7 @@ $(":text").blur(function() {
 		
 
 		
-		$('.carouselDiv').carousel({
+		$('.carousel').carousel({
 			  interval: 2000
 			});
 </script>

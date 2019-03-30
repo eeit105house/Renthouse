@@ -10,14 +10,13 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
-
-<title>Insert title here</title>
+<title>租你幸福~*</title>
 </head>
 <body>
-<div id="carouselExampleControls" class="carousel slide" style="padding-left: 60px;width:1263px;" data-ride="carousel">
-  <div class="carousel-inner"style="width:1150px;">
+
+  <div class="carousel-inner">
   <div>
-    <div class="carousel-item active" data-interval="2000" >
+    <div class="carousel-item active" data-interval="1500" >
      <c:forEach var="list" items="${Newlist0}">
     	<div class="perDivIncarousel" id="${list[13]}" onclick='window.open("${pageContext.request.contextPath}/houseView/${list[13]}")'>
     	<img class = "perImgIncarousel" src="<c:url value='/getPicture/${list[0]}' />">
@@ -33,9 +32,9 @@
     </div>
 <!--     第二頁輪播 -->
 <c:if test="${carPage >= 2 }">
-    <div class="carousel-item" data-interval="2000">
+    <div class="carousel-item" data-interval="1500">
 	<c:forEach var ="list" items="${Newlist1}">
-  <div class="perDivIncarousel" id="${list[13]}" onclick='location.href="${pageContext.request.contextPath}/houseView/${list[13]}"'>
+  <div class="perDivIncarousel" id="${list[13]}" onclick='window.open("${pageContext.request.contextPath}/houseView/${list[13]}")'>
     	<img class = "perImgIncarousel" src="<c:url value='/getPicture/${list[0]}' />">
     	<div><span>${list[1]}</span></div>
 		<div>
@@ -50,9 +49,9 @@
    </c:if>
  <!--     第三頁輪播 -->
  <c:if test="${carPage >= 3 }">
-    <div class="carousel-item" data-interval="2000">
+    <div class="carousel-item" data-interval="1500">
 	<c:forEach var ="list" items="${Newlist2}">
-  <div class="perDivIncarousel" id="${list[13]}" onclick='location.href="${pageContext.request.contextPath}/houseView/${list[13]}"'>
+  <div class="perDivIncarousel" id="${list[13]}" onclick='window.open("${pageContext.request.contextPath}/houseView/${list[13]}")'>
     	<img class = "perImgIncarousel" src="<c:url value='/getPicture/${list[0]}' />">
     	<div><span>${list[1]}</span></div>
 		<div>
@@ -67,9 +66,9 @@
 </c:if>    
    <!--     第四頁輪播 -->
     <c:if test="${carPage >= 4 }">
-    <div class="carousel-item" data-interval="2000">
+    <div class="carousel-item" data-interval="1500">
 	<c:forEach var ="list" items="${Newlist3}">
-  <div class="perDivIncarousel" id="${list[13]}" onclick='location.href="${pageContext.request.contextPath}/houseView/${list[13]}"'>
+  <div class="perDivIncarousel" id="${list[13]}" onclick='window.open("${pageContext.request.contextPath}/houseView/${list[13]}")'>
     	<img class = "perImgIncarousel" src="<c:url value='/getPicture/${list[0]}' />">
     	<div><span>${list[1]}</span></div>
 		<div>
@@ -93,14 +92,15 @@
     <span class="carousel-control-next-icon"  style="background-color:black;" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-  </div>
+
   
  <script>
+//  $("carouselExampleControls").attr("data-ride","carousel");
  $("div.perDivIncarousel").mouseenter(function() {
 		$(this).css("background-color","#DCDCDC")
 	});
 	$("div.perDivIncarousel").mouseleave(function() {
-		$(this).css("background-color","#F8F8FF")
+		$(this).css("background-color","#ffebd7")
 	});
  </script>
 
