@@ -9,7 +9,7 @@
 <!-- Google登入 -->
 <meta name="google-signin-scope" content="profile email">
 <meta name="google-signin-client_id" content="825814170132-9r69bbro6bbtg1ahvhsp5jeu07f52sd0.apps.googleusercontent.com">
-<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="//apis.google.com/js/platform.js" async defer></script>
 
 </head>
 <body>
@@ -93,6 +93,8 @@
           };
         };
         function googlesigntest (){
+//             alert("ab")
+
         	countt = countt+1;
         	var xhr = new XMLHttpRequest();
             xhr.open('POST', 'http://eeit105house.southeastasia.cloudapp.azure.com:8080/RentHouse/googleVerify');
@@ -101,6 +103,7 @@
             xhr.onload = function() {
               console.log('Signed in as: ' + xhr.responseText);
             };
+//             alert("aa")
             xhr.send('idtokenstr=' + id_token);
             if(countt==2){
             	$("#reflash").click();

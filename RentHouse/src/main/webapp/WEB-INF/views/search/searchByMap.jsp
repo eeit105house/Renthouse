@@ -77,7 +77,6 @@
 		<div class="mapSelect" >
 				<select  class="mapSelectOnly" name="build">
 					<option id="build0" style="display:none">房屋型態</option>
-					<option id="build0">型態不限</option>
 					<option id="build0">公寓</option>
 					<option id="build0">電梯大樓</option>
 					<option id="build0">透天厝</option>
@@ -126,15 +125,76 @@ $("#zipcode2").twzipcode({
 	css: ["city city-control", "town town-control"], // 自訂 "城市"、"地區" class 名稱 
 	countyName: "city", // 自訂城市 select 標籤的 name 值
 	districtName: "town" // 自訂地區 select 標籤的 name 值
-	});</script>
-	<script>
+	});
+</script>
+<script>
 		var map;
 		var a = -1;
 		var markers=[];
-	
-		function initMap() {
-			map = new google.maps.Map(document.getElementById('map'), {	
-				zoom : 15,	center : {lat : 25.033757,lng : 121.543385}});		
+		var lng = 121.543385;
+		var lat = 25.033757;
+		var newlng = 0;
+		var newlat = 0;
+		var count =0;
+		function initMap(){
+			if(sessionStorage.getItem("cityWithTown") != null){
+				getLngLat();
+				if(newlng != 0){
+					map = new google.maps.Map(document.getElementById('map'), 
+							{zoom : 15,	center : {lat :newlat ,lng : newlng}});
+				}				
+			}else if(sessionStorage.getItem("cityWithTown") == null){
+				map = new google.maps.Map(document.getElementById('map'), 
+						{zoom : 12,	center : {lat :lat ,lng : lng}});	
+			}
+		}
+		
+		function getLngLat(){
+			if(count == 0){
+				var geocoder = new google.maps.Geocoder();			 
+				var addr = sessionStorage.getItem("cityWithTown");	  
+				geocoder.geocode({
+				        'address': addr
+				    }, function (results, status) {
+				        if (status == google.maps.GeocoderStatus.OK) {				        	
+				            newlng = results[0].geometry.location.lng();
+				            newlat = results[0].geometry.location.lat();			            	
+				    }				        
+				});	
+				count = 1;
+			}			
+		}
+		
+		function createMarker(data){ 	 //建立大頭針
+			initMap();
+			if(newlng != 0 || sessionStorage.getItem("cityWithTown") == null){
+				newlat = 0;
+				newlng = 0;
+				count = 0;
+			var len = data.length;
+			for (i = 0; i < len; i++) {
+				for(j = 0 ; j<data[i].length;j++){								
+					    var str = {};
+						var msg = data[i][7];
+						var place = {};
+						place.lat = parseFloat(data[i][11]);
+						place.lng = parseFloat(data[i][12]);						
+						str.map = map;
+						str.title = data[i][1];
+						str.position = place;
+						str.clickable = true; //可否點擊
+						str.visible = true; //是否顯示					
+						var marker = new google.maps.Marker(str);
+						attachSecretMessage(marker, msg); 
+										 						
+				}			
+				markers[i] = marker;
+			}
+		}else if (count == 1){
+			setTimeout(function wait(){
+				createMarker(data)
+			},0);
+		}
 		}
 		
 		if(sessionStorage.getItem("clearList") != null){			
@@ -192,46 +252,9 @@ $("#zipcode2").twzipcode({
 			});
 		};
 		
-// 		$("#zipcode2").twzipcode({
-// 			countySel: "縣市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
-// 			districtSel: "鄉鎮市區", // 地區預設值
-// 			zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區
-// 			css: ["city city-control", "town town-control"], // 自訂 "城市"、"地區" class 名稱 
-// 			countyName: "city", // 自訂城市 select 標籤的 name 值
-// 			districtName: "town" // 自訂地區 select 標籤的 name 值
-// 			});
-		
-		
-		
 		$("div#sitebody").click(function(){
 			$("#sitebody").css("background-color","red");
 		});
-		
-		function createMarker(data){ 	 //建立大頭針
-			initMap();
-			var len = data.length;
-			for (i = 0; i < len; i++) {
-				for(j = 0 ; j<data[i].length;j++){						
-			
-					    var str = {};
-						var msg = data[i][7];
-						var place = {};
-						place.lat = parseFloat(data[i][11]);
-						place.lng = parseFloat(data[i][12]);
-						
-						str.map = map;
-						str.title = data[i][1];
-						str.position = place;
-						str.clickable = true; //可否點擊
-						str.visible = true; //是否顯示
-						
-						var marker = new google.maps.Marker(str);
-						attachSecretMessage(marker, msg); 
-										 						
-				}			
-				markers[i] = marker;
-			}
-		}
 		
 		function attachSecretMessage(marker, msg) {			
 			var infowindow = new google.maps.InfoWindow({
@@ -266,14 +289,18 @@ $("#zipcode2").twzipcode({
 	});
 
 	$(".city-control").change(function() {			//選取城市後動作
-		var text = $(this).children('option:selected').text();
-		var id = $(this).children('option:selected').attr("id");
+		var thisText = $(this).children('option:selected').text();
+		var townText = $(".town-control").children('option:selected').text();
+		text = thisText + townText;
+		var id = "cityWithTown";
 		changeSelect(text,id);
 	});
 	
 	$(".town-control").change(function() {	//選取縣市後後動作
-		var text = $(this).children('option:selected').text();
-		var id = $(this).children('option:selected').attr("id");
+		var thisText = $(this).children('option:selected').text();
+		var cityText = $(".city-control").children('option:selected').text();
+		var text = cityText+thisText;
+		var id = "cityWithTown";
 		changeSelect(text,id);
 	});
 	

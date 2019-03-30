@@ -98,7 +98,8 @@
       <c:forEach var="forum" items="${flist}">
       <tr align="center">
         <td><a href='<c:url value="/Forum/ForumDetail/${forum.id}" />'>${forum.title}</a></td>
-        <td><a href='<c:url value="/membercontrol/${forum.memberBean.id}" />'>${forum.memberBean.id}</td>
+        <td>${forum.memberBean.id}</td>
+<%--         <td><a href='<c:url value="/membercontrol/${forum.memberBean.id}" />'>${forum.memberBean.id}</td> --%>
         <td>${forum.sort}</td>
        <td> ${forum.datetime}</td> 
       </tr>
@@ -109,8 +110,8 @@
     	<div class="head">
             <div class="pub-btn"><a class="btn btn-primary" href="Forum/add">發表文章</a>     
              <div class="modal-footer">
-        <a href="<spring:url value='/delete/${forum.id }' />" class="btn btn-primary">確認</a>
-        <button type="button" class="btn" data-dismiss="modal">取消</button>                  
+<%--         <a href="<spring:url value='/delete/${forum.id }' />" class="btn btn-primary">確認</a> --%>
+<!--         <button type="button" class="btn" data-dismiss="modal">取消</button>                   -->
               </div>
 </div>
 </div>

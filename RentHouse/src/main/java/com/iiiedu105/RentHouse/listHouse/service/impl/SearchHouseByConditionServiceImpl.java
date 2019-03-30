@@ -41,26 +41,19 @@ public class SearchHouseByConditionServiceImpl implements SearchHouseByCondition
 	@Transactional
 	@Override
 	public List<Object[]> getHouseByCriteria(String Searchcriteria) {
-		String type="",floor="",price="",sqft="",build="",more="",city="",keyWord="";
+		String type="",floor="",price="",sqft="",build="",more="",city="",town="",cityWithTown="",keyWord="";
 		String build1="1<>1",build2="1<>1",build3="1<>1",build4="1<>1";
 		String more1="1=1",more2="1=1",more3="1=1",more4="1=1",more5="1=1",more6="1=1",more7="1=1",more8="1=1";
 		String[] criteria = Searchcriteria.split(",");
 		for(int i = 0 ;i < criteria.length ; i++) {
 			Integer count =0;
-			if(criteria[i].equals("縣市")) {	city = "";count++;}
-			else if(criteria[i].substring(criteria[i].length()-1).equals("縣")) {count++;
-				city = "and (h.city = '"+criteria[i]+"' or h.boroughs like '%"+criteria[i].substring(criteria[i].length()-3, criteria[i].length()-1)+"%'  )";
-			}else if(criteria[i].substring(criteria[i].length()-1).equals("市")) {count++;
-				city = "and (h.city = '"+criteria[i]+"' or h.boroughs like '%"+criteria[i].substring(criteria[i].length()-3, criteria[i].length()-1)+"%'  )";
-			}else if(criteria[i].substring(criteria[i].length()-1).equals("區")) {count++;
-				city = "and (h.city = '"+criteria[i]+"' or h.boroughs like '%"+criteria[i].substring(criteria[i].length()-3, criteria[i].length()-1)+"%'  )";
-			}else if(criteria[i].substring(criteria[i].length()-1).equals("鎮")) {count++;
-				city = "and (h.city = '"+criteria[i]+"' or h.boroughs like '%"+criteria[i].substring(criteria[i].length()-3, criteria[i].length()-1)+"%'  )";
-			}else if(criteria[i].substring(criteria[i].length()-1).equals("鄉")) {count++;
-				city = "and (h.city = '"+criteria[i]+"' or h.boroughs like '%"+criteria[i].substring(criteria[i].length()-3, criteria[i].length()-1)+"%'  )";
-			}else if(criteria[i].substring(criteria[i].length()-1).equals("島")) {count++;
-				city = "and (h.city = '"+criteria[i]+"' or h.boroughs like '%"+criteria[i].substring(criteria[i].length()-3, criteria[i].length()-1)+"%'  )";
-			}			
+			if(criteria[i].split(" ").length == 2 ) {	
+				city = criteria[i].split(" ")[0].substring(0,3);
+				town = criteria[i].split(" ")[1];			
+				cityWithTown = "and (h.city = '"+city+"' and h.boroughs = '"+town+"'  )";
+				count++;
+			}
+			if(criteria[i].equals("縣市鄉鎮市區")) {	city = "";count++;}	
 			if(criteria[i].equals("1樓")) {count++;	floor = "and (h.floor = 1)";}
 			if(criteria[i].equals("2-3樓")) {count++;	floor = "and (h.floor = 2 or h.floor = 3)";}
 			if(criteria[i].equals("4樓以上")) {count++;	floor = "and (h.floor > 3)";}
@@ -108,7 +101,7 @@ public class SearchHouseByConditionServiceImpl implements SearchHouseByCondition
 		
 		if(build.equals("and (1<>1 or 1<>1 or 1<>1 or 1<>1)")) {build="";};
 		if(more.equals("and (1=1 or 1=1 or 1=1 or 1=1 or 1=1 or 1=1 or 1=1 or 1=1)")) {more="";};
-		Searchcriteria = type+price+sqft+floor+build+more+city+keyWord;
+		Searchcriteria = type+price+sqft+floor+build+more+cityWithTown+keyWord;
 		return dao.getHouseByCriteria(Searchcriteria);
 	}
 	

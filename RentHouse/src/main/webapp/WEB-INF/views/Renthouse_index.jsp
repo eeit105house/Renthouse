@@ -48,7 +48,7 @@
   </header>
   <section style="height: 400px;">
   	<div style="margin-left:100px;margin-top:30px;text-align:left;"><span class="font-22B">精選推薦</span></div>
- <div class = "carouselDiv"></div>
+ <div id="carouselExampleControls" class="carousel slide" style="padding-left: 60px;" data-ride="carousel"></div>
  </section>
 
   <!-- Image Showcases -->
@@ -135,7 +135,7 @@
 		type:"Get",
 		cache:"false",
 		success:function(data){
-				$(".carouselDiv").html(data);
+				$(".carousel").html(data);
 		}
 	});
   </script>
