@@ -153,7 +153,7 @@
 						</div>
 						<div>
 							押金
-							<form:input path="deposit" value="0" />
+							<form:input path="deposit" value="0" />元
 							<p></p>
 						</div>
 						<div>

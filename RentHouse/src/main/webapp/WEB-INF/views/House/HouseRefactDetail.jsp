@@ -174,7 +174,7 @@
 						</div>
 						<div>
 							押金
-							<form:input path="deposit" value="${detailBean.deposit}" />
+							<form:input path="deposit" value="${detailBean.deposit}" />元
 						</div>
 						<div>
 							管理費
