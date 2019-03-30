@@ -120,7 +120,9 @@
 	</div>	
 	<div style="margin-left:100px;margin-top:30px;text-align:left;"><span class="font-22B">精選推薦</span></div>
 <!-- 	插入輪播牆 -->
-	<div class = "carouselDiv" ></div>
+<div id="carouselExampleControls" class="carousel slide" style="padding-left: 60px;margin-left:80px;width:95%;" data-ride="carousel">
+<!-- 	<div class = "carouselDiv" > -->
+	</div>
 <!-- 	插入房屋物件 -->
 	<div class = "start"></div>
 <!-- </div>	 -->
@@ -134,6 +136,7 @@
 	districtName: "town" // 自訂地區 select 標籤的 name 值
 	});</script>
 <script>
+// $("carouselExampleControls").attr("data-ride","carousel");
 $(":text").focus(function() {
 	$(this).css("background-color", "#cccccc")
 });
@@ -178,7 +181,7 @@ $(":text").blur(function() {
 				type:"Get",
 				cache:"false",
 				success:function(data){
-						$(".carouselDiv").html(data);
+						$(".carousel").html(data);
 				}
 			});
 		}else{
@@ -224,7 +227,7 @@ $(":text").blur(function() {
 				type:"Get",
 				cache:"false",
 				success:function(data){
-						$(".carouselDiv").html(data);
+						$(".carousel").html(data);
 				}
 			});
 		}
@@ -235,7 +238,7 @@ $(":text").blur(function() {
 			type:"Get",
 			cache:"false",
 			success:function(data){
-					$(".carouselDiv").html(data);
+					$(".carousel").html(data);
 			}
 		});
 		
@@ -428,8 +431,8 @@ $(":text").blur(function() {
 	};
 		
 		function getSqft() {
-			var min = $("#minsqft").val();
-			var max = $("#maxsqft").val();
+			var min = parseInt($("#minsqft").val());
+			var max = parseInt($("#maxsqft").val());
 			if(min>max){
 				var temp = 0;
 				temp = min;
@@ -478,8 +481,8 @@ $(":text").blur(function() {
 		}
 
 		function getPrice() {
-			var min = $("#minprice").val();
-			var max = $("#maxprice").val();
+			var min = parseInt($("#minprice").val());
+			var max = parseInt($("#maxprice").val());
 			if(min>max){
 				var temp = 0;
 				temp = min;
@@ -548,7 +551,7 @@ $(":text").blur(function() {
 		
 
 		
-		$('.carouselDiv').carousel({
+		$('.carousel').carousel({
 			  interval: 2000
 			});
 </script>
