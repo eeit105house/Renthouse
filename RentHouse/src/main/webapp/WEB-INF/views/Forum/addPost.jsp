@@ -11,23 +11,19 @@
 <script src="//code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+</script>
+	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="login/css/bootstrap.css" rel="stylesheet" />
+<link href="Forum/Fcss/bootstrap.css" rel="stylesheet" />
 <link
-	href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+	href="//fonts.googledeapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
 	rel="stylesheet" type="text/css">
 <!-- 首頁樣式 -->
-<link href="login/css/landing-page.css" rel="stylesheet">
-
-<link rel="stylesheet"
-	href="Forum/css/forumTest.css"
-	type="text/css" >
-	<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
 <title>發表文章</title>
 </head>
 <body style="background-color: #ffebd7;">
-
 
 	<script type="text/javascript">
 		function spawn() {
@@ -58,7 +54,7 @@
 				}
 			}
 		}
-	</script>DE
+	</script>
 
 	<script type="text/javascript">
 		
@@ -70,57 +66,51 @@
 	<div style="height: 75px;">
 		<%@include file="../login/narbar.jsp"%>
 	</div>
-	<div class="forum">
+	<div class="form-group">
+	
 
-		<div class="crumbs">
-			發表文章
-		</div>
 		<div id="j-publish-style" style="display: none;"></div>
 		<div class="pubish_box">
 			<div class="publish_content">
 
 				<form:form action="./add" modelAttribute="ForumBean" method="POST"
-					name="form1" id="form1"
-					onsubmit="return chkPost();checkBbsCate();return checkForumPost();alert('發表成功!!')"
+					name="form1" id="form1"  data-toggle="validator"
+					onsubmit="return chkPost();checkBbsCate();return checkForumPost();alert('檢舉成功!!');" 
 					class='form-horizontal' enctype="multipart/form-data">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
-							<td colspan="2">▎<span class="content_replay font_13">發表新文章</span>
+							<td colspan="2" align="center"><span class="content_replay font_13"><h1>發表新文章</h1></span>
 							</td>
 						</tr>
 						<tr>
 							<td width="8%">選擇分類:</td>
 							<td width="92%" colspan="2"><form:select path="sort"
 									name="cateTitle" id="cateTitle"
-									onchange="changeCateTitle(this,0);checkBbsCate();changeSubTitle(1);">
-									<option>請選擇分類</option>
+									onchange="changeCateTitle(this,0);checkBbsCate();changeSubTitle(1);" required="required">
+									<option value="">請選擇分類</option>
 									<option value="心情抒發">心情抒發</option>
 									<option value="租屋交流">租屋交流</option>
 									<option value="知識問答">知識問答</option>
 									<option value="房價討論">房價討論</option>
 									<option value="其他">其他</option>
-								</form:select> <span id="cate_id_box"></span> <span id="parent_cate_id"
+								</form:select> 
+								<div class="help-block with-errors"></div>	
+								<span id="cate_id_box"></span> <span id="parent_cate_id"
 								style="padding-top: 10px; display: none; height: 21px;">
 									<span id="cate_id_help" style="display: none"></span>
 							</span></td>
 
 						</tr>
-						<!-- 						<div class="form-group"> -->
 
-						<!-- 						<div class='col-lg-10'> -->
-						<%-- 						<form:select path="sort"> --%>
-						<%-- 							<form:option value="-1" > --%>
-						<%-- 						<p>${errorMsg.titleE}</p> --%>
-						<%-- 							</form:option> --%>
-						<%-- 							<form:options items="${SortList}" /> --%>
-						<%-- 						</form:select> --%>
-						<!-- 						</div>						 -->
-						<!-- 					</div> -->
 						<tr>
 							<td>文章標題:</td>
-							<td><form:input path="title" name="title" id="title"
-									type="text" class="input" onblur="checkBbsTitle();" value="" />
-								<%-- 								<p>${errorMsg.titleList}</p> --%>
+							<td>
+<%-- 							<form:input path="title" name="title" id="title" --%>
+<%-- 									type="text" class="input" onblur="checkBbsTitle();" data-minlength="1" data-error="請填寫標題" /> --%>
+									<input path="title" name="title" id="title"
+									type="text" class="input" onblur="checkBbsTitle();" required="required"/>
+									<div class="help-block with-errors"></div>	
+								<%-- 									<p>${errorMsg.titleList}</p> --%>
 								<div id="parent_title" class="col-lg-10"
 									style="padding-top: 10px; display: none; height: 21px;">
 									<span id="title_help" style="display: none"></span>
@@ -130,12 +120,16 @@
 							<td valign="top">文章內容:</td>
 
 							<td><textarea id="article" name="article"
-									style="width: 90%; height: 400px;"></textarea>
+									style="width: 90%; height: 400px"></textarea>
+									<div class="help-block with-errors"></div>	
 								<div id="parent_content"
 									style="padding-top: 10px; display: none; height: 21px;">
 									<span id="content_help" style="display: none"></span>
 								</div>
-								<div></div></td>
+								<div>
+								
+</div></div></td>
+
 						</tr>
 						<!-- 						<tr> -->
 						<!-- 							<td>&nbsp;</td> -->
@@ -151,27 +145,35 @@
 						<tr>
 							<td>&nbsp;</td>
 							<td><span id="UploadStatus"></span> <input class="pub"
-								type="submit" value="發表文章" onclick="return check_blog_type();" />
+								type="submit" value="發表文章" onclick="return check_blog_type(); " />				
 								<input name="fid" type="hidden" id="fid" value="0" /> <input
 								name="sub_fid" type="hidden" id="sub_fid" value="0" /> <input
 								name="action" type="hidden" id="action" value="postThread" /> <input
 								name="nickname" type="hidden" id="nickname" value=""> <input
 								name="user_id" type="hidden" id="user_id" value="2582982">
 								<input type="hidden" id="is_admin" value="0"></td>
+								
 						</tr>
 
 					</table>
 				
-				</</form:form>
+				
+				</form:form>
+			<div class="forum">
+    <div class="alert alert-success fade in">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Success!</strong> Your message has been sent successfully.
 			</div>
 		</div>
-		
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 		<script language="javascript">
 //Drag.init($('GalleryTitle'), $('Gallery'));	
 //pageInit();
+
 function checkForumPost()
 {
- 	if($jq("#nickname").val() == ""){NickName.showDialog(); return false;}	var checkStr = '';
+ 	
 		if(!checkBbsCate()){checkStr += 'cateTitle ';}
 		if(!checkBbsTitle()){checkStr += 'title ';}
 	if(!checkBbsContent()){checkStr += 'twbbsEditor ';}
@@ -199,21 +201,8 @@ $jq(window).load(function(){
         $jq("#cateTitle").change();
     }
 })
-$jq(function(){
-    setTimeout(function(){
-        if($jq("#j-publish-style").html() == "96"){ 
-        $jq("#cate_id_box option").each(function(){
-            if($jq(this).val() == "96"){
-                $jq(this).attr("selected",true);
-                jQuery("#title").val("【591裝潢日記大賽】");
-                jQuery("#xhe0_iframearea").height("605px");
-                jQuery("#xhe0_iframe").height("605px");
-            }
-        })
-    }
-    },500);
 
-})
+
 function check_blog_type(){
 
     var _type = jQuery("#cateTitle option:selected").val();
@@ -221,14 +210,15 @@ function check_blog_type(){
     if(_type == ""){
 
         }else{
-            jQuery("#cate_id_help").html("沒有選擇版名，請選擇您要發表的版名。");
+            jQuery("#cate_id_help").style.color="red".html("沒有選擇版名，請選擇您要發表的版名。");
             jQuery("#cate_id_help").addClass("caution_prompt");
             jQuery("#cate_id_help").attr("style","display:'';");
             jQuery("#parent_cate_id").attr("style","display:'';");
             return false;
+            
         } 
     }
-}
+
 /**
  *@function装潢日志自动添加前标题,自动调整编辑框高度
  *@para r_type 等于1：其他类型的帖子标题，编辑框高度还原正常；等于0或空 装潢日志相应变更
@@ -274,6 +264,7 @@ if(nickname == "" && user_id > 0){
 }
 return true;
 }
+
 </script>
 		
 </body>

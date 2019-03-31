@@ -154,6 +154,7 @@ public class HouseController {
 //			HousePic housePicBean = new HousePic(null, houseId, getImageBlob(file), picNo);
 //			houseService.updatePictureByHouseIdAndPicNo(housePicBean);
 //		}
+		httpSession.removeAttribute("houseId");
 		return "redirect:/membercontrol/houseRefactPictureSuc";
 	}
 	@RequestMapping(value="/membercontrol/houseRefactPictureSuc")
@@ -192,13 +193,14 @@ public class HouseController {
 		model.addAttribute("defaultShortestN", detailBean.getShortest().substring(detailBean.getShortest().length()-1));
 		model.addAttribute("defaultLe", detailBean.getLe());
 		String cStr = "";
-//		try {
-//			cStr =detailBean.getInfo().getSubString(1, (int) detailBean.getInfo().length());
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-		cStr =changeClob.ClobToString(detailBean.getInfo());
-
+		try {
+			cStr =detailBean.getInfo().getSubString(1, (int) detailBean.getInfo().length());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+//		cStr =changeClob.ClobToString(detailBean.getInfo());
+//		cStr = detailBean.getInfo().getSubString(1, (int) detailBean.getInfo().length());
+	;	System.out.println(cStr);
 		model.addAttribute("houseInfo", cStr);
 		return "House/HouseRefactDetail";
 	}
@@ -239,7 +241,7 @@ public class HouseController {
 			detailBean.setShortest(detailBean.getShortest()+shortestN);
 
 			houseService.updateHouseDetail(detailBean,houseId);
-			httpSession.setAttribute("houseId", "");
+			httpSession.removeAttribute("houseId");
 			return "redirect:/membercontrol/houseRefactSelect";
 		} else {
 			model.addAttribute("errorMsg", errorMsg);
@@ -450,7 +452,7 @@ public class HouseController {
 		List<Integer> picIdsList = houseService.getPicIdsByHouse(houseBean);
 
 		if (errorMsg.isEmpty() && picIdsList.isEmpty()) {
-			if(request.getParameter("infoN")==null && request.getParameter("infoN").trim().length()>0) 
+			if(request.getParameter("infoN")!=null && request.getParameter("infoN").trim().length()>0) 
 				infoN=request.getParameter("infoN");
 			detailBean.setInfo(changeClob.stringToClob(infoN));
 			String movingInN = request.getParameter("movingInN");
@@ -577,6 +579,7 @@ public class HouseController {
 		HttpSession httpSession = request.getSession();
 		Integer houseId = (Integer) httpSession.getAttribute("houseId");
 		houseService.orderFinishied(houseId, new Timestamp(new java.util.Date().getTime()), pay);
+		httpSession.removeAttribute("houseId");
 		return "redirect:/membercontrol/houseRefactSelect";
 	}
 	
@@ -638,7 +641,8 @@ public class HouseController {
 			houseService.orderFinishied(houseId, timestamp,pay);
 		}
 		System.out.println(rtnCode+"\n"+rtnMsg+"\n"+tradeDate);
-		httpSession.setAttribute("houseId", "");
+//		httpSession.setAttribute("houseId", "");
+		httpSession.removeAttribute("houseId");
 		return "redirect:/membercontrol/houseRefactSelect";
 	}
 	

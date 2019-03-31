@@ -20,6 +20,7 @@
 		type="text/css" />
 
 	<title>二手家具</title>
+	<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
 	<script>
 		$(document).ready(function () {
 			$('input').keypress(function (e) { //禁止按enter送出

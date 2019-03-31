@@ -116,6 +116,7 @@
 	</script>
 	<meta charset="UTF-8">
 	<title>修改</title>
+	<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg"/>
 </head>
 
 <body style="background-color: #ffebd7;">
@@ -174,7 +175,7 @@
 						</div>
 						<div>
 							押金
-							<form:input path="deposit" value="${detailBean.deposit}" />
+							<form:input path="deposit" value="${detailBean.deposit}" />元
 						</div>
 						<div>
 							管理費
@@ -185,107 +186,126 @@
 								placeholder="請選擇日期" />
 							<p>${errorMsg.movingInNE}</p>
 						</div>
-						<div>
-							最短租期
-							<form:input path="shortest" value="${shortestN}" />
-							<input type="hidden" id="defaultshortestN" value="${defaultShortestN}">
-							<input type="radio" name="shortestN" id="shortest2-1" value="日"><label
-								for="shortest2-1">日</label>
-							<input type="radio" name="shortestN" id="shortest2-2" value="周"><label
-								for="shortest2-2">周</label>
-							<input type="radio" name="shortestN" id="shortest2-3" value="月"><label
-								for="shortest2-3">月</label>
-							<p>${errorMsg.shortestE}</p>
-						</div>
-						<div>
-							設備：
-							<form:hidden path="appliance" value="${detailBean.appliance}" />
-							<input type="checkbox" name="applianceN" id="appliance1" value="電視"
-								onclick="getCBValue('appliance')"> <label for="appliance1">電視</label>
-							<input type="checkbox" name="applianceN" id="appliance2" value="冰箱"
-								onclick="getCBValue('appliance')"><label for="appliance2">冰箱</label>
-							<input type="checkbox" name="applianceN" id="appliance3" value="洗衣機"
-								onclick="getCBValue('appliance')"><label for="appliance3">洗衣機</label>
-							<input type="checkbox" name="applianceN" id="appliance4" value="冷氣"
-								onclick="getCBValue('appliance')"><label for="appliance4">冷氣</label>
-							<input type="checkbox" name="applianceN" id="appliance5" value="網路"
-								onclick="getCBValue('appliance')"><label for="appliance5">網路</label>
-							<input type="checkbox" name="applianceN" id="appliance6" value="熱水器"
-								onclick="getCBValue('appliance')"><label for="appliance6">熱水器</label>
-							<input type="checkbox" name="applianceN" id="appliance7" value="第四台"
-								onclick="getCBValue('appliance')"><label for="appliance7">第四台</label>
-							<input type="checkbox" name="applianceN" id="appliance8" value="瓦斯"
-								onclick="getCBValue('appliance')"><label for="appliance8">瓦斯</label>
-						</div>
-						<div>
-							家具：
-							<form:hidden path="furniture" value="${detailBean.furniture}" />
-							<input type="checkbox" name="furnitureN" id="furniture1" value="床"
-								onclick="getCBValue('furniture')"><label for="furniture1">床</label>
-							<input type="checkbox" name="furnitureN" id="furniture2" value="衣櫃"
-								onclick="getCBValue('furniture')"><label for="furniture2">衣櫃</label>
-							<input type="checkbox" name="furnitureN" id="furniture3" value="沙發"
-								onclick="getCBValue('furniture')"><label for="furniture3">沙發</label>
-							<input type="checkbox" name="furnitureN" id="furniture4" value="桌子"
-								onclick="getCBValue('furniture')"><label for="furniture4">桌子</label>
-							<input type="checkbox" name="furnitureN" id="furniture5" value="椅子"
-								onclick="getCBValue('furniture')"><label for="furniture5">椅子</label>
-						</div>
-						<div>
-							租金包含：
-							<form:hidden path="include" value="${detailBean.include}" />
-							<input type="checkbox" name="includeN" id="include1" value="管理費"
-								onclick="getCBValue('include')"><label for="include1">管理費</label>
-							<input type="checkbox" name="includeN" id="include2" value="清潔費"
-								onclick="getCBValue('include')"><label for="include2">清潔費</label>
-							<input type="checkbox" name="includeN" id="include3" value="瓦斯費"
-								onclick="getCBValue('include')"><label for="include3">瓦斯費</label>
-							<input type="checkbox" name="includeN" id="include4" value="第四台"
-								onclick="getCBValue('include')"><label for="include4">第四台</label>
-							<input type="checkbox" name="includeN" id="include5" value="網路"
-								onclick="getCBValue('include')"><label for="include5">網路</label>
-							<input type="checkbox" name="includeN" id="include6" value="水費"
-								onclick="getCBValue('include')"><label for="include6">水費</label>
-							<input type="checkbox" name="includeN" id="include7" value="電費"
-								onclick="getCBValue('include')"><label for="include7">電費</label>
-						</div>
-						<div>
-							生活機能：
-							<form:hidden path="le" value="${defaultLe}" />
-							<input type="checkbox" name="leN" id="le1" value="學校" onclick="getCBValue('le')"><label
-								for="le1">學校</label>
-							<input type="checkbox" name="leN" id="le2" value="夜市" onclick="getCBValue('le')"><label
-								for="le2">夜市</label>
-							<input type="checkbox" name="leN" id="le3" value="便利商店" onclick="getCBValue('le')"><label
-								for="le3">便利商店</label>
-							<input type="checkbox" name="leN" id="le4" value="傳統市場" onclick="getCBValue('le')"><label
-								for="le4">傳統市場</label>
-							<input type="checkbox" name="leN" id="le5" value="百貨公司" onclick="getCBValue('le')"><label
-								for="le5">百貨公司</label>
-							<input type="checkbox" name="leN" id="le6" value="醫療機構" onclick="getCBValue('le')"><label
-								for="le6">醫療機構</label>
-							<input type="checkbox" name="leN" id="le7" value="公車站" onclick="getCBValue('le')"><label
-								for="le7">公車站</label>
-							<input type="checkbox" name="leN" id="le8" value="捷運站" onclick="getCBValue('le')"><label
-								for="le8">捷運站</label>
-							<input type="checkbox" name="leN" id="le9" value="火車站" onclick="getCBValue('le')"><label
-								for="le9">火車站</label>
-						</div>
-						<div>
-							身分限制：
-							<form:hidden path="indetity" value="${detailBean.indetity}" />
-							<input type="checkbox" name="indetityN" id="indetity1" value="學生"
-								onclick="getCBValue('indetity')"><label for="indetity1">學生</label>
-							<input type="checkbox" name="indetityN" id="indetity2" value="正職"
-								onclick="getCBValue('indetity')"><label for="indetity2">正職</label>
-							<input type="checkbox" name="indetityN" id="indetity3" value="兼職"
-								onclick="getCBValue('indetity')"><label for="indetity3">兼職</label>
-							<input type="checkbox" name="indetityN" id="indetity4" value="家庭"
-								onclick="getCBValue('indetity')"><label for="indetity4">家庭</label>
-							<input type="checkbox" name="indetityN" id="indetity5" value="自由業"
-								onclick="getCBValue('indetity')"><label for="indetity5">自由業</label>
-						</div>
+								<div>
+									最短租期
+									<form:input path="shortest" />
+									<label for="shortest2-1">日</label>
+									<input type="radio" name="shortestN" id="shortest2-1" value="日" checked="true">
+									<label for="shortest2-2">周</label>
+									<input type="radio" name="shortestN" id="shortest2-2" value="周">
+									<label for="shortest2-3">月</label>
+									<input type="radio" name="shortestN" id="shortest2-3" value="月">
+									<p>${errorMsg.shortestE}</p>
+								</div>
+								<div>
+									<p>設備：</p>
+									<form:hidden path="appliance" />
+									<label for="appliance1">電視：</label>
+									<input type="checkbox" name="applianceN" id="appliance1" value="電視"
+										onclick="getCBValue('appliance')">
+									<label for="appliance2">冰箱：</label>
+									<input type="checkbox" name="applianceN" id="appliance2" value="冰箱"
+										onclick="getCBValue('appliance')">
+									<label for="appliance3">洗衣機：</label>
+									<input type="checkbox" name="applianceN" id="appliance3" value="洗衣機"
+										onclick="getCBValue('appliance')">
+									<label for="appliance4">冷氣：</label>
+									<input type="checkbox" name="applianceN" id="appliance4" value="冷氣"
+										onclick="getCBValue('appliance')">
+									<label for="appliance5">網路：</label>
+									<input type="checkbox" name="applianceN" id="appliance5" value="網路"
+										onclick="getCBValue('appliance')">
+									<label for="appliance6">熱水器：</label>
+									<input type="checkbox" name="applianceN" id="appliance6" value="熱水器"
+										onclick="getCBValue('appliance')">
+									<label for="appliance7">第四台：</label>
+									<input type="checkbox" name="applianceN" id="appliance7" value="第四台"
+										onclick="getCBValue('appliance')">
+									<label for="appliance8">瓦斯：</label>
+									<input type="checkbox" name="applianceN" id="appliance8" value="瓦斯"
+										onclick="getCBValue('appliance')">
+								</div>
+								<div>
+									<p>家具：</p>
+									<form:hidden path="furniture" />
+									<label for="furniture1">床：</label>
+									<input type="checkbox" name="furnitureN" id="furniture1" value="床"
+										onclick="getCBValue('furniture')">
+									<label for="furniture2">衣櫃：</label>
+									<input type="checkbox" name="furnitureN" id="furniture2" value="衣櫃"
+										onclick="getCBValue('furniture')">
+									<label for="furniture3">沙發：</label>
+									<input type="checkbox" name="furnitureN" id="furniture3" value="沙發"
+										onclick="getCBValue('furniture')">
+									<label for="furniture4">桌子：</label>
+									<input type="checkbox" name="furnitureN" id="furniture4" value="桌子"
+										onclick="getCBValue('furniture')">
+									<label for="furniture5">椅子：</label>
+									<input type="checkbox" name="furnitureN" id="furniture5" value="椅子"
+										onclick="getCBValue('furniture')">
+								</div>
+								<div>
+									<p>租金包含：</p>
+									<form:hidden path="include" />
+									<label for="include1">管理費：</label>
+									<input type="checkbox" name="includeN" id="include1" value="管理費"
+										onclick="getCBValue('include')">
+									<label for="include2">清潔費：</label>
+									<input type="checkbox" name="includeN" id="include2" value="清潔費"
+										onclick="getCBValue('include')">
+									<label for="include3">瓦斯費：</label>
+									<input type="checkbox" name="includeN" id="include3" value="瓦斯費"
+										onclick="getCBValue('include')">
+									<label for="include4">第四台：</label>
+									<input type="checkbox" name="includeN" id="include4" value="第四台"
+										onclick="getCBValue('include')">
+									<label for="include5">網路：</label>
+									<input type="checkbox" name="includeN" id="include5" value="網路"
+										onclick="getCBValue('include')">
+									<label for="include6">水費：</label>
+									<input type="checkbox" name="includeN" id="include6" value="水費"
+										onclick="getCBValue('include')">
+									<label for="include7">電費：</label>
+									<input type="checkbox" name="includeN" id="include7" value="電費"
+										onclick="getCBValue('include')">
+								</div>
+								<div>
+									<p>生活機能：</p>
+									<form:hidden path="le" />
+									<label for="le1">學校：</label>
+									<input type="checkbox" name="leN" id="le1" value="學校" onclick="getCBValue('le')">
+									<label for="le2">夜市：</label>
+									<input type="checkbox" name="leN" id="le2" value="夜市" onclick="getCBValue('le')">
+									<label for="le3">便利商店：</label>
+									<input type="checkbox" name="leN" id="le3" value="便利商店" onclick="getCBValue('le')">
+									<label for="le4">傳統市場：</label>
+									<input type="checkbox" name="leN" id="le4" value="傳統市場" onclick="getCBValue('le')">
+									<label for="le5">百貨公司：</label>
+									<input type="checkbox" name="leN" id="le5" value="百貨公司" onclick="getCBValue('le')">
+									<label for="le6">醫療機構：</label>
+									<input type="checkbox" name="leN" id="le6" value="醫療機構" onclick="getCBValue('le')">
+									<label for="le7">公車站：</label>
+									<input type="checkbox" name="leN" id="le7" value="公車站" onclick="getCBValue('le')">
+									<label for="le8">捷運站：</label>
+									<input type="checkbox" name="leN" id="le8" value="捷運站" onclick="getCBValue('le')">
+									<label for="le9">火車站：</label>
+									<input type="checkbox" name="leN" id="le9" value="火車站" onclick="getCBValue('le')">
 
+								</div>
+								<div>
+									<p>身分限制：</p>
+									<form:hidden path="indetity" />
+									<label for="indetity1">學生：</label><input type="checkbox" name="indetityN"
+										id="indetity1" value="學生" onclick="getCBValue('indetity')">
+									<label for="indetity2">正職：</label><input type="checkbox" name="indetityN"
+										id="indetity2" value="正職" onclick="getCBValue('indetity')">
+									<label for="indetity3">兼職：</label><input type="checkbox" name="indetityN"
+										id="indetity3" value="兼職" onclick="getCBValue('indetity')">
+									<label for="indetity4">家庭：</label><input type="checkbox" name="indetityN"
+										id="indetity4" value="家庭" onclick="getCBValue('indetity')">
+									<label for="indetity5">自由業：</label><input type="checkbox" name="indetityN"
+										id="indetity5" value="自由業" onclick="getCBValue('indetity')">
+								</div>
 						<input type="submit" class="medium green button" value="送出">
 					</fieldset>
 				</form:form>

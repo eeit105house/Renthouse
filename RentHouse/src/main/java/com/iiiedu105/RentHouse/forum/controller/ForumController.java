@@ -93,6 +93,7 @@ public class ForumController {
 			return "redirect:/ForumView";
 		Forum ForumBean = service.findById(fId);
 		Member memberBean = ForumBean.getMemberBean();
+		
 		List<ForumReply> list = service.getAllReplies(fId);
 		ForumReport forumReport = new ForumReport();
 		

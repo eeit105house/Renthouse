@@ -40,7 +40,7 @@ table, td, tr, th {
 	text-align:right;
 }
 .button_line .rep-btn, .button_line .pub-btn, .title_detail b, .title_detail .hot, .title_detail .essence, .title_detail #img, .title_detail #essence, .title_detail #new, .editor-replay-content .rep-sub, .publish_content .pub{
-	
+
 }
 .button_line a.rep-btn{
 	background-position:-16px -618px;
@@ -75,7 +75,7 @@ table, td, tr, th {
 .content_box{
 	margin-right:10px;
 	padding-left:10px;
-	border:1px solid #d9d9d9;
+	border:0px solid #d9d9d9;
 	}
 .content{
 	margin-right:10px;
@@ -164,7 +164,7 @@ table, td, tr, th {
 	float:left;
 	width:777px;
 	padding:18px 10px 0 10px;
-	border-left:1px solid #c5c5c5;
+	border-left:0px solid #c5c5c5;
 	background-color:#FFF;
 	}
 .rightSideBar .content_detail{
@@ -194,7 +194,7 @@ table, td, tr, th {
 }
 .content_floor{
 	color:#676666;
-	border-bottom:1px dashed #CCC;
+	border-bottom:0px dashed #CCC;
 	padding:3px 0px;
 	font-size:12px;
 	}
@@ -269,7 +269,7 @@ table, td, tr, th {
 	line-height: 25px;
 }
 .editor-replay-content .vali-code{
-	border:1px solid #a5d0e0;
+	border:0px solid #a5d0e0;
 	height:20px;
 	width:90px;
 }

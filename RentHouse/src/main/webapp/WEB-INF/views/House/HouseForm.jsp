@@ -9,10 +9,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>房屋上架</title>
+	<link rel="shortcut icon" href="//upload.cc/i1/2019/03/28/Kl6mho.jpg" />
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
-<script src="${pageContext.request.contextPath}/HouseResorce/Formstone-master/js/site.js"></script>
+	<script src="${pageContext.request.contextPath}/HouseResorce/Formstone-master/js/site.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/HouseResorce/Formstone-master/css/site.css"
 		media="all" />
 	<%-- 	<script src="${pageContext.request.contextPath}/HouseResorce/js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script> --%>
@@ -24,7 +25,7 @@
 	<script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBR1UlWEzeskb_Jx_RbBtPypXUDGWdF-U8"
 		type="text/javascript"></script>
 	<!-- house模板CSS	 -->
-<%-- 	<link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet" type="text/css" /> --%>
+	<%-- 	<link href="${pageContext.request.contextPath}/HouseResorce/css/houseview/default.css" rel="stylesheet" type="text/css" /> --%>
 	<script>
 
 		$("*").ready(function () {
@@ -90,7 +91,24 @@
 					this.value = this.value.replace(/-/g, '');
 				}
 			});
-		});
+
+			$("#oneclickH").click(function () {
+				$("select[name='county']").val("臺北市");
+				$("#cityId").val("臺北市");
+				$("select[name='district']").append($("<option>").text("中山區"));
+				$("select[name='district']").val("中山區");
+				$("#boroughsId").val("中山區");
+				$("#addr").val("新生北路二段")
+				codeAddress();
+				$("#sqft").val("13");
+				$("#build").val("電梯大樓");
+				$("#type").val("獨立套房");
+				$("#floor").val("8")
+				$("#topFloor").val("12")
+				$("#layout").val("有陽臺");
+			});
+
+		});//ready
 
 		function codeAddress() {
 			var addr = $("#cityId").val() + $("#boroughsId").val() + $("#addr").val();
@@ -136,127 +154,121 @@
 </head>
 
 <body style="background-color: #ffebd7;">
-    <div style="height: 75px;">
-            <%@include file="../login/narbar.jsp"%>
-    
-        	<script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
-        
-    </div>
-    <div>
-<%--         <h1 class="container">親愛的 ${user.name} 您好</h1> --%>
-        <div class="d-flex container" id="wrapper">
-            <!-- Sidebar -->
-<!--             <div class="bg-light border-right" id="sidebar-wrapper"> -->
-<!--                 <div class="sidebar-heading list-group-item bg-warning">會員中心</div> -->
-<!--                 <div class="list-group list-group-flush"> -->
-<%--                     <a href="<c:url value='/membercontrol/${user.id}'/>" --%>
-<!--                         class="list-group-item list-group-item-action bg-light">&gt;&gt;會員資料修改</a> -->
-<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a> -->
-<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a> -->
-<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Events</a> -->
-<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a> -->
-<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Status</a> -->
-<!--                 </div> -->
-<!--             </div> -->
-            <!-- /#sidebar-wrapper -->
+	<div style="height: 75px;">
+		<%@include file="../login/narbar.jsp"%>
 
-            <!-- Page Content -->
-            <div id="page-content-wrapper">
+		<script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
 
-<!--                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom"> -->
-<!--                     <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
-<!--                     </div> -->
-<!--                 </nav> -->
-                <!-- 		內容 -->
-                <div class="container-fluid" style="width: 800px;">
-                    <h1 class="mt-4"></h1>
-                    <div class="post">
-								<form:form method='POST' modelAttribute="houseBean">
-									<fieldset>
-										<legend class="legendK">房屋類型</legend>
-										<div>
-											<label for="addr" class="label.col_1">地址：</label>
-											<span id="twzipcode"></span>
-											<form:hidden id="cityId" path="city" onchange="codeAddress()" />
-											<form:hidden id="boroughsId" path="boroughs" onchange="codeAddress()" />
-											<form:input path="addr" class="col_6" onchange="codeAddress()" />
-										</div>
-										<p>${errorMsg.addrE}</p>
-										<div>
-											<label for="sqft" class="label.col_1">坪數：</label>
-											<form:input path="sqft" value="" class="col_1" />
-											<label for="" class="label.col_1">坪</label>
-										</div>
-										<p>${errorMsg.sqftE}</p>
-						
-										<div>
-											<label for="build" class="label.col_1">建築型態：</label>
-											<form:select path="build" class="col_2">
-												<form:option value="">-請選擇-</form:option>
-												<form:option value="公寓">公寓</form:option>
-												<form:option value="電梯大樓">電梯大樓</form:option>
-												<form:option value="透天厝">透天厝</form:option>
-												<form:option value="別墅">別墅</form:option>
-											</form:select>
-										</div>
-										<p>${errorMsg.buildE}</p>
-						
-										<div>
-											<label for="type" class="label.col_1">住房類型：</label>
-											<form:select path="type" class="col_2">
-												<form:option value="">-請選擇-</form:option>
-												<form:option value="整層住家">整層住家</form:option>
-												<form:option value="獨立套房">獨立套房</form:option>
-												<form:option value="分租套房">分租套房</form:option>
-												<form:option value="雅房">雅房</form:option>
-												<form:option value="其他類型">其他類型</form:option>
-											</form:select>
-										</div>
-										<p>${errorMsg.typeE}</p>
-						
-										<div>
-											<label for="floor" class="label.col_1">所在樓層：</label>
-											<form:input path="floor" class="col_1" />
-											<label for="" class="label.col_1">樓</label>
-										</div>
-										<p>${errorMsg.floorE}</p>
-						
-										<div>
-											<label for="topfloor" class="label.col_1">頂樓樓層：</label>
-											<form:input path="topFloor" class="col_1" />
-											<label for="" class="label.col_1">樓</label>
-										</div>
-										<p>${errorMsg.topfloorE}</p>
-						
-										<div>
-											<label for="layout" class="label.col_1">格局：</label>
-											<form:input path="layout" class="col_6" />
-										</div>
-										<p>${errorMsg.layoutE}</p>
-						
-										<form:hidden path="memberId" />
-										<form:hidden path="category" value="住家" />
-										<form:hidden path="lat" value="" />
-										<form:hidden path="lon" value="" />
-										<div>
-											<input type="submit" class="medium green button" id="submit" value="送出">
-										</div>
-									</fieldset>
-								</form:form>
-							</div>
-                </div>
-            </div>
-            <!-- /#page-content-wrapper -->
+	</div>
+	<div>
+		<%--         <h1 class="container">親愛的 ${user.name} 您好</h1> --%>
+		<div class="d-flex container" id="wrapper">
+			<!-- Sidebar -->
+			<!--             <div class="bg-light border-right" id="sidebar-wrapper"> -->
+			<!--                 <div class="sidebar-heading list-group-item bg-warning">會員中心</div> -->
+			<!--                 <div class="list-group list-group-flush"> -->
+			<%--                     <a href="<c:url value='/membercontrol/${user.id}'/>" --%>
+			<!--                         class="list-group-item list-group-item-action bg-light">&gt;&gt;會員資料修改</a> -->
+			<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a> -->
+			<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a> -->
+			<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Events</a> -->
+			<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a> -->
+			<!--                     <a href="#" class="list-group-item list-group-item-action bg-light">Status</a> -->
+			<!--                 </div> -->
+			<!--             </div> -->
+			<!-- /#sidebar-wrapper -->
 
-        </div>
-    </div>
+			<!-- Page Content -->
+			<div id="page-content-wrapper">
+
+				<!--                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom"> -->
+				<!--                     <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+				<!--                     </div> -->
+				<!--                 </nav> -->
+				<!-- 		內容 -->
+				<div class="container-fluid" style="width: 800px;">
+					<h1 class="mt-4"></h1>
+					<div class="post">
+						<form:form method='POST' modelAttribute="houseBean">
+							<fieldset>
+								<legend class="legendK">房屋類型</legend>
+								<div>
+									<label for="addr" class="label.col_1">地址：</label>
+									<span id="twzipcode"></span>
+									<form:hidden id="cityId" path="city" onchange="codeAddress()" />
+									<form:hidden id="boroughsId" path="boroughs" onchange="codeAddress()" />
+									<form:input path="addr" class="col_6" onchange="codeAddress()" placeholder="例：XX路XX段X號X樓"/>
+								</div>
+								<p>${errorMsg.addrE}</p>
+								<div>
+									<label for="sqft" class="label.col_1">坪數：</label>
+									<form:input path="sqft" class="col_1" />
+									<label for="" class="label.col_1">坪</label>
+								</div>
+								<p>${errorMsg.sqftE}</p>
+
+								<div>
+									<label for="build" class="label.col_1">建築型態：</label>
+									<form:select path="build" class="col_2">
+										<form:option value="">-請選擇-</form:option>
+										<form:option value="公寓">公寓</form:option>
+										<form:option value="電梯大樓">電梯大樓</form:option>
+										<form:option value="透天厝">透天厝</form:option>
+										<form:option value="別墅">別墅</form:option>
+									</form:select>
+								</div>
+								<p>${errorMsg.buildE}</p>
+
+								<div>
+									<label for="type" class="label.col_1">住房類型：</label>
+									<form:select path="type" class="col_2">
+										<form:option value="">-請選擇-</form:option>
+										<form:option value="整層住家">整層住家</form:option>
+										<form:option value="獨立套房">獨立套房</form:option>
+										<form:option value="分租套房">分租套房</form:option>
+										<form:option value="雅房">雅房</form:option>
+										<form:option value="其他類型">其他類型</form:option>
+									</form:select>
+								</div>
+								<p>${errorMsg.typeE}</p>
+
+								<div>
+									<label for="floor" class="label.col_1">所在樓層：</label>
+									<form:input path="floor" class="col_1" />
+									<label for="" class="label.col_1">樓</label>
+								</div>
+								<p>${errorMsg.floorE}</p>
+
+								<div>
+									<label for="topfloor" class="label.col_1">頂樓樓層：</label>
+									<form:input path="topFloor" class="col_1" />
+									<label for="" class="label.col_1">樓</label>
+								</div>
+								<p>${errorMsg.topfloorE}</p>
+
+								<div>
+									<label for="layout" class="label.col_1">格局：</label>
+									<form:input path="layout" class="col_6" placeholder="例：1房1聽、樓中樓"/>
+								</div>
+								<p>${errorMsg.layoutE}</p>
+
+								<form:hidden path="memberId" />
+								<form:hidden path="category" value="住家" />
+								<form:hidden path="lat" value="" />
+								<form:hidden path="lon" value="" />
+								<div>
+									<input type="submit" class="medium green button" id="submit" value="送出">
+									<input type="button" class="blue button" id="oneclickH" value="一鍵代入">
+								</div>
+							</fieldset>
+						</form:form>
+					</div>
+				</div>
+			</div>
+			<!-- /#page-content-wrapper -->
+
+		</div>
+	</div>
 </body>
 
 </html>
-
-
-
-
-
-
-						

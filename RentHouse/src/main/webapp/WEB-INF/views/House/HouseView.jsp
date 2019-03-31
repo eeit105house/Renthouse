@@ -105,6 +105,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
+td{
+	font-size: 14px;
+}
 </style>
 <body style="background-color: #ffebd7;">
 	<div style="height: 75px;">
