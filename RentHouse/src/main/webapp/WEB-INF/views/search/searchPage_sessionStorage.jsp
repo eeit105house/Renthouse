@@ -57,7 +57,7 @@
 			</div>
 			
 			<p class="onlyIndexList" id="listIndexId" />
-				<div class="titleDiv">租金： &nbsp;&nbsp;|&nbsp;&nbsp;<span id="price0">租金不限</span>
+				<div class="titleDiv">租金： &nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectPrice" id="price0">租金不限</span>
 				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectPrice" id="price0" name="5000元以下">5000元以下</span>
 				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectPrice" id="price0" name="5000-10000元">5000-10000元</span>
 				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectPrice" id="price0" name="10000-20000元">10000-20000元</span>
@@ -72,7 +72,7 @@
 			</div>
 			
 			<p class="onlyIndexList" id="selectSqftId" />
-				<div class="titleDiv">坪數： &nbsp;&nbsp;|&nbsp;&nbsp;<span id="Sqft0">坪數不限</span>
+				<div class="titleDiv">坪數： &nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectSqft" id="Sqft0">坪數不限</span>
 				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectSqft" id="Sqft0" name="10坪以下">10坪以下</span>
 				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectSqft" id="Sqft0" name="10-20坪">10-20坪</span>
 				&nbsp;&nbsp;|&nbsp;&nbsp;<span class="selectSqft" id="Sqft0" name="20-30坪">20-30坪</span>

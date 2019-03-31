@@ -10,9 +10,9 @@
 .carousel{
 	
 	margin-bottom:60px;
-	width:1263px;
+	width:100%;
 	text-align: center;
-	margin-left:80px;
+/* 	margin-left:80px; */
 	float:left;	
 }
 .perDivIncarousel{
