@@ -22,7 +22,7 @@
 			<div id="sidebar_right">
 				<span class="font-25R">&nbsp;${objectlist[9]}&nbsp;元&nbsp;/&nbsp;月</span>
 			</div>
-			<div id="content">
+			<div id="content" style="width:auto">
 				<span class="font-22B">${objectlist[1]}</span><br> <span
 					class="font-16B">${objectlist[2]}&nbsp;&nbsp;|&nbsp;&nbsp;${objectlist[3]}坪&nbsp;&nbsp;|&nbsp;&nbsp;樓層:${objectlist[4]}/${objectlist[5]}</span><br>
 				<span class="font-16B">${objectlist[6]}&nbsp;-&nbsp;${objectlist[7]}</span>

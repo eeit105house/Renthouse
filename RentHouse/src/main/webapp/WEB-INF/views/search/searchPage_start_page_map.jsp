@@ -23,7 +23,7 @@
 			<div id="sidebar_right" style="width: 120px;height: 80px;text-align: right;line-height: 150px;float: right;">
 				<span class="font-25R">&nbsp;${newList[9]}&nbsp;元&nbsp;/&nbsp;月</span>
 			</div>
-			<div id="content" style="width:300px;margin-left:10px;margin-top:10px;height: 80px;text-align: left;line-height: 20px;">
+			<div id="content" style="width:auto;margin-left:10px;margin-top:10px;height: 80px;text-align: left;line-height: 20px;">
 				<span class="font-22B">${newList[1]}</span><br> <span
 					class="font-16B">${newList[2]}&nbsp;&nbsp;|&nbsp;&nbsp;${newList[3]}坪&nbsp;&nbsp;|&nbsp;&nbsp;樓層:${newList[4]}/${newList[5]}</span><br>
 				<span class="font-16B">${newList[6]}&nbsp;-&nbsp;${newList[7]}</span>

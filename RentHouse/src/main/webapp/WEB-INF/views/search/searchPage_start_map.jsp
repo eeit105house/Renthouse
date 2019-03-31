@@ -24,7 +24,7 @@
 			<div id="sidebar_right" style="width: 120px;height: 80px;text-align: right;line-height: 150px;float: right;">
 				<span class="font-25R">&nbsp;${objectlist[9]}&nbsp;元&nbsp;/&nbsp;月</span>
 			</div>
-			<div id="content" style="width:300px;margin-left:10px;margin-top:10px;height: 80px;text-align: left;line-height: 20px;">
+			<div id="content" style="width:auto;margin-left:10px;margin-top:10px;height: 80px;text-align: left;line-height: 20px;">
 				<span class="font-22B">${objectlist[1]}</span><br> <span
 					class="font-16B">${objectlist[2]}&nbsp;&nbsp;|&nbsp;&nbsp;${objectlist[3]}坪&nbsp;&nbsp;|&nbsp;&nbsp;樓層:${objectlist[4]}/${objectlist[5]}</span><br>
 				<span class="font-16B">${objectlist[6]}&nbsp;-&nbsp;${objectlist[7]}</span>
