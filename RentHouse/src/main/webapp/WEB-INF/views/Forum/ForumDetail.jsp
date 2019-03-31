@@ -117,7 +117,7 @@
 							</tr>
 							<tr>
 								<td colspan="2" align="center" style="font-weight: 700">
-									${memberBean.id}</td>
+									${reply[0].memberBean.id}</td>
 							</tr>
 							<!--   <tr><td width='42%' align='right'>註冊：</td><td width='58%' valign='top'>2012-07-19</td></tr><tr><td align='right'>文章：</td><td valign='top'>44</td></tr><tr><td align='right'>回覆：</td><td valign='top'>422</td></tr> -->
 						</table>
