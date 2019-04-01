@@ -116,7 +116,7 @@ public class HouseController {
 	@RequestMapping(value="/membercontrol/houseRefactPic/{hId}")
 	public String houseRefactPic(Model model,@PathVariable Integer hId,HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
-		httpSession.setAttribute("houseId", hId);
+		httpSession.setAttribute("housePId", hId);
 //		houseId = hId;
 		return "redirect:/membercontrol/houseRefactPicture";
 	}
@@ -124,7 +124,7 @@ public class HouseController {
 	@RequestMapping(value="/membercontrol/houseRefactPicture",method=RequestMethod.GET)
 	public String houseRefactPictureFormGet(Model model,HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
-		Integer houseId = (Integer) httpSession.getAttribute("houseId");
+		Integer houseId = (Integer) httpSession.getAttribute("housePId");
 		House houseBean = houseService.findById(houseId);
 		
 		Member member = (Member) httpSession.getAttribute("user");
@@ -145,7 +145,7 @@ public class HouseController {
 	public String houseRefactPictureFormPost(Model model,@RequestParam(value = "pic") MultipartFile file0,@RequestParam(value = "picNo") Integer picNo,HttpServletRequest request) {
 		System.out.println(picNo+"張圖片");
 		HttpSession httpSession = request.getSession();
-		Integer houseId = (Integer) httpSession.getAttribute("houseId");
+		Integer houseId = (Integer) httpSession.getAttribute("housePId");
 		if(!file0.isEmpty())   {
 			HousePic housePicBean = new HousePic(null, houseId, getImageBlob(file0), picNo);
 			houseService.updatePictureByHouseIdAndPicNo(housePicBean);
@@ -154,7 +154,7 @@ public class HouseController {
 //			HousePic housePicBean = new HousePic(null, houseId, getImageBlob(file), picNo);
 //			houseService.updatePictureByHouseIdAndPicNo(housePicBean);
 //		}
-		httpSession.removeAttribute("houseId");
+//		httpSession.removeAttribute("houseId");
 		return "redirect:/membercontrol/houseRefactPictureSuc";
 	}
 	@RequestMapping(value="/membercontrol/houseRefactPictureSuc")

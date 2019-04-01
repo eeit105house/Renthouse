@@ -69,7 +69,7 @@
     		$("#inputPassword").val("password1234");
     		});
     	$("#housecustomer").click(function(){
-        	$("#inputAccount").val("CUSTOMER22");
+        	$("#inputAccount").val("CUSTOMER66");
         	$("#inputPassword").val("password1234");
         	});
     	$("#forgetpwd").click(function(){

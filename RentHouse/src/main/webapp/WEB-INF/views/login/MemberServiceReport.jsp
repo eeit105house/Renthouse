@@ -18,7 +18,7 @@
   <c:forEach var="mail" items="${allmail }">
     <tr>
     <c:choose>
-    <c:when test="${mail.status=='已讀' }">
+    <c:when test="${mail.status=='已讀' ||  mail.status=='會員未讀'}">
       <td><a href="<spring:url value='/membercontrol/memberservice/memberservicedetail/${mail.id }'/>">${mail.title }</a></td>
      </c:when>
      <c:otherwise>
