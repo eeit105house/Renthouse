@@ -126,8 +126,9 @@ public void insertReply(ForumReply reply) {
 //	Forum fb = findById(post.findMemberById());
 //	post.setForumBeans(fb);
 	List<ForumReply> list = null;
-	System.out.println(reply.getId());
-	session.save(reply);
+	System.out.println(reply.getMemberBean().getId());
+	
+	session.merge(reply);
 }
 
 @Override
@@ -140,7 +141,7 @@ public void saveReport(ForumReport report) {
 @Override
 public void savefReportUpdateForum(ForumReport forumReport) {
 	Session session = factory.getCurrentSession();
-	session.save(forumReport);
+	session.merge(forumReport);
 	String hql = "UPDATE Forum SET status = '審核' WHERE id = :fid";
 	session.createQuery(hql).setParameter("fid", forumReport.getForumBean().getId()).executeUpdate();
 }
