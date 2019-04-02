@@ -73,7 +73,7 @@
         	$("#inputPassword").val("password1234");
         	});
     	$("#forgetpwd").click(function(){
-    		$("#forgetpwdacc").val("CUSTOMER22");
+    		$("#forgetpwdacc").val("CUSTOMER66");
     		$("#forgetpwdemail").val("iiieeit10598@gmail.com");
     	});
     });
